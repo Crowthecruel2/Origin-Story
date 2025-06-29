@@ -4,24 +4,75 @@
     "type": "split",
     "children": [
       {
-        "id": "1ae9732f6bbea5a3",
+        "id": "bac513dded7b71bf",
         "type": "tabs",
         "children": [
           {
-            "id": "fbf02cde816fc9f8",
+            "id": "b8b403914c2542b7",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                },
+                {
+                  "title": "Character Template",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"z_Templates/Character Template.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Character Template\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "test",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"z_Templates/test.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"test\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Character Template",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"z_Templates/Character Template.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Character Template\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                }
+              ]
+            },
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Wargame Spesifics/The Sequenced/The Uplifted.md",
+                "file": "textgenerator/templates/default/getEmailNeg.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The Uplifted"
+              "title": "getEmailNeg"
+            }
+          },
+          {
+            "id": "b6ce7ee9b2b2cfaa",
+            "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "textgenerator/TTRPG/GenerateNPC.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "GenerateNPC"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -37,6 +88,15 @@
           {
             "id": "af6bec37685a6952",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "file-explorer",
               "state": {
@@ -50,6 +110,15 @@
           {
             "id": "a48f2a5913bde185",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "search",
               "state": {
@@ -67,6 +136,15 @@
           {
             "id": "19bb96c5fa0a1c84",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "bookmarks",
               "state": {},
@@ -91,6 +169,15 @@
           {
             "id": "243c0ac6dcde8baa",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "backlink",
               "state": {
@@ -110,6 +197,15 @@
           {
             "id": "59804d782d4ee4f3",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "outgoing-link",
               "state": {
@@ -124,6 +220,15 @@
           {
             "id": "7ade6ab77180f484",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "tag",
               "state": {
@@ -139,30 +244,124 @@
           {
             "id": "0a786ff324c23449",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "outline",
               "state": {
-                "file": "Powers/Techie/Chemical Techie.md",
+                "file": "textgenerator/TTRPG/GenerateNPC.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Chemical Techie"
+              "title": "Outline of GenerateNPC"
             }
           },
           {
             "id": "5dbdc92d9f018a14",
             "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
               "icon": "spreadsheet",
               "title": "Advanced Tables"
             }
+          },
+          {
+            "id": "19e625ae70b242e2",
+            "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
+            "state": {
+              "type": "DICE_ROLLER_VIEW",
+              "state": {},
+              "icon": "dices",
+              "title": "Dice Tray"
+            }
+          },
+          {
+            "id": "533abe2defc896de",
+            "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
+            "state": {
+              "type": "inline-scripts-button-view",
+              "state": {},
+              "icon": "inline-scripts-button-view",
+              "title": "Inline Scripts - Buttons"
+            }
+          },
+          {
+            "id": "43b759cb51e52183",
+            "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
+            "state": {
+              "type": "tenki",
+              "state": {},
+              "icon": "sun",
+              "title": "Tenki"
+            }
+          },
+          {
+            "id": "5e2f2f44038c06da",
+            "type": "leaf",
+            "pane-relief:history-v1": {
+              "pos": 0,
+              "stack": [
+                {
+                  "state": "{}",
+                  "eState": "{}"
+                }
+              ]
+            },
+            "state": {
+              "type": "MAIN_VIEW",
+              "state": {},
+              "icon": "srt-ribbon",
+              "title": "Solo RPG Toolkit"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 8
       }
     ],
     "direction": "horizontal",
@@ -178,11 +377,44 @@
       "command-palette:Open command palette": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-excalidraw-plugin:New drawing": false,
-      "templater-obsidian:Templater": false
+      "templater-obsidian:Templater": false,
+      "obsidian42-brat:BRAT": false,
+      "pexels-banner:🚩 Pixel Banner Menu": false,
+      "obsidian-regex-pipeline:Regex Rulesets": false,
+      "calendarium:Open Calendarium": false,
+      "obsidian-5e-statblocks:Open Creature pane": false,
+      "fantasy-content-generator:Fantasy Generators": false,
+      "obsidian-kanban:Create new board": false,
+      "obsidian-leaflet-plugin:Open Leaflet Map": false,
+      "solo-rpg-toolkit:Solo RPG Toolkit": false,
+      "obsidian-textgenerator-plugin:Generate Text!": false,
+      "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false
     }
   },
-  "active": "af6bec37685a6952",
+  "active": "b6ce7ee9b2b2cfaa",
   "lastOpenFiles": [
+    "textgenerator/templates/default/getEmailNeg.md",
+    "textgenerator/TTRPG/GenerateNPC.md",
+    "textgenerator/TTRPG",
+    "z_Templates/Character Template.md",
+    "textgenerator/templates/default/getParagraph.md",
+    "textgenerator/templates/default/getIdeas.md",
+    "textgenerator/templates/default/summarize.md",
+    "textgenerator/templates/default/getOutline.md",
+    "textgenerator/templates/default/rewrite.md",
+    "textgenerator/templates/default/summarizeLarge.md",
+    "textgenerator/templates/default/simplify.md",
+    "textgenerator/templates/default/getTags.md",
+    "textgenerator/templates/default/getTitles.md",
+    "textgenerator/templates/default/getEmailPos.md",
+    "textgenerator/templates/default",
+    "textgenerator/templates",
+    "textgenerator",
+    "z_Templates/test.md",
+    "1. World Almanac/World/Drawing 2025-06-29 19.34.50.excalidraw.md",
+    "1. The Party/Player Character/Potch Peeps/Example Statblock.md",
+    "1. The Party/Player Character/Potch Peeps/Ethan ().md",
+    "2. Session Journals/test.md",
     "Templates/Character Template.md",
     "Wargame Spesifics/The Sequenced/Doctor Devious Nefarious Evil.md",
     "Wargame Spesifics/The Sequenced/The Uplifted.md",
@@ -191,27 +423,9 @@
     "Powers/Techie/Interface Techie.md",
     "Powers/Techie/Mech Techie.md",
     "Powers/Techie/Techie.md",
-    "Wargame Spesifics/Character Sheets.md",
     "Templates",
-    "Player Character/Volk Squad/Gater (Mikhail).md",
-    "Player Character/Player Characters.md",
-    "Wargame Spesifics/Turn Order.md",
-    "Lore/Characters/Villains/Oblivian.md",
     "Wargame Spesifics/The Sequenced",
-    "Lore/Characters/Heroes/ShadowStrike.md",
-    "Lore/Characters/Heroes/Dr Sentinel.md",
-    "Lore/Gods.md",
-    "Powers/Untitled.md",
-    "Untitled.md",
-    "Powers/Powers.md",
     "Wargame Spesifics",
-    "Power System/Power System.md",
-    "Powers/Mutant/Mutate.md",
-    "Powers/Mutant/Kaiju.md",
-    "Powers/Mutant/Mutant.md",
-    "Powers/Mutant/Thistle.md",
-    "Powers/Mutant/Vampire.md",
-    "Powers/Mutant/Elemental Body.md",
     "Powers/Movement",
     "Player Character/Volk Squad",
     "Player Character/Potch Peeps"
