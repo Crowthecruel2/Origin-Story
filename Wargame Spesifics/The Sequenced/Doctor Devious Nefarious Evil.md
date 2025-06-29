@@ -18,8 +18,9 @@ Lore:
 | Claws   | +0        | Natural  | 1d8    | Slashing    |         |
 
 
-| Abilities        | Effect                                                             | Use Phase     | Cost |
-| ---------------- | ------------------------------------------------------------------ | ------------- | ---- |
-| Rat Like Cunning | Choose a card in the discard pile and up it on the top of the deck | End of Turn   | 2    |
-| OverThink        | Deal 2 damage to yourself. Gain 2 energy                           | Start of turn | 0    |
-| Scurry           | Move Double your normal move speed for this turn                   | Movement      | 1    |
+| Abilities        | Effect                                                                               | Use Phase     | Cost |
+| ---------------- | ------------------------------------------------------------------------------------ | ------------- | ---- |
+| Rat Like Cunning | Choose a card in the discard pile and up it on the top of the deck                   | End of Turn   | 2    |
+| OverThink        | Deal 4 damage to yourself. Gain 2 energy                                             | Start of turn | 0    |
+| Scurry           | Move Double your normal move speed for this turn                                     | Movement      | 1    |
+| Genetic Pruning  | Remove a Genetic Anomaly from [[Sir Igoreous]]. Can only be done if he is within 5cm | Start of turn | 1    |
