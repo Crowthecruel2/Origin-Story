@@ -1,7 +1,0 @@
-[[Vampire]]
-[[Feral]]
-[[Kaiju]]
-[[Mutate]]
-[[Elemental Body]]
-[[Cartoon]]
-[[Thistle]]

@@ -1,8 +1,0 @@
-| Name       | Uncle ZaZa                                                                                                                                                        | Stats | Values |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------ |
-| Hp         | 10                                                                                                                                                                | Armor | 0      |
-| Player     | Nick                                                                                                                                                              | Dur   | 0      |
-| Powers:    | [[Super Reflex]] Super Aim 1<br>[[Super Reflex]] Killing Streak 1                                                                                                 | Smr   | 0      |
-| Inventory: | Black Labels                                                                                                                                                      | Str   | 0      |
-| Lore:      | Age: 22<br>Roman Catholic<br>Height: 178<br>Likes:<br>sloppy Toppy<br>Zamalek<br>Young Milfs<br>Bonds:<br>German Shephard<br>Flaws:<br>Is a Doos<br><br>Ophan<br> | Ref   | 0      |
-| Misc:      |                                                                                                                                                                   | Soc   | 0      |

@@ -1,0 +1,5 @@
+[[Super Strength]]
+[[Invincibility]]
+[[Regeneration]]
+[[Vitality]]
+[[Rage]]

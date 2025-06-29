@@ -1,6 +1,0 @@
-[[Weapon Manifestor]]
-[[Boomeranger]]
-[[Wielder]]
-[[Action Hero]]
-[[Swordsman]]
-[[Parry]]

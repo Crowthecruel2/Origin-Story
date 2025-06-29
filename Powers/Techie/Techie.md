@@ -1,7 +1,0 @@
-[[Mech Techie]]
-[[Chemical Techie]]
-[[Bio-Horror Techie]]
-[[Gadget Techie]]
-[[Interface Techie]]
-[[Fortification Techie]]
-[[Divine Techie]]

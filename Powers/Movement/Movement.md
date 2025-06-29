@@ -1,5 +1,0 @@
-[[Flight]]
-[[Teleport (People)]]
-[[SuperSpeed]]
-[[Skimmer]]
-[[Rocket]]
