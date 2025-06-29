@@ -13,10 +13,10 @@ Lore:
 | CardCount   | 3      |
 Weapons marked with the * need to be unlocked first
 
-| Weapons      | Hit Bonus | Keywords    | Damage | Damage Type | Effects |
-| ------------ | --------- | ----------- | ------ | ----------- | ------- |
-| Fist         | +0        |             | 1d10   | Blunt       |         |
-| Bladed Tail* | +0        | Free attack | 1d4    | Slash       |         |
+| Weapons      | Hit Bonus | Keywords    | Damage   | Damage Type | Effects | Range |
+| ------------ | --------- | ----------- | -------- | ----------- | ------- | ----- |
+| Fist         | +0        |             | 1d10+Str | Blunt       |         | Melee |
+| Bladed Tail* | +0        | Free attack | 1d4+Str  | Slash       |         | Melee |
 Abilities marked with the * need to be unlocked first 
 
 | Abilities            | Effect                                                                                                                                                                                                                | Use Phase | Cost |

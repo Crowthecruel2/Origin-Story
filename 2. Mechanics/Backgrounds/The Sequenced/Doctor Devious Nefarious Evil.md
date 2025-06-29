@@ -12,10 +12,10 @@ Lore:
 | Unit Count: | 1      |
 | CardCount   | 2      |
 
-| Weapons | Hit Bonus | Keywords | Damage | Damage Type | Effects |
-| ------- | --------- | -------- | ------ | ----------- | ------- |
-| Fist    | +0        | Natural  | 1d8    | Blunt       |         |
-| Claws   | +0        | Natural  | 1d8    | Slashing    |         |
+| Weapons | Hit Bonus | Keywords | Damage  | Damage Type | Effects | Range |
+| ------- | --------- | -------- | ------- | ----------- | ------- | ----- |
+| Fist    | +0        | Natural  | 1d8+Str | Blunt       |         | Melee |
+| Claws   | +0        | Natural  | 1d8+Str | Slashing    |         | Melee |
 
 
 | Abilities        | Effect                                                                               | Use Phase     | Cost |

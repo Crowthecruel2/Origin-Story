@@ -12,12 +12,12 @@ Lore:
 | Unit Count: | 5      |
 | CardCount   | 2      |
 
-| Weapons    | Hit Bonus | Keywords | Damage | Damage Type | Effects |
-| ---------- | --------- | -------- | ------ | ----------- | ------- |
-| Fist       | +0        | Natural  | 1d4    | Blunt       |         |
-| Metal Pipe | +0        | Weapon   | 1d6    | Blunt       |         |
-| Crab Claw* | +1        | Natural  | 1d8    | Crush       |         |
-| Pistol*    | +2        | Weapon   | 1d10   | piercing    |         |
+| Weapons    | Hit Bonus | Keywords | Damage  | Damage Type | Effects | Range |
+| ---------- | --------- | -------- | ------- | ----------- | ------- | ----- |
+| Fist       | +0        | Natural  | 1d4+Str | Blunt       |         | Melee |
+| Metal Pipe | +0        | Weapon   | 1d6+Str | Blunt       |         | Melee |
+| Crab Claw* | +1        | Natural  | 1d8+Str | Crush       |         | Melee |
+| Pistol*    | +2        | Weapon   | 1d10    | piercing    |         | 40cm  |
 Each Character in the Uplifted has access to one unique ability in the ability list of your choice
 
 | Abilities | Effect                                                         | Use Phase | Cost |
