@@ -44,7 +44,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "File explorer"
             }
           },
           {
@@ -170,10 +170,10 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "daily-notes:Open today's note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
@@ -181,7 +181,7 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "fbf02cde816fc9f8",
+  "active": "af6bec37685a6952",
   "lastOpenFiles": [
     "Templates/Character Template.md",
     "Wargame Spesifics/The Sequenced/Doctor Devious Nefarious Evil.md",
