@@ -1,14 +1,15 @@
 
-| Stats       | Values                               |
-| ----------- | ------------------------------------ |
-| HP:         | <% tp.system.prompt("Hp") %>         |
-| Energy:     | <% tp.system.prompt("Energy") %>     |
-| Armor:      | <% tp.system.prompt("Armor") %>      |
-| Dexterity   | <% tp.system.prompt("Dex") %>        |
-| Strength    | <% tp.system.prompt("Str") %>        |
-| Size:       | <% tp.system.prompt("Size") %>       |
-| Unit Count: | <% tp.system.prompt("Unit Count") %> |
-| CardCount   | <% tp.system.prompt("Card Count") %> |
+| Stats       | Values                                    |
+| ----------- | ----------------------------------------- |
+| HP:         | <% tp.system.prompt("Hp") %>              |
+| MoveSpeed:  | <% tp.system.prompt("MoveSpeed in Cm") %> |
+| Energy:     | <% tp.system.prompt("Energy") %>          |
+| Armor:      | <% tp.system.prompt("Armor") %>           |
+| Dexterity   | <% tp.system.prompt("Dex") %>             |
+| Strength    | <% tp.system.prompt("Str") %>             |
+| Size:       | <% tp.system.prompt("Size") %>            |
+| Unit Count: | <% tp.system.prompt("Unit Count") %>      |
+| CardCount   | <% tp.system.prompt("Card Count") %>      |
 
 | Weapons | Hit Bonus | Keywords | Damage | Damage Type | Effects |
 | ------- | --------- | -------- | ------ | ----------- | ------- |
