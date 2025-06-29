@@ -16,5 +16,7 @@ The Life Force is a Neutral Force. It maintains Harmony by constantly changing t
 
 Scaling:
 High level of entry. No power Ceiling
-Uniqueness: Many similarities but unique combinations.
+
+Uniqueness: 
+Many similarities but unique combinations.
 
