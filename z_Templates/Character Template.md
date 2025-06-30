@@ -2,6 +2,7 @@ Lore:
 
 | Stats       | Values                                    |
 | ----------- | ----------------------------------------- |
+| Points:     | <% tp.system.prompt("Points") %>          |
 | HP:         | <% tp.system.prompt("Hp") %>              |
 | MoveSpeed:  | <% tp.system.prompt("MoveSpeed in Cm") %> |
 | Energy:     | <% tp.system.prompt("Energy") %>          |

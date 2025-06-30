@@ -273,7 +273,8 @@ Lv3
 **Mechs for dummies:** A manual that after being used allows for another person to use the mechs.  
 Cost: $100  
 Effect: allows 1 person to be able to use mechs.  
-Requirement: None[br]‌  
+Requirement: None
+****
 Flight Mod: A mod that allows your mechs to fly.  
 Cost: $ 1000  
 Effect: Allows any mech to have vertical movement

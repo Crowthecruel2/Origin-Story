@@ -18,13 +18,661 @@
                   "eState": "{}"
                 },
                 {
+                  "title": "Bird Boys",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Bird Boys.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bird Boys\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":14,\"ch\":0},\"to\":{\"line\":14,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":29,\"ch\":48},\"to\":{\"line\":29,\"ch\":48}},\"scroll\":20.042927675098834}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":52,\"ch\":80},\"to\":{\"line\":52,\"ch\":80}},\"scroll\":44.751303565731384}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.10035841952088059}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.041269842783610025}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":53,\"ch\":2},\"to\":{\"line\":53,\"ch\":2}},\"scroll\":43.589094600049954}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":14.465710957845053}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":49,\"ch\":16},\"to\":{\"line\":49,\"ch\":16}},\"scroll\":38.90957259841007}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":22.04861005147298}"
+                },
+                {
+                  "title": "Sir Igoreous",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Sir Igoreous\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":28.612799253739933}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":43,\"ch\":2},\"to\":{\"line\":43,\"ch\":2}},\"scroll\":32.263888676961265}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":29,\"ch\":48},\"to\":{\"line\":29,\"ch\":48}},\"scroll\":18.65423024982899}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":41,\"ch\":2},\"to\":{\"line\":41,\"ch\":2}},\"scroll\":28.749495552382857}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.005847953390656856}"
+                },
+                {
+                  "title": "Sir Igoreous",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Sir Igoreous\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":23.344642967589547}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":25,\"ch\":33},\"to\":{\"line\":25,\"ch\":33}},\"scroll\":7.723324353185967}"
+                },
+                {
+                  "title": "Doctor Devious Nefarious Evil",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Doctor Devious Nefarious Evil\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.003174603269213722}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":14,\"ch\":0},\"to\":{\"line\":14,\"ch\":0}},\"scroll\":4.258630084458445}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.005847953390656856}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.005847953390656856}"
+                },
+                {
+                  "title": "Doctor Devious Nefarious Evil",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Doctor Devious Nefarious Evil\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.003174603269213722}"
+                },
+                {
+                  "title": "Gene Lord",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Gene Lord\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":10},\"to\":{\"line\":22,\"ch\":10}},\"scroll\":0.5029239654541016}"
+                },
+                {
+                  "title": "Newbie Pilot",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Newbie Pilot.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Newbie Pilot\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":1.1666666666666667}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":19.753237634202453}"
+                },
+                {
+                  "title": "RacoonMobile",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"RacoonMobile\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":18,\"ch\":0},\"to\":{\"line\":18,\"ch\":0}},\"scroll\":8.644319076687157}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":18.304557472950275}"
+                },
+                {
+                  "title": "RacoonMobile",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"RacoonMobile\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":10.332809737707535}"
+                },
+                {
+                  "title": "Bird Boys",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Bird Boys.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bird Boys\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":6.9996856418636035}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Veteran Pilot",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Veteran Pilot.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Veteran Pilot\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":116},\"to\":{\"line\":0,\"ch\":116}}}"
+                },
+                {
+                  "title": "Newbie Pilot",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Newbie Pilot.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Newbie Pilot\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":69},\"to\":{\"line\":0,\"ch\":69}}}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Doctor Devious Nefarious Evil",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Doctor Devious Nefarious Evil\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Sir Igoreous",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Sir Igoreous\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Sir Igoreous",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Sir Igoreous\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Doctor Devious Nefarious Evil",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Doctor Devious Nefarious Evil\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":1,\"ch\":0},\"to\":{\"line\":1,\"ch\":0}}}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Sir Igoreous",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Sir Igoreous\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":52,\"ch\":0},\"to\":{\"line\":52,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "RacoonMobile",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"RacoonMobile\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":10.946805885440133}"
+                },
+                {
+                  "title": "Bird Boys",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Bird Boys.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bird Boys\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.7921146679950016}"
+                },
+                {
+                  "title": "Bird Boys",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Bird Boys.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bird Boys\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":9.017102989848691}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":15.36731126931995}"
+                },
+                {
+                  "title": "Bird Boys",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Bird Boys.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bird Boys\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":7.2408988802392535}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":16.546206309000286}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.6081871568110951}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":14,\"ch\":0},\"to\":{\"line\":14,\"ch\":0}},\"scroll\":3.863917558198499}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":14,\"ch\":0},\"to\":{\"line\":14,\"ch\":0}},\"scroll\":5.245409643450284}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.0035842294974993633}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":36,\"ch\":0},\"to\":{\"line\":36,\"ch\":0}},\"scroll\":18.01993227186312}"
+                },
+                {
+                  "title": "Veteran Pilot",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Veteran Pilot.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Veteran Pilot\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":28,\"ch\":2},\"to\":{\"line\":28,\"ch\":2}},\"scroll\":18.85860564045801}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":29,\"ch\":0},\"to\":{\"line\":29,\"ch\":0}},\"scroll\":19.9814490256654}"
+                },
+                {
+                  "title": "Veteran Pilot",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Veteran Pilot.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Veteran Pilot\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":28,\"ch\":2},\"to\":{\"line\":28,\"ch\":2}},\"scroll\":23.262153510807842}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":29,\"ch\":0},\"to\":{\"line\":29,\"ch\":0}},\"scroll\":13.885216953121823}"
+                },
+                {
+                  "title": "Sir Igoreous",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Sir Igoreous\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":19,\"ch\":42},\"to\":{\"line\":19,\"ch\":31}},\"scroll\":8.13996448873974}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":19,\"ch\":56},\"to\":{\"line\":19,\"ch\":56}},\"scroll\":7.1093282054533695}"
+                },
+                {
+                  "title": "Veteran Pilot",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Veteran Pilot.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Veteran Pilot\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":25,\"ch\":20},\"to\":{\"line\":25,\"ch\":20}},\"scroll\":20.634033343191994}"
+                },
+                {
+                  "title": "Butler Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Butler Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Butler Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":12},\"to\":{\"line\":22,\"ch\":12}},\"scroll\":0.7206348964146205}"
+                },
+                {
+                  "title": "RacoonMobile",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"RacoonMobile\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":18,\"ch\":0},\"to\":{\"line\":18,\"ch\":0}},\"scroll\":12.130941958513091}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":19.421005884806316}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":0},\"to\":{\"line\":22,\"ch\":0}},\"scroll\":16.009824610413144}"
+                },
+                {
+                  "title": "Bird Boys",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Bird Boys.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bird Boys\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":7.554326889914046}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":24,\"ch\":20},\"to\":{\"line\":24,\"ch\":20}},\"scroll\":14.983825658482317}"
+                },
+                {
+                  "title": "The Uplifted",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Uplifted\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "Doctor Devious Nefarious Evil",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Doctor Devious Nefarious Evil\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":26,\"ch\":20},\"to\":{\"line\":26,\"ch\":20}},\"scroll\":15.011701371439367}"
+                },
+                {
+                  "title": "Sir Igoreous",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Sir Igoreous\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":48,\"ch\":2},\"to\":{\"line\":48,\"ch\":2}},\"scroll\":35.155797538170994}"
+                },
+                {
+                  "title": "Racoon Man",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Racoon Man\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":16,\"ch\":17},\"to\":{\"line\":16,\"ch\":17}},\"scroll\":0.011695906781313712}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":18,\"ch\":0},\"to\":{\"line\":18,\"ch\":0}},\"scroll\":0.04678362712525485}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":1,\"ch\":0},\"to\":{\"line\":1,\"ch\":0}}}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":12,\"ch\":17},\"to\":{\"line\":12,\"ch\":17}},\"scroll\":0}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":7.6417962657907275}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":13,\"ch\":0},\"to\":{\"line\":13,\"ch\":0}},\"scroll\":6.701497221829401}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.005847953390656856}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":85},\"to\":{\"line\":22,\"ch\":85}},\"scroll\":9.63173182431777}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":27,\"ch\":39},\"to\":{\"line\":27,\"ch\":39}},\"scroll\":0}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":10.397092116525734}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Ranger",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Ranger.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Ranger\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Mutate",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Mutant/Mutate.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Mutate\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":2},\"to\":{\"line\":0,\"ch\":2}}}"
+                },
+                {
+                  "title": "Manipulator",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Manipulator/Manipulator.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Manipulator\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Genius",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Genius/Genius.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Genius\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Effector",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Effector/Effector.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Effector\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Brick",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Brick/Brick.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Brick\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "Large Mech Suit",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Large Mech Suit\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":24,\"ch\":10},\"to\":{\"line\":24,\"ch\":10}},\"scroll\":0.3684210526315789}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0.005847953390656856}"
+                },
+                {
+                  "title": "RacoonMobile",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"RacoonMobile\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":22,\"ch\":53},\"to\":{\"line\":22,\"ch\":53}},\"scroll\":0.9415204901444284}"
+                },
+                {
+                  "title": "The Mechanist",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Mechanist\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":21,\"ch\":10},\"to\":{\"line\":21,\"ch\":10}},\"scroll\":0.05263157894736842}"
+                },
+                {
+                  "title": "Doctor Devious Nefarious Evil",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Doctor Devious Nefarious Evil\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":10},\"to\":{\"line\":0,\"ch\":10}}}"
+                },
+                {
+                  "title": "Effector",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Effector/Effector.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Effector\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Brick",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Brick/Brick.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Brick\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Effector",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Effector/Effector.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Effector\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Genius",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Genius/Genius.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Genius\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Manipulator",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Manipulator/Manipulator.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Manipulator\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Powers",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Powers.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Powers\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Ranger",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Ranger.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Ranger\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":0},\"to\":{\"line\":7,\"ch\":0}}}"
+                },
+                {
+                  "title": "Interface Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Interface Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Interface Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":9},\"to\":{\"line\":4,\"ch\":9}}}"
+                },
+                {
+                  "title": "Ranger",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Ranger.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Ranger\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "RacoonMobile",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"RacoonMobile\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":20,\"ch\":74},\"to\":{\"line\":20,\"ch\":74}},\"scroll\":11.905944606213952}"
+                },
+                {
                   "title": "Character Template",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"z_Templates/Character Template.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Character Template\"}",
                   "eState": "{\"cursor\":{\"from\":{\"line\":13,\"ch\":0},\"to\":{\"line\":13,\"ch\":0}}}"
                 },
                 {
-                  "title": "Untitled",
+                  "title": "RacoonMobile",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Untitled\"}",
                   "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":0}"
@@ -292,12 +940,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md",
+                "file": "2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "RacoonMobile"
+              "title": "Racoon Man"
             }
           }
         ]
@@ -508,8 +1156,8 @@
             "state": {
               "type": "advanced-tables-toolbar",
               "state": {},
-              "icon": "lucide-file",
-              "title": "Plugin no longer active"
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           },
           {
@@ -646,7 +1294,7 @@
             }
           }
         ],
-        "currentTab": 11
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -678,41 +1326,41 @@
   },
   "active": "b8b403914c2542b7",
   "lastOpenFiles": [
-    "z_Templates/Character Template.md",
-    "2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md",
     "2. Mechanics/Backgrounds/The Shadowed/Bird Boys.md",
     "2. Mechanics/Backgrounds/The Shadowed/Racoon Man.md",
+    "2. Mechanics/Backgrounds/The Sequenced/Gene Lord.md",
+    "2. Mechanics/Backgrounds/The Shadowed/Butler Man.md",
     "2. Mechanics/Backgrounds/The Sequenced/The Uplifted.md",
     "2. Mechanics/Backgrounds/The Sequenced/Sir Igoreous.md",
     "2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md",
-    "2. Mechanics/Backgrounds/The Shadowed",
-    "Power System/Power System.md",
-    "z_Templates/test.md",
-    "z_Templates",
-    "z_Assets/test.md",
-    "z_Assets",
-    "textgenerator/templates/default/summarizeLarge.md",
-    "textgenerator/templates/default/summarize.md",
-    "textgenerator/templates/default/simplify.md",
-    "textgenerator/templates/default/rewrite.md",
-    "textgenerator/templates/default/getTitles.md",
-    "textgenerator/templates/default/getTags.md",
-    "textgenerator/templates/default/getParagraph.md",
-    "textgenerator/templates/default/getOutline.md",
-    "textgenerator/templates/default/getEmailPos.md",
-    "textgenerator/templates/default/getIdeas.md",
-    "textgenerator/templates/default/getEmailNeg.md",
-    "textgenerator/TTRPG/GenerateNPC.md",
-    "textgenerator/templates/default",
-    "textgenerator/TTRPG",
-    "textgenerator/templates",
-    "textgenerator",
-    "2. Session Journals/test.md",
-    "2. Session Journals",
-    "2. Mechanics/Spells/test.md",
-    "2. Mechanics/Spells",
-    "2. Mechanics/Sound Board/test.md",
-    "2. Mechanics/Sound Board",
-    "2. Mechanics/Random Tables/test.md"
+    "2. Mechanics/Backgrounds/The Mechanists/Newbie Pilot.md",
+    "2. Mechanics/Backgrounds/The Mechanists/Large Mech Suit.md",
+    "2. Mechanics/Backgrounds/The Shadowed/RacoonMobile.md",
+    "2. Mechanics/Backgrounds/The Mechanists/The Mechanist.md",
+    "2. Mechanics/Backgrounds/The Mechanists/Veteran Pilot.md",
+    "Momentum.md",
+    "2. Mechanics/Backgrounds/Character Sheets.md",
+    "z_Templates/Character Template.md",
+    "2. Mechanics/Classes/Techie/Mech Techie.md",
+    "2. Mechanics/Classes/Techie/Techie.md",
+    "2. Mechanics/Classes/Ranger/Ranger.md",
+    "2. Mechanics/Backgrounds/Turn Order.md",
+    "2. Mechanics/Classes/Techie/Untitled",
+    "2. Mechanics/Classes/Ranger/Untitled",
+    "2. Mechanics/Classes/Mutant/Mutate.md",
+    "2. Mechanics/Classes/Manipulator/Manipulator.md",
+    "2. Mechanics/Classes/Mutant/Untitled",
+    "2. Mechanics/Classes/Movement/Untitled",
+    "2. Mechanics/Classes/Manipulator/Untitled",
+    "2. Mechanics/Classes/Genius/Genius.md",
+    "2. Mechanics/Classes/Genius/Untitled",
+    "2. Mechanics/Classes/Effector/Effector.md",
+    "2. Mechanics/Classes/Effector/Untitled",
+    "2. Mechanics/Classes/Brick/Brick.md",
+    "2. Mechanics/Classes/Brick/Untitled.md",
+    "2. Mechanics/Classes/Brick/Untitled",
+    "z_Keywords/Consumable.md",
+    "z_Keywords",
+    "2. Mechanics/Backgrounds/The Mechanists"
   ]
 }
