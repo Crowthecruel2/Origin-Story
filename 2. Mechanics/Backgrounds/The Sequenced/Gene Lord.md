@@ -12,6 +12,9 @@ Lore: Commanders in the Sequenced Cult. They work directly under [[Doctor Deviou
 | Size:       | 2      |
 | Unit Count: | 1      |
 | CardCount   | 2      |
+Resistances: None
+
+Immunities: None
 
 | Weapons | Hit Bonus | Keywords  | Damage  | Damage Type | Effects | Range |
 | ------- | --------- | --------- | ------- | ----------- | ------- | ----- |

@@ -12,6 +12,9 @@ Lore: The lord of the Sequenced. A order of religious nutjobs that think that th
 | Size:       | 3      |
 | Unit Count: | 1      |
 | CardCount   | 2      |
+Resistances: Acid
+
+Immunities: Fire
 
 | Weapons | Hit Bonus | Keywords | Damage  | Damage Type | Effects | Range |
 | ------- | --------- | -------- | ------- | ----------- | ------- | ----- |

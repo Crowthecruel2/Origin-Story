@@ -12,6 +12,9 @@ Lore: A grumpy old man that's been doing this shit for way too long. Back in the
 | Size:       | 1      |
 | Unit Count: | 1      |
 | CardCount   | 3      |
+Resistances: None
+
+Immunities: None
 
 | Weapons   | Hit Bonus | Keywords | Damage  | Damage Type | Effects | Range |
 | --------- | --------- | -------- | ------- | ----------- | ------- | ----- |
@@ -25,3 +28,8 @@ Lore: A grumpy old man that's been doing this shit for way too long. Back in the
 | CallDown Beacon  | Moves the nearest empty mech to a space within 10cm of the Mechanist           | Start     | 1    |
 | The Mechanic     | Heal a mech for 20 hp                                                          | Start     | 2    |
 Keywords: [[Leader]]
+
+
+| Enhancements | Effect | Points Cost |
+| ------------ | ------ | ----------- |
+|              |        |             |

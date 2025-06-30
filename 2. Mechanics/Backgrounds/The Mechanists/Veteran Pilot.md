@@ -12,6 +12,9 @@ Lore: A pilot that has been working for the mechanist for a long time. Knows the
 | Size:       | 1            |
 | Unit Count: | 1      |
 | CardCount   | 2      |
+Resistances: None
+
+Immunities: None
 
 | Weapons      | Hit Bonus | Keywords | Damage | Damage Type | Effects | Range |
 | ------------ | --------- | -------- | ------ | ----------- | ------- | ----- |
@@ -28,7 +31,7 @@ Keywords: [[Leader]]
 
 | Enhancements  | Effect                                                                                                    | Point Costs |
 | ------------- | --------------------------------------------------------------------------------------------------------- | ----------- |
-| Entombed      | Can not leave his mech suit. If it dies he dies. The mech has +3 to dex and +5 to strength                | 20          |
+| Entombed      | Can not leave his mech suit. If it dies he dies. The mech has +3 to dex and +5 to strength                | 10          |
 | Recon Captain | Can only equip the [[small Mech suit]]. Can stealth at end of turn for 1 energy. Works even when piloting | 15          |
 | Sabotuer      | Can enter abandoned enemy vehicles for free.                                                              | 15          |
 | Hijacker      | Can remove enemy pilots from their vehicles for 2 energy                                                  | 30          |

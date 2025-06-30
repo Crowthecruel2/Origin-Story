@@ -12,6 +12,9 @@ Lore: While [[Racoon Man]] was training to wield his fist like sledgehammers and
 | Size:       | 1      |
 | Unit Count: | 1      |
 | CardCount   | 2      |
+Resistances: None
+
+Immunities: None
 
 | Weapons        | Hit Bonus | Keywords         | Damage  | Damage Type | Effects                          | Range |
 | -------------- | --------- | ---------------- | ------- | ----------- | -------------------------------- | ----- |

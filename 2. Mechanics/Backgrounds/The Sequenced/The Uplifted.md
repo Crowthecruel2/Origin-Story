@@ -12,6 +12,9 @@ Lore: Common folk that have been uplifted with [[Doctor Devious Nefarious Evil]]
 | Size:       | 1      |
 | Unit Count: | 4      |
 | CardCount   | 2      |
+Resistances: None
+
+Immunities: None
 
 | Weapons    | Hit Bonus | Keywords | Damage  | Damage Type | Effects | Range |
 | ---------- | --------- | -------- | ------- | ----------- | ------- | ----- |
@@ -20,11 +23,10 @@ Lore: Common folk that have been uplifted with [[Doctor Devious Nefarious Evil]]
 | Crab Claw* | +1        | Natural  | 1d8+Str | Crush       |         | Melee |
 | Pistol*    | +2        | Weapon   | 1d10    | piercing    |         | 40cm  |
 Each Character in the Uplifted has access to one unique ability in the ability list of your choice
-You can instead pay another 10 points to take all of them with the same ability
 
 | Abilities | Effect                                                         | Use Phase | Cost |
 | --------- | -------------------------------------------------------------- | --------- | ---- |
-| Spider    | Wall climb at full speed. Has a pistol                         | passive   | 0    |
+| Spider    | Wall climb at full speed.                                      | passive   | 0    |
 | Crab      | Uses the crab claw Weapon                                      | passive   | 0    |
 | Bird      | Has the fly keyword. Has -1 armor.                             | passive   | 0    |
 | Lobster   | Has +2 armor                                                   | passive   | 0    |
@@ -33,3 +35,11 @@ You can instead pay another 10 points to take all of them with the same ability
 | Bat       | Stealthed enemies are not allowed to unstealth within 10 cm    | passive   | 0    |
 | Dog       | Has +5 movespeed                                               | passive   | 0    |
 | Rat       | Attack Apply [[Poison]] 1                                      | passive   | 0    |
+
+
+| Enhancements | Effect                                                            | Points Cost |
+| ------------ | ----------------------------------------------------------------- | ----------- |
+| Pack Tactics | All the units in the Squad have the same ability                  | 10          |
+| Armed        | Give one unit in the squad a pistol (Can be taken more than once) | 3           |
+| Enhanced     | Reduce the unit count to 2. Give them 2 abilites each.            | 0           |
+| Flash Mob    | This unit Starts the fight Stealthed                              | 10          |

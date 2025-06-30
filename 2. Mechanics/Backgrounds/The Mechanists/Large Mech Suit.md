@@ -12,6 +12,9 @@ Lore: A mech suit the size of a small building.
 | Size:       | 8      |
 | Unit Count: | 1      |
 | CardCount   | 1      |
+Resistances: None
+
+Immunities: None
 
 | Weapons                   | Hit Bonus | Keywords                            | Damage  | Damage Type | Effects                                                                                                                           | Range |
 | ------------------------- | --------- | ----------------------------------- | ------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------- | ----- |
@@ -27,3 +30,4 @@ Lore: A mech suit the size of a small building.
 | Reload    | Gain back 1 [[Consumable]]                                                                                                       | Start     | 1    |
 | AI Active | Gives the Mech [[Self Driving]]. MoveSpeed is reduced by 5 if not piloted.                                                       | Any       | 0    |
 Keywords: [[Vehicle]]
+

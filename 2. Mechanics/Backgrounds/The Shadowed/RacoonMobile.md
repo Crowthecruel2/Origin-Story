@@ -12,6 +12,9 @@ Lore:
 | Size:       | 5      |
 | Unit Count: | 1      |
 | CardCount   | 1      |
+Resistances: None
+
+Immunities: None
 
 | Weapons | Hit Bonus | Keywords        | Damage  | Damage Type | Effects                                                                       | Range |
 | ------- | --------- | --------------- | ------- | ----------- | ----------------------------------------------------------------------------- | ----- |

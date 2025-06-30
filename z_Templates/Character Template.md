@@ -12,6 +12,9 @@ Lore:
 | Size:       | <% tp.system.prompt("Size") %>            |
 | Unit Count: | <% tp.system.prompt("Unit Count") %>      |
 | CardCount   | <% tp.system.prompt("Card Count") %>      |
+Resistances: None
+
+Immunities: None
 
 | Weapons | Hit Bonus | Keywords | Damage | Damage Type | Effects | Range |
 | ------- | --------- | -------- | ------ | ----------- | ------- | ----- |
@@ -21,3 +24,8 @@ Lore:
 | --------- | ------ | --------- | ---- |
 |           |        |           |      |
 Keywords: 
+
+
+| Enhancements | Effect | Points Cost |
+| ------------ | ------ | ----------- |
+|              |        |             |

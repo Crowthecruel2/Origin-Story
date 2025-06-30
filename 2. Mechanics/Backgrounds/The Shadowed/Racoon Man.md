@@ -12,6 +12,9 @@ Lore: Dark Brooding Protector of Brighton. Often Followed by his Bird themed sid
 | Size:       | 2      |
 | Unit Count: | 1      |
 | CardCount   | 3      |
+Resistances: None
+
+Immunities: None
 
 | Weapons         | Hit Bonus | Keywords                             | Damage  | Damage Type | Effects                                                 | Range |
 | --------------- | --------- | ------------------------------------ | ------- | ----------- | ------------------------------------------------------- | ----- |

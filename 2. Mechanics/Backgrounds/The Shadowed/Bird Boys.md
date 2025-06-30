@@ -12,6 +12,9 @@ Lore: Traumatized Weaponized Orphans found and raised to become the warriors of 
 | Size:       | 1      |
 | Unit Count: | 3      |
 | CardCount   | 3      |
+Resistances: None
+
+Immunities: None
 
 | Weapons       | Hit Bonus | Keywords                             | Damage | Damage Type | Effects            | Range |
 | ------------- | --------- | ------------------------------------ | ------ | ----------- | ------------------ | ----- |

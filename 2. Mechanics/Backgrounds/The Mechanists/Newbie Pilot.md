@@ -12,6 +12,9 @@ Lore: A fresh faced newbie here mostly as a body to pilot a mechsuit.
 | Size:       | 1            |
 | Unit Count: | 1      |
 | CardCount   | 1      |
+Resistances: None
+
+Immunities: None
 
 | Weapons      | Hit Bonus | Keywords | Damage | Damage Type | Effects | Range |
 | ------------ | --------- | -------- | ------ | ----------- | ------- | ----- |

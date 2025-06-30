@@ -12,6 +12,10 @@ Lore: A rat given human form by his lord [[Doctor Devious Nefarious Evil]]. He i
 | Size:       | 4      |
 | Unit Count: | 1      |
 | CardCount   | 3      |
+Resistances: None
+
+Immunities: None
+
 Weapons marked with the * need to be unlocked first
 
 | Weapons      | Hit Bonus | Keywords        | Damage   | Damage Type | Effects | Range |
@@ -48,5 +52,5 @@ Abilities marked with the * need to be unlocked first
 | Arm Cannons           | Gain the Arm Cannon weapon. Lose your fists.                                                                           | 16   |
 | Unholy Amount of eyes | Enemies can not unstealth within 10cm of Igor                                                                          | 17   |
 | Melting               | Igor takes 8 acid damage at start of turn. Enemies around him take 2 damage at start of turn                           | 18   |
-| Genetic Reroll        | Reroll Every Anomaly on Igor                                                                                           | 19   |
+| Soft Tissues          | Gain resistance to blunt damage                                                                                        | 19   |
 | Genetic Jackpot       | Reroll this and roll again                                                                                             | 20   |
