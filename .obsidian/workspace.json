@@ -64,12 +64,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md",
+                "file": "2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil Dnd.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Doctor Devious Nefarious Evil"
+              "title": "Doctor Devious Nefarious Evil Dnd"
             }
           }
         ]
@@ -104,7 +104,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "File explorer"
+              "title": "Files"
             }
           },
           {
@@ -413,7 +413,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "daily-notes:Open today's note": false,
+      "daily-notes:Open today's daily note": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -436,10 +436,10 @@
       "calendarium:Open Calendarium": false
     }
   },
-  "active": "b6ce7ee9b2b2cfaa",
+  "active": "af6bec37685a6952",
   "lastOpenFiles": [
     "textgenerator/templates/default/getEmailNeg.md",
-    "2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md",
+    "2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil Dnd.md",
     "z_Assets/Doctor Devious Nefarious Evil Bust.png",
     "z_Assets/test.md",
     "Gemini_Generated_Image_musu04musu04musu.png",
