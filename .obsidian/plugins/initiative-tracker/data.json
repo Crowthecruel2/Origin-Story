@@ -1,8 +1,8 @@
 {
   "players": [
     {
-      "note": "Doctor Devious Nefarious Evil",
-      "path": "2. Mechanics/Backgrounds/The Sequenced/Doctor Devious Nefarious Evil.md",
+      "note": null,
+      "path": null,
       "name": "Doctor",
       "level": 1,
       "hp": 50,
@@ -108,48 +108,8 @@
   "playerMarker": "default",
   "monsterMarker": "default",
   "state": {
-    "creatures": [
-      {
-        "name": "Doctor Devious Nefarious Evil",
-        "initiative": 3,
-        "static": false,
-        "modifier": 2,
-        "hp": 50,
-        "currentMaxHP": 50,
-        "ac": 2,
-        "currentAC": 2,
-        "id": "ID_9ada5b4a0a08",
-        "currentHP": 38,
-        "tempHP": 0,
-        "status": [],
-        "enabled": true,
-        "active": false,
-        "hidden": false,
-        "friendly": false
-      },
-      {
-        "name": "Azer",
-        "display": "Monki",
-        "initiative": 11,
-        "static": false,
-        "modifier": 0,
-        "hp": 39,
-        "currentMaxHP": 39,
-        "cr": "2",
-        "ac": 17,
-        "currentAC": 17,
-        "id": "ID_a9191a08a9e8",
-        "currentHP": 39,
-        "tempHP": 0,
-        "status": [],
-        "enabled": true,
-        "active": true,
-        "hidden": false,
-        "friendly": false,
-        "hit_dice": "6d8 + 12"
-      }
-    ],
-    "state": true,
+    "creatures": [],
+    "state": false,
     "name": null,
     "round": 2,
     "logFile": "",
