@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brighton Tools</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1f2937;
+      --accent: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #18223a, #0f172a 45%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    .shell {
+      width: min(1100px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+      display: grid;
+      gap: 1rem;
+    }
+    h1 { margin: 0; font-size: 1.9rem; letter-spacing: 0.02em; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.75rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      display: grid;
+      gap: 0.35rem;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .card h2 { margin: 0; font-size: 1.1rem; }
+    .muted { color: var(--muted); font-size: 0.95rem; }
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(120deg, #0ea5e9, #22d3ee);
+      color: #0b1727;
+      justify-content: center;
+    }
+    code {
+      background: #0b162a;
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.35rem;
+      border-radius: 6px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+    ul { margin: 0.35rem 0 0 1rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div>
+      <h1>Brighton Tools</h1>
+      <p>Launch the character builder or view the embedded power data. Best used in a Chromium browser so local file access and printing work smoothly.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h2>Character Builder</h2>
+        <p class="muted">Create characters, drag powers, track inventory, save/load to a folder, and print a PDF sheet.</p>
+        <a class="button" href="character-builder.html">Open Character Builder</a>
+      </div>
+      <div class="card">
+        <h2>Embedded Powers</h2>
+        <p class="muted">Data lives in <code>powers-data.js</code>. Regenerate from <code>2. Mechanics/Classes</code> when powers change.</p>
+        <ul>
+          <li>Skip class index files (folder name == file name)</li>
+          <li>Markdown content is included as-is</li>
+          <li>Paths are relative to <code>2. Mechanics/Classes</code></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Tabletop Wargame PDFs</h2>
+        <p class="muted">Second edition materials from the Brighton setting. Download or view online.</p>
+        <a class="button" href="wargame.html">View Wargame PDFs</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brighton Wargame PDFs</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #1f2937;
+      --accent: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #18223a, #0f172a 45%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    .shell {
+      width: min(900px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+      display: grid;
+      gap: 1rem;
+    }
+    h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.02em; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .list {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      display: grid;
+      gap: 0.3rem;
+    }
+    .card h2 { margin: 0; font-size: 1.1rem; }
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(120deg, #0ea5e9, #22d3ee);
+      color: #0b1727;
+      width: fit-content;
+    }
+    .muted { color: var(--muted); }
+    .top-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .back-link { color: var(--accent); text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="top-actions">
+      <h1>Brighton Wargame PDFs</h1>
+      <a class="back-link" href="index.html">&#8592; Back to home</a>
+    </div>
+    <p>Second edition tabletop wargame documents. Click a file to view or download.</p>
+    <div class="list">
+      <div class="card">
+        <h2>2nd Edition Final</h2>
+        <p class="muted">Complete rules PDF for the tabletop wargame, second edition.</p>
+        <a class="button" href="2nd%20Edition%20Final.pdf">Open PDF</a>
+      </div>
+      <div class="card">
+        <h2>2nd Edition Cards</h2>
+        <p class="muted">Card set PDF for quick reference, second edition.</p>
+        <a class="button" href="2nd%20Edition%20Cards.pdf">Open PDF</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
