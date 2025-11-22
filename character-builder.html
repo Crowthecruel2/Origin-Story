@@ -1,0 +1,891 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brighton Character Builder</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --card: #0b1630;
+      --accent: #38bdf8;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 10% 20%, #1b2742, #0f172a 40%),
+                  radial-gradient(circle at 90% 0%, #0c2d3f, transparent 35%),
+                  var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.2rem;
+    }
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+    }
+    p.helper { margin: 0; color: var(--muted); }
+    main {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1rem;
+    }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+    .flex {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    input, textarea {
+      background: #0b1630;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.55rem 0.6rem;
+      font-size: 1rem;
+      width: 100%;
+    }
+    input:focus, textarea:focus {
+      outline: 1px solid var(--accent);
+      border-color: var(--accent);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.6rem;
+      margin-top: 0.4rem;
+    }
+    .derived {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .stat-display {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+    }
+    .stat-display strong { font-size: 1.2rem; color: var(--accent); }
+    .powers-zone {
+      margin-top: 0.75rem;
+      min-height: 180px;
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+      background: rgba(56, 189, 248, 0.04);
+    }
+    .powers-zone.drag-over {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+    .button-row {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+    button.primary {
+      background: linear-gradient(120deg, #0ea5e9, #22d3ee);
+      color: #0b1727;
+      border: none;
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .library {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .library-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      max-height: 70vh;
+      overflow: auto;
+      padding-right: 0.25rem;
+    }
+    .power-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem;
+      display: grid;
+      gap: 0.35rem;
+      cursor: grab;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .power-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .power-card small { color: var(--muted); }
+    .muted { color: var(--muted); font-size: 0.9rem; }
+    .category-header {
+      grid-column: span 3;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+    @media (max-width: 960px) {
+      main { grid-template-columns: 1fr; }
+      .library-list { max-height: none; }
+    }
+    @media print {
+      body { background: #fff; color: #000; }
+      section { box-shadow: none; border: 1px solid #ccc; background: #fff; }
+      .print-hide { display: none !important; }
+      main { grid-template-columns: 1fr; }
+      .power-card, .powers-zone, .power-pill { background: #fff; color: #000; border-color: #aaa; }
+      .muted { color: #444; }
+      .unowned-level { display: none !important; }
+      .secondary { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Brighton Character Builder</h1>
+    <p class="helper">Set stats, then drag powers from the library into the character sheet. Health = 10 + Durability x Level. Power Points = Level.</p>
+    <div class="button-row">
+      <button class="secondary print-hide" id="selectCharacterFolder">Choose character folder</button>
+      <button class="secondary print-hide" id="saveCharacter">Save character</button>
+      <button class="secondary print-hide" id="loadCharacter">Load character</button>
+      <button class="secondary print-hide" id="printCharacter">Print / Save PDF</button>
+      <span class="muted print-hide" id="characterFolderHint">No folder selected</span>
+    </div>
+  </div>
+  <main>
+    <section aria-label="Character sheet">
+      <div class="flex">
+        <label>Character Name
+          <input id="name" placeholder="Name">
+        </label>
+        <label>Concept / Notes
+          <input id="concept" placeholder="Short concept or role">
+        </label>
+      </div>
+
+      <div class="grid">
+        <label>Reflex (base)
+          <input type="number" id="reflexBase" value="0" step="1">
+        </label>
+        <label>Strength (base)
+          <input type="number" id="strengthBase" value="0" step="1">
+        </label>
+        <label>Smarts (base)
+          <input type="number" id="smartsBase" value="0" step="1">
+        </label>
+        <label>Social (base)
+          <input type="number" id="socialBase" value="0" step="1">
+        </label>
+        <label>Durability (base)
+          <input type="number" id="durabilityBase" value="0" step="1">
+        </label>
+        <label>Reflex (mod)
+          <input type="number" id="reflexMod" value="0" step="1">
+        </label>
+        <label>Strength (mod)
+          <input type="number" id="strengthMod" value="0" step="1">
+        </label>
+        <label>Smarts (mod)
+          <input type="number" id="smartsMod" value="0" step="1">
+        </label>
+        <label>Social (mod)
+          <input type="number" id="socialMod" value="0" step="1">
+        </label>
+        <label>Durability (mod)
+          <input type="number" id="durabilityMod" value="0" step="1">
+        </label>
+      </div>
+
+      <div class="derived">
+        <label>Level
+          <input type="number" id="level" value="1" min="1" step="1">
+        </label>
+        <div class="stat-display">
+          <div>Health</div>
+          <strong id="health">10</strong>
+          <div class="muted">10 + Durability x Level</div>
+        </div>
+        <div class="stat-display">
+          <div>Power Points</div>
+          <strong id="powerPoints">1 / 1</strong>
+          <div class="muted" id="powerPointsDetail">1 remaining (spent 0)</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <div class="button-row">
+          <div style="font-weight:700;">Character Powers</div>
+          <span class="muted">Drop cards here or click to remove</span>
+        </div>
+        <div id="characterPowers" class="powers-zone" aria-label="Character powers drop zone"></div>
+      </div>
+
+      <div style="margin-top: 1rem;">
+        <div class="button-row">
+          <div style="font-weight:700;">Inventory</div>
+          <span class="muted">Track items and notes</span>
+        </div>
+        <div class="flex print-hide" style="gap:0.5rem;">
+          <input id="invName" placeholder="Item name" style="min-width:180px;">
+          <input id="invQty" type="number" min="1" value="1" style="width:90px;">
+          <input id="invNotes" placeholder="Notes/effects" style="flex:1; min-width:200px;">
+          <button class="secondary" id="addItem">Add</button>
+        </div>
+        <div id="inventoryList" class="powers-zone" aria-label="Inventory list"></div>
+      </div>
+    </section>
+
+    <section aria-label="Power library" class="print-hide">
+      <div class="library">
+        <div class="button-row">
+          <button class="primary" id="loadPowers">Reload embedded powers</button>
+          <input id="search" placeholder="Search powers..." aria-label="Search powers" style="max-width: 260px;">
+        </div>
+        <div class="muted">Embedded powers from your Classes folder. Use search to filter; reload button refreshes the embedded list.</div>
+        <div id="powerList" class="library-list" aria-label="Available powers"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="powers-data.js"></script>
+  <script>
+    // State
+    const powerLibrary = [];
+    const CATEGORY_DESCRIPTIONS = {
+      Brick: "Powers that allow for supernatural strength or durability. Built like brick houses.",
+      Effector: "Powers that alter the environment or elements around the user.",
+      Genius: "Powers that enhance intelligence, senses, or skill to supernatural levels.",
+      Manipulator: "Powers that influence minds, actions, or control others.",
+      Mutant: "Powers that visibly change the user's anatomy or form.",
+      Ranger: "Powers that grant exceptional skills or impossible techniques.",
+      Techie: "Powers enabling creation and use of super-tech.",
+      Misc: "Uncategorized powers."
+    };
+    const chosenPowers = new Map(); // key: path, value: {name, path, content, levels, purchased:Set<number>}
+    let characterDirHandle = null;
+
+    const elements = {
+      level: document.getElementById("level"),
+      health: document.getElementById("health"),
+      powerPoints: document.getElementById("powerPoints"),
+      powerPointsDetail: document.getElementById("powerPointsDetail"),
+      powerList: document.getElementById("powerList"),
+      characterPowers: document.getElementById("characterPowers"),
+      search: document.getElementById("search"),
+      loadBtn: document.getElementById("loadPowers"),
+      selectCharacterFolder: document.getElementById("selectCharacterFolder"),
+      saveCharacter: document.getElementById("saveCharacter"),
+      loadCharacter: document.getElementById("loadCharacter"),
+      characterFolderHint: document.getElementById("characterFolderHint"),
+      invName: document.getElementById("invName"),
+      invQty: document.getElementById("invQty"),
+      invNotes: document.getElementById("invNotes"),
+      addItem: document.getElementById("addItem"),
+      inventoryList: document.getElementById("inventoryList"),
+      printCharacter: document.getElementById("printCharacter"),
+      reflexBase: document.getElementById("reflexBase"),
+      reflexMod: document.getElementById("reflexMod"),
+      strengthBase: document.getElementById("strengthBase"),
+      strengthMod: document.getElementById("strengthMod"),
+      smartsBase: document.getElementById("smartsBase"),
+      smartsMod: document.getElementById("smartsMod"),
+      socialBase: document.getElementById("socialBase"),
+      socialMod: document.getElementById("socialMod"),
+      durabilityBase: document.getElementById("durabilityBase"),
+      durabilityMod: document.getElementById("durabilityMod"),
+    };
+    const inventory = [];
+
+    function updateDerived() {
+      const level = Number(elements.level.value) || 0;
+      const durability = Number(elements.durabilityBase.value || 0) + Number(elements.durabilityMod.value || 0);
+      elements.health.textContent = 10 + durability * level;
+      updatePointsDisplay();
+    }
+
+    function levelCost(power, levelNumber) {
+      const levelObj = power.levels.find(l => l.level === levelNumber);
+      return levelObj && !Number.isNaN(Number(levelObj.cost)) ? Number(levelObj.cost) : 1;
+    }
+
+    function computeSpent() {
+      let spent = 0;
+      for (const power of chosenPowers.values()) {
+        const purchased = power.purchased ? Array.from(power.purchased) : [];
+        purchased.forEach(idx => {
+          const lv = power.levels[idx];
+          if (lv) spent += levelCost(power, lv.level);
+        });
+      }
+      return spent;
+    }
+
+    function pointsSummary() {
+      const total = Number(elements.level.value) || 0;
+      const spent = computeSpent();
+      const available = Math.max(total - spent, 0);
+      return { total, spent, available };
+    }
+
+    function updatePointsDisplay() {
+      const { total, spent, available } = pointsSummary();
+      elements.powerPoints.textContent = `${available} / ${total}`;
+      elements.powerPointsDetail.textContent = `${available} remaining (spent ${spent})`;
+    }
+
+    function renderCharacterPowers() {
+      elements.characterPowers.innerHTML = "";
+      if (chosenPowers.size === 0) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No powers yet. Drag cards from the library.";
+        elements.characterPowers.appendChild(empty);
+        updatePointsDisplay();
+        return;
+      }
+
+      for (const power of chosenPowers.values()) {
+        const purchased = power.purchased ? new Set(power.purchased) : new Set();
+        const maxPurchasedLevel = Math.max(0, ...Array.from(purchased).map(i => power.levels[i]?.level || 0));
+        const card = document.createElement("article");
+        card.className = "power-card";
+        card.style.cursor = "default";
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;">
+            <div style="font-weight:700;">${power.name}</div>
+            <button type="button" title="Remove power" style="border:none;background:transparent;color:#fca5a5;font-size:1.2rem;cursor:pointer;">x</button>
+          </div>
+        `;
+        const removeBtn = card.querySelector("button");
+        removeBtn.addEventListener("click", () => {
+          chosenPowers.delete(power.path);
+          renderCharacterPowers();
+        });
+
+        power.levels.forEach((lv, idx) => {
+          const isPurchased = purchased.has(idx);
+          const row = document.createElement("div");
+          row.style.borderTop = "1px solid var(--border)";
+          row.style.paddingTop = "0.5rem";
+          const costText = `Cost ${levelCost(power, lv.level)} pt${levelCost(power, lv.level) !== 1 ? "s" : ""}`;
+          if (isPurchased) {
+            row.classList.add("owned-level");
+            row.innerHTML = `
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-weight:600;color:var(--accent);">Level ${lv.level} (owned)</div>
+                <div class="muted">${costText}</div>
+              </div>
+              <div class="muted" style="white-space:pre-wrap;">${formatMarkdown(lv.text)}</div>
+            `;
+          } else {
+            row.classList.add("unowned-level");
+            const { available } = pointsSummary();
+            const canBuy = lv.level === 1 || lv.level <= maxPurchasedLevel + 1;
+            const buyBtn = document.createElement("button");
+            buyBtn.className = "secondary";
+            const desc = levelDescriptor(lv);
+            buyBtn.textContent = `Buy Level ${lv.level}${desc ? ": " + desc : ""} (${costText})`;
+            buyBtn.disabled = !canBuy;
+            buyBtn.addEventListener("click", () => {
+              const { available } = pointsSummary();
+              const cost = levelCost(power, lv.level);
+              if (!canBuy) {
+                alert("You need previous levels first.");
+                return;
+              }
+              if (available < cost) {
+                alert(`Not enough power points. Need ${cost}, have ${available}.`);
+                return;
+              }
+              purchased.add(idx);
+              power.purchased = purchased;
+              chosenPowers.set(power.path, power);
+              renderCharacterPowers();
+            });
+            row.innerHTML = `
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;">
+                <div>
+                  <div style="font-weight:600;">Level ${lv.level}</div>
+                  <div class="muted">${costText}${canBuy ? "" : " - Locked until previous level"}</div>
+                </div>
+              </div>
+            `;
+            row.appendChild(buyBtn);
+          }
+          card.appendChild(row);
+        });
+
+        elements.characterPowers.appendChild(card);
+      }
+      updatePointsDisplay();
+    }
+
+    function renderInventory() {
+      elements.inventoryList.innerHTML = "";
+      if (inventory.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No items. Add one above.";
+        elements.inventoryList.appendChild(empty);
+        return;
+      }
+      inventory.forEach((item, idx) => {
+        const row = document.createElement("div");
+        row.className = "power-pill";
+        row.style.borderRadius = "10px";
+        row.style.justifyContent = "space-between";
+        const left = document.createElement("div");
+        left.innerHTML = `<strong>${item.name}</strong> x${item.qty}${item.notes ? " — " + item.notes : ""}`;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.title = "Remove item";
+        btn.textContent = "x";
+        btn.addEventListener("click", () => {
+          inventory.splice(idx, 1);
+          renderInventory();
+        });
+        row.appendChild(left);
+        row.appendChild(btn);
+        elements.inventoryList.appendChild(row);
+      });
+    }
+
+    function renderPowerLibrary(list) {
+      elements.powerList.innerHTML = "";
+      if (!list || list.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No powers to display. Reload embedded powers.";
+        elements.powerList.appendChild(empty);
+        return;
+      }
+
+      // Group by parent folder
+      const grouped = new Map();
+      list.forEach(power => {
+        const cat = power.path.includes("/") ? power.path.split("/")[0] : "Misc";
+        if (!grouped.has(cat)) grouped.set(cat, []);
+        grouped.get(cat).push(power);
+      });
+
+      const sortedCats = Array.from(grouped.keys()).sort((a, b) => a.localeCompare(b));
+      sortedCats.forEach(cat => {
+        const header = document.createElement("div");
+        header.className = "category-header";
+        const desc = CATEGORY_DESCRIPTIONS[cat] || "";
+        header.innerHTML = `<div style="font-weight:800;">${cat}</div>${desc ? `<div class="muted" style="margin-top:0.25rem;">${desc}</div>` : ""}`;
+        elements.powerList.appendChild(header);
+
+        grouped.get(cat)
+          .slice()
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .forEach(power => renderPowerCard(power));
+      });
+    }
+
+    function renderPowerCard(power) {
+      const card = document.createElement("article");
+      card.className = "power-card";
+      card.draggable = true;
+      card.dataset.powerPath = power.path;
+
+      const title = document.createElement("div");
+      title.textContent = power.name;
+      title.style.fontWeight = "700";
+      elements.powerList.appendChild(card);
+
+      const preview = document.createElement("div");
+      preview.className = "muted";
+      preview.textContent = previewFromPower(power);
+
+      card.appendChild(title);
+      card.appendChild(preview);
+
+      card.addEventListener("dragstart", (evt) => {
+        evt.dataTransfer.setData("text/plain", power.path);
+      });
+
+      card.addEventListener("dblclick", () => addPowerToCharacter(power));
+    }
+
+    elements.characterPowers.addEventListener("dragover", (evt) => {
+      evt.preventDefault();
+      elements.characterPowers.classList.add("drag-over");
+    });
+    elements.characterPowers.addEventListener("dragleave", () => {
+      elements.characterPowers.classList.remove("drag-over");
+    });
+    elements.characterPowers.addEventListener("drop", (evt) => {
+      evt.preventDefault();
+      elements.characterPowers.classList.remove("drag-over");
+      const path = evt.dataTransfer.getData("text/plain");
+      const power = powerLibrary.find(p => p.path === path);
+      if (power) {
+        addPowerToCharacter(power);
+      }
+    });
+
+    elements.search.addEventListener("input", () => {
+      const term = elements.search.value.toLowerCase();
+      const filtered = powerLibrary.filter(p =>
+        p.name.toLowerCase().includes(term) ||
+        p.path.toLowerCase().includes(term) ||
+        p.content.toLowerCase().includes(term)
+      );
+      renderPowerLibrary(filtered);
+    });
+
+    elements.loadBtn.addEventListener("click", () => {
+      hydrateFromEmbedded();
+    });
+
+    async function hydrateFromEmbedded() {
+      if (typeof EMBEDDED_POWERS === "undefined") {
+        alert("Missing embedded powers data. Ensure powers-data.js is present.");
+        return;
+      }
+
+      powerLibrary.length = 0;
+      for (const raw of EMBEDDED_POWERS) {
+        const normPath = (raw.path || "").replace(/\\/g, "/");
+        const content = typeof raw.content === "string" ? raw.content : (raw.content?.value ?? "");
+        powerLibrary.push({
+          name: raw.name,
+          path: normPath,
+          content,
+          levels: extractLevels(content),
+        });
+      }
+      renderPowerLibrary(powerLibrary);
+      renderCharacterPowers();
+      elements.loadBtn.textContent = "Reload embedded powers";
+    }
+
+    function addPowerToCharacter(power) {
+      const existing = chosenPowers.get(power.path);
+      if (existing) {
+        renderCharacterPowers(); // already present; let user click Buy on desired level
+        return;
+      }
+      const target = { ...power, purchased: new Set() };
+      chosenPowers.set(power.path, target);
+      renderCharacterPowers();
+    }
+
+    function extractLevels(text) {
+      const safe = typeof text === "string" ? text : "";
+      const lines = safe.split(/\r?\n/);
+      const hasLevelTable = lines.some(l => /\|.*level/i.test(l) && l.includes("|"));
+      if (hasLevelTable) {
+        const rows = lines.filter(l => l.trim().startsWith("|") && l.includes("|"));
+        const parsed = [];
+        for (const row of rows.slice(2)) {
+          const cells = row.split("|").map(c => c.trim()).filter(Boolean);
+          if (cells.length >= 2) {
+            const levelNum = parseInt(cells[0], 10);
+            if (!isNaN(levelNum)) {
+              const pointsCell = cells[1];
+              const cost = Number(pointsCell);
+              const body = cells.slice(2).join(" | ") || cells.slice(1).join(" | ");
+              parsed.push({ level: levelNum, text: body, cost: isNaN(cost) ? 1 : cost });
+            }
+          }
+        }
+        if (parsed.length) return parsed.sort((a, b) => a.level - b.level);
+      }
+
+      const headings = [];
+      lines.forEach((line, idx) => {
+        const m = line.match(/^\s*#*\s*(?:Lv\.?\s*|Level\s*)(\d+)/i);
+        if (m) headings.push({ idx, level: parseInt(m[1], 10) });
+      });
+      if (headings.length) {
+        const chunks = [];
+        headings.forEach((item, i) => {
+          const start = item.idx + 1;
+          const end = i + 1 < headings.length ? headings[i + 1].idx : lines.length;
+          const section = lines.slice(start, end).join("\n").trim();
+          chunks.push({ level: item.level, text: section || "(no text)", cost: 1 });
+        });
+        return chunks.sort((a, b) => a.level - b.level);
+      }
+
+      const inlineSplit = text.split(/(?=Lv\.?\s*\d+)/i);
+      if (inlineSplit.length > 1) {
+        const levels = [];
+        inlineSplit.forEach(chunk => {
+          const m = chunk.match(/Lv\.?\s*(\d+)/i);
+          if (m) {
+            const rest = chunk.replace(/Lv\.?\s*\d+/i, "").trim();
+            levels.push({ level: parseInt(m[1], 10), text: rest || "(no text)" });
+          }
+        });
+        if (levels.length) return levels.sort((a, b) => a.level - b.level);
+      }
+
+      return [{ level: 1, text: text.trim() || "(no text)", cost: 1 }];
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function formatMarkdown(md) {
+      let out = escapeHtml(md);
+      out = out.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      out = out.replace(/\*(.+?)\*/g, "<em>$1</em>");
+      out = out.replace(/\n{2,}/g, "\n\n");
+      return out.replace(/\n/g, "<br>");
+    }
+
+    function stripTables(text) {
+      return text
+        .split(/\r?\n/)
+        .filter(line => !line.trim().startsWith("|"))
+        .join("\n");
+    }
+
+    function markdownToPlain(md) {
+      return md
+        .replace(/\*\*(.+?)\*\*/g, "$1")
+        .replace(/\*(.+?)\*/g, "$1")
+        .replace(/<br\s*\/?>/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function levelDescriptor(lv) {
+      const plain = markdownToPlain(stripTables(lv.text || ""));
+      if (!plain) return "";
+      return plain.length > 80 ? plain.slice(0, 80) + "..." : plain;
+    }
+
+    function sanitizeFileName(name) {
+      return (name || "character")
+        .replace(/[<>:"/\\|?*]+/g, "_")
+        .replace(/\s+/g, " ")
+        .trim() || "character";
+    }
+
+    async function chooseCharacterFolder() {
+      if (!window.showDirectoryPicker) {
+        alert("Your browser does not support the File System Access API.");
+        return;
+      }
+      characterDirHandle = await window.showDirectoryPicker();
+      elements.characterFolderHint.textContent = `Folder: ${characterDirHandle.name || "selected"}`;
+    }
+
+    async function ensureCharacterFolder() {
+      if (characterDirHandle) return characterDirHandle;
+      await chooseCharacterFolder();
+      return characterDirHandle;
+    }
+
+    function serializeCharacter() {
+      return {
+        name: document.getElementById("name").value || "",
+        concept: document.getElementById("concept").value || "",
+        stats: {
+          reflexBase: Number(elements.reflexBase.value) || 0,
+          reflexMod: Number(elements.reflexMod.value) || 0,
+          strengthBase: Number(elements.strengthBase.value) || 0,
+          strengthMod: Number(elements.strengthMod.value) || 0,
+          smartsBase: Number(elements.smartsBase.value) || 0,
+          smartsMod: Number(elements.smartsMod.value) || 0,
+          socialBase: Number(elements.socialBase.value) || 0,
+          socialMod: Number(elements.socialMod.value) || 0,
+          durabilityBase: Number(elements.durabilityBase.value) || 0,
+          durabilityMod: Number(elements.durabilityMod.value) || 0,
+          level: Number(document.getElementById("level").value) || 0,
+        },
+        powers: Array.from(chosenPowers.values()).map(p => ({
+          name: p.name,
+          path: p.path,
+          purchasedIndices: p.purchased ? Array.from(p.purchased) : [],
+        })),
+        inventory,
+      };
+    }
+
+    async function saveCharacterToFolder() {
+      try {
+        const dir = await ensureCharacterFolder();
+        if (!dir) return;
+        const data = serializeCharacter();
+        const fileName = sanitizeFileName(data.name || "character") + ".json";
+        const fileHandle = await dir.getFileHandle(fileName, { create: true });
+        const writable = await fileHandle.createWritable();
+        await writable.write(JSON.stringify(data, null, 2));
+        await writable.close();
+        alert(`Character saved as ${fileName}`);
+      } catch (err) {
+        console.error(err);
+        alert("Failed to save character. Check folder permissions.");
+      }
+    }
+
+    function applyCharacter(data) {
+      document.getElementById("name").value = data.name || "";
+      document.getElementById("concept").value = data.concept || "";
+      if (data.stats) {
+        elements.reflexBase.value = data.stats.reflexBase ?? 0;
+        elements.reflexMod.value = data.stats.reflexMod ?? 0;
+        elements.strengthBase.value = data.stats.strengthBase ?? 0;
+        elements.strengthMod.value = data.stats.strengthMod ?? 0;
+        elements.smartsBase.value = data.stats.smartsBase ?? 0;
+        elements.smartsMod.value = data.stats.smartsMod ?? 0;
+        elements.socialBase.value = data.stats.socialBase ?? 0;
+        elements.socialMod.value = data.stats.socialMod ?? 0;
+        elements.durabilityBase.value = data.stats.durabilityBase ?? 0;
+        elements.durabilityMod.value = data.stats.durabilityMod ?? 0;
+        document.getElementById("level").value = data.stats.level ?? 1;
+      }
+      updateDerived();
+      chosenPowers.clear();
+      inventory.length = 0;
+      if (data.powers && Array.isArray(data.powers)) {
+        data.powers.forEach(saved => {
+          const lib = powerLibrary.find(p => p.path === saved.path) || powerLibrary.find(p => p.name === saved.name);
+          if (lib) {
+            const purchased = new Set(saved.purchasedIndices || []);
+            chosenPowers.set(lib.path, { ...lib, purchased });
+          }
+        });
+      }
+      if (data.inventory && Array.isArray(data.inventory)) {
+        data.inventory.forEach(item => {
+          if (item && item.name) {
+            inventory.push({ name: item.name, qty: item.qty || 1, notes: item.notes || "" });
+          }
+        });
+      }
+      renderCharacterPowers();
+      renderInventory();
+    }
+
+    async function loadCharacterFromFolder() {
+      try {
+        const dir = await ensureCharacterFolder();
+        if (!dir) return;
+        const files = [];
+        for await (const entry of dir.values()) {
+          if (entry.kind === "file" && entry.name.toLowerCase().endsWith(".json")) {
+            files.push(entry);
+          }
+        }
+        if (files.length === 0) {
+          alert("No character files found in this folder.");
+          return;
+        }
+        const list = files.map(f => f.name).join("\n");
+        const pick = prompt(`Enter the file name to load:\n${list}`, files[0].name);
+        if (!pick) return;
+        const chosen = files.find(f => f.name === pick.trim());
+        if (!chosen) {
+          alert("File not found in the selected folder.");
+          return;
+        }
+        const file = await chosen.getFile();
+        const text = await file.text();
+        const data = JSON.parse(text);
+        applyCharacter(data);
+      } catch (err) {
+        console.error(err);
+        alert("Failed to load character. Check folder permissions.");
+      }
+    }
+
+    function previewFromPower(power) {
+      const sortedLevels = [...power.levels].sort((a, b) => a.level - b.level);
+      const first = sortedLevels[0];
+      if (first) {
+        const cleaned = markdownToPlain(stripTables(first.text || ""));
+        if (cleaned) return cleaned.length > 140 ? cleaned.slice(0, 140) + "..." : cleaned;
+      }
+      const fallback = markdownToPlain(stripTables(power.content || ""));
+      if (fallback) return fallback.length > 140 ? fallback.slice(0, 140) + "..." : fallback;
+      return "No description";
+    }
+
+    updateDerived();
+    ["level","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod"].forEach(id => {
+      elements[id].addEventListener("input", updateDerived);
+    });
+    elements.selectCharacterFolder.addEventListener("click", async () => {
+      await chooseCharacterFolder();
+    });
+    elements.saveCharacter.addEventListener("click", async () => {
+      await saveCharacterToFolder();
+    });
+    elements.loadCharacter.addEventListener("click", async () => {
+      await loadCharacterFromFolder();
+    });
+    elements.printCharacter.addEventListener("click", () => {
+      window.print();
+    });
+    elements.addItem.addEventListener("click", () => {
+      const name = elements.invName.value.trim();
+      const qty = Number(elements.invQty.value) || 1;
+      const notes = elements.invNotes.value.trim();
+      if (!name) {
+        alert("Item name is required.");
+        return;
+      }
+      inventory.push({ name, qty, notes });
+      elements.invName.value = "";
+      elements.invQty.value = 1;
+      elements.invNotes.value = "";
+      renderInventory();
+    });
+    hydrateFromEmbedded();
+  </script>
+</body>
+</html>
+
+
+
+

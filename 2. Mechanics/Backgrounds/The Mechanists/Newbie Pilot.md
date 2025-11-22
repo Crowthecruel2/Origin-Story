@@ -21,7 +21,8 @@ Immunities: None
 | Fist         | +0        |          | 1d4    | Blunt       |         | Melee |
 | Large Pistol |           |          | 1d8    | Pierce      |         | 20cm  |
 
-| Abilities | Effect                        | Use Phase | Cost |
-| --------- | ----------------------------- | --------- | ---- |
-| Jump Pack | Lets the Pilot fly up to 50cm | movement  | 1    |
+| Abilities         | Effect                                                        | Use Phase | Cost |
+| ----------------- | ------------------------------------------------------------- | --------- | ---- |
+| Jump Pack         | Lets the Pilot fly up to 50cm                                 | movement  | 1    |
+| Objective Secured | Gain 1 energy if in melee range of a objective at end of turn | Passive   | 0    |
 Keywords: 

@@ -1,4 +1,4 @@
-This ability allows the player to build Tinker Gadgets. Only this player can use the supertech unless specified otherwise.
+This ability allows the player to build Tinker Weapons that switch between forms and operate of off exotic energy. Only this player can use the supertech unless specified otherwise.
 
   
 

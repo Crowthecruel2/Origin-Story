@@ -25,11 +25,8 @@ Immunities: None
 | ---------------- | ------------------------------------------------------------------------------ | --------- | ---- |
 | Jump Pack        | Allows [[The Mechanist]] to fly up to 50cm.                                    | Movement  | 1    |
 | In their element | The Mechanist and his mech each gains 1 energy at start of turn while piloting | Passive   | 0    |
-| CallDown Beacon  | Moves the nearest empty mech to a space within 10cm of the Mechanist           | Start     | 1    |
+| Call Down Beacon | Moves the nearest empty mech to a space within 10cm of the Mechanist           | Start     | 1    |
 | The Mechanic     | Heal a mech for 20 hp                                                          | Start     | 2    |
+| Techie           | Stats with a free [[Small Mech Suit]]                                          | Passive   | 0    |
 Keywords: [[Leader]]
 
-
-| Enhancements | Effect | Points Cost |
-| ------------ | ------ | ----------- |
-|              |        |             |

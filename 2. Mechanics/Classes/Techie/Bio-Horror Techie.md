@@ -16,6 +16,13 @@ Effect: Allows you to install a gene mod once per turn. A human can only have 5 
 Requirements: None
 
 ---
+Portable Gene Scanner: A wand-style device that identifies biological material.
+Cost: $50
+Effect: Reveals what species' DNA is present in any sample and whether it’s viable for synthesis.
+Requirements: None
+
+
+---
 
 
 Cat Mod: A gene mod made of cat DNA.  
@@ -71,7 +78,33 @@ Effect: After Implantation the player becomes invisible to infrared and starts r
 Requirements: Gene Synthesizer
 
 ---
+Rat Mod: A gene mod made of rodent DNA
 
+Cost: 1kg rat flesh or blood
+Effect: Advantage on stealth; immune to disease; squeeze through tiny holes
+Requirements: Gene Synthesizer
+
+
+---
+Dog Mod — NEW
+
+Cost: 1kg canine flesh or blood
+Effect: Super-smell (track targets within 2km), +2 initiative
+Requirements: Gene Synthesizer
+
+---
+Jellyfish Mod — NEW
+
+Cost: 1kg jellyfish tissue
+Effect: Gain electroreceptors (sense movement in water), and touch deals 1d6 electric damage
+Requirements: Gene Synthesizer
+
+---
+Beetle Mod — NEW
+
+Cost: 1kg beetle tissue
+Effect: Hardened exoskeletal patches grant +2 armor
+Requirements: Gene Synthesizer
 
 # Lv2‌
 

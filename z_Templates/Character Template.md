@@ -16,9 +16,9 @@ Resistances: None
 
 Immunities: None
 
-| Weapons | Hit Bonus | Keywords | Damage | Damage Type | Effects | Range |
-| ------- | --------- | -------- | ------ | ----------- | ------- | ----- |
-| Fist    | +0        |          | 1d4    | Blunt       |         |       |
+| Weapons | Hit Bonus | Keywords | Damage  | Damage Type | Effects | Range |
+| ------- | --------- | -------- | ------- | ----------- | ------- | ----- |
+| Fist    | +0        |          | 1d4+Str | Blunt       |         | Melee |
 
 | Abilities | Effect | Use Phase | Cost |
 | --------- | ------ | --------- | ---- |

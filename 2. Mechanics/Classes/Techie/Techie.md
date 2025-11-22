@@ -5,3 +5,7 @@
 [[Interface Techie]]
 [[Fortification Techie]]
 [[Divine Techie]]
+[[Fire Techie]]
+[[Water Techie]]
+[[Self Augment Techie]]
+[[Modular Items Techie]]
