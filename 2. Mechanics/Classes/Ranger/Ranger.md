@@ -1,5 +1,6 @@
 [[Weapon Manifestor]]
 [[Boomeranger]]
+[[Assassin]]
 [[Wielder]]
 [[Action Hero]]
 [[Swordsman]]
