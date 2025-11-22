@@ -1780,7 +1780,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -2082,12 +2082,12 @@
       "calendarium:Open Calendarium": false
     }
   },
-  "active": "af6bec37685a6952",
+  "active": "ccc4e43afe9ab765",
   "lastOpenFiles": [
+    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
     "2. Mechanics/Classes/Techie/Water Techie.md",
     "2. Mechanics/Classes/Techie/Techie.md",
     "2. Mechanics/Classes/Brick Power/Brick Power.md",
-    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
     "regenerate-powers.ps1",
     "wargame.html",
     "2nd Edition Final.pdf",
