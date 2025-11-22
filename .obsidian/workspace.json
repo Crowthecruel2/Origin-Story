@@ -1031,6 +1031,18 @@
                   "eState": "{}"
                 },
                 {
+                  "title": "Water Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Water Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Water Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":2,\"ch\":0},\"to\":{\"line\":2,\"ch\":0}},\"scroll\":0.8771929824561403}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":7},\"to\":{\"line\":8,\"ch\":7}}}"
+                },
+                {
                   "title": "Modular Items Techie",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Modular Items Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Modular Items Techie\"}",
@@ -1145,7 +1157,7 @@
                   "eState": "{\"cursor\":{\"from\":{\"line\":2,\"ch\":13},\"to\":{\"line\":2,\"ch\":13}}}"
                 },
                 {
-                  "title": "Brick",
+                  "title": "Brick Power",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Brick Power/Brick Power.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Brick\"}",
                   "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
@@ -1761,18 +1773,14 @@
               ]
             },
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2. Mechanics/Classes/Brick/Brick.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Brick"
+              "title": "New tab"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -2074,23 +2082,23 @@
       "calendarium:Open Calendarium": false
     }
   },
-  "active": "aa1db250cc6498d3",
+  "active": "af6bec37685a6952",
   "lastOpenFiles": [
+    "2. Mechanics/Classes/Techie/Water Techie.md",
+    "2. Mechanics/Classes/Techie/Techie.md",
+    "2. Mechanics/Classes/Brick Power/Brick Power.md",
+    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
     "regenerate-powers.ps1",
     "wargame.html",
     "2nd Edition Final.pdf",
     "2nd Edition Cards.pdf",
     "index.html",
     "2. Mechanics/Classes/Techie/Fire Techie.md",
-    "2. Mechanics/Classes/Techie/Water Techie.md",
-    "2. Mechanics/Classes/Techie/Techie.md",
-    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
     "2. Mechanics/Classes/Mutant/Shapeshifter.md",
     "2. Mechanics/Classes/Mutant/Mutant.md",
     "2. Mechanics/Powers.md",
     "2. Mechanics/Classes/Effector/Effector.md",
     "2. Mechanics/Classes/Genius/Genius.md",
-    "2. Mechanics/Classes/Brick Power/Brick Power.md",
     "2. Mechanics/Classes/Ranger/Parry.md",
     "2. Mechanics/Classes/Ranger/Ranger.md",
     "2. Mechanics/Classes/Brick Power/Super Strength.md",
@@ -2112,7 +2120,6 @@
     "z_Assets/Doctor Devious Nefarious Evil Bust.png",
     "z_Keywords",
     "2. Mechanics/Backgrounds/The Shadowed",
-    "2. Mechanics/Backgrounds/The Mechanists",
-    "2. Mechanics/Backgrounds/SuperFriends"
+    "2. Mechanics/Backgrounds/The Mechanists"
   ]
 }

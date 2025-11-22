@@ -809,6 +809,20 @@
 
     async function loadCharacterFromFolder() {
       try {
+        // Preferred: file picker for a single JSON file
+        if (window.showOpenFilePicker) {
+          const [fileHandle] = await window.showOpenFilePicker({
+            types: [{ description: "Character JSON", accept: { "application/json": [".json"] } }],
+            multiple: false
+          });
+          const file = await fileHandle.getFile();
+          const text = await file.text();
+          const data = JSON.parse(text);
+          applyCharacter(data);
+          return;
+        }
+
+        // Fallback: choose folder then prompt for filename
         const dir = await ensureCharacterFolder();
         if (!dir) return;
         const files = [];
