@@ -18,13 +18,13 @@ Immunities: None
 
 | Weapons       | Hit Bonus | Keywords | Damage  | Damage Type | Effects       | Range     |
 | ------------- | --------- | -------- | ------- | ----------- | ------------- | --------- |
-| Power Fist    | +0        |          | 1d6+str | Blunt       |               | Melee     |
+| Ram           | +0        |          | 1d6+str | Blunt       | Impact 10     | Melee     |
 | Assault Rifle | +1        |          | 1d12    | Piercing    |               | 50cm      |
 | Flamethrower  | +0        |          | 1d4     | Fire        | [[Burning]] 1 | 10cm Cone |
 
 | Abilities            | Effect                                                              | Use Phase | Cost |
 | -------------------- | ------------------------------------------------------------------- | --------- | ---- |
-| Grapple Hook         | Move any amount of distance vertically for this turn                | Movement  | 1    |
+| Hunker down          | Until it's next turn this unit gains +3 armor but becomes immobile  | Start     | 1    |
 | Trophy System        | Negate a ranged Attack                                              | Any       | 1    |
 | Charged Laser Cannon | Fire a Laser at an enemy in line of sight. It does 8 energy damage. | Attack    | 1    |
 Keywords: [[Vehicle]]

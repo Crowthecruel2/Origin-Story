@@ -14,7 +14,7 @@ Lore: Commanders in the Sequenced Cult. They work directly under [[Doctor Deviou
 | CardCount   | 2      |
 Resistances: None
 
-Immunities: None
+Immunities: Acid
 
 | Weapons | Hit Bonus | Keywords  | Damage  | Damage Type | Effects | Range |
 | ------- | --------- | --------- | ------- | ----------- | ------- | ----- |
@@ -25,11 +25,11 @@ Immunities: None
 
 | Abilities          | Effect                                                                                                                 | Use Phase | Cost |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------- | --------- | ---- |
-| Abomination        | Choose 3 anomalies from the genetic anomaly Table to start with                                                        | Passive   | 0    |
+| Abomination        | Choose 2 anomalies from the genetic anomaly Table to start with                                                        | Passive   | 0    |
 | Mutate             | Roll on the Genetic Anomaly Table                                                                                      | Start     | 2    |
 | Genetic Prune Self | You remove all but 2 genetic anomalies. Gain 1 energy per anomaly removed.                                             | Start     | 0    |
 | Unstable           | If you have more than 5 Genetic Anomalies, you take 4 damage at the start of your turn per genetic anomaly you have    | Passive   | 0    |
-| Quill*             | When hit with a weapon with range Melee. Deal 1d4 damage back                                                          | Passive   | 0    |
+| Quill*             | When hit with a Melee weapon. Deal 1d4 damage back                                                                     | Passive   | 0    |
 | Acid Spit*         | Fire a glob of spit up to 30cm that deals 1d8 damage. You can do this once per turn for every genetic anomaly you have | Attack    | 1    |
 | Lizard Limbs*      | Heal +3 health once per turn per genetic anomaly you have                                                              | Start     | 0    |
 | Volatile*          | You Explode on death. Dealing 1d8 damage to all units within 10cm of you. Repeat for every genetic anomaly you have.   | Passive   | 0    |
