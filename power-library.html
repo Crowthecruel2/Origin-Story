@@ -184,7 +184,7 @@
           const cells = row.split("|").map(c => c.trim()).filter(Boolean);
           if (cells.length >= 2) {
             const ability = cells[cells.length - 1];
-            const plain = markdownToPlain(ability.replace(/<br\\s*\\/?\\s*>/gi, " "));
+            const plain = markdownToPlain(ability.replace(/<br\s*\/?\s*>/gi, " "));
             if (plain) abilities.push(plain);
           }
         });
