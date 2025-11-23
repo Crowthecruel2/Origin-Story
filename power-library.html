@@ -65,7 +65,10 @@
     .power-list { display: grid; gap: 0.6rem; }
     .power-card { border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.02); display: grid; gap: 0.4rem; }
     .power-card h3 { margin: 0; font-size: 1rem; }
-    .power-card small { color: var(--muted); }
+    .power-card small { color: var(--muted); display: block; }
+    .levels { display: grid; gap: 0.35rem; }
+    .level-row { border-top: 1px solid var(--border); padding-top: 0.35rem; }
+    .full-text { white-space: pre-wrap; color: var(--muted); font-size: 0.95rem; }
   </style>
 </head>
 <body>
@@ -124,6 +127,17 @@
       Misc: "Utility tricks that defy neat categories."
     };
 
+    function escapeHtml(str) {
+      return (str || "").replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+    }
+    function formatMarkdown(md) {
+      let out = escapeHtml(md || "");
+      out = out.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      out = out.replace(/\*(.+?)\*/g, "<em>$1</em>");
+      out = out.replace(/<\/?br\s*\/?>/gi, "<br>");
+      out = out.replace(/\n{2,}/g, "\n\n");
+      return out.replace(/\n/g, "<br>");
+    }
     function markdownToPlain(md) {
       return (md || "")
         .replace(/\*\*(.+?)\*\*/g, "$1")
@@ -137,6 +151,29 @@
         .split(/\r?\n/)
         .filter(line => !line.trim().startsWith("|"))
         .join("\n");
+    }
+    function extractLevels(text) {
+      const safe = typeof text === "string" ? text : "";
+      const lines = safe.split(/\r?\n/);
+      const hasLevelTable = lines.some(l => /\|.*level/i.test(l) && l.includes("|"));
+      if (hasLevelTable) {
+        const rows = lines.filter(l => l.trim().startsWith("|") && l.includes("|"));
+        const parsed = [];
+        for (const row of rows.slice(2)) {
+          const cells = row.split("|").map(c => c.trim()).filter(Boolean);
+          if (cells.length >= 2) {
+            const levelNum = parseInt(cells[0], 10);
+            if (!isNaN(levelNum)) {
+              const pointsCell = cells[1];
+              const cost = Number(pointsCell);
+              const body = cells.slice(2).join(" | ") || cells.slice(1).join(" | ");
+              parsed.push({ level: levelNum, text: body, cost: isNaN(cost) ? 1 : cost });
+            }
+          }
+        }
+        if (parsed.length) return parsed.sort((a, b) => a.level - b.level);
+      }
+      return [];
     }
     function previewFromPower(power) {
       const tablePreview = (text) => {
@@ -191,7 +228,7 @@
           name: raw.name,
           path: (raw.path || "").replace(/\\\\/g, "/").replace(/\\/g, "/"),
           content,
-          levels: Array.isArray(raw.levels) ? raw.levels : []
+          levels: Array.isArray(raw.levels) && raw.levels.length ? raw.levels : extractLevels(content)
         };
         power.meta = inferMeta(power);
         if (!byClass.has(power.meta.className)) byClass.set(power.meta.className, []);
@@ -216,10 +253,18 @@
         powers.forEach(power => {
           const p = document.createElement("div");
           p.className = "power-card";
+          const levels = power.levels && power.levels.length ? power.levels : extractLevels(power.content);
+          const description = levels.length ? levels.map(lv => `Level ${lv.level}: ${markdownToPlain(lv.text || "")}`).join(" ") : markdownToPlain(stripTables(power.content || ""));
           p.innerHTML = `
             <h3>${power.name}</h3>
             <small>Lv ${power.meta.minLevel} - ${power.meta.action} action - ${power.meta.tags.join(", ") || "General"}</small>
             <div class="muted">${previewFromPower(power)}</div>
+            ${levels.length ? `<div class="levels">${levels.map(lv => `
+              <div class="level-row">
+                <div><strong>Level ${lv.level}</strong> (Cost ${lv.cost || 1} PP)</div>
+                <div class="muted">${formatMarkdown(stripTables(lv.text || ""))}</div>
+              </div>
+            `).join("")}</div>` : `<div class="full-text">${formatMarkdown(stripTables(power.content || ""))}</div>`}
           `;
           list.appendChild(p);
         });
