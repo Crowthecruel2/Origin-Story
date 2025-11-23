@@ -362,11 +362,12 @@
     }
     @media print {
       body { background: #fff; color: #000; }
-      .topbar, .print-hide { display: none !important; }
+      .topbar, .print-hide, #libraryPanel { display: none !important; }
       .grid { grid-template-columns: 1fr; }
       .panel { box-shadow: none; border: 1px solid #ccc; background: #fff; }
       .powers-zone, .power-card, .inventory-list > div { border-color: #aaa; background: #fff; }
       .banner { display: none !important; }
+      .power-levels.collapsed { display: grid !important; }
     }
   </style>
 </head>
