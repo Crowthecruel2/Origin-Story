@@ -139,7 +139,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: 1.05fr 1.1fr 1fr;
+      grid-template-columns: 1.05fr 1.1fr;
       gap: 1rem;
       align-items: start;
     }
@@ -437,6 +437,7 @@
     <nav class="global-nav">
       <a href="index.html">Home</a>
       <a class="active" href="character-builder.html">Character Builder</a>
+      <a href="power-library.html">Power Library</a>
       <a href="onboarding.html">New Player Quiz</a>
       <a href="wargame.html">Wargame (separate game)</a>
       <a href="quickstart.html">Rules / How to Play</a>
@@ -606,10 +607,8 @@
           <div class="section-heading">Character Background</div>
           <textarea id="backgroundText" rows="6" placeholder="Backstory, affiliations, notes" style="width:100%; resize: vertical;"></textarea>
         </div>
-      </section>
 
-      <section class="panel" aria-label="Power library" id="libraryPanel">
-        <div class="section-card">
+        <div class="section-card" aria-label="Power library" id="libraryPanel">
           <div class="section-heading">Power Library <small class="muted">Search, filter, click for details</small></div>
           <div class="grid-2">
             <input id="search" placeholder="Search powers or text..." aria-label="Search powers">
@@ -654,23 +653,22 @@
             <button class="chip" data-quick="classRanger">Ranger</button>
             <button class="chip" data-quick="clear">Clear</button>
           </div>
-        </div>
-        <div class="section-card">
           <div id="powerList" class="library-list" aria-label="Available powers"></div>
-        </div>
-        <div class="section-card hidden" id="detailWrapper">
-          <div id="powerDetail" class="detail-panel">
-            <div class="section-title">Power details</div>
-            <div id="detailTitle" style="font-weight:800;"></div>
-            <div class="muted" id="detailPath"></div>
-            <div class="pill-row" id="detailTags"></div>
-            <div id="detailBody" class="muted" style="white-space:pre-wrap;"></div>
-            <div class="flex-row">
-              <button class="primary-btn" id="addFromDetail">Add to character</button>
-              <button class="ghost-btn" id="closeDetail">Close</button>
+          <div class="section-card hidden" id="detailWrapper">
+            <div id="powerDetail" class="detail-panel">
+              <div class="section-title">Power details</div>
+              <div id="detailTitle" style="font-weight:800;"></div>
+              <div class="muted" id="detailPath"></div>
+              <div class="pill-row" id="detailTags"></div>
+              <div id="detailBody" class="muted" style="white-space:pre-wrap;"></div>
+              <div class="flex-row">
+                <button class="primary-btn" id="addFromDetail">Add to character</button>
+                <button class="ghost-btn" id="closeDetail">Close</button>
+              </div>
             </div>
           </div>
         </div>
+      </section>
       </section>
     </div>
   </main>
