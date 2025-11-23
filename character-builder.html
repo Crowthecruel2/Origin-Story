@@ -244,6 +244,20 @@
       align-items: center;
       gap: 0.5rem;
     }
+    .power-card .caret {
+      font-size: 1rem;
+      color: var(--muted);
+      transition: transform 0.12s ease;
+    }
+    .power-card .caret.open {
+      transform: rotate(90deg);
+    }
+    .power-levels {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+    .power-levels.collapsed { display: none; }
     .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .pill-tag {
       background: rgba(255,255,255,0.05);
@@ -511,6 +525,9 @@
           <button class="secondary-btn" id="addItem">Add</button>
         </div>
         <div id="inventoryList" class="inventory-list"></div>
+
+        <div class="section-title">Character Background</div>
+        <textarea id="backgroundText" rows="6" placeholder="Backstory, affiliations, notes" style="width:100%; resize: vertical;"></textarea>
       </section>
 
       <section class="panel" aria-label="Power library" id="libraryPanel">
@@ -643,6 +660,7 @@
       detailBody: document.getElementById("detailBody"),
       addFromDetail: document.getElementById("addFromDetail"),
       closeDetail: document.getElementById("closeDetail"),
+      backgroundText: document.getElementById("backgroundText"),
     };
 
     const filters = { search: "", class: "all", level: "all", category: "all", action: "all" };
@@ -766,19 +784,54 @@
         const card = document.createElement("article");
         card.className = "power-card";
         card.style.cursor = "default";
-        card.innerHTML = `
-          <header>
-            <div style="font-weight:700;">${power.name}</div>
-            <button type="button" title="Remove power" style="border:none;background:transparent;color:var(--danger);font-size:1.1rem;cursor:pointer;">×</button>
-          </header>
-        `;
-        const removeBtn = card.querySelector("button");
-        removeBtn.addEventListener("click", () => {
+
+        const header = document.createElement("header");
+        const left = document.createElement("div");
+        left.style.display = "flex";
+        left.style.alignItems = "center";
+        left.style.gap = "0.4rem";
+        const caret = document.createElement("span");
+        caret.className = "caret";
+        caret.textContent = "▸";
+        const title = document.createElement("div");
+        title.style.fontWeight = "700";
+        title.textContent = power.name;
+        left.appendChild(caret);
+        left.appendChild(title);
+        const right = document.createElement("div");
+        right.style.display = "flex";
+        right.style.gap = "0.35rem";
+        const detailBtn = document.createElement("button");
+        detailBtn.type = "button";
+        detailBtn.className = "ghost-btn";
+        detailBtn.style.padding = "0.35rem 0.6rem";
+        detailBtn.textContent = "View";
+        detailBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          showPowerDetail(power);
+        });
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.title = "Remove power";
+        removeBtn.className = "ghost-btn";
+        removeBtn.style.color = "var(--danger)";
+        removeBtn.style.padding = "0.35rem 0.6rem";
+        removeBtn.textContent = "×";
+        removeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
           chosenPowers.delete(power.path);
           setDirty();
           renderCharacterPowers();
           updateSummary();
         });
+        right.appendChild(detailBtn);
+        right.appendChild(removeBtn);
+        header.appendChild(left);
+        header.appendChild(right);
+        card.appendChild(header);
+
+        const levelsWrapper = document.createElement("div");
+        levelsWrapper.className = "power-levels collapsed";
 
         power.levels.forEach((lv, idx) => {
           const isPurchased = purchased.has(idx);
@@ -832,10 +885,14 @@
             `;
             row.appendChild(buyBtn);
           }
-          card.appendChild(row);
+          levelsWrapper.appendChild(row);
         });
+        card.appendChild(levelsWrapper);
 
-        card.addEventListener("click", () => showPowerDetail(power));
+        header.addEventListener("click", () => {
+          const isCollapsed = levelsWrapper.classList.toggle("collapsed");
+          caret.classList.toggle("open", !isCollapsed);
+        });
         elements.characterPowers.appendChild(card);
       }
       updatePointsDisplay();
@@ -1174,6 +1231,7 @@
       return {
         name: document.getElementById("name").value || "",
         concept: document.getElementById("concept").value || "",
+        background: elements.backgroundText.value || "",
         stats: {
           reflexBase: Number(elements.reflexBase.value) || 0,
           reflexMod: Number(elements.reflexMod.value) || 0,
@@ -1224,6 +1282,7 @@
     function applyCharacter(data) {
       document.getElementById("name").value = data.name || "";
       document.getElementById("concept").value = data.concept || "";
+      elements.backgroundText.value = data.background || "";
       if (data.stats) {
         elements.reflexBase.value = data.stats.reflexBase ?? 0;
         elements.reflexMod.value = data.stats.reflexMod ?? 0;
@@ -1357,19 +1416,22 @@
           level: 3,
           stats: { strengthBase: 4, durabilityBase: 3, reflexBase: 2, smartsBase: 1, socialBase: 0 },
           powers: ["Super Strength", "Vitality", "Invincibility"],
-          inventory: [{ name: "Brass Knuckles", qty: 1, notes: "Adds +1 damage" }]
+          inventory: [{ name: "Brass Knuckles", qty: 1, notes: "Adds +1 damage" }],
+          background: "Bouncer turned vigilante who knows the alleys and takes no guff."
         },
         "Occult Investigator": {
           level: 3,
           stats: { smartsBase: 4, reflexBase: 2, socialBase: 2, durabilityBase: 1, strengthBase: 0 },
           powers: ["Clairvoyant", "Mind Control", "Teleport (People)"],
-          inventory: [{ name: "Case Files", qty: 1, notes: "Advantage on research" }]
+          inventory: [{ name: "Case Files", qty: 1, notes: "Advantage on research" }],
+          background: "Detective with a taste for the uncanny; keeps red-string boards everywhere."
         },
         "Corporate Fixer": {
           level: 3,
           stats: { socialBase: 4, smartsBase: 3, reflexBase: 1, strengthBase: 1, durabilityBase: 1 },
           powers: ["Social", "Gadget Techie", "Interface Techie"],
-          inventory: [{ name: "Company Credit", qty: 1, notes: "$ to grease palms" }]
+          inventory: [{ name: "Company Credit", qty: 1, notes: "$ to grease palms" }],
+          background: "Smooth operator on retainer; knows who to call and what they cost."
         }
       };
       const build = builds[name];
@@ -1388,6 +1450,7 @@
       });
       inventory.length = 0;
       build.inventory.forEach(item => inventory.push(item));
+      elements.backgroundText.value = build.background || elements.backgroundText.value;
       setDirty();
       renderCharacterPowers();
       renderInventory();
@@ -1481,6 +1544,7 @@
     });
     [elements.quickSave, elements.quickSaveInline].forEach(btn => btn.addEventListener("click", quickSave));
     [elements.quickLoad, elements.quickLoadInline].forEach(btn => btn.addEventListener("click", quickLoad));
+    elements.backgroundText.addEventListener("input", () => setDirty());
 
     window.addEventListener("beforeunload", (e) => {
       if (!dirty) return;

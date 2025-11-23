@@ -146,6 +146,34 @@
           <option value="toolbox">Give me tools to tinker</option>
         </select>
       </label>
+      <label>What team role sounds good?
+        <select id="qRole">
+          <option value="frontline">Frontline bruiser</option>
+          <option value="control">Controller / scout</option>
+          <option value="face">Face / fixer / support</option>
+        </select>
+      </label>
+      <label>How do you handle danger?
+        <select id="qRisk">
+          <option value="charge">Charge first, think later</option>
+          <option value="plan">Plan, probe, reposition</option>
+          <option value="deal">Talk, bargain, leverage contacts</option>
+        </select>
+      </label>
+      <label>How do you solve problems?
+        <select id="qSolve">
+          <option value="hit">Hit it harder</option>
+          <option value="sleuth">Investigate, observe, outwit</option>
+          <option value="network">Call in favors or tech</option>
+        </select>
+      </label>
+      <label>Pick a vibe
+        <select id="qAesthetic">
+          <option value="steel">Leather, steel, and bruiser swagger</option>
+          <option value="mystic">Notes, clues, occult sigils</option>
+          <option value="suit">Sharp suit, gadgets, and credentials</option>
+        </select>
+      </label>
 
       <div class="result" id="resultCard">
         <h2 id="resultTitle">Street Brawler</h2>
@@ -182,30 +210,61 @@
 
     const playstyle = document.getElementById("qPlaystyle");
     const crunch = document.getElementById("qCrunch");
+    const role = document.getElementById("qRole");
+    const risk = document.getElementById("qRisk");
+    const solve = document.getElementById("qSolve");
+    const aesthetic = document.getElementById("qAesthetic");
     const resultTitle = document.getElementById("resultTitle");
     const resultDesc = document.getElementById("resultDesc");
     const openBuilder = document.getElementById("openBuilder");
     const resultCard = document.getElementById("resultCard");
 
     function computeBuild() {
-      const p = playstyle.value;
-      const c = crunch.value;
-      let build = "Street Brawler";
+      const scores = {
+        "Street Brawler": 0,
+        "Occult Investigator": 0,
+        "Corporate Fixer": 0
+      };
 
-      if (p === "occult") build = "Occult Investigator";
-      if (p === "social") build = "Corporate Fixer";
-      if (p === "brawl" && c === "toolbox") build = "Corporate Fixer";
-      if (p === "occult" && c === "simple") build = "Street Brawler";
+      // Playstyle
+      if (playstyle.value === "brawl") scores["Street Brawler"] += 2;
+      if (playstyle.value === "occult") scores["Occult Investigator"] += 2;
+      if (playstyle.value === "social") scores["Corporate Fixer"] += 2;
 
-      const info = RESULT_MAP[build];
-      resultTitle.textContent = build;
+      // Crunch
+      if (crunch.value === "simple") scores["Street Brawler"] += 2;
+      if (crunch.value === "balanced") { scores["Occult Investigator"] += 1; scores["Corporate Fixer"] += 1; }
+      if (crunch.value === "toolbox") { scores["Corporate Fixer"] += 2; scores["Occult Investigator"] += 1; }
+
+      // Role
+      if (role.value === "frontline") scores["Street Brawler"] += 2;
+      if (role.value === "control") scores["Occult Investigator"] += 2;
+      if (role.value === "face") scores["Corporate Fixer"] += 2;
+
+      // Risk
+      if (risk.value === "charge") scores["Street Brawler"] += 1;
+      if (risk.value === "plan") scores["Occult Investigator"] += 1;
+      if (risk.value === "deal") scores["Corporate Fixer"] += 1;
+
+      // Solve
+      if (solve.value === "hit") scores["Street Brawler"] += 2;
+      if (solve.value === "sleuth") scores["Occult Investigator"] += 2;
+      if (solve.value === "network") scores["Corporate Fixer"] += 2;
+
+      // Aesthetic
+      if (aesthetic.value === "steel") scores["Street Brawler"] += 1;
+      if (aesthetic.value === "mystic") scores["Occult Investigator"] += 1;
+      if (aesthetic.value === "suit") scores["Corporate Fixer"] += 1;
+
+      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const info = RESULT_MAP[winner];
+      resultTitle.textContent = winner;
       resultDesc.textContent = info.desc;
       resultCard.querySelector(".pill-row").innerHTML = info.tags.map(t => `<span class="pill">${t}</span>`).join("");
-      openBuilder.href = `character-builder.html?build=${encodeURIComponent(build)}`;
+      openBuilder.href = `character-builder.html?build=${encodeURIComponent(winner)}`;
     }
 
-    playstyle.addEventListener("change", computeBuild);
-    crunch.addEventListener("change", computeBuild);
+    [playstyle, crunch, role, risk, solve, aesthetic].forEach(el => el.addEventListener("change", computeBuild));
     computeBuild();
   </script>
 </body>
