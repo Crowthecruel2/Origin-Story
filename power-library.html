@@ -218,7 +218,7 @@
           p.className = "power-card";
           p.innerHTML = `
             <h3>${power.name}</h3>
-            <small>Lv ${power.meta.minLevel} • ${power.meta.action} action • ${power.meta.tags.join(", ") || "General"}</small>
+            <small>Lv ${power.meta.minLevel} - ${power.meta.action} action - ${power.meta.tags.join(", ") || "General"}</small>
             <div class="muted">${previewFromPower(power)}</div>
           `;
           list.appendChild(p);
