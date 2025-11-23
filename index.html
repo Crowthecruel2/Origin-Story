@@ -40,6 +40,7 @@
       background: rgba(7, 12, 21, 0.9);
       border-bottom: 1px solid var(--border);
       backdrop-filter: blur(8px);
+      flex-wrap: wrap;
     }
     .brand {
       display: flex;
@@ -55,6 +56,21 @@
     }
     .brand-title { font-weight: 800; letter-spacing: 0.02em; font-size: 1.2rem; }
     .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .global-nav a {
+      padding: 0.45rem 0.65rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
     .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
     .btn {
       display: inline-flex;
@@ -89,7 +105,7 @@
       border-radius: 16px;
       padding: 1.5rem;
       display: grid;
-      gap: 0.5rem;
+      gap: 0.6rem;
       box-shadow: var(--shadow);
     }
     .hero h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.02em; }
@@ -128,6 +144,13 @@
       text-align: center;
       padding: 1rem;
     }
+    .dev-note {
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+      padding-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
     @media (max-width: 720px) {
       .topbar { position: static; flex-direction: column; align-items: flex-start; }
       .hero h1 { font-size: 1.4rem; }
@@ -143,19 +166,27 @@
         <div class="brand-sub">Build characters, browse powers, grab PDFs</div>
       </div>
     </div>
+    <nav class="global-nav">
+      <a class="active" href="index.html">Home</a>
+      <a href="character-builder.html">Character Builder</a>
+      <a href="onboarding.html">New Player Quiz</a>
+      <a href="wargame.html">Wargame (separate game)</a>
+      <a href="quickstart.html">Rules / How to Play</a>
+    </nav>
     <div class="actions">
-      <a class="btn" href="onboarding.html">New Player Quiz</a>
-      <a class="btn primary" href="character-builder.html">Launch Builder</a>
+      <a class="btn" href="onboarding.html">I'm New → Take the Quiz</a>
+      <a class="btn primary" href="character-builder.html">I Know What I'm Doing → Open Builder</a>
     </div>
   </header>
 
   <main class="layout">
     <section class="hero">
       <h1>Your Origin Story launchpad</h1>
-      <p>Start a hero, explore the embedded power library, or pull up wargame PDFs. Best experienced in a Chromium browser so local file saving and printing work smoothly.</p>
+      <p>Origin Story is a street-level superhero tabletop RPG where you play gritty, ground-up heroes solving problems with powers, wit, and gear.</p>
+      <p>Start a hero, explore the power library, or pull up wargame PDFs. Best experienced in a Chromium browser so local file saving and printing work smoothly.</p>
       <div class="hero-actions">
-        <a class="btn primary" href="character-builder.html">Open Character Builder</a>
-        <a class="btn" href="onboarding.html">Help me pick a build</a>
+        <a class="btn primary" href="character-builder.html">I Know What I'm Doing → Open Builder</a>
+        <a class="btn" href="onboarding.html">I'm New → Take the Quiz</a>
         <a class="btn" href="wargame.html">Wargame PDFs</a>
       </div>
     </section>
@@ -173,8 +204,8 @@
       </article>
 
       <article class="card">
-        <h2>Embedded Powers</h2>
-        <div class="muted">Powers data lives in <code>powers-data.js</code>. Regenerate from <code>2. Mechanics/Classes</code> when powers change.</div>
+        <h2>Power Library</h2>
+        <div class="muted">Browse and drag powers right into your character builder.</div>
         <div class="tag-row">
           <span class="tag">Markdown-sourced</span>
           <span class="tag">Class folders</span>
@@ -195,7 +226,8 @@
   </main>
 
   <footer class="footer">
-    Origin Story Toolkit · Local-first · No installs required
+    Origin Story Toolkit - Local-first - No installs required
+    <div class="dev-note">For devs: Powers data lives in <code>powers-data.js</code>. Regenerate from <code>2. Mechanics/Classes</code> when powers change.</div>
   </footer>
 </body>
 </html>

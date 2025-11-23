@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Origin Story | RPG Quickstart</title>
+  <style>
+    :root {
+      --bg: #050910;
+      --panel: #0d1624;
+      --card: #0f1c2d;
+      --border: #233449;
+      --accent: #38f2c7;
+      --accent-2: #6dd3ff;
+      --text: #e6ebf5;
+      --muted: #9fb0c7;
+      --shadow: 0 20px 70px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56, 242, 199, 0.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.10), transparent 25%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(7, 12, 21, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 8px 25px rgba(56, 242, 199, 0.35); }
+    .brand-title { font-weight: 800; letter-spacing: 0.02em; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .global-nav a { padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.6rem 0.9rem; border-radius: 10px; border: 1px solid var(--border); color: var(--text); font-weight: 700; background: transparent; }
+    .btn.primary { background: linear-gradient(120deg, var(--accent), #34d399); color: #0a1525; border: none; box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35); }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .shell { max-width: 1000px; margin: 1.4rem auto 2rem; padding: 0 1.2rem; display: grid; gap: 1rem; }
+    .hero { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 1.3rem; box-shadow: var(--shadow); display: grid; gap: 0.6rem; }
+    .hero h1 { margin: 0; }
+    .muted { color: var(--muted); }
+    .cards { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: var(--shadow); display: grid; gap: 0.5rem; }
+    h2 { margin: 0; font-size: 1.2rem; }
+    ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+    .pill-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .pill { padding: 0.3rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: var(--muted); font-size: 0.9rem; }
+    .back-link { color: var(--accent); font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand-title">Origin Story Tools</div>
+        <div class="brand-sub">RPG quickstart & rules</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <a href="character-builder.html">Character Builder</a>
+      <a href="onboarding.html">New Player Quiz</a>
+      <a href="wargame.html">Wargame (separate game)</a>
+      <a class="active" href="quickstart.html">Rules / How to Play</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="onboarding.html">Take the Quiz</a>
+      <a class="btn primary" href="character-builder.html">Open Builder</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <a class="back-link" href="index.html">&#8592; Back to Origin Story Hub</a>
+
+    <section class="hero">
+      <h1>How to Play Origin Story (RPG quickstart)</h1>
+      <p class="muted">Street-level superhero RPG: make grounded heroes, solve problems with powers, wit, and gear. This is not the miniatures wargame.</p>
+      <div class="pill-row">
+        <span class="pill">Create a character</span>
+        <span class="pill">Pick powers</span>
+        <span class="pill">Roll d20 checks</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="character-builder.html">Open Builder</a>
+        <a class="btn" href="onboarding.html">Take the Quiz</a>
+      </div>
+    </section>
+
+    <section class="cards">
+      <article class="card">
+        <h2>Core loop</h2>
+        <ul>
+          <li>Scene framing: GM sets stakes and asks what you do.</li>
+          <li>Checks: roll d20 + stat vs target number; advantage/disadvantage = roll 2, keep high/low.</li>
+          <li>Consequences: success, success with a cost, or setback that escalates fiction.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Stats & health</h2>
+        <ul>
+          <li>Stats: Reflex, Strength, Smarts, Social, Durability.</li>
+          <li>Health: 10 + Durability x Level. Drop to 0 = downed; take conditions on big hits.</li>
+          <li>Power Points: equal to Level; each power level costs PP.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Powers</h2>
+        <ul>
+          <li>Buy powers by level using PP; higher levels build on lower ones.</li>
+          <li>Action types: Standard, Move, or Reaction. Most rolls are d20 + relevant stat.</li>
+          <li>Creative use matters: narrate how the power shifts the scene.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Advancement</h2>
+        <ul>
+          <li>Level up when the GM says; gain +1 Power Point and stat budget per your table’s rules.</li>
+          <li>Add new power levels or pick up new utility tools and gear.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Table agreements</h2>
+        <ul>
+          <li>Pick tone: grounded street action, pulp, or comic-book big.</li>
+          <li>Safety tools: use lines/veils and pauses.</li>
+          <li>Spotlight: rotate focus, share the mic, and reward creative approaches.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

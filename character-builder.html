@@ -59,20 +59,16 @@
     }
     .brand .eyebrow { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.08em; }
     .brand .title { font-weight: 800; font-size: 1.25rem; letter-spacing: 0.02em; }
-    .nav-links {
-      display: flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
+    .global-nav { display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center; }
+    .global-nav a {
       padding: 0.45rem 0.7rem;
       border-radius: 10px;
       border: 1px solid transparent;
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 700;
     }
-    .nav-links a:hover { border-color: var(--border); color: var(--text); }
-    .nav-links a.active { background: rgba(56, 242, 199, 0.1); color: var(--text); border-color: var(--border); }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
     .top-actions {
       display: flex;
       align-items: center;
@@ -156,6 +152,22 @@
       display: grid;
       gap: 0.8rem;
     }
+    .section-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      background: rgba(255,255,255,0.02);
+      display: grid;
+      gap: 0.6rem;
+    }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
     .section-title {
       display: flex;
       align-items: center;
@@ -164,6 +176,24 @@
       letter-spacing: 0.01em;
     }
     .section-title small { color: var(--muted); font-weight: 600; }
+    .back-link {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .help-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: 0.35rem;
+      cursor: help;
+    }
     label {
       display: flex;
       flex-direction: column;
@@ -213,6 +243,11 @@
       align-items: center;
       gap: 0.6rem;
       box-shadow: var(--shadow);
+    }
+    .banner.success {
+      background: rgba(52, 211, 153, 0.1);
+      color: #bbf7d0;
+      border-color: #34d399;
     }
     .banner.hidden { display: none; }
     .powers-zone {
@@ -302,7 +337,24 @@
     }
     .chip.active { background: rgba(56, 242, 199, 0.15); border-color: var(--accent); color: var(--text); }
     .helper-text { color: var(--muted); font-size: 0.9rem; }
+    .status-line { font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+    .status-good { color: var(--success); }
+    .status-warn { color: var(--warning); }
     .danger { color: var(--danger); }
+    details.advanced {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.7rem;
+      background: rgba(255,255,255,0.03);
+    }
+    details.advanced summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--muted);
+      list-style: none;
+    }
+    details.advanced summary::-webkit-details-marker { display: none; }
+    details.advanced[open] summary { color: var(--text); }
     .invalid input { border-color: var(--danger); }
     .coachmark {
       position: relative;
@@ -368,6 +420,8 @@
       .powers-zone, .power-card, .inventory-list > div { border-color: #aaa; background: #fff; }
       .banner { display: none !important; }
       .power-levels.collapsed { display: grid !important; }
+      .unowned-level { display: none !important; }
+      .power-card { page-break-inside: avoid; }
     }
   </style>
 </head>
@@ -380,212 +434,241 @@
         <div class="title">Character Builder</div>
       </div>
     </div>
-    <nav class="nav-links">
-      <a class="active" href="#">Character Builder</a>
-      <a href="#libraryPanel">Powers Library</a>
-      <a href="wargame.html" target="_blank">Wargame PDFs</a>
-      <a href="2nd%20Edition%20Final.pdf" target="_blank">How to Play Origin Story</a>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <a class="active" href="character-builder.html">Character Builder</a>
+      <a href="onboarding.html">New Player Quiz</a>
+      <a href="wargame.html">Wargame (separate game)</a>
+      <a href="quickstart.html">Rules / How to Play</a>
     </nav>
     <div class="top-actions">
-      <a id="startTourLink" class="ghost-btn" href="onboarding.html">New Player? Start Here</a>
+      <button id="startTourLink" class="ghost-btn" type="button">New Player? Start Here</button>
       <div class="pill" id="saveStamp">Last saved: never</div>
     </div>
   </header>
 
   <main class="app-shell">
+    <a class="back-link print-hide" href="index.html">&#8592; Back to Origin Story Hub</a>
     <div class="summary-card">
       <div>
-        <div class="summary-title">Live character summary</div>
+        <div class="summary-title">Live character summary <span class="muted">(updates as you edit)</span></div>
         <div class="summary-muted" id="summaryText">Level 1 | Health 10 | Power Points 0/1 | Powers: 0 | Inventory items: 0</div>
       </div>
       <div class="summary-actions print-hide">
-        <span class="badge" id="statBudgetBadge">Stat budget: 10 base + 5/level</span>
+        <span class="badge" id="statBudgetBadge">Stat budget: 7 base + 2/level</span>
         <button class="primary-btn" id="quickSave">Quick Save</button>
         <button class="secondary-btn" id="quickLoad">Load Last</button>
         <button class="secondary-btn" id="printCharacter">Print / PDF</button>
       </div>
     </div>
+    <div id="sampleBanner" class="banner success hidden print-hide">Loaded a sample Level 1 Street Brawler. Tweak anything you like.</div>
     <div id="ppWarning" class="banner hidden print-hide"></div>
     <div id="statWarning" class="banner hidden print-hide"></div>
 
     <div class="grid">
       <section class="panel" aria-label="Character information">
-        <div class="section-title">Character Info</div>
-        <div class="grid-2">
-          <label>Character Name
-            <input id="name" placeholder="Name">
-          </label>
-          <label>Concept / Notes
-            <input id="concept" placeholder="Short concept or role">
-          </label>
-        </div>
-
-        <div class="section-title">Stats</div>
-        <div class="stats-columns coachmark" id="statsGroup">
-          <span class="hint">Budget check happens here</span>
-          <div>
-            <h4>Base</h4>
-            <div class="stats-grid">
-              <label>Reflex (base)
-                <input type="number" id="reflexBase" value="0" step="1">
-              </label>
-              <label>Strength (base)
-                <input type="number" id="strengthBase" value="0" step="1">
-              </label>
-              <label>Smarts (base)
-                <input type="number" id="smartsBase" value="0" step="1">
-              </label>
-              <label>Social (base)
-                <input type="number" id="socialBase" value="0" step="1">
-              </label>
-              <label>Durability (base)
-                <input type="number" id="durabilityBase" value="0" step="1">
-              </label>
-            </div>
-          </div>
-          <div>
-            <h4>Mods</h4>
-            <div class="stats-grid">
-              <label>Reflex (mod)
-                <input type="number" id="reflexMod" value="0" step="1">
-              </label>
-              <label>Strength (mod)
-                <input type="number" id="strengthMod" value="0" step="1">
-              </label>
-              <label>Smarts (mod)
-                <input type="number" id="smartsMod" value="0" step="1">
-              </label>
-              <label>Social (mod)
-                <input type="number" id="socialMod" value="0" step="1">
-              </label>
-              <label>Durability (mod)
-                <input type="number" id="durabilityMod" value="0" step="1">
-              </label>
-            </div>
+        <div class="section-card">
+          <div class="section-heading">Character Info</div>
+          <div class="grid-2">
+            <label>Character Name
+              <input id="name" placeholder="Name">
+            </label>
+            <label>Concept / Notes
+              <input id="concept" placeholder="Short concept or role">
+            </label>
           </div>
         </div>
 
-        <div class="section-title">Derived</div>
-        <div class="derived-cards">
-          <label>Level
-            <input type="number" id="level" value="1" min="1" step="1">
-          </label>
-          <div class="stat-card tooltip" data-tip="10 + Durability × Level (core rule)">
-            <div class="muted">Health</div>
-            <strong id="health">10</strong>
-            <div class="muted">Auto-updates with Level & Durability</div>
+        <div class="section-card">
+          <div class="section-heading">Stats</div>
+          <div class="stats-columns coachmark" id="statsGroup">
+            <div>
+              <h4>Base</h4>
+              <div class="stats-grid">
+                <label>Reflex (base) <span class="help-icon tooltip" data-tip="Speed, initiative, and quick moves.">?</span>
+                  <input type="number" id="reflexBase" value="0" step="1">
+                </label>
+                <label>Strength (base) <span class="help-icon tooltip" data-tip="Force, lifting, melee damage.">?</span>
+                  <input type="number" id="strengthBase" value="0" step="1">
+                </label>
+                <label>Smarts (base) <span class="help-icon tooltip" data-tip="Knowledge, perception, and planning.">?</span>
+                  <input type="number" id="smartsBase" value="0" step="1">
+                </label>
+                <label>Social (base) <span class="help-icon tooltip" data-tip="Influence, negotiations, and presence.">?</span>
+                  <input type="number" id="socialBase" value="0" step="1">
+                </label>
+                <label>Durability (base) <span class="help-icon tooltip" data-tip="Toughness, endurance, and grit.">?</span>
+                  <input type="number" id="durabilityBase" value="0" step="1">
+                </label>
+              </div>
+            </div>
+            <div>
+              <h4>Mods</h4>
+              <div class="stats-grid">
+                <label>Reflex (mod)
+                  <input type="number" id="reflexMod" value="0" step="1">
+                </label>
+                <label>Strength (mod)
+                  <input type="number" id="strengthMod" value="0" step="1">
+                </label>
+                <label>Smarts (mod)
+                  <input type="number" id="smartsMod" value="0" step="1">
+                </label>
+                <label>Social (mod)
+                  <input type="number" id="socialMod" value="0" step="1">
+                </label>
+                <label>Durability (mod)
+                  <input type="number" id="durabilityMod" value="0" step="1">
+                </label>
+              </div>
+            </div>
           </div>
-          <div class="stat-card tooltip" data-tip="Total Power Points equals your Level. Costs come from each power level.">
-            <div class="muted">Power Points</div>
-            <strong id="powerPoints">1 / 1</strong>
-            <div class="muted" id="powerPointsDetail">1 remaining (spent 0)</div>
-          </div>
+          <div id="statBudgetStatus" class="status-line status-good">You are within your stat budget.</div>
         </div>
-        <div class="section-title">Stat budget (edit if your table differs)</div>
-        <div class="grid-2">
-          <label>Base pool
-            <input type="number" id="statBasePool" value="7" min="0">
-          </label>
-          <label>Per-level gain
-            <input type="number" id="statPerLevel" value="2" min="0">
-          </label>
-        </div>
-        <div class="helper-text">Budget = Base pool + Per-level gain × (Level - 1). Total points = sum of base + modifiers.</div>
 
-        <div class="section-title">Save & Export</div>
-        <div class="grid-2">
-          <div class="coachmark" id="saveOptions">
-            <span class="hint">Fast local save</span>
-            <div class="flex-row">
-              <button class="primary-btn" id="quickSaveInline">Quick Save</button>
-              <button class="secondary-btn" id="quickLoadInline">Load Last Character</button>
+        <div class="section-card">
+          <div class="section-heading">Derived Stats</div>
+          <div class="derived-cards">
+            <label>Level
+              <input type="number" id="level" value="1" min="1" step="1">
+            </label>
+            <div class="stat-card tooltip" data-tip="10 + Durability x Level (core rule)">
+              <div class="muted">Health</div>
+              <strong id="health">10</strong>
+              <div class="muted">Auto-updates with Level & Durability</div>
             </div>
-            <div class="helper-text">Quick Save keeps data in your browser (localStorage). Use Load Last to restore.</div>
+            <div class="stat-card tooltip" data-tip="Power Points equal your Level. Each power level costs PP.">
+              <div class="muted">Power Points</div>
+              <strong id="powerPoints">1 / 1</strong>
+              <div class="muted" id="powerPointsDetail">1 remaining (spent 0)</div>
+            </div>
           </div>
-          <div>
-            <div class="flex-row">
-              <button class="secondary-btn" id="selectCharacterFolder">Export character to file</button>
-              <button class="secondary-btn" id="loadCharacter">Import character from file</button>
+        </div>
+
+        <div class="section-card">
+          <div class="section-heading">Advanced: Stat budget (house rules)</div>
+          <details class="advanced" id="advancedBudget">
+            <summary>Adjust stat budget</summary>
+            <div class="grid-2" style="margin-top:0.6rem;">
+              <label>Base pool
+                <input type="number" id="statBasePool" value="7" min="0">
+              </label>
+              <label>Per-level gain
+                <input type="number" id="statPerLevel" value="2" min="0">
+              </label>
             </div>
-            <div class="helper-text" id="characterFolderHint">No folder selected</div>
+            <div class="helper-text">Budget = Base pool + Per-level gain x (Level - 1). Total points = sum of base + modifiers.</div>
+          </details>
+        </div>
+
+        <div class="section-card">
+          <div class="section-heading">Save & Export</div>
+          <div class="grid-2">
+            <div class="coachmark" id="saveOptions">
+              <span class="hint">Fast local save</span>
+              <div class="flex-row">
+                <button class="primary-btn" id="quickSaveInline">Quick Save</button>
+                <button class="secondary-btn" id="quickLoadInline">Load Last Character</button>
+              </div>
+              <div class="helper-text">Quick Save keeps data in your browser (localStorage). Use Load Last to restore.</div>
+            </div>
+            <div>
+              <div class="flex-row">
+                <button class="secondary-btn" id="selectCharacterFolder">Export character to file</button>
+                <button class="secondary-btn" id="loadCharacter">Import character from file</button>
+              </div>
+              <div class="helper-text" id="characterFolderHint">No folder selected</div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="panel" aria-label="Character sheet" id="sheetPanel">
-        <div class="section-title">Character Powers <small class="muted">Drag from the right or click to remove</small></div>
-        <div id="characterPowers" class="powers-zone coachmark" aria-label="Character powers drop zone">
-          <span class="hint">Drop powers here</span>
+        <div class="section-card">
+          <div class="section-heading">Character Powers <small class="muted">Drag from the right or click to remove</small></div>
+          <div id="characterPowers" class="powers-zone coachmark" aria-label="Character powers drop zone">
+            <span class="hint">Drop powers here</span>
+          </div>
         </div>
 
-        <div class="section-title">Inventory</div>
-        <div class="flex-row print-hide">
-          <input id="invName" placeholder="Item name" style="min-width:180px;">
-          <input id="invQty" type="number" min="1" value="1" style="width:90px;">
-          <input id="invNotes" placeholder="Notes/effects" style="flex:1; min-width:200px;">
-          <button class="secondary-btn" id="addItem">Add</button>
+        <div class="section-card">
+          <div class="section-heading">Inventory</div>
+          <div class="flex-row print-hide">
+            <input id="invName" placeholder="Item name" style="min-width:180px;">
+            <input id="invQty" type="number" min="1" value="1" style="width:90px;">
+            <input id="invNotes" placeholder="Notes/effects" style="flex:1; min-width:200px;">
+            <button class="secondary-btn" id="addItem">Add</button>
+          </div>
+          <div id="inventoryList" class="inventory-list"></div>
         </div>
-        <div id="inventoryList" class="inventory-list"></div>
 
-        <div class="section-title">Character Background</div>
-        <textarea id="backgroundText" rows="6" placeholder="Backstory, affiliations, notes" style="width:100%; resize: vertical;"></textarea>
+        <div class="section-card">
+          <div class="section-heading">Character Background</div>
+          <textarea id="backgroundText" rows="6" placeholder="Backstory, affiliations, notes" style="width:100%; resize: vertical;"></textarea>
+        </div>
       </section>
 
       <section class="panel" aria-label="Power library" id="libraryPanel">
-        <div class="section-title">Power Library <small class="muted">Search, filter, click for details</small></div>
-        <div class="grid-2">
-          <input id="search" placeholder="Search powers or text..." aria-label="Search powers">
-          <button class="secondary-btn" id="loadPowers">Reload embedded powers</button>
+        <div class="section-card">
+          <div class="section-heading">Power Library <small class="muted">Search, filter, click for details</small></div>
+          <div class="grid-2">
+            <input id="search" placeholder="Search powers or text..." aria-label="Search powers">
+            <button class="secondary-btn" id="loadPowers">Reload power data</button>
+          </div>
+          <div class="grid-3">
+            <label>Class
+              <select id="filterClass"></select>
+            </label>
+            <label>Level
+              <select id="filterLevel">
+                <option value="all">Any</option>
+                <option value="1">Level 1</option>
+                <option value="2">Level 2</option>
+                <option value="3">Level 3</option>
+                <option value="4">Level 4+</option>
+              </select>
+            </label>
+            <label>Category
+              <select id="filterCategory">
+                <option value="all">Any</option>
+                <option value="Attack">Attack</option>
+                <option value="Defense">Defense</option>
+                <option value="Utility">Utility</option>
+              </select>
+            </label>
+            <label>Action Type
+              <select id="filterAction">
+                <option value="all">Any</option>
+                <option value="Standard">Standard</option>
+                <option value="Move">Move</option>
+                <option value="Reaction">Reaction</option>
+              </select>
+            </label>
+          </div>
+          <div class="flex-row print-hide">
+            <span class="helper-text">Quick filters:</span>
+            <button class="chip" data-quick="level1">Show only Level 1</button>
+            <button class="chip" data-quick="level2">Level 2+</button>
+            <button class="chip" data-quick="classBrick">Brick</button>
+            <button class="chip" data-quick="classTechie">Techie</button>
+            <button class="chip" data-quick="classRanger">Ranger</button>
+            <button class="chip" data-quick="clear">Clear</button>
+          </div>
         </div>
-        <div class="grid-3">
-          <label>Class
-            <select id="filterClass"></select>
-          </label>
-          <label>Level
-            <select id="filterLevel">
-              <option value="all">Any</option>
-              <option value="1">Level 1</option>
-              <option value="2">Level 2</option>
-              <option value="3">Level 3</option>
-              <option value="4">Level 4+</option>
-            </select>
-          </label>
-          <label>Category
-            <select id="filterCategory">
-              <option value="all">Any</option>
-              <option value="Attack">Attack</option>
-              <option value="Defense">Defense</option>
-              <option value="Utility">Utility</option>
-            </select>
-          </label>
-          <label>Action Type
-            <select id="filterAction">
-              <option value="all">Any</option>
-              <option value="Standard">Standard</option>
-              <option value="Move">Move</option>
-              <option value="Reaction">Reaction</option>
-            </select>
-          </label>
+        <div class="section-card">
+          <div id="powerList" class="library-list" aria-label="Available powers"></div>
         </div>
-        <div class="flex-row print-hide">
-          <span class="helper-text">Quick filters:</span>
-          <button class="chip" data-quick="level1">Show only Level 1</button>
-          <button class="chip" data-quick="level2">Level 2+</button>
-          <button class="chip" data-quick="classBrick">Brick</button>
-          <button class="chip" data-quick="classTechie">Techie</button>
-          <button class="chip" data-quick="classRanger">Ranger</button>
-          <button class="chip" data-quick="clear">Clear</button>
-        </div>
-        <div id="powerList" class="library-list" aria-label="Available powers"></div>
-        <div id="powerDetail" class="detail-panel hidden">
-          <div class="section-title">Power details</div>
-          <div id="detailTitle" style="font-weight:800;"></div>
-          <div class="muted" id="detailPath"></div>
-          <div class="pill-row" id="detailTags"></div>
-          <div id="detailBody" class="muted" style="white-space:pre-wrap;"></div>
-          <div class="flex-row">
-            <button class="primary-btn" id="addFromDetail">Add to character</button>
-            <button class="ghost-btn" id="closeDetail">Close</button>
+        <div class="section-card hidden" id="detailWrapper">
+          <div id="powerDetail" class="detail-panel">
+            <div class="section-title">Power details</div>
+            <div id="detailTitle" style="font-weight:800;"></div>
+            <div class="muted" id="detailPath"></div>
+            <div class="pill-row" id="detailTags"></div>
+            <div id="detailBody" class="muted" style="white-space:pre-wrap;"></div>
+            <div class="flex-row">
+              <button class="primary-btn" id="addFromDetail">Add to character</button>
+              <button class="ghost-btn" id="closeDetail">Close</button>
+            </div>
           </div>
         </div>
       </section>
@@ -643,6 +726,7 @@
       statPerLevel: document.getElementById("statPerLevel"),
       summaryText: document.getElementById("summaryText"),
       statBudgetBadge: document.getElementById("statBudgetBadge"),
+      statBudgetStatus: document.getElementById("statBudgetStatus"),
       ppWarning: document.getElementById("ppWarning"),
       statWarning: document.getElementById("statWarning"),
       saveStamp: document.getElementById("saveStamp"),
@@ -662,6 +746,9 @@
       addFromDetail: document.getElementById("addFromDetail"),
       closeDetail: document.getElementById("closeDetail"),
       backgroundText: document.getElementById("backgroundText"),
+      sampleBanner: document.getElementById("sampleBanner"),
+      startTourLink: document.getElementById("startTourLink"),
+      detailWrapper: document.getElementById("detailWrapper"),
     };
 
     const filters = { search: "", class: "all", level: "all", category: "all", action: "all" };
@@ -669,10 +756,13 @@
     let characterDirHandle = null;
     let lastSavedAt = null;
     let dirty = false;
+    let filtersTouched = false;
+    let appliedLevel1Default = false;
 
     function setDirty() {
       dirty = true;
       elements.saveStamp.textContent = `Last saved: unsaved changes`;
+      if (elements.sampleBanner) elements.sampleBanner.classList.add("hidden");
     }
     function getLevel() {
       return Number(elements.level.value) || 0;
@@ -757,13 +847,25 @@
       const budget = statBudget();
       const spent = totalStats();
       const group = document.getElementById("statsGroup");
+      const statusLine = elements.statBudgetStatus;
+      if (statusLine) {
+        statusLine.classList.remove("status-good", "status-warn");
+      }
       if (spent > budget) {
         elements.statWarning.textContent = `Stats exceed budget by ${spent - budget}. Budget = ${budget}, spent = ${spent}.`;
         elements.statWarning.classList.remove("hidden");
         group.classList.add("invalid");
+        if (statusLine) {
+          statusLine.textContent = `(!) You are ${spent - budget} over your stat budget (${spent}/${budget}).`;
+          statusLine.classList.add("status-warn");
+        }
       } else {
         elements.statWarning.classList.add("hidden");
         group.classList.remove("invalid");
+        if (statusLine) {
+          statusLine.textContent = `(OK) You have spent ${spent} of ${budget} stat points.`;
+          statusLine.classList.add("status-good");
+        }
       }
     }
 
@@ -817,7 +919,7 @@
         removeBtn.className = "ghost-btn";
         removeBtn.style.color = "var(--danger)";
         removeBtn.style.padding = "0.35rem 0.6rem";
-        removeBtn.textContent = "×";
+        removeBtn.textContent = "Remove";
         removeBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           chosenPowers.delete(power.path);
@@ -916,7 +1018,7 @@
         const btn = document.createElement("button");
         btn.type = "button";
         btn.title = "Remove item";
-        btn.textContent = "×";
+        btn.textContent = "Remove";
         btn.className = "ghost-btn";
         btn.style.padding = "0.25rem 0.5rem";
         btn.addEventListener("click", () => {
@@ -946,6 +1048,25 @@
       else if (/\bmove\b|\bmovement\b|\bfree action\b|\bbonus action\b/.test(text)) action = "Move";
 
       return { className: className || "Misc", minLevel, tags: Array.from(tags), action };
+    }
+
+    function markFiltersTouched() {
+      filtersTouched = true;
+    }
+
+    function maybeApplyLevelOneFilter() {
+      if (appliedLevel1Default || filtersTouched) return;
+      if (getLevel() <= 1) {
+        filters.level = "1";
+        elements.filterLevel.value = "1";
+        const levelChip = document.querySelector('.chip[data-quick="level1"]');
+        if (levelChip) {
+          document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+          levelChip.classList.add("active");
+        }
+        appliedLevel1Default = true;
+        applyFilters();
+      }
     }
 
     function renderPowerLibrary(list) {
@@ -1022,6 +1143,7 @@
         span.textContent = tag;
         elements.detailTags.appendChild(span);
       });
+      if (elements.detailWrapper) elements.detailWrapper.classList.remove("hidden");
       elements.powerDetail.classList.remove("hidden");
     }
 
@@ -1101,7 +1223,9 @@
       hydrateFilters();
       applyFilters();
       renderCharacterPowers();
-      elements.loadBtn.textContent = "Reload embedded powers";
+      appliedLevel1Default = false;
+      maybeApplyLevelOneFilter();
+      elements.loadBtn.textContent = "Reload power data";
     }
     function addPowerToCharacter(power) {
       const existing = chosenPowers.get(power.path);
@@ -1281,6 +1405,7 @@
     }
 
     function applyCharacter(data) {
+      if (elements.sampleBanner) elements.sampleBanner.classList.add("hidden");
       document.getElementById("name").value = data.name || "";
       document.getElementById("concept").value = data.concept || "";
       elements.backgroundText.value = data.background || "";
@@ -1461,6 +1586,28 @@
       setTimeout(() => document.body.classList.remove("tour"), 6000);
     }
 
+    function loadSampleStarter() {
+      presetBuild("Street Brawler");
+      elements.level.value = 1;
+      elements.reflexBase.value = 1;
+      elements.strengthBase.value = 3;
+      elements.smartsBase.value = 1;
+      elements.socialBase.value = 0;
+      elements.durabilityBase.value = 2;
+      ["reflexMod","strengthMod","smartsMod","socialMod","durabilityMod"].forEach(id => { elements[id].value = 0; });
+      updateDerived();
+      renderCharacterPowers();
+      renderInventory();
+      updateSummary();
+      validateStats();
+      setDirty();
+      if (elements.sampleBanner) elements.sampleBanner.classList.remove("hidden");
+      const sheetPanel = document.getElementById("sheetPanel");
+      if (sheetPanel) sheetPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      appliedLevel1Default = false;
+      maybeApplyLevelOneFilter();
+    }
+
     function applyBuildFromQuery() {
       const params = new URLSearchParams(window.location.search);
       const build = params.get("build");
@@ -1474,7 +1621,14 @@
       }
     }
     ["level","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod","statBasePool","statPerLevel"].forEach(id => {
-      elements[id].addEventListener("input", () => { setDirty(); updateDerived(); });
+      elements[id].addEventListener("input", () => {
+        setDirty();
+        updateDerived();
+        if (id === "level") {
+          appliedLevel1Default = false;
+          maybeApplyLevelOneFilter();
+        }
+      });
     });
     elements.selectCharacterFolder.addEventListener("click", async () => {
       await saveCharacterToFolder();
@@ -1483,21 +1637,24 @@
       await loadCharacterFromFile();
     });
     elements.loadBtn.addEventListener("click", () => {
+      markFiltersTouched();
       hydrateFromEmbedded();
     });
     elements.search.addEventListener("input", () => {
       filters.search = elements.search.value;
+      markFiltersTouched();
       applyFilters();
     });
-    elements.filterClass.addEventListener("change", () => { filters.class = elements.filterClass.value; applyFilters(); });
-    elements.filterLevel.addEventListener("change", () => { filters.level = elements.filterLevel.value; applyFilters(); });
-    elements.filterCategory.addEventListener("change", () => { filters.category = elements.filterCategory.value; applyFilters(); });
-    elements.filterAction.addEventListener("change", () => { filters.action = elements.filterAction.value; applyFilters(); });
+    elements.filterClass.addEventListener("change", () => { filters.class = elements.filterClass.value; markFiltersTouched(); applyFilters(); });
+    elements.filterLevel.addEventListener("change", () => { filters.level = elements.filterLevel.value; markFiltersTouched(); applyFilters(); });
+    elements.filterCategory.addEventListener("change", () => { filters.category = elements.filterCategory.value; markFiltersTouched(); applyFilters(); });
+    elements.filterAction.addEventListener("change", () => { filters.action = elements.filterAction.value; markFiltersTouched(); applyFilters(); });
     document.querySelectorAll(".chip").forEach(chip => {
       chip.addEventListener("click", () => {
         document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
         chip.classList.add("active");
         const key = chip.dataset.quick;
+        markFiltersTouched();
         filters.class = "all";
         filters.level = "all";
         if (key === "clear") {
@@ -1536,12 +1693,16 @@
     elements.printCharacter.addEventListener("click", () => {
       window.print();
     });
+    elements.startTourLink.addEventListener("click", () => {
+      loadSampleStarter();
+    });
     elements.powerDetail.addEventListener("click", (e) => e.stopPropagation());
     elements.addFromDetail.addEventListener("click", () => {
       if (selectedPower) addPowerToCharacter(selectedPower);
     });
     elements.closeDetail.addEventListener("click", () => {
       elements.powerDetail.classList.add("hidden");
+      if (elements.detailWrapper) elements.detailWrapper.classList.add("hidden");
     });
     [elements.quickSave, elements.quickSaveInline].forEach(btn => btn.addEventListener("click", quickSave));
     [elements.quickLoad, elements.quickLoadInline].forEach(btn => btn.addEventListener("click", quickLoad));
@@ -1555,6 +1716,7 @@
 
     hydrateFromEmbedded();
     applyBuildFromQuery();
+    maybeApplyLevelOneFilter();
     renderInventory();
     renderCharacterPowers();
     updateDerived();
@@ -1562,4 +1724,11 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
 

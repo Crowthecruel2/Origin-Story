@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Origin Story | Pick a Starter Build</title>
+  <title>Origin Story | New Player Quiz</title>
   <style>
     :root {
       --bg: #050910;
@@ -15,6 +15,7 @@
       --text: #e6ebf5;
       --muted: #9fb0c7;
       --shadow: 0 20px 70px rgba(0,0,0,0.45);
+      --success: #34d399;
     }
     * { box-sizing: border-box; }
     body {
@@ -27,39 +28,30 @@
         var(--bg);
       min-height: 100vh;
     }
-    .shell {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 1.4rem;
-      display: grid;
-      gap: 1rem;
-    }
-    header {
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(7, 12, 21, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
       flex-wrap: wrap;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(7, 12, 21, 0.85);
     }
-    .title {
-      font-weight: 800;
-      letter-spacing: 0.01em;
-      font-size: 1.2rem;
-    }
-    .muted { color: var(--muted); }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1rem;
-      box-shadow: var(--shadow);
-      display: grid;
-      gap: 0.8rem;
-    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 8px 25px rgba(56, 242, 199, 0.35); }
+    .brand-title { font-weight: 800; letter-spacing: 0.02em; font-size: 1.1rem; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .global-nav a { padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -74,86 +66,69 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .btn.primary {
-      background: linear-gradient(120deg, var(--accent), #34d399);
-      color: #0a1525;
-      border: none;
-      box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35);
-    }
+    .btn.primary { background: linear-gradient(120deg, var(--accent), #34d399); color: #0a1525; border: none; box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35); }
     .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
-    .btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .shell { max-width: 960px; margin: 0 auto; padding: 1.4rem; display: grid; gap: 1rem; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: var(--shadow); display: grid; gap: 0.8rem; }
+    .page-header { display: flex; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap; }
+    .title { font-weight: 800; letter-spacing: 0.01em; font-size: 1.2rem; }
+    .muted { color: var(--muted); }
+    .back-link { color: var(--accent); font-weight: 700; text-decoration: none; }
     .quiz { gap: 1rem; }
-    .progress-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-    .pill-row, .options {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-    .pill {
-      padding: 0.3rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .progress-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; }
+    .pill-row, .options { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .pill { padding: 0.3rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: var(--muted); font-size: 0.9rem; }
     .question-block { display: grid; gap: 0.55rem; }
     .question-title { font-weight: 800; font-size: 1.1rem; }
-    .options {
-      display: grid;
-      gap: 0.5rem;
-    }
-    .option-btn {
-      width: 100%;
-      padding: 0.75rem 0.9rem;
-      border-radius: 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      text-align: left;
-      cursor: pointer;
-      transition: border-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
-    }
+    .options { display: grid; gap: 0.55rem; }
+    .option-btn { width: 100%; padding: 0.75rem 0.9rem; border-radius: 12px; background: var(--card); border: 1px solid var(--border); color: var(--text); text-align: left; cursor: pointer; transition: border-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease; }
     .option-btn:hover { border-color: var(--accent); }
-    .option-btn.selected {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(56, 242, 199, 0.35);
-      transform: translateY(-1px);
-    }
-    .result {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.85rem;
-      background: var(--card);
-      display: grid;
-      gap: 0.35rem;
-    }
-    .result h2 { margin: 0; font-size: 1.2rem; }
+    .option-btn.selected { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(56, 242, 199, 0.35); transform: translateY(-1px); }
+    .result { border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem; background: var(--card); display: grid; gap: 0.5rem; }
+    .result h2 { margin: 0; font-size: 1.25rem; }
+    .result-grid { display: grid; gap: 0.6rem; }
+    .preview { border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.02); display: grid; gap: 0.4rem; }
+    .alt-card { border: 1px dashed var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.03); }
     .hidden { display: none; }
     @media (max-width: 720px) {
       .shell { padding: 1rem; }
-      header { flex-direction: column; align-items: flex-start; }
+      .topbar { position: static; flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <div class="shell">
-    <header>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand-title">Origin Story Tools</div>
+        <div class="brand-sub">Build characters, browse powers, grab PDFs</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <a href="character-builder.html">Character Builder</a>
+      <a class="active" href="onboarding.html">New Player Quiz</a>
+      <a href="wargame.html">Wargame (separate game)</a>
+      <a href="quickstart.html">Rules / How to Play</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="index.html">Origin Story Hub</a>
+      <a class="btn primary" href="character-builder.html">Open Builder</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <a class="back-link" href="index.html">&#8592; Back to Origin Story Hub</a>
+
+    <div class="card page-header">
       <div>
         <div class="title">New Player Quiz</div>
         <div class="muted">Pick your vibe and we'll suggest a starter build.</div>
       </div>
       <a class="btn secondary" href="character-builder.html">Skip to builder</a>
-    </header>
+    </div>
 
     <div class="card quiz">
       <div class="progress-row">
@@ -161,7 +136,7 @@
         <span class="muted" id="progressHint">Pick what fits you best.</span>
       </div>
       <div class="question-block">
-        <div class="question-title" id="questionPrompt">What sounds most fun?</div>
+        <div class="question-title" id="questionPrompt">Q1: What sounds most fun?</div>
         <div class="options" id="optionList"></div>
       </div>
       <div class="actions">
@@ -171,92 +146,85 @@
     </div>
 
     <div class="card result hidden" id="resultCard">
-      <div class="muted">Your match</div>
-      <h2 id="resultTitle">Street Brawler</h2>
-      <div class="muted" id="resultDesc">Tough, direct, and ready to smash problems head-on.</div>
-      <div class="pill-row" id="resultTags">
-        <span class="pill">Frontline</span>
-        <span class="pill">Durable</span>
-        <span class="pill">Simple</span>
-      </div>
-      <div class="actions">
-        <a id="openBuilder" class="btn primary" href="character-builder.html?build=Street%20Brawler">Open in Character Builder</a>
-        <button id="retake" class="btn secondary" type="button">Restart quiz</button>
+      <div class="muted">Your matches</div>
+      <div class="result-grid">
+        <div>
+          <div class="muted">Primary suggestion</div>
+          <h2 id="resultTitle">Street Brawler</h2>
+          <div class="muted" id="resultDesc">Tough, direct, and ready to smash problems head-on.</div>
+          <div class="pill-row" id="resultTags"></div>
+        </div>
+        <div class="preview">
+          <strong>See build details</strong>
+          <div class="muted" id="resultWhy">We picked this because you chose Crushing foes up close...</div>
+          <div class="pill-row" id="resultPreview"></div>
+          <div class="muted" id="resultPowers"></div>
+        </div>
+        <div class="alt-card" id="altSuggestion"></div>
+        <div class="actions">
+          <a id="openBuilder" class="btn primary" href="character-builder.html?build=Street%20Brawler">Open in Character Builder</a>
+          <button id="retake" class="btn secondary" type="button">Restart quiz</button>
+        </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
     const RESULT_MAP = {
       "Street Brawler": {
         desc: "Tough, direct, and ready to smash problems head-on.",
         tags: ["Frontline", "Durable", "Simple"],
+        preview: ["Level 1", "Health 10", "Simple start"],
+        powers: ["Super Strength", "Vitality", "Invincibility"],
+        alt: "Pick this if you want to smash through problems with toughness and direct power."
       },
       "Occult Investigator": {
         desc: "Teleporting, mind tricks, and sharp senses to solve problems creatively.",
         tags: ["Control", "Mobility", "Skilled"],
+        preview: ["Level 1", "Health 9", "Tricksy toolkit"],
+        powers: ["Teleport (People)", "Clairvoyant", "Mind Control"],
+        alt: "Great if you like scouting, control, and slippery escapes."
       },
       "Corporate Fixer": {
         desc: "Talks fast, leverages tech, and supports the team with gadgets.",
         tags: ["Social", "Tech", "Support"],
+        preview: ["Level 1", "Health 9", "Gadget focus"],
+        powers: ["Social", "Gadget Techie", "Interface Techie"],
+        alt: "Choose this if you want tools, contacts, and team buffs."
       }
     };
 
     const questions = [
-      {
-        key: "playstyle",
-        prompt: "What sounds most fun?",
-        options: [
-          { value: "brawl", label: "Crushing foes up close" },
-          { value: "occult", label: "Mystery, teleporting, psychic tricks" },
-          { value: "social", label: "Talking my way through / gadgets" }
-        ]
-      },
-      {
-        key: "crunch",
-        prompt: "How crunchy do you want your first session?",
-        options: [
-          { value: "simple", label: "Keep it straightforward" },
-          { value: "balanced", label: "A bit of variety" },
-          { value: "toolbox", label: "Give me tools to tinker" }
-        ]
-      },
-      {
-        key: "role",
-        prompt: "What team role sounds good?",
-        options: [
-          { value: "frontline", label: "Frontline bruiser" },
-          { value: "control", label: "Controller / scout" },
-          { value: "face", label: "Face / fixer / support" }
-        ]
-      },
-      {
-        key: "risk",
-        prompt: "How do you handle danger?",
-        options: [
-          { value: "charge", label: "Charge first, think later" },
-          { value: "plan", label: "Plan, probe, reposition" },
-          { value: "deal", label: "Talk, bargain, leverage contacts" }
-        ]
-      },
-      {
-        key: "solve",
-        prompt: "How do you solve problems?",
-        options: [
-          { value: "hit", label: "Hit it harder" },
-          { value: "sleuth", label: "Investigate, observe, outwit" },
-          { value: "network", label: "Call in favors or tech" }
-        ]
-      },
-      {
-        key: "aesthetic",
-        prompt: "Pick a vibe",
-        options: [
-          { value: "steel", label: "Leather, steel, and bruiser swagger" },
-          { value: "mystic", label: "Notes, clues, occult sigils" },
-          { value: "suit", label: "Sharp suit, gadgets, and credentials" }
-        ]
-      }
+      { key: "playstyle", prompt: "What sounds most fun?", options: [
+        { value: "brawl", label: "Crushing foes up close" },
+        { value: "occult", label: "Mystery, teleporting, psychic tricks" },
+        { value: "social", label: "Talking my way through / gadgets" }
+      ]},
+      { key: "crunch", prompt: "How crunchy do you want your first session?", options: [
+        { value: "simple", label: "Keep it straightforward" },
+        { value: "balanced", label: "A bit of variety" },
+        { value: "toolbox", label: "Give me tools to tinker" }
+      ]},
+      { key: "role", prompt: "What team role sounds good?", options: [
+        { value: "frontline", label: "Frontline bruiser" },
+        { value: "control", label: "Controller / scout" },
+        { value: "face", label: "Face / fixer / support" }
+      ]},
+      { key: "risk", prompt: "How do you handle danger?", options: [
+        { value: "charge", label: "Charge first, think later" },
+        { value: "plan", label: "Plan, probe, reposition" },
+        { value: "deal", label: "Talk, bargain, leverage contacts" }
+      ]},
+      { key: "solve", prompt: "How do you solve problems?", options: [
+        { value: "hit", label: "Hit it harder" },
+        { value: "sleuth", label: "Investigate, observe, outwit" },
+        { value: "network", label: "Call in favors or tech" }
+      ]},
+      { key: "aesthetic", prompt: "Pick a vibe", options: [
+        { value: "steel", label: "Leather, steel, and bruiser swagger" },
+        { value: "mystic", label: "Notes, clues, occult sigils" },
+        { value: "suit", label: "Sharp suit, gadgets, and credentials" }
+      ]}
     ];
 
     const questionPrompt = document.getElementById("questionPrompt");
@@ -272,12 +240,17 @@
     const resultCard = document.getElementById("resultCard");
     const openBuilder = document.getElementById("openBuilder");
     const retake = document.getElementById("retake");
+    const resultWhy = document.getElementById("resultWhy");
+    const resultPreview = document.getElementById("resultPreview");
+    const resultPowers = document.getElementById("resultPowers");
+    const altSuggestion = document.getElementById("altSuggestion");
 
     let currentIndex = 0;
     const answers = {};
+    const answerLabels = {};
     progressTotal.textContent = questions.length;
 
-    function computeBuild() {
+    function computeScores() {
       const scores = {
         "Street Brawler": 0,
         "Occult Investigator": 0,
@@ -308,17 +281,47 @@
       if (answers.aesthetic === "mystic") scores["Occult Investigator"] += 1;
       if (answers.aesthetic === "suit") scores["Corporate Fixer"] += 1;
 
-      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
-      const info = RESULT_MAP[winner];
-      resultTitle.textContent = winner;
+      return Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    }
+
+    function renderResult() {
+      const ranked = computeScores();
+      const [primaryEntry, secondaryEntry] = ranked;
+      const primary = primaryEntry ? primaryEntry[0] : "Street Brawler";
+      const secondary = secondaryEntry ? secondaryEntry[0] : null;
+      const info = RESULT_MAP[primary];
+
+      resultTitle.textContent = primary;
       resultDesc.textContent = info.desc;
       resultTags.innerHTML = info.tags.map(t => `<span class="pill">${t}</span>`).join("");
-      openBuilder.href = `character-builder.html?build=${encodeURIComponent(winner)}`;
+      openBuilder.href = `character-builder.html?build=${encodeURIComponent(primary)}`;
+
+      const chosen = Object.values(answerLabels).filter(Boolean);
+      if (chosen.length) {
+        const snippets = chosen.slice(0, 3).join(", ");
+        resultWhy.textContent = `We picked this because you chose ${snippets}.`;
+      } else {
+        resultWhy.textContent = "We picked the closest match for your answers.";
+      }
+
+      resultPreview.innerHTML = info.preview.map(p => `<span class="pill">${p}</span>`).join("");
+      resultPowers.textContent = `Signature powers: ${info.powers.join(", ")}`;
+
+      if (secondary) {
+        const altInfo = RESULT_MAP[secondary];
+        altSuggestion.innerHTML = `
+          <div class="muted">Also works well</div>
+          <strong>${secondary}</strong>
+          <div class="muted">${altInfo.alt || altInfo.desc}</div>
+        `;
+      } else {
+        altSuggestion.textContent = "";
+      }
     }
 
     function renderQuestion() {
       const question = questions[currentIndex];
-      questionPrompt.textContent = question.prompt;
+      questionPrompt.textContent = `Q${currentIndex + 1}: ${question.prompt}`;
       progressNumber.textContent = currentIndex + 1;
       nextBtn.textContent = currentIndex === questions.length - 1 ? "Reveal result" : "Next question";
       progressHint.textContent = currentIndex === questions.length - 1 ? "Last one before your match appears." : "Pick what fits you best.";
@@ -335,6 +338,7 @@
         if (answers[question.key] === opt.value) btn.classList.add("selected");
         btn.addEventListener("click", () => {
           answers[question.key] = opt.value;
+          answerLabels[question.key] = opt.label;
           Array.from(optionList.children).forEach(child => child.classList.remove("selected"));
           btn.classList.add("selected");
           nextBtn.disabled = false;
@@ -347,7 +351,7 @@
 
     function revealResult() {
       if (!answers[questions[currentIndex].key]) return;
-      computeBuild();
+      renderResult();
       resultCard.classList.remove("hidden");
       resultCard.scrollIntoView({ behavior: "smooth", block: "center" });
     }
@@ -370,6 +374,7 @@
 
     retake.addEventListener("click", () => {
       Object.keys(answers).forEach(key => delete answers[key]);
+      Object.keys(answerLabels).forEach(key => delete answerLabels[key]);
       currentIndex = 0;
       renderQuestion();
       window.scrollTo({ top: 0, behavior: "smooth" });
