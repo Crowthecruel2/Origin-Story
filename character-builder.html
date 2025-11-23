@@ -1518,12 +1518,23 @@
     }
 
     function previewFromPower(power) {
-      const sortedLevels = [...power.levels].sort((a, b) => a.level - b.level);
+      const tablePreview = (text) => {
+        const lines = (text || "").split(/\r?\n/).filter(Boolean);
+        const dataRows = lines.filter(l => l.includes("|") && !/^\\|\\s*-/.test(l));
+        for (const row of dataRows.slice(1)) {
+          const cells = row.split("|").map(c => c.trim()).filter(Boolean);
+          if (cells.length >= 2) {
+            const ability = cells[cells.length - 1];
+            const plain = markdownToPlain(ability.replace(/<br\\s*\\/?\\s*>/gi, " "));
+            if (plain) return plain;
+          }
+        }
+        return "";
+      };
+      const sortedLevels = [...(power.levels || [])].sort((a, b) => a.level - b.level);
       const first = sortedLevels[0];
-      if (first) {
-        const cleaned = markdownToPlain(stripTables(first.text || ""));
-        if (cleaned) return cleaned.length > 140 ? cleaned.slice(0, 140) + "..." : cleaned;
-      }
+      const fromTable = tablePreview(first?.text || power.content || "");
+      if (fromTable) return fromTable.length > 140 ? fromTable.slice(0, 140) + "..." : fromTable;
       const fallback = markdownToPlain(stripTables(power.content || ""));
       if (fallback) return fallback.length > 140 ? fallback.slice(0, 140) + "..." : fallback;
       return "No description";

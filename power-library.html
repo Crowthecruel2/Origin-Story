@@ -139,12 +139,30 @@
         .join("\n");
     }
     function previewFromPower(power) {
+      const tablePreview = (text) => {
+        const lines = (text || "").split(/\r?\n/).filter(Boolean);
+        const dataRows = lines.filter(l => l.includes("|") && !/^\\|\\s*-/.test(l));
+        const abilities = [];
+        dataRows.slice(1, 4).forEach(row => {
+          const cells = row.split("|").map(c => c.trim()).filter(Boolean);
+          if (cells.length >= 2) {
+            const ability = cells[cells.length - 1];
+            const plain = markdownToPlain(ability.replace(/<br\\s*\\/?\\s*>/gi, " "));
+            if (plain) abilities.push(plain);
+          }
+        });
+        return abilities.join(" ");
+      };
       const levels = power.levels || [];
       const first = levels.sort((a, b) => a.level - b.level)[0];
       const text = first?.text || power.content || "";
+      const fromTable = tablePreview(text);
+      if (fromTable) {
+        return fromTable.length > 320 ? fromTable.slice(0, 320) + "..." : fromTable;
+      }
       const plain = markdownToPlain(stripTables(text));
       if (!plain) return "No description available.";
-      return plain.length > 220 ? plain.slice(0, 220) + "..." : plain;
+      return plain.length > 320 ? plain.slice(0, 320) + "..." : plain;
     }
     function inferMeta(power) {
       const className = power.path.includes("/") ? power.path.split("/")[0].replace(/\s+/g, " ").trim() : "Misc";
