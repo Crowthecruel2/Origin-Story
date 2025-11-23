@@ -2,7 +2,7 @@ Lore: Common folk that have been uplifted with [[Doctor Devious Nefarious Evil]]
 
 | Stats       | Values |
 | ----------- | ------ |
-| Points      | 20     |
+| Points      | 15     |
 | HP:         | 10     |
 | MoveSpeed:  | 10     |
 | Energy:     | 0      |

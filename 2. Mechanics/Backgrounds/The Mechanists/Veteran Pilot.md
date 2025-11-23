@@ -29,9 +29,9 @@ Immunities: None
 Keywords: [[Leader]]
 
 
-| Enhancements  | Effect                                                                                                    | Point Costs |
-| ------------- | --------------------------------------------------------------------------------------------------------- | ----------- |
-| Entombed      | Can not leave his mech suit. If it dies he dies. The mech has +3 to dex and +5 to strength                | 10          |
-| Recon Captain | Can only equip the [[small Mech suit]]. Can stealth at end of turn for 1 energy. Works even when piloting | 15          |
-| Sabotuer      | Can enter abandoned enemy vehicles for free.                                                              | 15          |
-| Hijacker      | Can remove enemy pilots from their vehicles for 2 energy                                                  | 30          |
+| Enhancements  | Effect                                                                                                                                                                | Point Costs |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Entombed      | Can not leave his mech suit. If it dies he dies. The mech has +3 to dex and +5 to strength. If there is no mech in the listing. Automatically gain a free small mech. | 10          |
+| Recon Captain | Can only equip the [[small Mech suit]]. Can stealth at end of turn for 1 energy. Works even when piloting                                                             | 15          |
+| Sabotuer      | Can enter abandoned enemy vehicles for free.                                                                                                                          | 15          |
+| Hijacker      | Can remove enemy pilots from their vehicles for 2 energy                                                                                                              | 30          |
