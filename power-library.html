@@ -254,17 +254,19 @@
           const p = document.createElement("div");
           p.className = "power-card";
           const levels = power.levels && power.levels.length ? power.levels : extractLevels(power.content);
-          const description = levels.length ? levels.map(lv => `Level ${lv.level}: ${markdownToPlain(lv.text || "")}`).join(" ") : markdownToPlain(stripTables(power.content || ""));
+          const levelsHtml = levels.length
+            ? `<div class="levels">${levels.map(lv => [
+                '<div class="level-row">',
+                `<div><strong>Level ${lv.level}</strong> (Cost ${lv.cost || 1} PP)</div>`,
+                `<div class="muted">${formatMarkdown(stripTables(lv.text || ""))}</div>`,
+                "</div>"
+              ].join("")).join("")}</div>`
+            : `<div class="full-text">${formatMarkdown(stripTables(power.content || ""))}</div>`;
           p.innerHTML = `
             <h3>${power.name}</h3>
             <small>Lv ${power.meta.minLevel} - ${power.meta.action} action - ${power.meta.tags.join(", ") || "General"}</small>
             <div class="muted">${previewFromPower(power)}</div>
-            ${levels.length ? `<div class="levels">${levels.map(lv => `
-              <div class="level-row">
-                <div><strong>Level ${lv.level}</strong> (Cost ${lv.cost || 1} PP)</div>
-                <div class="muted">${formatMarkdown(stripTables(lv.text || ""))}</div>
-              </div>
-            `).join("")}</div>` : `<div class="full-text">${formatMarkdown(stripTables(power.content || ""))}</div>`}
+            ${levelsHtml}
           `;
           list.appendChild(p);
         });
