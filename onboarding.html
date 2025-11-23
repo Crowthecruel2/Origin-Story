@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brighton | Pick a Starter Build</title>
+  <style>
+    :root {
+      --bg: #050910;
+      --panel: #0d1624;
+      --card: #0f1c2d;
+      --border: #233449;
+      --accent: #38f2c7;
+      --accent-2: #6dd3ff;
+      --text: #e6ebf5;
+      --muted: #9fb0c7;
+      --shadow: 0 20px 70px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56, 242, 199, 0.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.10), transparent 25%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    .shell {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.4rem;
+      display: grid;
+      gap: 1rem;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(7, 12, 21, 0.85);
+    }
+    .title {
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      font-size: 1.2rem;
+    }
+    .muted { color: var(--muted); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.8rem;
+    }
+    label { color: var(--muted); font-weight: 700; display: grid; gap: 0.35rem; }
+    select {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0.65rem;
+      font-size: 1rem;
+      width: 100%;
+    }
+    .result {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem;
+      background: var(--card);
+      display: grid;
+      gap: 0.35rem;
+    }
+    .result h2 { margin: 0; font-size: 1.2rem; }
+    .pill-row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .pill {
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn.primary {
+      background: linear-gradient(120deg, var(--accent), #34d399);
+      color: #0a1525;
+      border: none;
+      box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35);
+    }
+    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+    @media (max-width: 720px) {
+      .shell { padding: 1rem; }
+      header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div>
+        <div class="title">New Player Quiz</div>
+        <div class="muted">Pick your vibe and we’ll suggest a starter build.</div>
+      </div>
+      <a class="btn secondary" href="character-builder.html">Skip to builder</a>
+    </header>
+
+    <div class="card">
+      <label>What sounds most fun?
+        <select id="qPlaystyle">
+          <option value="brawl">Crushing foes up close</option>
+          <option value="occult">Mystery, teleporting, psychic tricks</option>
+          <option value="social">Talking my way through / gadgets</option>
+        </select>
+      </label>
+      <label>How crunchy do you want your first session?
+        <select id="qCrunch">
+          <option value="simple">Keep it straightforward</option>
+          <option value="balanced">A bit of variety</option>
+          <option value="toolbox">Give me tools to tinker</option>
+        </select>
+      </label>
+
+      <div class="result" id="resultCard">
+        <h2 id="resultTitle">Street Brawler</h2>
+        <div class="muted" id="resultDesc">Tough, direct, and ready to smash problems head-on.</div>
+        <div class="pill-row">
+          <span class="pill">Frontline</span>
+          <span class="pill">Durable</span>
+          <span class="pill">Simple</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a id="openBuilder" class="btn primary" href="character-builder.html?build=Street%20Brawler">Open in Character Builder</a>
+        <a class="btn secondary" href="character-builder.html">Back to Builder</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const RESULT_MAP = {
+      "Street Brawler": {
+        desc: "Tough, direct, and ready to smash problems head-on.",
+        tags: ["Frontline", "Durable", "Simple"],
+      },
+      "Occult Investigator": {
+        desc: "Teleporting, mind tricks, and sharp senses to solve problems creatively.",
+        tags: ["Control", "Mobility", "Skilled"],
+      },
+      "Corporate Fixer": {
+        desc: "Talks fast, leverages tech, and supports the team with gadgets.",
+        tags: ["Social", "Tech", "Support"],
+      }
+    };
+
+    const playstyle = document.getElementById("qPlaystyle");
+    const crunch = document.getElementById("qCrunch");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultDesc = document.getElementById("resultDesc");
+    const openBuilder = document.getElementById("openBuilder");
+    const resultCard = document.getElementById("resultCard");
+
+    function computeBuild() {
+      const p = playstyle.value;
+      const c = crunch.value;
+      let build = "Street Brawler";
+
+      if (p === "occult") build = "Occult Investigator";
+      if (p === "social") build = "Corporate Fixer";
+      if (p === "brawl" && c === "toolbox") build = "Corporate Fixer";
+      if (p === "occult" && c === "simple") build = "Street Brawler";
+
+      const info = RESULT_MAP[build];
+      resultTitle.textContent = build;
+      resultDesc.textContent = info.desc;
+      resultCard.querySelector(".pill-row").innerHTML = info.tags.map(t => `<span class="pill">${t}</span>`).join("");
+      openBuilder.href = `character-builder.html?build=${encodeURIComponent(build)}`;
+    }
+
+    playstyle.addEventListener("change", computeBuild);
+    crunch.addEventListener("change", computeBuild);
+    computeBuild();
+  </script>
+</body>
+</html>

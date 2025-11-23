@@ -185,6 +185,9 @@
     .flex-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.65rem; }
     .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
+    .stats-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .stats-columns h4 { margin: 0 0 0.35rem; color: var(--muted); font-weight: 700; letter-spacing: 0.02em; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
     .derived-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -333,6 +336,16 @@
       .library-list { max-height: none; }
       .topbar { position: static; flex-direction: column; align-items: flex-start; }
     }
+    @media (max-width: 900px) {
+      body { padding: 0; }
+      .app-shell { padding: 0.8rem; }
+      .summary-card { flex-direction: column; align-items: flex-start; }
+      .summary-actions { width: 100%; }
+    .nav-links { width: 100%; }
+    .top-actions { width: 100%; justify-content: flex-start; }
+      .stats-columns { grid-template-columns: 1fr; }
+      .library-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    }
     @media print {
       body { background: #fff; color: #000; }
       .topbar, .print-hide { display: none !important; }
@@ -359,7 +372,7 @@
       <a href="2nd%20Edition%20Final.pdf" target="_blank">How to Play Brighton</a>
     </nav>
     <div class="top-actions">
-      <button id="startTour" class="ghost-btn">New Player? Start Here</button>
+      <a id="startTourLink" class="ghost-btn" href="onboarding.html">New Player? Start Here</a>
       <div class="pill" id="saveStamp">Last saved: never</div>
     </div>
   </header>
@@ -393,38 +406,48 @@
         </div>
 
         <div class="section-title">Stats</div>
-        <div class="grid-3 coachmark" id="statsGroup">
+        <div class="stats-columns coachmark" id="statsGroup">
           <span class="hint">Budget check happens here</span>
-          <label>Reflex (base)
-            <input type="number" id="reflexBase" value="0" step="1">
-          </label>
-          <label>Strength (base)
-            <input type="number" id="strengthBase" value="0" step="1">
-          </label>
-          <label>Smarts (base)
-            <input type="number" id="smartsBase" value="0" step="1">
-          </label>
-          <label>Social (base)
-            <input type="number" id="socialBase" value="0" step="1">
-          </label>
-          <label>Durability (base)
-            <input type="number" id="durabilityBase" value="0" step="1">
-          </label>
-          <label>Reflex (mod)
-            <input type="number" id="reflexMod" value="0" step="1">
-          </label>
-          <label>Strength (mod)
-            <input type="number" id="strengthMod" value="0" step="1">
-          </label>
-          <label>Smarts (mod)
-            <input type="number" id="smartsMod" value="0" step="1">
-          </label>
-          <label>Social (mod)
-            <input type="number" id="socialMod" value="0" step="1">
-          </label>
-          <label>Durability (mod)
-            <input type="number" id="durabilityMod" value="0" step="1">
-          </label>
+          <div>
+            <h4>Base</h4>
+            <div class="stats-grid">
+              <label>Reflex (base)
+                <input type="number" id="reflexBase" value="0" step="1">
+              </label>
+              <label>Strength (base)
+                <input type="number" id="strengthBase" value="0" step="1">
+              </label>
+              <label>Smarts (base)
+                <input type="number" id="smartsBase" value="0" step="1">
+              </label>
+              <label>Social (base)
+                <input type="number" id="socialBase" value="0" step="1">
+              </label>
+              <label>Durability (base)
+                <input type="number" id="durabilityBase" value="0" step="1">
+              </label>
+            </div>
+          </div>
+          <div>
+            <h4>Mods</h4>
+            <div class="stats-grid">
+              <label>Reflex (mod)
+                <input type="number" id="reflexMod" value="0" step="1">
+              </label>
+              <label>Strength (mod)
+                <input type="number" id="strengthMod" value="0" step="1">
+              </label>
+              <label>Smarts (mod)
+                <input type="number" id="smartsMod" value="0" step="1">
+              </label>
+              <label>Social (mod)
+                <input type="number" id="socialMod" value="0" step="1">
+              </label>
+              <label>Durability (mod)
+                <input type="number" id="durabilityMod" value="0" step="1">
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="section-title">Derived</div>
@@ -446,10 +469,10 @@
         <div class="section-title">Stat budget (edit if your table differs)</div>
         <div class="grid-2">
           <label>Base pool
-            <input type="number" id="statBasePool" value="10" min="0">
+            <input type="number" id="statBasePool" value="7" min="0">
           </label>
           <label>Per-level gain
-            <input type="number" id="statPerLevel" value="5" min="0">
+            <input type="number" id="statPerLevel" value="2" min="0">
           </label>
         </div>
         <div class="helper-text">Budget = Base pool + Per-level gain × (Level - 1). Total points = sum of base + modifiers.</div>
@@ -620,7 +643,6 @@
       detailBody: document.getElementById("detailBody"),
       addFromDetail: document.getElementById("addFromDetail"),
       closeDetail: document.getElementById("closeDetail"),
-      startTour: document.getElementById("startTour"),
     };
 
     const filters = { search: "", class: "all", level: "all", category: "all", action: "all" };
@@ -705,7 +727,7 @@
       const { total, spent } = pointsSummary();
       const over = spent - total;
       if (over > 0) {
-        elements.ppWarning.textContent = `You’ve spent ${over} more PP than allowed for Level ${getLevel()}. Trim powers or level up.`;
+        elements.ppWarning.textContent = `You've spent ${over} more PP than allowed for Level ${getLevel()}. Trim powers or level up.`;
         elements.ppWarning.classList.remove("hidden");
       } else {
         elements.ppWarning.classList.add("hidden");
@@ -1375,11 +1397,16 @@
       setTimeout(() => document.body.classList.remove("tour"), 6000);
     }
 
-    function initTour() {
+    function applyBuildFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const build = params.get("build");
       const options = ["Street Brawler", "Occult Investigator", "Corporate Fixer"];
-      const pick = prompt(`Choose a quick-start build:\n- ${options.join("\n- ")}`, options[0]);
-      if (pick && options.includes(pick)) {
-        presetBuild(pick);
+      if (build && options.includes(build)) {
+        presetBuild(build);
+        params.delete("build");
+        const rest = params.toString();
+        const newUrl = `${location.pathname}${rest ? "?" + rest : ""}${location.hash}`;
+        history.replaceState({}, "", newUrl);
       }
     }
     ["level","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod","statBasePool","statPerLevel"].forEach(id => {
@@ -1454,7 +1481,6 @@
     });
     [elements.quickSave, elements.quickSaveInline].forEach(btn => btn.addEventListener("click", quickSave));
     [elements.quickLoad, elements.quickLoadInline].forEach(btn => btn.addEventListener("click", quickLoad));
-    document.getElementById("startTour").addEventListener("click", initTour);
 
     window.addEventListener("beforeunload", (e) => {
       if (!dirty) return;
@@ -1463,6 +1489,7 @@
     });
 
     hydrateFromEmbedded();
+    applyBuildFromQuery();
     renderInventory();
     renderCharacterPowers();
     updateDerived();
