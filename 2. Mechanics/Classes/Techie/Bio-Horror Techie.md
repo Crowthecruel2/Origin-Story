@@ -1,5 +1,5 @@
-
-Only this player can use the supertech unless specified otherwise.
+## Description
+The ability to make bio horror items
 
 # Lv1
 

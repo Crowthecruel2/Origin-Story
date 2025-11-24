@@ -1,3 +1,6 @@
+## Description
+The powers of your average action movie protagonist
+
 | LEVEL | POINTS | ABILITY                                                                               |
 | ----- | ------ | ------------------------------------------------------------------------------------- |
 | 1     | 1      | **Hero's Limits**<br>-Every 3rd shot with a gun doesn't take ammo                     |

@@ -1653,6 +1653,42 @@
                   "eState": "{}"
                 },
                 {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":2,\"ch\":16},\"to\":{\"line\":2,\"ch\":16}}}"
+                },
+                {
+                  "title": "Assassin",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Assassin.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Assassin\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":2,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Ranger",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Ranger.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Ranger\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":2,\"ch\":5},\"to\":{\"line\":2,\"ch\":5}}}"
+                },
+                {
+                  "title": "Action Hero",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Action Hero.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Action Hero\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":1,\"ch\":51},\"to\":{\"line\":1,\"ch\":51}},\"scroll\":0}"
+                },
+                {
+                  "title": "Ranger",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Ranger.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Ranger\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":6},\"to\":{\"line\":4,\"ch\":6}}}"
+                },
+                {
+                  "title": "Teleport (People)",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Movement/Teleport (People).md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Teleport (People)\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":2},\"to\":{\"line\":0,\"ch\":2}}}"
+                },
+                {
                   "title": "Movement",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Movement/Movement.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Movement\"}",
@@ -1723,12 +1759,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2. Mechanics/Classes/Movement/Teleport (People).md",
+                "file": "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Teleport (People)"
+              "title": "Bio-Horror Techie"
             }
           },
           {
@@ -2144,11 +2180,21 @@
       "solo-rpg-toolkit:Solo RPG Toolkit": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "initiative-tracker:Initiative Tracker Encounter Builder": false
+      "initiative-tracker:Initiative Tracker Encounter Builder": false,
+      "calendarium:Open Calendarium": false
     }
   },
   "active": "ccc4e43afe9ab765",
   "lastOpenFiles": [
+    "2. Mechanics/Classes/Techie/Techie.md",
+    "2. Mechanics/Classes/Ranger/Assassin.md",
+    "2. Mechanics/Classes/Ranger/Ranger.md",
+    "2. Mechanics/Classes/Ranger/Action Hero.md",
+    "2. Mechanics/Classes/Movement/Teleport (People).md",
+    "quickstart.html",
+    "lore.html",
+    "2. Mechanics/Backgrounds/city_factions.md",
+    "2. Mechanics/Backgrounds/The Sequenced/The Evolved.md",
     "2. Mechanics/Classes/Movement/Movement.md",
     "2. Mechanics/Classes/Mutant/Kaiju.md",
     "2. Mechanics/Classes/Mutant/Mutant.md",
@@ -2156,10 +2202,8 @@
     "2. Mechanics/Classes/Effector/Effector.md",
     "2. Mechanics/Classes/Genius/Genius.md",
     "2. Mechanics/Classes/Manipulator/Manipulator.md",
-    "2. Mechanics/Classes/Ranger/Ranger.md",
     "2. Mechanics/Classes/Techie/Water Techie.md",
     "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
-    "2. Mechanics/Classes/Techie/Techie.md",
     "regenerate-powers.ps1",
     "wargame.html",
     "2nd Edition Final.pdf",
@@ -2176,16 +2220,9 @@
     "z_Templates/Character Template.md",
     "2. Mechanics/Classes/Brick Power/Invincibility.md",
     "2. Mechanics/Classes/Ranger/Swordsman.md",
-    "2. Mechanics/Classes/Ranger/Action Hero.md",
     "2. Mechanics/Classes/Ranger/Wielder.md",
-    "2. Mechanics/Classes/Ranger/Boomeranger.md",
-    "2. Mechanics/Classes/Effector/Sillakinesis.md",
-    "2. Mechanics/Classes/Manipulator/Tide.md",
-    "2. Mechanics/Classes/Manipulator/Mitosis.md",
     "Gemini_Generated_Image_musu04musu04musu.png",
     "z_Assets/Doctor Devious Nefarious Evil Bust.png",
-    "z_Keywords",
-    "2. Mechanics/Backgrounds/The Shadowed",
-    "2. Mechanics/Backgrounds/The Mechanists"
+    "z_Keywords"
   ]
 }

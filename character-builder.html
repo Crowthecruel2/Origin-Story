@@ -1131,7 +1131,9 @@
       selectedPower = power;
       elements.detailTitle.textContent = power.name;
       elements.detailPath.textContent = power.path || "";
-      elements.detailBody.innerHTML = formatMarkdown(power.content || "");
+      const descHtml = power.description ? `<div>${formatMarkdown(power.description)}</div>` : "";
+      const bodyHtml = formatMarkdown(power.content || "");
+      elements.detailBody.innerHTML = descHtml ? `${descHtml}<div style="margin-top:0.6rem;">${bodyHtml}</div>` : bodyHtml;
       elements.detailTags.innerHTML = "";
       const pieces = [
         `Class: ${power.meta.className}`,
@@ -1173,7 +1175,8 @@
         list = list.filter(p =>
           p.name.toLowerCase().includes(term) ||
           p.path.toLowerCase().includes(term) ||
-          p.content.toLowerCase().includes(term)
+          p.content.toLowerCase().includes(term) ||
+          (p.description || "").toLowerCase().includes(term)
         );
       }
       if (filters.class !== "all") {
@@ -1217,6 +1220,7 @@
           name: raw.name,
           path: normPath,
           content,
+          description: raw.description || extractDescription(content),
           levels: extractLevels(content),
         };
         base.meta = inferMeta(base);
@@ -1325,6 +1329,38 @@
         .replace(/<br\s*\/?>/gi, " ")
         .replace(/\s+/g, " ")
         .trim();
+    }
+
+    function extractDescription(md) {
+      const text = typeof md === "string" ? md : "";
+      const lines = text.split(/\r?\n/);
+
+      const descIdx = lines.findIndex(l =>
+        /^#{1,3}\s*description\b/i.test(l.trim()) ||
+        /^description\s*:/i.test(l.trim())
+      );
+      if (descIdx !== -1) {
+        const chunk = [];
+        for (let i = descIdx + 1; i < lines.length; i++) {
+          const line = lines[i];
+          if (/^#{1,6}\s+\S/.test(line.trim())) break;
+          chunk.push(line);
+          if (!line.trim() && chunk.length > 1) break;
+        }
+        const desc = chunk.join("\n").trim();
+        if (desc) return desc;
+      }
+
+      const filtered = lines.filter(l => !l.trim().startsWith("|"));
+      for (let i = 0; i < filtered.length; i++) {
+        const line = filtered[i].trim();
+        if (!line) continue;
+        if (/^#{1,6}\s+\S/.test(line)) continue;
+        if (/^Lv\.?\s*\d+/i.test(line)) continue;
+        if (/^\*\s/.test(line) || /^-\s/.test(line)) continue;
+        return filtered.slice(i, i + 2).join("\n").trim();
+      }
+      return "";
     }
 
     function levelDescriptor(lv) {
@@ -1535,6 +1571,10 @@
         }
         return "";
       };
+      if (power.description) {
+        const desc = markdownToPlain(stripTables(power.description || ""));
+        if (desc) return desc.length > 140 ? desc.slice(0, 140) + "..." : desc;
+      }
       const sortedLevels = [...(power.levels || [])].sort((a, b) => a.level - b.level);
       const first = sortedLevels[0];
       const fromTable = tablePreview(first?.text || power.content || "");

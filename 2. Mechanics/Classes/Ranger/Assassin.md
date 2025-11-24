@@ -1,3 +1,6 @@
+## Description
+Stealth and murder based powers
+
 | LEVEL | POINTS | ABILITY                                                                                                           |
 | ----- | ------ | ----------------------------------------------------------------------------------------------------------------- |
 | 1     | 1      | **Sneak Attack**<br>-You deal double damage when attacking from stealth                                           |
