@@ -91,6 +91,8 @@
     .preview { border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.02); display: grid; gap: 0.4rem; }
     .alt-card { border: 1px dashed var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.03); }
     .hidden { display: none; }
+    .radar-card { border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.02); display: grid; gap: 0.35rem; }
+    .radar-card canvas { width: 100%; max-width: 420px; height: 260px; }
     @media (max-width: 720px) {
       .shell { padding: 1rem; }
       .topbar { position: static; flex-direction: column; align-items: flex-start; }
@@ -133,7 +135,7 @@
 
     <div class="card quiz">
       <div class="progress-row">
-        <span class="pill">Question <span id="progressNumber">1</span>/<span id="progressTotal">6</span></span>
+        <span class="pill">Question <span id="progressNumber">1</span>/<span id="progressTotal">10</span></span>
         <span class="muted" id="progressHint">Pick what fits you best.</span>
       </div>
       <div class="question-block">
@@ -161,6 +163,11 @@
           <div class="pill-row" id="resultPreview"></div>
           <div class="muted" id="resultPowers"></div>
         </div>
+        <div class="radar-card">
+          <strong>Quiz score radar</strong>
+          <canvas id="scoreRadar" width="420" height="260" aria-label="Radar chart of preset scores"></canvas>
+          <div class="muted">Higher spikes = stronger match per preset.</div>
+        </div>
         <div class="alt-card" id="altSuggestion"></div>
         <div class="actions">
           <a id="openBuilder" class="btn primary" href="character-builder.html?build=Street%20Brawler">Open in Character Builder</a>
@@ -172,59 +179,166 @@
 
   <script>
     const RESULT_MAP = {
-      "Street Brawler": {
-        desc: "Tough, direct, and ready to smash problems head-on.",
-        tags: ["Frontline", "Durable", "Simple"],
-        preview: ["Level 1", "Health 10", "Simple start"],
+      "Titan Brawler": {
+        desc: "Frontline breaker with titan-tier strength and armor.",
+        tags: ["Brick", "Durable", "Melee"],
+        preview: ["Level 3", "High durability", "Close-range threat"],
         powers: ["Super Strength", "Vitality", "Invincibility"],
-        alt: "Pick this if you want to smash through problems with toughness and direct power."
+        alt: "Pick this if you want to tank hits and smash through obstacles."
       },
-      "Occult Investigator": {
-        desc: "Teleporting, mind tricks, and sharp senses to solve problems creatively.",
-        tags: ["Control", "Mobility", "Skilled"],
-        preview: ["Level 1", "Health 9", "Tricksy toolkit"],
-        powers: ["Teleport (People)", "Clairvoyant", "Mind Control"],
-        alt: "Great if you like scouting, control, and slippery escapes."
+      "Stormshaper": {
+        desc: "Elemental artillerist who shapes the battlefield.",
+        tags: ["Effector", "AOE", "Control"],
+        preview: ["Level 3", "Elemental tools", "Ranged impact"],
+        powers: ["Elemental Control", "Bombard", "Telekinesis"],
+        alt: "Pick this if you want to bend elements and hit multiple foes."
       },
-      "Corporate Fixer": {
-        desc: "Talks fast, leverages tech, and supports the team with gadgets.",
-        tags: ["Social", "Tech", "Support"],
-        preview: ["Level 1", "Health 9", "Gadget focus"],
-        powers: ["Social", "Gadget Techie", "Interface Techie"],
-        alt: "Choose this if you want tools, contacts, and team buffs."
+      "Mindweaver": {
+        desc: "Psychic manipulator who redirects minds and probabilities.",
+        tags: ["Manipulator", "Control", "Summons"],
+        preview: ["Level 3", "Crowd control", "Clone tricks"],
+        powers: ["Mind Control", "Mitosis", "Statistician"],
+        alt: "Pick this if you want to puppeteer enemies and tilt the odds."
+      },
+      "Skyblade Courier": {
+        desc: "Speedster courier who owns the vertical axis.",
+        tags: ["Movement", "Mobility", "Skirmish"],
+        preview: ["Level 3", "High reflex", "Teleport + flight"],
+        powers: ["SuperSpeed", "Flight", "Teleport (People)"],
+        alt: "Pick this if you want to reposition constantly and outpace danger."
+      },
+      "Precision Ranger": {
+        desc: "Weapon virtuoso with lethal accuracy and counters.",
+        tags: ["Ranger", "Striker", "Defense"],
+        preview: ["Level 3", "Weapon mastery", "Counterplay"],
+        powers: ["Action Hero", "Assassin", "Swordsman"],
+        alt: "Pick this if you want surgical strikes and parries."
+      },
+      "Prodigy Savant": {
+        desc: "Genius tactician who sees the future and optimizes the present.",
+        tags: ["Genius", "Support", "Skill"],
+        preview: ["Level 3", "High smarts", "Battlefield insight"],
+        powers: ["Clairvoyant", "Super Smarts", "Super Reflex"],
+        alt: "Pick this if you want intel, precision, and clever plays."
+      },
+      "Fabricator Tech": {
+        desc: "Inventor who fields drones, gadgets, and mech support.",
+        tags: ["Techie", "Support", "Engineer"],
+        preview: ["Level 3", "Builds toys", "Team utility"],
+        powers: ["Gadget Techie", "Interface Techie", "Mech Techie"],
+        alt: "Pick this if you want to solve problems with machines."
+      },
+      "Mutation Vanguard": {
+        desc: "Adaptive mutant who shapeshifts and shrugs off punishment.",
+        tags: ["Mutant", "Durable", "Adaptive"],
+        preview: ["Level 3", "Self-mods", "Close control"],
+        powers: ["Mutate", "Shapeshifter", "Feral"],
+        alt: "Pick this if you want to outlast and out-evolve threats."
       }
     };
 
+    const PRESETS = Object.keys(RESULT_MAP);
+
     const questions = [
-      { key: "playstyle", prompt: "What sounds most fun?", options: [
-        { value: "brawl", label: "Crushing foes up close" },
-        { value: "occult", label: "Mystery, teleporting, psychic tricks" },
-        { value: "social", label: "Talking my way through / gadgets" }
+      { key: "signature", prompt: "What sounds like your signature move?", options: [
+        { value: "Titan Brawler", label: "Punch through concrete and keep teammates safe" },
+        { value: "Stormshaper", label: "Drop elemental blasts that reshape the fight" },
+        { value: "Mindweaver", label: "Turn enemies into puppets or twin yourself" },
+        { value: "Skyblade Courier", label: "Blink, fly, and sprint circles around threats" },
+        { value: "Precision Ranger", label: "Land perfect shots and punish openings" },
+        { value: "Prodigy Savant", label: "Out-think everyone three moves ahead" },
+        { value: "Fabricator Tech", label: "Deploy drones, turrets, or exo-support" },
+        { value: "Mutation Vanguard", label: "Morph, regenerate, and maul up close" }
       ]},
-      { key: "crunch", prompt: "How crunchy do you want your first session?", options: [
-        { value: "simple", label: "Keep it straightforward" },
-        { value: "balanced", label: "A bit of variety" },
-        { value: "toolbox", label: "Give me tools to tinker" }
+      { key: "role", prompt: "Pick your ideal team role.", options: [
+        { value: "Titan Brawler", label: "Frontline anchor who draws fire" },
+        { value: "Stormshaper", label: "Area denial and ranged pressure" },
+        { value: "Mindweaver", label: "Controller who rewrites intentions" },
+        { value: "Skyblade Courier", label: "Mobile striker and scout" },
+        { value: "Precision Ranger", label: "Single-target eliminator" },
+        { value: "Prodigy Savant", label: "Planner and battlefield caller" },
+        { value: "Fabricator Tech", label: "Support who buffs with tech" },
+        { value: "Mutation Vanguard", label: "Tough brawler who adapts" }
       ]},
-      { key: "role", prompt: "What team role sounds good?", options: [
-        { value: "frontline", label: "Frontline bruiser" },
-        { value: "control", label: "Controller / scout" },
-        { value: "face", label: "Face / fixer / support" }
+      { key: "toolkit", prompt: "Choose your favorite toolkit.", options: [
+        { value: "Titan Brawler", label: "Brute force and resilience" },
+        { value: "Stormshaper", label: "Elemental tricks and force" },
+        { value: "Mindweaver", label: "Psychic influence and summons" },
+        { value: "Skyblade Courier", label: "Speed, flight, teleport lanes" },
+        { value: "Precision Ranger", label: "Weapons, parries, precision" },
+        { value: "Prodigy Savant", label: "Insight, data, perfect timing" },
+        { value: "Fabricator Tech", label: "Gadgets, drones, mechs" },
+        { value: "Mutation Vanguard", label: "Biomorphs and regeneration" }
+      ]},
+      { key: "threat", prompt: "How do you stop a runaway villain?", options: [
+        { value: "Titan Brawler", label: "Tackle them through a wall" },
+        { value: "Stormshaper", label: "Box them in with force or flame" },
+        { value: "Mindweaver", label: "Hijack their mind or body" },
+        { value: "Skyblade Courier", label: "Outpace, grab, and relocate" },
+        { value: "Precision Ranger", label: "Tag the weak spot from range" },
+        { value: "Prodigy Savant", label: "Predict and ambush their route" },
+        { value: "Fabricator Tech", label: "Deploy a drone net or mech grab" },
+        { value: "Mutation Vanguard", label: "Shift form, pin, and endure" }
+      ]},
+      { key: "prep", prompt: "What's your prep style before a mission?", options: [
+        { value: "Titan Brawler", label: "Stretch, armor up, hit the gym" },
+        { value: "Stormshaper", label: "Study terrain and elemental angles" },
+        { value: "Mindweaver", label: "Profile minds, set psychic hooks" },
+        { value: "Skyblade Courier", label: "Map routes and exit vectors" },
+        { value: "Precision Ranger", label: "Tune weapons and drills" },
+        { value: "Prodigy Savant", label: "Simulate outcomes and plans" },
+        { value: "Fabricator Tech", label: "Pack tools, calibrate drones" },
+        { value: "Mutation Vanguard", label: "Adjust form for the job" }
+      ]},
+      { key: "mobility", prompt: "How do you like to move?", options: [
+        { value: "Titan Brawler", label: "Boots on ground, unstoppable stride" },
+        { value: "Stormshaper", label: "Ride shockwaves or lifted platforms" },
+        { value: "Mindweaver", label: "Let thralls and clones reposition" },
+        { value: "Skyblade Courier", label: "Flight, blink, and raw speed" },
+        { value: "Precision Ranger", label: "Dash, slide, and counter-step" },
+        { value: "Prodigy Savant", label: "Be exactly where the plan needs" },
+        { value: "Fabricator Tech", label: "Hitch rides on drones or mechs" },
+        { value: "Mutation Vanguard", label: "Climb, burrow, or brute leap" }
       ]},
       { key: "risk", prompt: "How do you handle danger?", options: [
-        { value: "charge", label: "Charge first, think later" },
-        { value: "plan", label: "Plan, probe, reposition" },
-        { value: "deal", label: "Talk, bargain, leverage contacts" }
+        { value: "Titan Brawler", label: "Eat it, shrug it, keep swinging" },
+        { value: "Stormshaper", label: "Redirect it with barriers and blasts" },
+        { value: "Mindweaver", label: "Deflect it by controlling enemies" },
+        { value: "Skyblade Courier", label: "Never be where the hit lands" },
+        { value: "Precision Ranger", label: "Parry, riposte, reposition" },
+        { value: "Prodigy Savant", label: "Preempt it with foresight" },
+        { value: "Fabricator Tech", label: "Let gadgets tank and screen" },
+        { value: "Mutation Vanguard", label: "Adapt the body on the fly" }
       ]},
-      { key: "solve", prompt: "How do you solve problems?", options: [
-        { value: "hit", label: "Hit it harder" },
-        { value: "sleuth", label: "Investigate, observe, outwit" },
-        { value: "network", label: "Call in favors or tech" }
+      { key: "aesthetic", prompt: "Pick a vibe.", options: [
+        { value: "Titan Brawler", label: "Industrial armor and cracked knuckles" },
+        { value: "Stormshaper", label: "Arc glow and swirling elements" },
+        { value: "Mindweaver", label: "Veiled eyes and spectral echoes" },
+        { value: "Skyblade Courier", label: "Wind-cut cloak and grav boots" },
+        { value: "Precision Ranger", label: "Urban hunter with blade and bow" },
+        { value: "Prodigy Savant", label: "Holo-screens, notebooks, calm focus" },
+        { value: "Fabricator Tech", label: "Toolbelts, drones, and workshop grease" },
+        { value: "Mutation Vanguard", label: "Shifting silhouette and bio glow" }
       ]},
-      { key: "aesthetic", prompt: "Pick a vibe", options: [
-        { value: "steel", label: "Leather, steel, and bruiser swagger" },
-        { value: "mystic", label: "Notes, clues, occult sigils" },
-        { value: "suit", label: "Sharp suit, gadgets, and credentials" }
+      { key: "problem", prompt: "How do you solve a locked door?", options: [
+        { value: "Titan Brawler", label: "Kick it in" },
+        { value: "Stormshaper", label: "Melt or blast the hinges" },
+        { value: "Mindweaver", label: "Convince someone else to open it" },
+        { value: "Skyblade Courier", label: "Blink past it" },
+        { value: "Precision Ranger", label: "Pick it quietly between patrols" },
+        { value: "Prodigy Savant", label: "Find the hidden override" },
+        { value: "Fabricator Tech", label: "Deploy a bypass gadget" },
+        { value: "Mutation Vanguard", label: "Squeeze through the vents" }
+      ]},
+      { key: "mentor", prompt: "Who would you apprentice under?", options: [
+        { value: "Titan Brawler", label: "A retired heavyweight hero" },
+        { value: "Stormshaper", label: "An arc reactor savant" },
+        { value: "Mindweaver", label: "A psychic spymaster" },
+        { value: "Skyblade Courier", label: "A legendary courier who never got tagged" },
+        { value: "Precision Ranger", label: "An assassin-turned-protector" },
+        { value: "Prodigy Savant", label: "A strategist who wins without fighting" },
+        { value: "Fabricator Tech", label: "A bunker engineer with too many drones" },
+        { value: "Mutation Vanguard", label: "An ancient shapeshifter" }
       ]}
     ];
 
@@ -252,43 +366,90 @@
     progressTotal.textContent = questions.length;
 
     function computeScores() {
-      const scores = {
-        "Street Brawler": 0,
-        "Occult Investigator": 0,
-        "Corporate Fixer": 0
+      const scores = {};
+      PRESETS.forEach(name => { scores[name] = 0; });
+      Object.values(answers).forEach(value => {
+        if (scores[value] !== undefined) scores[value] += 1;
+      });
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      return { sorted, scores };
+    }
+
+    function renderRadar(scores) {
+      const canvas = document.getElementById("scoreRadar");
+      if (!canvas || !canvas.getContext) return;
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const cx = w / 2;
+      const cy = h / 2;
+      const radius = Math.min(w, h) / 2 - 30;
+      const maxScore = questions.length;
+      const spikes = PRESETS.length;
+
+      const toPoint = (idx, value) => {
+        const angle = -Math.PI / 2 + (idx * 2 * Math.PI / spikes);
+        const r = radius * (value / maxScore);
+        return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
       };
 
-      if (answers.playstyle === "brawl") scores["Street Brawler"] += 2;
-      if (answers.playstyle === "occult") scores["Occult Investigator"] += 2;
-      if (answers.playstyle === "social") scores["Corporate Fixer"] += 2;
+      // grid rings
+      ctx.strokeStyle = "rgba(255,255,255,0.12)";
+      ctx.lineWidth = 1;
+      [0.33, 0.66, 1].forEach(f => {
+        ctx.beginPath();
+        PRESETS.forEach((_, i) => {
+          const [x, y] = toPoint(i, maxScore * f);
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.stroke();
+      });
 
-      if (answers.crunch === "simple") scores["Street Brawler"] += 2;
-      if (answers.crunch === "balanced") { scores["Occult Investigator"] += 1; scores["Corporate Fixer"] += 1; }
-      if (answers.crunch === "toolbox") { scores["Corporate Fixer"] += 2; scores["Occult Investigator"] += 1; }
+      // axes
+      ctx.strokeStyle = "rgba(255,255,255,0.15)";
+      PRESETS.forEach((preset, i) => {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        const [x, y] = toPoint(i, maxScore);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        // labels
+        ctx.fillStyle = "rgba(230,235,245,0.8)";
+        ctx.font = "12px Segoe UI, Inter, sans-serif";
+        const labelPoint = toPoint(i, maxScore + 0.3 * maxScore);
+        ctx.fillText(preset, labelPoint[0] - 30, labelPoint[1] + 4);
+      });
 
-      if (answers.role === "frontline") scores["Street Brawler"] += 2;
-      if (answers.role === "control") scores["Occult Investigator"] += 2;
-      if (answers.role === "face") scores["Corporate Fixer"] += 2;
+      // data polygon
+      ctx.beginPath();
+      PRESETS.forEach((preset, i) => {
+        const [x, y] = toPoint(i, scores[preset] || 0);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = "rgba(56, 242, 199, 0.25)";
+      ctx.strokeStyle = "rgba(56, 242, 199, 0.8)";
+      ctx.lineWidth = 2;
+      ctx.fill();
+      ctx.stroke();
 
-      if (answers.risk === "charge") scores["Street Brawler"] += 1;
-      if (answers.risk === "plan") scores["Occult Investigator"] += 1;
-      if (answers.risk === "deal") scores["Corporate Fixer"] += 1;
-
-      if (answers.solve === "hit") scores["Street Brawler"] += 2;
-      if (answers.solve === "sleuth") scores["Occult Investigator"] += 2;
-      if (answers.solve === "network") scores["Corporate Fixer"] += 2;
-
-      if (answers.aesthetic === "steel") scores["Street Brawler"] += 1;
-      if (answers.aesthetic === "mystic") scores["Occult Investigator"] += 1;
-      if (answers.aesthetic === "suit") scores["Corporate Fixer"] += 1;
-
-      return Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      // nodes
+      ctx.fillStyle = "rgba(109, 211, 255, 0.9)";
+      PRESETS.forEach((preset, i) => {
+        const [x, y] = toPoint(i, scores[preset] || 0);
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      });
     }
 
     function renderResult() {
-      const ranked = computeScores();
-      const [primaryEntry, secondaryEntry] = ranked;
-      const primary = primaryEntry ? primaryEntry[0] : "Street Brawler";
+      const { sorted, scores } = computeScores();
+      const [primaryEntry, secondaryEntry] = sorted;
+      const primary = primaryEntry ? primaryEntry[0] : PRESETS[0];
       const secondary = secondaryEntry ? secondaryEntry[0] : null;
       const info = RESULT_MAP[primary];
 
@@ -318,6 +479,8 @@
       } else {
         altSuggestion.textContent = "";
       }
+
+      renderRadar(scores);
     }
 
     function renderQuestion() {

@@ -1611,6 +1611,62 @@
           powers: ["Social", "Gadget Techie", "Interface Techie"],
           inventory: [{ name: "Company Credit", qty: 1, notes: "$ to grease palms" }],
           background: "Smooth operator on retainer; knows who to call and what they cost."
+        },
+        "Titan Brawler": {
+          level: 3,
+          stats: { strengthBase: 4, durabilityBase: 4, reflexBase: 2, smartsBase: 1, socialBase: 0 },
+          powers: ["Super Strength", "Vitality", "Invincibility"],
+          inventory: [{ name: "Reinforced Gauntlets", qty: 1, notes: "Adds +1 melee damage; spark-shielded." }],
+          background: "A bruiser forged in street wars, now the wall the team hides behind."
+        },
+        "Stormshaper": {
+          level: 3,
+          stats: { smartsBase: 4, reflexBase: 3, durabilityBase: 2, strengthBase: 1, socialBase: 1 },
+          powers: ["Elemental Control", "Bombard", "Telekinesis"],
+          inventory: [{ name: "Arc Battery Pack", qty: 1, notes: "Power source for field emitters; crackles on overload." }],
+          background: "An arc reactor savant who weaponizes wind, stone, and plasma on command."
+        },
+        "Mindweaver": {
+          level: 3,
+          stats: { smartsBase: 4, socialBase: 3, reflexBase: 2, durabilityBase: 1, strengthBase: 0 },
+          powers: ["Mind Control", "Mitosis", "Statistician"],
+          inventory: [{ name: "Hypno Focus Lens", qty: 1, notes: "Gives advantage on first influence attempt each scene." }],
+          background: "A psychic spymaster who bends probability and people alike."
+        },
+        "Skyblade Courier": {
+          level: 3,
+          stats: { reflexBase: 4, smartsBase: 2, strengthBase: 2, durabilityBase: 2, socialBase: 1 },
+          powers: ["SuperSpeed", "Flight", "Teleport (People)"],
+          inventory: [{ name: "Grav Harness", qty: 1, notes: "Stabilizes landings; +1 to tricky movement checks." }],
+          background: "A fearless runner who treats the skyline as a highway and never misses a delivery."
+        },
+        "Precision Ranger": {
+          level: 3,
+          stats: { reflexBase: 4, strengthBase: 3, smartsBase: 2, durabilityBase: 1, socialBase: 1 },
+          powers: ["Action Hero", "Assassin", "Swordsman"],
+          inventory: [{ name: "Scoped Carbon Bow", qty: 1, notes: "Silent, modular; +1 to stealthy shots." }],
+          background: "An urban hunter who blends martial training with razor accuracy."
+        },
+        "Prodigy Savant": {
+          level: 3,
+          stats: { smartsBase: 5, reflexBase: 3, socialBase: 2, durabilityBase: 1, strengthBase: 0 },
+          powers: ["Clairvoyant", "Super Smarts", "Super Reflex"],
+          inventory: [{ name: "Battlefield Notebook", qty: 1, notes: "Prep notes grant +1 to one roll per scene when cited." }],
+          background: "A tactician who sees three futures ahead and chooses the one where the team wins."
+        },
+        "Fabricator Tech": {
+          level: 3,
+          stats: { smartsBase: 4, socialBase: 3, reflexBase: 2, durabilityBase: 1, strengthBase: 1 },
+          powers: ["Gadget Techie", "Interface Techie", "Mech Techie"],
+          inventory: [{ name: "Field Tool Kit", qty: 1, notes: "Build/repair simple gadgets on a short rest." }],
+          background: "A bunker engineer who solves crises with drones, rigs, and walking steel."
+        },
+        "Mutation Vanguard": {
+          level: 3,
+          stats: { durabilityBase: 4, strengthBase: 3, reflexBase: 2, smartsBase: 1, socialBase: 1 },
+          powers: ["Mutate", "Shapeshifter", "Feral"],
+          inventory: [{ name: "Adrenal Serum", qty: 1, notes: "Once per scene, gain +1 damage for two rounds." }],
+          background: "A survivor who adapts faster than threats can escalate."
         }
       };
       const build = builds[name];
@@ -1664,7 +1720,19 @@
     function applyBuildFromQuery() {
       const params = new URLSearchParams(window.location.search);
       const build = params.get("build");
-      const options = ["Street Brawler", "Occult Investigator", "Corporate Fixer"];
+      const options = [
+        "Street Brawler",
+        "Occult Investigator",
+        "Corporate Fixer",
+        "Titan Brawler",
+        "Stormshaper",
+        "Mindweaver",
+        "Skyblade Courier",
+        "Precision Ranger",
+        "Prodigy Savant",
+        "Fabricator Tech",
+        "Mutation Vanguard"
+      ];
       if (build && options.includes(build)) {
         presetBuild(build);
         params.delete("build");
