@@ -62,6 +62,29 @@
     .card h2 { margin: 0; }
     .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .pill { padding: 0.3rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: var(--muted); font-size: 0.9rem; }
+    .shard-hero {
+      background: linear-gradient(135deg, rgba(56, 242, 199, 0.12), rgba(109, 211, 255, 0.12));
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.6rem;
+    }
+    .shard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.6rem;
+    }
+    .shard-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem;
+      display: grid;
+      gap: 0.35rem;
+      box-shadow: var(--shadow);
+    }
   </style>
 </head>
 <body>
@@ -88,6 +111,34 @@
   </header>
 
   <main class="shell">
+    <section class="shard-hero">
+      <h2 style="margin:0;">The Shattered Power</h2>
+      <div class="muted">In the void, an all-consuming power shatters into five shards. Each shard calls to a different origin. Choose one to shape your hero’s first steps.</div>
+      <div class="shard-grid">
+        <div class="shard-card">
+          <div style="font-weight:800;">Shard of Strength (Brick)</div>
+          <div class="muted">Unstoppable force into immovable object; flesh knitting into any form; the roar of indestructible war-beasts.</div>
+        </div>
+        <div class="shard-card">
+          <div style="font-weight:800;">Shard of Control (Manipulator)</div>
+          <div class="muted">Lies and command; an invisible hand on soft grey matter; shadows dancing to screams of puppets and demons.</div>
+        </div>
+        <div class="shard-card">
+          <div style="font-weight:800;">Shard of Force (Effector)</div>
+          <div class="muted">Pulses, waves, beams; shifting elements and territories; drums of war on a brass chariot.</div>
+        </div>
+        <div class="shard-card">
+          <div style="font-weight:800;">Shard of Cunning (Techie / Genius)</div>
+          <div class="muted">Clockwork minds ticking; unfiltered truth in noxious goo; abstract ideas behind looming walls and turrets.</div>
+        </div>
+        <div class="shard-card">
+          <div style="font-weight:800;">Shard of Speed (Movement / Ranger)</div>
+          <div class="muted">Wind past a blurring dagger; atoms split and reassembled at breakneck speeds; soothing hands on a speeding demon.</div>
+        </div>
+      </div>
+      <div class="muted">Once a shard is claimed, you can still learn from the others—but your core will always echo the first fragment you grasped.</div>
+    </section>
+
     <section class="hero">
       <h1>City Factions</h1>
       <p class="muted">Drop into the setting with the major players who shape the streets, skylines, and shadows. Use these hooks to anchor your characters, rivals, and patrons.</p>
