@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Mech Techie.
+
 This ability allows the player to build mechsuits. Only this player can use the supertech unless specified otherwise.
 
   
@@ -11,7 +14,7 @@ Lv1
 
 Cost: $10
 
-Requirements: none[br]‌
+Requirements: none[br]â€Œ
 
 ---
 
@@ -24,7 +27,7 @@ Range: 10m
 
 Damage: 1D10
 
-Requirements: None[br]‌
+Requirements: None[br]â€Œ
 
 ---
 
@@ -37,7 +40,7 @@ Damage: nD10 n = to the size of the mech that is being used. n = 1 is no mech.
 
 Range: 100m
 
-Requirements: None[br]‌
+Requirements: None[br]â€Œ
 
 ---
 
@@ -50,7 +53,7 @@ Damage: 1D6 + Strength
 
 Range: Touch
 
-Requirements: None[br]‌
+Requirements: None[br]â€Œ
 
 ---
 
@@ -59,7 +62,7 @@ Requirements: None[br]‌
 
 Cost: $100
 
-Requirements: None[br]‌
+Requirements: None[br]â€Œ
 
 ---
 
@@ -78,7 +81,7 @@ Weapon slots: 2
 
 Effects: Doubles production speed for bigger mechs. (Doesn't stack) Can carry Mech weapons one handed. Increases strength to 10. There is a 1/4 chance that the enemy hits the player instead of the mech.
 
-Requirements: Mech Workbench.[br]‌
+Requirements: Mech Workbench.[br]â€Œ
 
 ---
 
@@ -93,7 +96,7 @@ Damage: 1d4 in a 10m cone.
 
 Effect: Causes burning. Burning deals 1 damage per turn.
 
-Requirements: Mech Workbench[br]‌
+Requirements: Mech Workbench[br]â€Œ
 
 ---
 
@@ -106,7 +109,7 @@ Weapon slots: 1
 
 Effect: +1 armor to your mech.
 
-Requirements: Mech Workbench[br]‌
+Requirements: Mech Workbench[br]â€Œ
 
 ---
 
@@ -119,7 +122,7 @@ Range: 50m
 
 Effect: Launches Concrete foam grenades.
 
-Requirements: Fortification Tinker Lv 1[br]‌
+Requirements: Fortification Tinker Lv 1[br]â€Œ
 
 ---
 
@@ -130,7 +133,7 @@ Cost: $1000
 
 Effect: Uses a Weapon slot. Allows the mech to contain and spray chemicals safely.
 
-Requirements: Chemical Tinker Lv 1 
+Requirements: Chemical Tinker Lv 1Â 
 
 ---
 
@@ -164,14 +167,14 @@ Cost: $500
 Damage: 1D4  
 Range: 100m  
 Effects: Allows mech to move up walls and buildings.  
-Requirements: Mech Workbench.[br]‌  
+Requirements: Mech Workbench.[br]â€Œ  
 
 ---
 
 
 **Armor Mod**: A upgrade to a mechsuit that takes away 1 weapon slot, but increases the armor of a mech by 2  
 Cost: $100  
-Requirement: Mech workbench.[br]‌
+Requirement: Mech workbench.[br]â€Œ
 
 ---
 
@@ -187,7 +190,7 @@ Requirement: Mech Workbench
 ---
 
 
-**Mech Bay:** A upgrade that can be made to any building that a car can enter or leave. Allows for the construction of bigger mechs and better weapons.  
+**Mech Bay:**Â A upgrade that can be made to any building that a car can enter or leave. Allows for the construction of bigger mechs and better weapons.  
 Cost: $10000  
 Requirement: None
 
@@ -208,7 +211,7 @@ Weapon slots: 3
 
 Effects: Increases strength to 15.
 
-Requirements: Mech Bay[br]‌
+Requirements: Mech Bay[br]â€Œ
 
 ---
 
@@ -223,7 +226,7 @@ Damage: 1D10
 
 Effects: Double damage to unarmored targets.
 
-Requirements: Mech Bay[br]‌
+Requirements: Mech Bay[br]â€Œ
 
 ---
 
@@ -238,7 +241,7 @@ Damage: nD10 damage. n= the level of mech being used. n = 1 is no mech.
 
 Effects: Allows for the digging of tunnels and underground chambers.
 
-Requirements: Mech Bay[br]‌
+Requirements: Mech Bay[br]â€Œ
 
 ---
 
@@ -253,7 +256,7 @@ Damage: None
 
 Effects: Can destroy up to 3 physical ranged attacks per turn.
 
-Requirements: Mech Bay[br]‌
+Requirements: Mech Bay[br]â€Œ
 
 ---
 
@@ -264,13 +267,13 @@ Cost: $100
 
 Effect: Allows a Mech to carry something inside of it.
 
-Requirement: Mech Bay; Mech must be bigger than basic.[br]‌
+Requirement: Mech Bay; Mech must be bigger than basic.[br]â€Œ
 
 ---
 Lv3
 ---
 ****
-**Mechs for dummies:** A manual that after being used allows for another person to use the mechs.  
+**Mechs for dummies:**Â A manual that after being used allows for another person to use the mechs.  
 Cost: $100  
 Effect: allows 1 person to be able to use mechs.  
 Requirement: None
@@ -282,7 +285,7 @@ Effect: Allows any mech to have vertical movement
 Requirement: Mech Bay
 
 ---
-‌
+â€Œ
 
 
 Massive Mech Bay: A Building that needs to be built underground or in a big warehouse. It allows for the production of the biggest mechs and Strongest weapons.
@@ -308,7 +311,7 @@ Weapon Slots: 5
 
 Effects: Increases your strength to 50
 
-Requirements: Massive Mech Bay.[br]‌
+Requirements: Massive Mech Bay.[br]â€Œ
 
 ---
 
@@ -321,7 +324,7 @@ Range: 1km
 
 Damage: Hits every target within 250m radius of targeted area for 1D10 damage.
 
-Requirement: Massive Mech Bay.[br]‌
+Requirement: Massive Mech Bay.[br]â€Œ
 
 ---
 
@@ -334,7 +337,7 @@ Range: 200m
 
 Damage: 2nD4 n = to your mech level. n = 1 is no mech.
 
-Requirements: Massive Mech Bay[br]‌
+Requirements: Massive Mech Bay[br]â€Œ
 
 ---
 
@@ -353,7 +356,7 @@ Weapon slot: 1
 
 Effect: Can carry up to 10 basic mechsuits.
 
-Requirements: Massive Mech Bay[br]‌
+Requirements: Massive Mech Bay[br]â€Œ
 
 ---
 
@@ -366,7 +369,7 @@ Damage: 1D8 per turn for 10 turns.
 
 Range: 200m
 
-Requirements: Massive Mech Bay[br]‌
+Requirements: Massive Mech Bay[br]â€Œ
 
 ---
 
@@ -379,7 +382,7 @@ HP:20
 
 Effect: Allows the mech to project up to 3 walls with 20 hp each.
 
-Requirements: Massive Mech Bay[br]‌
+Requirements: Massive Mech Bay[br]â€Œ
 
 ---
 
@@ -390,7 +393,7 @@ Cost: $10000
 
 Effect: The Player can control any mech with this mod from another mech.
 
-Requirements: Massive Mech Bay[br]‌
+Requirements: Massive Mech Bay[br]â€Œ
 
 ---
 
@@ -414,7 +417,7 @@ Lv4
 ---
 
 
-Only one of the following can be built.[br]‌
+Only one of the following can be built.[br]â€Œ
 
 ---
 
@@ -433,7 +436,7 @@ Weapon Slots: 10
 
 Effect: This Mech has to be built underground. When it emerges it destroys anything above it.
 
-Requirement: Built underground, Only one can exist.[br]‌
+Requirement: Built underground, Only one can exist.[br]â€Œ
 
 ---
 

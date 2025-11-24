@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Mutate.
+
 | LEVEL | POINTS | ABILITY                                                 |
 | ----- | ------ | ------------------------------------------------------- |
 | 1     | 1      | You gain +1 strength every two turns of combat up to 5  |

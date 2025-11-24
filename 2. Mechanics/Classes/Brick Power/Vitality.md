@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Vitality.
+
 | LEVEL | POINTS | ABILITY                                             |
 | ----- | ------ | --------------------------------------------------- |
 | 1     | 1      | **Enhanced Vitality 1**<br>Gives you +2 durability  |

@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Fortification Techie.
+
 A tinker that can fortify buildings and locations with gun turrets and walls.
 
   
@@ -16,7 +19,7 @@ Requirements: None
 Concrete Sprayer: A gun with a tank that constantly makes concrete.  
 Cost: $10  
 Effects: Allows you to build walls or seal of doors in 1 turn. The walls have 20HP and 3 armor.  
-Requirements: None‌
+Requirements: Noneâ€Œ
 
 ---
 Concrete Foam Grenade: A small tank to foam that can harden to the strength of rock.
@@ -53,7 +56,7 @@ Requirements: Fort Workbench.
 Reinforced Wall: A upgrade to any existing wall to make it tougher to destroy.  
 Cost: $100  
 Effects: Increase a walls health to 50 and it armor to 6  
-Requirements: Concrete Sprayer‌
+Requirements: Concrete Sprayerâ€Œ
 
 ---
 Entrenching Tool: A hyper advanced digging tool.
@@ -87,7 +90,7 @@ Movespeed: 15m per turn
 Armor: 2  
 Turret Slots: 2  
 Effects: Doubles production speed for bigger mechs. (Doesn't stack) Increases strength to 10. Too Bulky to use normal or mech weapons. There is 1/5 chance that enemies hit the player instead of the mech. You can't deploy turrets from inside the mech. If equipped with a quick deploy mod instead of 1 turret you can deploy turrets from inside.
-Requirements: Mech Tinker Lv1‌
+Requirements: Mech Tinker Lv1â€Œ
 
 ---
 Shoulder mounted Machine Gun: A Browning machine gun strapped to a auto aiming system.
@@ -103,7 +106,7 @@ Requirement: Mech tinker Lv 1
 Size mod: Decreases the size of a turret by half.  
 Cost: $1000  
 Effect: Halves size of a turret.  
-Requirements: Gadget tinker Lv 1.‌
+Requirements: Gadget tinker Lv 1.â€Œ
 
 ---
 Quick Deploy Mod: Allows for quick Deployment of turrets.
@@ -129,22 +132,22 @@ Size: 1 slot
 Effect: Automatically attacks the nearest enemy. Needs 1 day to remove from emplaced position.
 Damage: 1D8  
 Range: 100m  
-Requirement: Fort Workbench.‌
+Requirement: Fort Workbench.â€Œ
 
 ---
 Stealth Mod: Upgrade a turret to be stealthed while inactive.
-Cost: add half of price to item.‌
+Cost: add half of price to item.â€Œ
 
 ---
 Armor Mod: Give a item 5 Hp and 5 armor.
-Cost: Double Cost of Item.‌
+Cost: Double Cost of Item.â€Œ
 
 ---
 Dart Trap: A permanent upgrade to a wall that lets it fire tranq darts.
 Cost: $500
 Effect: Automatically attacks any enemies that step in front of it. On a failed Durability roll of 5 the enemy is knocked out.
 Range: 20m
-Requirement: Fort Workbench.‌
+Requirement: Fort Workbench.â€Œ
 
 ---
 Hologram projector: A small device the size of a brick. Can create non-solid illusions.
@@ -153,13 +156,13 @@ Hp:5
 Size: 1/2 slot
 Effect: Can project 1 non-solid illusion at a time. These illusions are destroyed if the projector is destroyed.
 Range: 100m
-Requirement: Fort Workbench.‌
+Requirement: Fort Workbench.â€Œ
 
 ---
 Fort Workshop: A upgrade to any room. Allows you to build more advanced turrets and fortifications.
 Cost: $1000
 Effect: Allows for more advanced projects and fortifications.
-Requirement: Fort Workbench.‌
+Requirement: Fort Workbench.â€Œ
 
 ---
 AT Turret: A massive immoveable turret made to destroy vehicles.
@@ -170,7 +173,7 @@ Effect: Targets nearest enemy vehicle.
 Damage: 1D12
 Range: 200m
 Effect: Ignores armor.
-Requirements: Fort Workshop.‌
+Requirements: Fort Workshop.â€Œ
 
 ---
 Artillery Turret: A massive gun that shoot to hit via an arc.
@@ -179,20 +182,20 @@ Hp: 30
 Size: 1 slot
 Effect: Can only shoot at artillery markers. Fires upon a artillery marker when activated. Deals 1d6 damage in a 25m radius. Doesn't need line of sight to attack.
 Range: 1km
-Requirements: Fort workshop‌
+Requirements: Fort workshopâ€Œ
 
 ---
 Artillery Marker: A hand sized device that activates the artillery turret.
 Cost: $100
 Effect: Is targeted by artillery turrets in range when activated. Allows for specifications when deployed by the tinker.
 Range: 1km
-Requirements: Fort workshop.‌
+Requirements: Fort workshop.â€Œ
 
 ---
 Lethal Mod: Adjusts Auto and Duel Turrets to use lethal bullets.
 Cost: 2x cost of item.
 Effect: Doubled the damage of a turret, but the turrets can now cause death by attacking.
-Requirements: None‌
+Requirements: Noneâ€Œ
 
 ---
 Catapult Turret (small): Launches loaded items.
@@ -210,20 +213,20 @@ Size: 2 slots
 Range: 1km  
 Damage: 1d20  
 Effect: Launches items.  
-Requirements: Fort Workshop‌
+Requirements: Fort Workshopâ€Œ
 
 ---
 Blazing Mod: Adjust a turret to cause burning on hit.
 Cost: 3x cost of item.
 Effect: Targets hit by a turret with this mod is set ablaze for 3 turns, causing 1d8 damage per turn. This damage is lethal.
-Requirements: Chemical Tinker Lv 2.‌
+Requirements: Chemical Tinker Lv 2.â€Œ
 
 ---
 Mech Deployment Canon: A massive Gun emplacement that can fire Basic mechs
 Cost: $10000
 Range: 1km
 Effect: Allows the player to deploy a basic mech to a target in range.
-Requirements: Mech Tinker Lv 2.‌
+Requirements: Mech Tinker Lv 2.â€Œ
 
 ---
 Recall Mod: Allows the player to recall auto or dual turrets to him instantly.
@@ -318,7 +321,7 @@ B.L.A.M. Canon: Ballistic Landmark Assisted by Markers. An Utterly massive gun e
 Cost: $1000000  
 Effect: Uses Artillery markers to get accurate coordinates for bombardment. Shells are Built separately. A shell does 10d10 damage to everything in a 200 meter radius. Shells Cost $10000  
 Range: 100km  
-Requirements: Fort Workshop. Needs a buildings worth of space to build.‌
+Requirements: Fort Workshop. Needs a buildings worth of space to build.â€Œ
 
 ---
 Technocrete: A upgrade for all concrete you make. Filled with titanium

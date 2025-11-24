@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Divine Techie.
+
 This ability allows the player to build Tinker Weapons that switch between forms and operate of off exotic energy. Only this player can use the supertech unless specified otherwise.
 
   
@@ -85,7 +88,7 @@ Range: Melee
 
 Damage: 1d4
 
-Requirements: none‌
+Requirements: noneâ€Œ
 
 ---
 Bastard Sword of Hades:
@@ -99,7 +102,7 @@ Range Melee
 
 Damage: 1d6
 
-Requirements: none‌
+Requirements: noneâ€Œ
 
 ---
 Shuriken's of Achlys: Golden Triangles to throw at your enemies.
@@ -113,7 +116,7 @@ Range: 50m
 
 Damage: 1d4
 
-Requirements: none‌
+Requirements: noneâ€Œ
 
 ---
 Staff of Asclepius: A golden staff with twin snakes on each side.
@@ -127,7 +130,7 @@ Range: 20m
 
 Damage: 1d4
 
-Requirements: none‌
+Requirements: noneâ€Œ
 
 ---
 ReVoLvEr Of KoAs: A dArK bLaCk ReVoLvEr, RaInBoW eNeEgY lEaKs FrOm It.
@@ -141,7 +144,7 @@ Range: 100m
 
 Damage: 1d10
 
-Requirements: none‌
+Requirements: noneâ€Œ
 
 ---
 Greaves of Hermes: A pair of Armored Thigh high Leg bracers.
@@ -151,7 +154,7 @@ Cost: $20000.07
 
 Effect: You go one higher in the initiative order. You get 1 free turn before the combat begins. You move faster than your party members. Can Transform into Fingerless Gloves of Chronos.
 
-Requirements: None‌
+Requirements: Noneâ€Œ
 
 ---
 Fingerless Gloves of Chronos: A pair of Hot Pink Fingerless Gloves.
@@ -161,7 +164,7 @@ Cost: $20000.07
 
 Effect: Provides hidden bonus. Every second attack moves an enemy 1 step down in the initiative order.
 
-Requirements: None‌
+Requirements: Noneâ€Œ
 
 # Lv3  
 
@@ -170,7 +173,7 @@ Book of the Athenian Dolomite: A Golden book wreathed in shadows.
 
 Cost: $30000.1  
 Effect: You may ask the book any question. The DM then secretly rolls 1d4. On a 1 the book gives the truth. On a 2 or 3 the book gives 42 and 24 unrespectivly. On a 4 the book gives a believable lie.  
-Requirements: None‌
+Requirements: Noneâ€Œ
 
 ---
 Axe of Bloody Matrimony: A blood red Greataxe. It seems to bleed more than its enemies.
@@ -186,7 +189,7 @@ Damage: 1d12
 
 Requirements: None
 
-‌
+â€Œ
 
 ---
 Ring of Choatic Friendship: A golden glowing band covered in snakes that seem to roam across the ring.
@@ -196,4 +199,4 @@ Cost: $10000, Ring of Eris, Ring of Apollo
 
 Effect: You can give 1 ally advantage to rolls for the round or reroll 3 enemies rolls. It also gives +3 to social.
 
-Requirements: None‌
+Requirements: Noneâ€Œ

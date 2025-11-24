@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Fire Techie.
+
 
 Only this player can use the supertech unless specified otherwise.
 

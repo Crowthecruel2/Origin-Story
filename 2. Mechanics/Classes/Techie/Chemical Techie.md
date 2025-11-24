@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Chemical Techie.
+
 This ability allows the player to build Tinker Chemicals. Only this player can use the supertech unless specified otherwise.
 
   
@@ -30,7 +33,7 @@ Piranha Juice: A chemical that eats through exposed flesh.
 Cost: $100
 Effects: Deal 1D10 damage to an enemy. If they are unarmored, double this damage.
 Requirements: Basic Chemical workbench.
-‌
+â€Œ
 
 ----
 Substance Sprayer: A gun with a long nozzle that can spray substances up to 100m.
@@ -87,7 +90,7 @@ Gas Cloud: A chemical that spreads other a massive area and is mildly toxic.
 Cost: $1000
 Effects: Spreads- spreads over a 1km area. Lasts 2 days.
 Damage: 1 damage per hour.
-Requirements: Chemical workbench‌.
+Requirements: Chemical workbenchâ€Œ.
 
 ---
 Chemical grenades: A small metal ball that violently sprays chemicals in a area around it.

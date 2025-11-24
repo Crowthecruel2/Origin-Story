@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Modular Items Techie.
+
 Only you can use these items unless specified otherwise.
 - The player chooses **up to 3 modules** from this list.
 - They glue them together with a base chassis (free).
@@ -37,3 +40,4 @@ Shock Battery: A battery that discharges to stun the enemy
 Cost: $100
 Range: Melee
 Effect: Once per turn. You stun an enemy on hit with a dc 6 durability save
+

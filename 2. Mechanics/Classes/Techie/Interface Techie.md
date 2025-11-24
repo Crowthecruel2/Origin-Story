@@ -1,3 +1,6 @@
+﻿## Description
+Add a short description for Interface Techie.
+
 This ability allows the player to build Tinker Chemicals. Only this player can use the supertech unless specified otherwise.
 
 # Lv 1  
@@ -74,7 +77,7 @@ Cost: $500
 Hp: 10  
 Armor: 1  
 Effect: Can attach to unconscious human targets to puppet them around. Still active after their awake.
-Requirement: Mech Tinker Lv 1‌
+Requirement: Mech Tinker Lv 1â€Œ
 
 ---
 Roller Drone: Small ball like drones. They fit under doors.
@@ -83,7 +86,7 @@ Cost: $200
 Hp:4
 Armor: 3
 Effect: Can fit under doors. Can trip enemies that set on them.
-Requirement: Gadget Tinker.‌
+Requirement: Gadget Tinker.â€Œ
 
 ---
 # Lv2  
