@@ -2186,8 +2186,7 @@
       "solo-rpg-toolkit:Solo RPG Toolkit": false,
       "obsidian-textgenerator-plugin:Generate Text!": false,
       "obsidian-textgenerator-plugin:Text Generator: Templates Packages Manager": false,
-      "initiative-tracker:Initiative Tracker Encounter Builder": false,
-      "calendarium:Open Calendarium": false
+      "initiative-tracker:Initiative Tracker Encounter Builder": false
     }
   },
   "active": "ccc4e43afe9ab765",

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -179,61 +179,54 @@
 
   <script>
     const RESULT_MAP = {
-      "Titan Brawler": {
-        desc: "Frontline breaker with titan-tier strength and armor.",
+      "Street Brawler": {
+        desc: "Frontline bruiser who keeps foes close and teammates safer.",
         tags: ["Brick", "Durable", "Melee"],
         preview: ["Level 3", "High durability", "Close-range threat"],
         powers: ["Super Strength", "Vitality", "Invincibility"],
         alt: "Pick this if you want to tank hits and smash through obstacles."
       },
-      "Stormshaper": {
-        desc: "Elemental artillerist who shapes the battlefield.",
+      "The Detective": {
+        desc: "Investigator with uncanny insight, teleport tricks, and social leverage.",
+        tags: ["Genius", "Manipulator", "Support"],
+        preview: ["Level 3", "High smarts", "Control and intel"],
+        powers: ["Clairvoyant", "Mind Control", "Teleport (People)"],
+        alt: "Pick this if you want to solve, outwit, and reposition."
+      },
+      "The Mechanic": {
+        desc: "Engineer who builds gadgets, rigs, and support tech on demand.",
+        tags: ["Techie", "Support", "Engineer"],
+        preview: ["Level 3", "Builds toys", "Team utility"],
+        powers: ["Gadget Techie", "Mech Techie", "Interface Techie"],
+        alt: "Pick this if you want to solve problems with machines."
+      },
+      "The Elementalist": {
+        desc: "Elemental artillerist who reshapes terrain and blasts groups.",
         tags: ["Effector", "AOE", "Control"],
         preview: ["Level 3", "Elemental tools", "Ranged impact"],
         powers: ["Elemental Control", "Bombard", "Telekinesis"],
         alt: "Pick this if you want to bend elements and hit multiple foes."
       },
-      "Mindweaver": {
-        desc: "Psychic manipulator who redirects minds and probabilities.",
-        tags: ["Manipulator", "Control", "Summons"],
-        preview: ["Level 3", "Crowd control", "Clone tricks"],
-        powers: ["Mind Control", "Mitosis", "Statistician"],
-        alt: "Pick this if you want to puppeteer enemies and tilt the odds."
-      },
-      "Skyblade Courier": {
-        desc: "Speedster courier who owns the vertical axis.",
+      "The Speedster": {
+        desc: "Lightning-fast mover who owns positioning and tempo.",
         tags: ["Movement", "Mobility", "Skirmish"],
         preview: ["Level 3", "High reflex", "Teleport + flight"],
         powers: ["SuperSpeed", "Flight", "Teleport (People)"],
         alt: "Pick this if you want to reposition constantly and outpace danger."
       },
-      "Precision Ranger": {
-        desc: "Weapon virtuoso with lethal accuracy and counters.",
-        tags: ["Ranger", "Striker", "Defense"],
-        preview: ["Level 3", "Weapon mastery", "Counterplay"],
-        powers: ["Action Hero", "Assassin", "Swordsman"],
-        alt: "Pick this if you want surgical strikes and parries."
-      },
-      "Prodigy Savant": {
-        desc: "Genius tactician who sees the future and optimizes the present.",
-        tags: ["Genius", "Support", "Skill"],
-        preview: ["Level 3", "High smarts", "Battlefield insight"],
-        powers: ["Clairvoyant", "Super Smarts", "Super Reflex"],
-        alt: "Pick this if you want intel, precision, and clever plays."
-      },
-      "Fabricator Tech": {
-        desc: "Inventor who fields drones, gadgets, and mech support.",
-        tags: ["Techie", "Support", "Engineer"],
-        preview: ["Level 3", "Builds toys", "Team utility"],
-        powers: ["Gadget Techie", "Interface Techie", "Mech Techie"],
-        alt: "Pick this if you want to solve problems with machines."
-      },
-      "Mutation Vanguard": {
-        desc: "Adaptive mutant who shapeshifts and shrugs off punishment.",
+      "The Mutant": {
+        desc: "Adaptive mutant leaning on durable, shifting biology.",
         tags: ["Mutant", "Durable", "Adaptive"],
         preview: ["Level 3", "Self-mods", "Close control"],
-        powers: ["Mutate", "Shapeshifter", "Feral"],
-        alt: "Pick this if you want to outlast and out-evolve threats."
+        powers: ["Elemental Body", "Cartoon", "Vitality"],
+        alt: "Pick this if you want to outlast and adapt mid-fight."
+      },
+      "The Action Hero": {
+        desc: "Scene-stealing striker with stunts, stealth, and explosive entries.",
+        tags: ["Ranger", "Striker", "Style"],
+        preview: ["Level 3", "Weapon mastery", "Flashy entries"],
+        powers: ["Action Hero", "Assassin", "Rocket"],
+        alt: "Pick this if you want surgical strikes and cinematic moves."
       }
     };
 
@@ -241,104 +234,104 @@
 
     const questions = [
       { key: "signature", prompt: "What sounds like your signature move?", options: [
-        { value: "Titan Brawler", label: "Punch through concrete and keep teammates safe" },
-        { value: "Stormshaper", label: "Drop elemental blasts that reshape the fight" },
-        { value: "Mindweaver", label: "Turn enemies into puppets or twin yourself" },
-        { value: "Skyblade Courier", label: "Blink, fly, and sprint circles around threats" },
-        { value: "Precision Ranger", label: "Land perfect shots and punish openings" },
-        { value: "Prodigy Savant", label: "Out-think everyone three moves ahead" },
-        { value: "Fabricator Tech", label: "Deploy drones, turrets, or exo-support" },
-        { value: "Mutation Vanguard", label: "Morph, regenerate, and maul up close" }
+        { value: "Street Brawler", label: "Punch through concrete and keep teammates safe" },
+        { value: "The Elementalist", label: "Drop elemental blasts that reshape the fight" },
+        { value: "The Detective", label: "Turn enemies into puppets or twin yourself" },
+        { value: "The Speedster", label: "Blink, fly, and sprint circles around threats" },
+        { value: "The Action Hero", label: "Land perfect shots and punish openings" },
+        { value: "The Detective", label: "Out-think everyone three moves ahead" },
+        { value: "The Mechanic", label: "Deploy drones, turrets, or exo-support" },
+        { value: "The Mutant", label: "Morph, regenerate, and maul up close" }
       ]},
       { key: "role", prompt: "Pick your ideal team role.", options: [
-        { value: "Titan Brawler", label: "Frontline anchor who draws fire" },
-        { value: "Stormshaper", label: "Area denial and ranged pressure" },
-        { value: "Mindweaver", label: "Controller who rewrites intentions" },
-        { value: "Skyblade Courier", label: "Mobile striker and scout" },
-        { value: "Precision Ranger", label: "Single-target eliminator" },
-        { value: "Prodigy Savant", label: "Planner and battlefield caller" },
-        { value: "Fabricator Tech", label: "Support who buffs with tech" },
-        { value: "Mutation Vanguard", label: "Tough brawler who adapts" }
+        { value: "Street Brawler", label: "Frontline anchor who draws fire" },
+        { value: "The Elementalist", label: "Area denial and ranged pressure" },
+        { value: "The Detective", label: "Controller who rewrites intentions" },
+        { value: "The Speedster", label: "Mobile striker and scout" },
+        { value: "The Action Hero", label: "Single-target eliminator" },
+        { value: "The Detective", label: "Planner and battlefield caller" },
+        { value: "The Mechanic", label: "Support who buffs with tech" },
+        { value: "The Mutant", label: "Tough brawler who adapts" }
       ]},
       { key: "toolkit", prompt: "Choose your favorite toolkit.", options: [
-        { value: "Titan Brawler", label: "Brute force and resilience" },
-        { value: "Stormshaper", label: "Elemental tricks and force" },
-        { value: "Mindweaver", label: "Psychic influence and summons" },
-        { value: "Skyblade Courier", label: "Speed, flight, teleport lanes" },
-        { value: "Precision Ranger", label: "Weapons, parries, precision" },
-        { value: "Prodigy Savant", label: "Insight, data, perfect timing" },
-        { value: "Fabricator Tech", label: "Gadgets, drones, mechs" },
-        { value: "Mutation Vanguard", label: "Biomorphs and regeneration" }
+        { value: "Street Brawler", label: "Brute force and resilience" },
+        { value: "The Elementalist", label: "Elemental tricks and force" },
+        { value: "The Detective", label: "Psychic influence and summons" },
+        { value: "The Speedster", label: "Speed, flight, teleport lanes" },
+        { value: "The Action Hero", label: "Weapons, parries, precision" },
+        { value: "The Detective", label: "Insight, data, perfect timing" },
+        { value: "The Mechanic", label: "Gadgets, drones, mechs" },
+        { value: "The Mutant", label: "Biomorphs and regeneration" }
       ]},
       { key: "threat", prompt: "How do you stop a runaway villain?", options: [
-        { value: "Titan Brawler", label: "Tackle them through a wall" },
-        { value: "Stormshaper", label: "Box them in with force or flame" },
-        { value: "Mindweaver", label: "Hijack their mind or body" },
-        { value: "Skyblade Courier", label: "Outpace, grab, and relocate" },
-        { value: "Precision Ranger", label: "Tag the weak spot from range" },
-        { value: "Prodigy Savant", label: "Predict and ambush their route" },
-        { value: "Fabricator Tech", label: "Deploy a drone net or mech grab" },
-        { value: "Mutation Vanguard", label: "Shift form, pin, and endure" }
+        { value: "Street Brawler", label: "Tackle them through a wall" },
+        { value: "The Elementalist", label: "Box them in with force or flame" },
+        { value: "The Detective", label: "Hijack their mind or body" },
+        { value: "The Speedster", label: "Outpace, grab, and relocate" },
+        { value: "The Action Hero", label: "Tag the weak spot from range" },
+        { value: "The Detective", label: "Predict and ambush their route" },
+        { value: "The Mechanic", label: "Deploy a drone net or mech grab" },
+        { value: "The Mutant", label: "Shift form, pin, and endure" }
       ]},
       { key: "prep", prompt: "What's your prep style before a mission?", options: [
-        { value: "Titan Brawler", label: "Stretch, armor up, hit the gym" },
-        { value: "Stormshaper", label: "Study terrain and elemental angles" },
-        { value: "Mindweaver", label: "Profile minds, set psychic hooks" },
-        { value: "Skyblade Courier", label: "Map routes and exit vectors" },
-        { value: "Precision Ranger", label: "Tune weapons and drills" },
-        { value: "Prodigy Savant", label: "Simulate outcomes and plans" },
-        { value: "Fabricator Tech", label: "Pack tools, calibrate drones" },
-        { value: "Mutation Vanguard", label: "Adjust form for the job" }
+        { value: "Street Brawler", label: "Stretch, armor up, hit the gym" },
+        { value: "The Elementalist", label: "Study terrain and elemental angles" },
+        { value: "The Detective", label: "Profile minds, set psychic hooks" },
+        { value: "The Speedster", label: "Map routes and exit vectors" },
+        { value: "The Action Hero", label: "Tune weapons and drills" },
+        { value: "The Detective", label: "Simulate outcomes and plans" },
+        { value: "The Mechanic", label: "Pack tools, calibrate drones" },
+        { value: "The Mutant", label: "Adjust form for the job" }
       ]},
       { key: "mobility", prompt: "How do you like to move?", options: [
-        { value: "Titan Brawler", label: "Boots on ground, unstoppable stride" },
-        { value: "Stormshaper", label: "Ride shockwaves or lifted platforms" },
-        { value: "Mindweaver", label: "Let thralls and clones reposition" },
-        { value: "Skyblade Courier", label: "Flight, blink, and raw speed" },
-        { value: "Precision Ranger", label: "Dash, slide, and counter-step" },
-        { value: "Prodigy Savant", label: "Be exactly where the plan needs" },
-        { value: "Fabricator Tech", label: "Hitch rides on drones or mechs" },
-        { value: "Mutation Vanguard", label: "Climb, burrow, or brute leap" }
+        { value: "Street Brawler", label: "Boots on ground, unstoppable stride" },
+        { value: "The Elementalist", label: "Ride shockwaves or lifted platforms" },
+        { value: "The Detective", label: "Let thralls and clones reposition" },
+        { value: "The Speedster", label: "Flight, blink, and raw speed" },
+        { value: "The Action Hero", label: "Dash, slide, and counter-step" },
+        { value: "The Detective", label: "Be exactly where the plan needs" },
+        { value: "The Mechanic", label: "Hitch rides on drones or mechs" },
+        { value: "The Mutant", label: "Climb, burrow, or brute leap" }
       ]},
       { key: "risk", prompt: "How do you handle danger?", options: [
-        { value: "Titan Brawler", label: "Eat it, shrug it, keep swinging" },
-        { value: "Stormshaper", label: "Redirect it with barriers and blasts" },
-        { value: "Mindweaver", label: "Deflect it by controlling enemies" },
-        { value: "Skyblade Courier", label: "Never be where the hit lands" },
-        { value: "Precision Ranger", label: "Parry, riposte, reposition" },
-        { value: "Prodigy Savant", label: "Preempt it with foresight" },
-        { value: "Fabricator Tech", label: "Let gadgets tank and screen" },
-        { value: "Mutation Vanguard", label: "Adapt the body on the fly" }
+        { value: "Street Brawler", label: "Eat it, shrug it, keep swinging" },
+        { value: "The Elementalist", label: "Redirect it with barriers and blasts" },
+        { value: "The Detective", label: "Deflect it by controlling enemies" },
+        { value: "The Speedster", label: "Never be where the hit lands" },
+        { value: "The Action Hero", label: "Parry, riposte, reposition" },
+        { value: "The Detective", label: "Preempt it with foresight" },
+        { value: "The Mechanic", label: "Let gadgets tank and screen" },
+        { value: "The Mutant", label: "Adapt the body on the fly" }
       ]},
       { key: "aesthetic", prompt: "Pick a vibe.", options: [
-        { value: "Titan Brawler", label: "Industrial armor and cracked knuckles" },
-        { value: "Stormshaper", label: "Arc glow and swirling elements" },
-        { value: "Mindweaver", label: "Veiled eyes and spectral echoes" },
-        { value: "Skyblade Courier", label: "Wind-cut cloak and grav boots" },
-        { value: "Precision Ranger", label: "Urban hunter with blade and bow" },
-        { value: "Prodigy Savant", label: "Holo-screens, notebooks, calm focus" },
-        { value: "Fabricator Tech", label: "Toolbelts, drones, and workshop grease" },
-        { value: "Mutation Vanguard", label: "Shifting silhouette and bio glow" }
+        { value: "Street Brawler", label: "Industrial armor and cracked knuckles" },
+        { value: "The Elementalist", label: "Arc glow and swirling elements" },
+        { value: "The Detective", label: "Veiled eyes and spectral echoes" },
+        { value: "The Speedster", label: "Wind-cut cloak and grav boots" },
+        { value: "The Action Hero", label: "Urban hunter with blade and bow" },
+        { value: "The Detective", label: "Holo-screens, notebooks, calm focus" },
+        { value: "The Mechanic", label: "Toolbelts, drones, and workshop grease" },
+        { value: "The Mutant", label: "Shifting silhouette and bio glow" }
       ]},
       { key: "problem", prompt: "How do you solve a locked door?", options: [
-        { value: "Titan Brawler", label: "Kick it in" },
-        { value: "Stormshaper", label: "Melt or blast the hinges" },
-        { value: "Mindweaver", label: "Convince someone else to open it" },
-        { value: "Skyblade Courier", label: "Blink past it" },
-        { value: "Precision Ranger", label: "Pick it quietly between patrols" },
-        { value: "Prodigy Savant", label: "Find the hidden override" },
-        { value: "Fabricator Tech", label: "Deploy a bypass gadget" },
-        { value: "Mutation Vanguard", label: "Squeeze through the vents" }
+        { value: "Street Brawler", label: "Kick it in" },
+        { value: "The Elementalist", label: "Melt or blast the hinges" },
+        { value: "The Detective", label: "Convince someone else to open it" },
+        { value: "The Speedster", label: "Blink past it" },
+        { value: "The Action Hero", label: "Pick it quietly between patrols" },
+        { value: "The Detective", label: "Find the hidden override" },
+        { value: "The Mechanic", label: "Deploy a bypass gadget" },
+        { value: "The Mutant", label: "Squeeze through the vents" }
       ]},
       { key: "mentor", prompt: "Who would you apprentice under?", options: [
-        { value: "Titan Brawler", label: "A retired heavyweight hero" },
-        { value: "Stormshaper", label: "An arc reactor savant" },
-        { value: "Mindweaver", label: "A psychic spymaster" },
-        { value: "Skyblade Courier", label: "A legendary courier who never got tagged" },
-        { value: "Precision Ranger", label: "An assassin-turned-protector" },
-        { value: "Prodigy Savant", label: "A strategist who wins without fighting" },
-        { value: "Fabricator Tech", label: "A bunker engineer with too many drones" },
-        { value: "Mutation Vanguard", label: "An ancient shapeshifter" }
+        { value: "Street Brawler", label: "A retired heavyweight hero" },
+        { value: "The Elementalist", label: "An arc reactor savant" },
+        { value: "The Detective", label: "A psychic spymaster" },
+        { value: "The Speedster", label: "A legendary courier who never got tagged" },
+        { value: "The Action Hero", label: "An assassin-turned-protector" },
+        { value: "The Detective", label: "A strategist who wins without fighting" },
+        { value: "The Mechanic", label: "A bunker engineer with too many drones" },
+        { value: "The Mutant", label: "An ancient shapeshifter" }
       ]}
     ];
 
@@ -548,3 +541,6 @@
   </script>
 </body>
 </html>
+
+
+
