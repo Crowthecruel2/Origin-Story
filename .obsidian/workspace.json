@@ -1653,6 +1653,12 @@
                   "eState": "{}"
                 },
                 {
+                  "title": "Bio-Horror Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Bio-Horror Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bio-Horror Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":5},\"to\":{\"line\":3,\"ch\":5}},\"scroll\":3.4911056853854205}"
+                },
+                {
                   "title": "Techie",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
@@ -1759,12 +1765,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
+                "file": "2. Mechanics/Classes/Ranger/Ranger.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Bio-Horror Techie"
+              "title": "Ranger"
             }
           },
           {
@@ -2186,6 +2192,7 @@
   },
   "active": "ccc4e43afe9ab765",
   "lastOpenFiles": [
+    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
     "2. Mechanics/Classes/Techie/Techie.md",
     "2. Mechanics/Classes/Ranger/Assassin.md",
     "2. Mechanics/Classes/Ranger/Ranger.md",
@@ -2203,7 +2210,6 @@
     "2. Mechanics/Classes/Genius/Genius.md",
     "2. Mechanics/Classes/Manipulator/Manipulator.md",
     "2. Mechanics/Classes/Techie/Water Techie.md",
-    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
     "regenerate-powers.ps1",
     "wargame.html",
     "2nd Edition Final.pdf",
