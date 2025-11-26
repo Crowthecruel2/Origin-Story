@@ -1784,6 +1784,18 @@
                   "eState": "{}"
                 },
                 {
+                  "title": "Brick",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Brick/Brick.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Brick\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":8,\"ch\":0},\"to\":{\"line\":8,\"ch\":0}}}"
+                },
+                {
+                  "title": "Wielder",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Wielder.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Wielder\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":1,\"ch\":29},\"to\":{\"line\":1,\"ch\":29}}}"
+                },
+                {
                   "title": "Swordsman",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Ranger/Swordsman.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Swordsman\"}",
@@ -2130,12 +2142,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2. Mechanics/Classes/Ranger/Wielder.md",
+                "file": "1. World Almanac/World/The Undertow.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Wielder"
+              "title": "The Undertow"
             }
           },
           {
@@ -2557,6 +2569,9 @@
   },
   "active": "eb907754f5d187eb",
   "lastOpenFiles": [
+    "2. Mechanics/Classes/Brick/Brick.md",
+    "1. World Almanac/World/The Undertow.md",
+    "2. Mechanics/Classes/Ranger/Wielder.md",
     "2. Mechanics/Classes/Ranger/Swordsman.md",
     "2. Mechanics/Classes/Ranger/Parry.md",
     "2. Mechanics/Classes/Ranger/Boomeranger.md",
@@ -2580,9 +2595,6 @@
     "2. Mechanics/Classes/Manipulator/Statistician.md",
     "2. Mechanics/Classes/Manipulator/Mitosis.md",
     "2. Mechanics/Classes/Manipulator/Mind Control.md",
-    "2. Mechanics/Classes/Genius/Super Smarts.md",
-    "2. Mechanics/Classes/Genius/Super Reflex.md",
-    "2. Mechanics/Classes/Genius/Social.md",
     "2. Mechanics/Classes/Brick/Untitled",
     "quickstart.html",
     "lore.html",
