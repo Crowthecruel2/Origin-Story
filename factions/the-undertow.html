@@ -8,25 +8,245 @@
     :root { --bg:#050910; --panel:#0d1624; --card:#0f1c2d; --border:#233449; --accent:#38f2c7; --accent-2:#6dd3ff; --text:#e6ebf5; --muted:#9fb0c7; --shadow:0 20px 70px rgba(0,0,0,0.45); }
     body { margin:0; font-family:"Segoe UI","Inter",system-ui,-apple-system,sans-serif; color:var(--text); background:var(--bg); min-height:100vh; }
     a { color:inherit; text-decoration:none; }
-    .shell { max-width:900px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
+    .shell { max-width:1000px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
     .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; box-shadow:var(--shadow); display:grid; gap:0.6rem; }
     .pill { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.75rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--muted); font-weight:700; }
     .btn { display:inline-flex; align-items:center; gap:0.35rem; padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border); color:var(--text); background:transparent; font-weight:700; cursor:pointer; }
     .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); color:#0a1525; border:none; box-shadow:0 12px 30px rgba(56,242,199,0.35); }
     .muted { color:var(--muted); }
+    .two-col { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:0.8rem; }
+    .section-title { display:flex; align-items:center; gap:0.5rem; justify-content:space-between; }
+    .spoiler-note { color:var(--muted); font-size:0.9rem; }
+    .hidden { display:none !important; }
+    ul { margin:0.2rem 0 0.4rem 1.2rem; }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="pill">Faction</div>
     <div class="card">
-      <h1>The Undertow</h1>
-      <p class="muted">A sprawling smuggling syndicate rooted in the city's docks, abandoned storm canals, and tide-worn tunnels. Its enigmatic leader appears human, but those closest swear they've seen its eyes change with the moon, or its shadow stretch and ripple like something submerged. Ancient, patient, and terrifyingly intelligent, this creature hides behind a flawless human guise while guiding the Undertow's operations.</p>
+      <div class="section-title">
+        <h1 style="margin:0;">The Undertow</h1>
+        <button class="btn" id="spoilerToggle">Hide spoilers (GM)</button>
+      </div>
+      <p class="muted">A powerful smuggling syndicate rooted in the city’s drowned docks, warehouses, canals, and forgotten coastal districts. Most members are desperate humans chasing a payout; their leader, Marrowdeep, is something other than human wearing a flawless disguise. They work quietly: moving contraband, tightening invisible nets, and waiting for the city to sink one deal at a time.</p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <a class="btn" href="../lore.html#factions">Back to lore</a>
         <a class="btn primary" href="../character-builder.html">Open Character Builder</a>
       </div>
+      <div class="spoiler-note">Spoiler button hides GM info and keeps only rumors/myths visible.</div>
     </div>
+
+    <section class="card">
+      <h2 style="margin:0;">Rumors &amp; Myths</h2>
+      <ul>
+        <li>Some say the Undertow’s leader breathes seawater and has a second heartbeat like a wave under stone.</li>
+        <li>Dockhands whisper that three captains drowned and stood back up, now answering to the deep.</li>
+        <li>Smugglers swear there’s a tattoo-map that marks an airless vault beneath the harbor.</li>
+        <li>Old sailors insist shadows ripple like water around the Undertow’s safehouses.</li>
+      </ul>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">Lore (Public knowledge)</h2>
+      </div>
+      <p class="muted">“The tide pulls all things under.” The Undertow survives on human grit, cold efficiency, and smuggling mastery. What keeps them truly feared is the unseen presence of Marrowdeep, an eldritch titan in human form whose patience stretches for years. They favor quiet intimidation over open violence and let debt, secrecy, and contraband do the drowning.</p>
+      <div class="two-col">
+        <div>
+          <h3>What they do</h3>
+          <ul>
+            <li>Smuggle weapons, shard-infused items, mutagenic tech, and illegal freight.</li>
+            <li>Run black-market trades tied to mutation and eldritch artifacts.</li>
+            <li>Infiltrate and corrupt from the inside, slowly.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why they do it</h3>
+          <ul>
+            <li>Marrowdeep believes every city eventually sinks.</li>
+            <li>They collect leverage instead of territory.</li>
+            <li>They see mutation and the sea as inevitable forces.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Leadership</h2>
+      </div>
+      <h3 style="margin:0;">Marrowdeep — Titan in Human Form</h3>
+      <p class="muted">Born as Ellis Crane, reshaped by something ancient beneath the waves. Wears a human shape; leaks abyssal traits: pitch eyes, tidewater breath, a second heartbeat, shadows moving as if underwater. Seeks inevitability, not conquest.</p>
+      <div class="two-col">
+        <div>
+          <h4>Stats</h4>
+          <ul>
+            <li>Reflex 3 | Strength 6 | Social 5 | Smarts 4 | Durability 7 | Armor 3</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Powers</h4>
+          <ul>
+            <li>Lvl 1 — Abyssal Breath: breathe air/water; unsettling undertones.</li>
+            <li>Lvl 2 — Bent Pressure: local pressure control; bursts/knockback.</li>
+            <li>Lvl 3 — Partial Unmasking: tentacles, crushing strength, fear aura.</li>
+            <li>Lvl 4 (2 PP) — Abyssal Manifestation: kaiju surge, shadow limbs, psychic drowning.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Inner Circle — The Drowned</h2>
+      </div>
+      <p class="muted">Three captains drowned by Marrowdeep and reborn to breathe water. Not mutants, not gods, not men — something between.</p>
+      <div class="two-col">
+        <div>
+          <h3>Captain Rime — The Frost Lung</h3>
+          <p class="muted">Cold, emotionless enforcer.</p>
+          <ul>
+            <li>Stats: Reflex 2 | Strength 3 | Social 1 | Smarts 1 | Durability 4 | Armor 1</li>
+            <li>Lvl 1 Freezing Breath; Lvl 2 Ice Veins (slow aura); Lvl 3 Frostbite Strike; Lvl 4 (2 PP) Rimeburst.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Captain Undertide — The Kelp-Limbed Shade</h3>
+          <p class="muted">Fluid-bodied, unnervingly flexible.</p>
+          <ul>
+            <li>Stats: Reflex 3 | Strength 2 | Social 1 | Smarts 2 | Durability 4 | Armor 0</li>
+            <li>Lvl 1 Boneless; Lvl 2 Flowform Limbs; Lvl 3 Kelp Whip; Lvl 4 (2 PP) Undertow Body.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Captain Breakwater — The Shockwave Heart</h3>
+        <p class="muted">Brutal pressure-wave bruiser.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 4 | Social 0 | Smarts 1 | Durability 5 | Armor 2</li>
+          <li>Lvl 1 Pulse Beat; Lvl 2 Pressure Fist; Lvl 3 Breaker Stomp; Lvl 4 (2 PP) Tidal Convulsion.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Rank &amp; Structure</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>The Drift — Street Goons</h3>
+          <p class="muted">Ordinary smugglers, dock rats, runners, petty thieves.</p>
+          <ul>
+            <li>Stats: Reflex 0 | Strength 1 | Social 0 | Smarts 0 | Durability 1 | Armor 0</li>
+            <li>Pack Tactics (+1 when allies adjacent); Criminal Instinct (advantage to hide/flee); Cowardice (breaks quickly).</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Sinkers — Elite Lieutenants</h3>
+          <p class="muted">Humans warped by long exposure to Marrowdeep.</p>
+          <ul>
+            <li>Stats: Reflex 1 | Strength 2 | Social 1 | Smarts 1 | Durability 2 | Armor 1</li>
+            <li>Mutations: Gill Slits, Darkvision, Webbed Hands, Saltborne Resilience, Tidewhisper (telepathic link).</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted">The Drowned — Marrowdeep’s favored captains (see above) — act as the elite strike force.</p>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Operations</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Methods</h3>
+          <ul>
+            <li>Smuggling: weapons, shard items, mutagenic tech, illegal freight.</li>
+            <li>Extortion: quiet intimidation, rare open violence.</li>
+            <li>Black Market Trade: mutation/eldritch/unstable tech focus.</li>
+            <li>Infiltration: insider corruption and long-term manipulation.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Goals &amp; Philosophy</h3>
+          <ul>
+            <li>Every system breaks; every city sinks.</li>
+            <li>Every person is one tragedy away from drowning.</li>
+            <li>Collect leverage over outright conquest.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Encounters &amp; Hooks</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Player Interactions</h3>
+          <ul>
+            <li>Goons: street fights, ambushes, smuggling busts.</li>
+            <li>Sinkers: tougher fights; eerie loyalists with minor mutations.</li>
+            <li>The Drowned: mini-bosses in water-themed arenas.</li>
+            <li>Marrowdeep: late-campaign reveal; escalating stages.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Adventure Hooks</h3>
+          <ul>
+            <li>Missing Shipment: shard artifacts vanish into Undertow hands.</li>
+            <li>Floating Bodies: survivors suddenly breathe water at the docks.</li>
+            <li>Captain’s Wake: a Drowned abducts a scientist into tunnels.</li>
+            <li>Smuggler’s Map: tattooed skin hides a map beneath the city.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Aesthetic &amp; Tone</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Visual Themes</h3>
+          <ul>
+            <li>Barnacle textures, ropes, nets, lantern-lit docks.</li>
+            <li>Salt-soaked clothing; water pooled where none should be.</li>
+            <li>Dripping shadows; quiet wave sounds indoors.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Summary Vibe</h3>
+          <ul>
+            <li>Crime noir meets cosmic horror.</li>
+            <li>Organized smuggling plus mutant transformations.</li>
+            <li>Slow inevitability: the city sinks piece by piece.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const toggleBtn = document.getElementById("spoilerToggle");
+    const spoilerBlocks = () => document.querySelectorAll(".spoiler-content");
+    let spoilersHidden = true;
+
+    function applySpoilerState() {
+      spoilerBlocks().forEach(el => el.classList.toggle("hidden", spoilersHidden));
+      toggleBtn.textContent = spoilersHidden ? "Show GM details" : "Hide spoilers (GM)";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      spoilersHidden = !spoilersHidden;
+      applySpoilerState();
+    });
+
+    applySpoilerState();
+  </script>
 </body>
 </html>
