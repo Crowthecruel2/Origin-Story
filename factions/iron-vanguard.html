@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iron Vanguard | Origin Story</title>
+  <style>
+    :root { --bg:#050910; --panel:#0d1624; --card:#0f1c2d; --border:#233449; --accent:#38f2c7; --accent-2:#6dd3ff; --text:#e6ebf5; --muted:#9fb0c7; --shadow:0 20px 70px rgba(0,0,0,0.45); }
+    body { margin:0; font-family:"Segoe UI","Inter",system-ui,-apple-system,sans-serif; color:var(--text); background:var(--bg); min-height:100vh; }
+    a { color:inherit; text-decoration:none; }
+    .shell { max-width:900px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; box-shadow:var(--shadow); display:grid; gap:0.6rem; }
+    .pill { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.75rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--muted); font-weight:700; }
+    .btn { display:inline-flex; align-items:center; gap:0.35rem; padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border); color:var(--text); background:transparent; font-weight:700; cursor:pointer; }
+    .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); color:#0a1525; border:none; box-shadow:0 12px 30px rgba(56,242,199,0.35); }
+    .muted { color:var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="pill">Faction</div>
+    <div class="card">
+      <h1>Iron Vanguard</h1>
+      <p class="muted">A private military force armed with bleeding-edge exosuits, battlefield uplinks, and orbital weaponry. The Vanguard sees every conflict as a contract, every rescue as billable, and every life as an operational variable. Hardened by years of urban warfare, they fight with brutal precision whether protecting civilians or enforcing a corporation's interests.</p>
+      <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
+        <a class="btn" href="../lore.html#factions">Back to lore</a>
+        <a class="btn primary" href="../character-builder.html">Open Character Builder</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
