@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Clairvoyant.
+## Description
+All seeing
 
 | LEVEL | POINTS | ABILITY                                                                                           |
 | ----- | ------ | ------------------------------------------------------------------------------------------------- |

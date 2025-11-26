@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Skimmer.
+## Description
+Is the sky difficult terrain
 
 | LEVEL | POINTS | ABILITY                                                            |
 | ----- | ------ | ------------------------------------------------------------------ |

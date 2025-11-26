@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Null.
+## Description
+The great equalizer
 
 | LEVEL | POINTS | ABILITY                                                                                                                         |
 | ----- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |

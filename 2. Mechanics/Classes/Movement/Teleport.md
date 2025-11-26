@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Teleport (People).
+## Description
+Swapping Places
 
 | LEVEL | POINTS | ABILITY                                                                                                                            |
 | ----- | ------ | ---------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Pocket Dimension.
+## Description
+Your own Dimension (T&C's apply)
 
 | LEVEL | POINTS | ABILITY                                                                                                                                              |
 | ----- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Bombard.
+## Description
+Blow it all away
 
 | LEVEL | POINTS | ABILITY                                                                                                                 |
 | ----- | ------ | ----------------------------------------------------------------------------------------------------------------------- |

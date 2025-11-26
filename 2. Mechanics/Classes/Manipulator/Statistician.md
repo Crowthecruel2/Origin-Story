@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Statistician.
+## Description
+Take control of your Fate
 
 | LEVEL | POINTS | ABILITY                                                                            |
 | ----- | ------ | ---------------------------------------------------------------------------------- |

@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Flight.
+## Description
+Like a bird. Or not a bird
 
 | LEVEL | POINTS | ABILITY                                                                     |
 | ----- | ------ | --------------------------------------------------------------------------- |

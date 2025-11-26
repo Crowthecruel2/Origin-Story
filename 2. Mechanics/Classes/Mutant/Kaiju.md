@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Kaiju.
+## Description
+Stomp Stomp Stomp
 
 
 | LEVEL | POINTS | ABILITY                                                                                                                                                                                                                                                                                                                                                                                                                                     |

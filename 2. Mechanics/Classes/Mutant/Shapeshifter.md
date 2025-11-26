@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Shapeshifter.
+## Description
+I'm made of plastic! It's fantastic
 
 | LEVEL | POINTS | ABILITY                                                                                                                     |
 | ----- | ------ | --------------------------------------------------------------------------------------------------------------------------- |

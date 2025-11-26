@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Wielder.
+## Description
+Powers for using items better
 
 | LEVEL | POINTS | ABILITY                                                                   |
 | ----- | ------ | ------------------------------------------------------------------------- |

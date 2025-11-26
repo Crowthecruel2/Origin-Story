@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Telekinesis.
+## Description
+With the power of your MIND
 
 | LEVEL | POINTS | ABILITY                                                                                                                                                         |
 | ----- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Boomeranger.
+## Description
+It always comes back
 
 | LEVEL | POINTS | ABILITY                                                                 |
 | ----- | ------ | ----------------------------------------------------------------------- |

@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for SuperSpeed.
+## Description
+Fast as *Redacted*
 
 | LEVEL | POINTS | ABILITY                                                   |
 | ----- | ------ | --------------------------------------------------------- |

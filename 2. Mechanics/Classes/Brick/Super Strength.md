@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Super Strength.
+## Description
+Your might swells.
 
 | LEVEL | POINTS | ABILITY                                         |
 | ----- | ------ | ----------------------------------------------- |

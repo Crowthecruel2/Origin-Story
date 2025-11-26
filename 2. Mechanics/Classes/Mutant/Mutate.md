@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Mutate.
+## Description
+It GROWS!
 
 | LEVEL | POINTS | ABILITY                                                 |
 | ----- | ------ | ------------------------------------------------------- |

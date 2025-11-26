@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Vitality.
+## Description
+Your life swells.
 
 | LEVEL | POINTS | ABILITY                                             |
 | ----- | ------ | --------------------------------------------------- |

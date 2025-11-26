@@ -1,8 +1,7 @@
 ﻿## Description
 Add a short description for Movement.
 
-[[Flight]]
-[[Teleport (People)]]
+[[Flight]][[Teleport]]]
 [[SuperSpeed]]
 [[Skimmer]]
 [[Rocket]]

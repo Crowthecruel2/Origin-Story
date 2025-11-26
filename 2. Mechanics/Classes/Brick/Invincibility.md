@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Invincibility.
+## Description
+Make yourself immune to damages
 
 | LEVEL | POINTS | ABILITY                                         |
 | ----- | ------ | ----------------------------------------------- |

@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Parry.
+## Description
+The power to get good
 
 
 | LEVEL | POINTS | ABILITY                                                                                                     |     |

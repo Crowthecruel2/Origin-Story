@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Vampire.
+## Description
+Bloodsucker
 
 | LEVEL | POINTS | ABILITY                                                              |
 | ----- | ------ | -------------------------------------------------------------------- |

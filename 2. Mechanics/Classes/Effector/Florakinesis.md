@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Florakinesis.
+## Description
+Guardian of the wilds
 
 | LEVEL | POINTS | ABILITY                                                                                                                              |
 | ----- | ------ | ------------------------------------------------------------------------------------------------------------------------------------ |

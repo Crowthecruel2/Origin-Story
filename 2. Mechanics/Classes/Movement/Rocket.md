@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Rocket.
+## Description
+Blasting off again
 
 | LEVEL | POINTS | ABILITY                                                                                                                    |
 | ----- | ------ | -------------------------------------------------------------------------------------------------------------------------- |

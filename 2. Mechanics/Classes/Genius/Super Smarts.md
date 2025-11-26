@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Super Smarts.
+## Description
+12 steps ahead
 
 | LEVEL | POINTS | ABILITY                                                                                           |
 | ----- | ------ | ------------------------------------------------------------------------------------------------- |

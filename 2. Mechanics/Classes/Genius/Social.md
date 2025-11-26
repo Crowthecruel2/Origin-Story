@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Social.
+## Description
+Extravert
 
 | LEVEL | POINTS | ABILITY                                     |
 | ----- | ------ | ------------------------------------------- |

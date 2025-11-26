@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Brick Power.
+## Description
+Powers that increase your might.
 
 [[Super Strength]]
 [[Invincibility]]

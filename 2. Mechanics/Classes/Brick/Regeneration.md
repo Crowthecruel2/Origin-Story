@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Regeneration.
+## Description
+Your flesh will heal
 
 | LEVEL | POINTS | ABILITY                                                         |
 | ----- | ------ | --------------------------------------------------------------- |

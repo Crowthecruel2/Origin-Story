@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Titan.
+## Description
+Your own gaurdian angel
 
 | LEVEL | POINTS | ABILITY                                                                                              |
 | ----- | ------ | ---------------------------------------------------------------------------------------------------- |

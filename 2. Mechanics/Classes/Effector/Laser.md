@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Laser.
+## Description
+An attack fast as light
 
 | LEVEL | POINTS | ABILITY                                                    |
 | ----- | ------ | ---------------------------------------------------------- |

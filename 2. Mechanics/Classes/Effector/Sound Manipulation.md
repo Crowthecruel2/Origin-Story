@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Sound Manipulation.
+## Description
+Silence Reigns
 
 | LEVEL | POINTS | ABILITY                                                                                   |
 | ----- | ------ | ----------------------------------------------------------------------------------------- |

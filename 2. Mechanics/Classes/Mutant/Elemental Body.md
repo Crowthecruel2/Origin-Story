@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Elemental Body.
+## Description
+Rock Solid
 
 | LEVEL | POINTS | ABILITY                                                                                                              |
 | ----- | ------ | -------------------------------------------------------------------------------------------------------------------- |

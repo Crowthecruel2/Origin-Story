@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Swordsman.
+## Description
+The way of the sword
 
 | LEVEL | POINTS | ABILITY                                                                                       |
 | ----- | ------ | --------------------------------------------------------------------------------------------- |

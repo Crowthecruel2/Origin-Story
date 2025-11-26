@@ -1,5 +1,5 @@
-﻿## Description
-Add a short description for Rage.
+## Description
+A double edged sword.
 
 | LEVEL | POINTS | ABILITY                                                                         |
 | ----- | ------ | ------------------------------------------------------------------------------- |
