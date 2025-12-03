@@ -1653,6 +1653,42 @@
                   "eState": "{}"
                 },
                 {
+                  "title": "Aegis Initiative",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/Aegis Initiative.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Aegis Initiative\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":317,\"ch\":0},\"to\":{\"line\":317,\"ch\":0}},\"scroll\":299.63715277777777}"
+                },
+                {
+                  "title": "Children of Change",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/Children of Change.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Children of Change\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":305,\"ch\":0},\"to\":{\"line\":305,\"ch\":0}},\"scroll\":0}"
+                },
+                {
+                  "title": "Iron Vanguard",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/Iron Vanguard.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Iron Vanguard\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "The NightWatch",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/The NightWatch.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The NightWatch\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Iron Vanguard",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/Iron Vanguard.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Iron Vanguard\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":19},\"to\":{\"line\":0,\"ch\":19}},\"scroll\":0}"
+                },
+                {
+                  "title": "The NightWatch",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/The NightWatch.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The NightWatch\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":301,\"ch\":0},\"to\":{\"line\":301,\"ch\":0}},\"scroll\":16.789473684210527}"
+                },
+                {
                   "title": "The Undertow",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/The Undertow.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Undertow\"}",
@@ -1783,12 +1819,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. World Almanac/World/The NightWatch.md",
+                "file": "1. World Almanac/World/The Synapse Collective.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The NightWatch"
+              "title": "The Synapse Collective"
             }
           },
           {
@@ -2210,13 +2246,17 @@
   },
   "active": "ccc4e43afe9ab765",
   "lastOpenFiles": [
-    "1. World Almanac/World/The Undertow.md",
+    "factions/synapse-collective.html",
+    "1. World Almanac/World/Aegis Initiative.md",
+    "1. World Almanac/World/The Synapse Collective.md",
+    "1. World Almanac/World/Children of Change.md",
+    "1. World Almanac/World/Iron Vanguard.md",
     "1. World Almanac/World/The NightWatch.md",
+    "1. World Almanac/World/The Undertow.md",
     "2. Mechanics/Backgrounds/city_factions.md",
     "factions/the-undertow.html",
     "factions/veiled-arcanum.html",
     "factions/nightwatch.html",
-    "factions/synapse-collective.html",
     "factions/iron-vanguard.html",
     "factions/gaias-embrace.html",
     "factions/chronos-syndicate.html",
@@ -2241,11 +2281,6 @@
     "2. Mechanics/Classes/Mutant/Kaiju.md",
     "2. Mechanics/Classes/Mutant/Mutant.md",
     "2. Mechanics/Classes/Brick Power/Brick Power.md",
-    "2. Mechanics/Classes/Effector/Effector.md",
-    "2. Mechanics/Classes/Genius/Genius.md",
-    "2. Mechanics/Classes/Manipulator/Manipulator.md",
-    "2. Mechanics/Classes/Techie/Water Techie.md",
-    "2. Mechanics/Classes/Techie/Fire Techie.md",
     "Gemini_Generated_Image_musu04musu04musu.png",
     "z_Assets/Doctor Devious Nefarious Evil Bust.png"
   ]

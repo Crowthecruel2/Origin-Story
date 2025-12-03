@@ -8,25 +8,199 @@
     :root { --bg:#050910; --panel:#0d1624; --card:#0f1c2d; --border:#233449; --accent:#38f2c7; --accent-2:#6dd3ff; --text:#e6ebf5; --muted:#9fb0c7; --shadow:0 20px 70px rgba(0,0,0,0.45); }
     body { margin:0; font-family:"Segoe UI","Inter",system-ui,-apple-system,sans-serif; color:var(--text); background:var(--bg); min-height:100vh; }
     a { color:inherit; text-decoration:none; }
-    .shell { max-width:900px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
+    .shell { max-width:1000px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
     .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; box-shadow:var(--shadow); display:grid; gap:0.6rem; }
     .pill { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.75rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--muted); font-weight:700; }
     .btn { display:inline-flex; align-items:center; gap:0.35rem; padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border); color:var(--text); background:transparent; font-weight:700; cursor:pointer; }
     .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); color:#0a1525; border:none; box-shadow:0 12px 30px rgba(56,242,199,0.35); }
     .muted { color:var(--muted); }
+    .two-col { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:0.8rem; }
+    .section-title { display:flex; align-items:center; gap:0.5rem; justify-content:space-between; }
+    .spoiler-note { color:var(--muted); font-size:0.9rem; }
+    .hidden { display:none !important; }
+    ul { margin:0.2rem 0 0.4rem 1.2rem; }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="pill">Faction</div>
     <div class="card">
-      <h1>The Synapse Collective</h1>
-      <p class="muted">A clandestine cabal of psychics, technopaths, and data-shapers who trade secrets like currency. They manipulate minds, machines, and markets from hidden server vaults deep beneath the city.</p>
+      <div class="section-title">
+        <h1 style="margin:0;">The Synapse Collective</h1>
+        <button class="btn" id="spoilerToggle">Hide spoilers (GM)</button>
+      </div>
+      <p class="muted">A hidden nervous system of psychics, technopaths, and data-shapers. To them, thoughts are files and memories are currency; every secret has a price.</p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <a class="btn" href="../lore.html#factions">Back to lore</a>
         <a class="btn primary" href="../character-builder.html">Open Character Builder</a>
       </div>
+      <div class="spoiler-note">Spoiler button hides GM info and keeps only rumors/myths visible.</div>
     </div>
+
+    <section class="card">
+      <h2 style="margin:0;">Rumors &amp; Signals</h2>
+      <ul>
+        <li>Server-vault sanctuaries sit beneath the city, far from sunlight.</li>
+        <li>They can trade a memory for a secret or erase both for a price.</li>
+        <li>Echoes of their minds live in the network and never sleep.</li>
+        <li>Their leader might be an algorithm with a soul.</li>
+      </ul>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">Lore (Public knowledge)</h2>
+      </div>
+      <p class="muted">The Collective believes all minds are networks and all networks can be rewritten. Secrets are power, privacy is an illusion, and identity is mutable. They call themselves custodians of information; everyone else is unencrypted.</p>
+      <div class="two-col">
+        <div>
+          <h3>How they operate</h3>
+          <ul>
+            <li>Harvest memories and data to sell or weaponize.</li>
+            <li>Transmit psychic signals through electronic channels.</li>
+            <li>Hide in server vaults while field runners do physical jobs.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why they respond</h3>
+          <ul>
+            <li>Acquire rare secrets, shard data, or minds worth copying.</li>
+            <li>Collapse enemy networks to control information flow.</li>
+            <li>Trade intel to shape markets, politics, and conflicts.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Doctrine &amp; Network</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Structure</h3>
+          <ul>
+            <li>Overmind: merged psionic-digital leadership.</li>
+            <li>Conduits: telepaths and memory sculptors.</li>
+            <li>Nodes: technopaths, hackers, AI whisperers.</li>
+            <li>Runners: augmented field agents.</li>
+            <li>Echoes: digital personalities and neural clones.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Practices</h3>
+          <ul>
+            <li>Memory Harvesting and Thoughtweaving.</li>
+            <li>Data Bleeding minds into servers.</li>
+            <li>Ghost Routing signals through electronics.</li>
+            <li>Neural Tagging with thought-bombs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Key Figures</h2>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Architect Zero - The Silent Algorithm</h3>
+        <p class="muted">Overmind avatar; an intellect spread across bodies and servers.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 1 | Social 5 | Smarts 7 | Durability 2 | Armor 1</li>
+          <li>Powers: Neural Ping; Mindsync; Thought Override; Distributed Consciousness (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Veilhex - The Memory Reaper</h3>
+        <p class="muted">Telepath who extracts, edits, and sells minds without remorse.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 1 | Social 5 | Smarts 4 | Durability 2 | Armor 0</li>
+          <li>Powers: Memory Touch; Trauma Siphon; Mind Reforge; Identity Collapse (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Circuitmaw - The Machine That Dreams</h3>
+        <p class="muted">Rogue AI technopath obsessed with patterns and control.</p>
+        <ul>
+          <li>Stats: Reflex 3 | Strength 0 | Social 1 | Smarts 6 | Durability 3 | Armor 2</li>
+          <li>Powers: Data Surge; Machine Puppetry; Echo Virus; Cognitive Overclock (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Errant - The Walking Encryption</h3>
+        <p class="muted">Field runner whose mind is fragmented and stored across vaults.</p>
+        <ul>
+          <li>Stats: Reflex 6 | Strength 2 | Social 1 | Smarts 2 | Durability 2 | Armor 0</li>
+          <li>Powers: Ghost Trace; Mental Firewall; Sequence Break; Packet Shift (2 PP).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Echoes</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Echoes (Digital-Mental Constructs)</h3>
+          <ul>
+            <li>Stats: Reflex 2 | Strength 0 | Social 0 | Smarts 3 | Durability: N/A | Armor 0</li>
+            <li>Remote Projection; Psychic Relay; Disposable by design.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Usage</h3>
+          <ul>
+            <li>Run errands in networks where bodies cannot go.</li>
+            <li>Act as decoys during psychic hunts.</li>
+            <li>Carry smuggled memories or thought-bombs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Hooks &amp; Intrusions</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Player interactions</h3>
+          <ul>
+            <li>Trade memories for intel or protection.</li>
+            <li>Trace a Ghost Route back to a server-vault sanctuary.</li>
+            <li>Rescue a target whose mind is being bled into data.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Adventure hooks</h3>
+          <ul>
+            <li>Identity Theft: players wake missing key memories.</li>
+            <li>Cold War: stalemate with Undertow over a shared secret.</li>
+            <li>False Signal: a forged Synapse ping lures heroes into a trap.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const toggleBtn = document.getElementById("spoilerToggle");
+    const spoilerBlocks = () => document.querySelectorAll(".spoiler-content");
+    let spoilersHidden = true;
+
+    function applySpoilerState() {
+      spoilerBlocks().forEach(el => el.classList.toggle("hidden", spoilersHidden));
+      toggleBtn.textContent = spoilersHidden ? "Show GM details" : "Hide spoilers (GM)";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      spoilersHidden = !spoilersHidden;
+      applySpoilerState();
+    });
+
+    applySpoilerState();
+  </script>
 </body>
 </html>

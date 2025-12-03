@@ -8,25 +8,197 @@
     :root { --bg:#050910; --panel:#0d1624; --card:#0f1c2d; --border:#233449; --accent:#38f2c7; --accent-2:#6dd3ff; --text:#e6ebf5; --muted:#9fb0c7; --shadow:0 20px 70px rgba(0,0,0,0.45); }
     body { margin:0; font-family:"Segoe UI","Inter",system-ui,-apple-system,sans-serif; color:var(--text); background:var(--bg); min-height:100vh; }
     a { color:inherit; text-decoration:none; }
-    .shell { max-width:900px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
+    .shell { max-width:1000px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
     .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; box-shadow:var(--shadow); display:grid; gap:0.6rem; }
     .pill { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.75rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--muted); font-weight:700; }
     .btn { display:inline-flex; align-items:center; gap:0.35rem; padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border); color:var(--text); background:transparent; font-weight:700; cursor:pointer; }
     .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); color:#0a1525; border:none; box-shadow:0 12px 30px rgba(56,242,199,0.35); }
     .muted { color:var(--muted); }
+    .two-col { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:0.8rem; }
+    .section-title { display:flex; align-items:center; gap:0.5rem; justify-content:space-between; }
+    .spoiler-note { color:var(--muted); font-size:0.9rem; }
+    .hidden { display:none !important; }
+    ul { margin:0.2rem 0 0.4rem 1.2rem; }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="pill">Faction</div>
     <div class="card">
-      <h1>Iron Vanguard</h1>
-      <p class="muted">A private military force armed with bleeding-edge exosuits, battlefield uplinks, and orbital weaponry. The Vanguard sees every conflict as a contract, every rescue as billable, and every life as an operational variable. Hardened by years of urban warfare, they fight with brutal precision whether protecting civilians or enforcing a corporation's interests.</p>
+      <div class="section-title">
+        <h1 style="margin:0;">Iron Vanguard</h1>
+        <button class="btn" id="spoilerToggle">Hide spoilers (GM)</button>
+      </div>
+      <p class="muted">A mercenary hero company forged in war. They wear exosuits, sign contracts, and sanitize collateral damage through PR. To clients they are polished heroes; up close they are a paid army.</p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <a class="btn" href="../lore.html#factions">Back to lore</a>
         <a class="btn primary" href="../character-builder.html">Open Character Builder</a>
       </div>
+      <div class="spoiler-note">Spoiler button hides GM info and keeps only rumors/myths visible.</div>
     </div>
+
+    <section class="card">
+      <h2 style="margin:0;">Rumors &amp; Reports</h2>
+      <ul>
+        <li>The Bastion base is half fortress, half branding studio.</li>
+        <li>They only fight the Undertow or mutants when a contract clears.</li>
+        <li>Collateral damage is written off as "necessary expenditure."</li>
+        <li>Unauthorized possession of Vanguard tech is a federal crime.</li>
+      </ul>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">Lore (Public knowledge)</h2>
+      </div>
+      <p class="muted">The Vanguard motto to the public is "We protect because we can." Internally it is "Strength, Order, Victory." Profit, reputation, and tactical advantage come before civilians. They claim heroism; they operate like soldiers.</p>
+      <div class="two-col">
+        <div>
+          <h3>How they operate</h3>
+          <ul>
+            <li>Contracts dictate deployment and force.</li>
+            <li>Captains act as celebrity commanders.</li>
+            <li>PR sanitizes every mission report.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why they respond</h3>
+          <ul>
+            <li>Profitable contracts or optics.</li>
+            <li>Testing new tech in live scenarios.</li>
+            <li>Securing market share over Aegis.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Structure &amp; Tech</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Command tiers</h3>
+          <ul>
+            <li>Command: executives and decorated veterans.</li>
+            <li>Captains: elite exosuit pilots leading squads.</li>
+            <li>Vanguards: licensed armored operatives.</li>
+            <li>Recruits: trainees earning their plates.</li>
+            <li>Support Corps: engineers, medics, PR, drone ops.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Gear highlights</h3>
+          <ul>
+            <li>Exosuits, hazard mechs, modular jetpacks.</li>
+            <li>Smart rifles, shield projectors, anti-mutant tools.</li>
+            <li>Rumored shard-replicated alloys and stolen villain tech.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Key Officers</h2>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Commander Titanhart</h3>
+        <p class="muted">Leader rebuilt with alloy grafts; cold and charismatic.</p>
+        <ul>
+          <li>Stats: Reflex 3 | Strength 6 | Social 4 | Smarts 3 | Durability 6 | Armor 5</li>
+          <li>Powers: Alloy Fist; Anchor Form; Commanding Presence; Juggernaut Protocol (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Captain Redshift</h3>
+        <p class="muted">Ace pilot with velocity tech; supersonic scout and striker.</p>
+        <ul>
+          <li>Stats: Reflex 6 | Strength 2 | Social 2 | Smarts 2 | Durability 2 | Armor 3</li>
+          <li>Powers: Afterimage Dash; Sonic Lancer; Slipstream Field; Redline Overdrive (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Captain Ironhowl</h3>
+        <p class="muted">Breacher with shard-infused sonic scream and heavy suit.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 5 | Social 1 | Smarts 1 | Durability 5 | Armor 4</li>
+          <li>Powers: Shock Roar; Iron Frame; Breach Charge Voice; Howlstorm Barrage (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Captain Blueglass</h3>
+        <p class="muted">Precision sniper and intel lead; calculates impossible shots.</p>
+        <ul>
+          <li>Stats: Reflex 4 | Strength 1 | Social 1 | Smarts 6 | Durability 2 | Armor 2</li>
+          <li>Powers: True Sight; Glassline Shot; Probability Lock; Worldline Calculation (2 PP).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Forces</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Vanguards (Steelborn)</h3>
+          <ul>
+            <li>Stats: Reflex 2 | Strength 3 | Social 1 | Smarts 1 | Durability 3 | Armor 3</li>
+            <li>Tactical Discipline; Exosuit Strikes; Coordinated Fire.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Recruits (Greenplates)</h3>
+          <ul>
+            <li>Stats: Reflex 1 | Strength 1 | Social 0 | Smarts 1 | Durability 1 | Armor 1</li>
+            <li>Following Orders; Fragile Suits.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Hooks &amp; Collateral</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Player interactions</h3>
+          <ul>
+            <li>Negotiating contracts or evacuations with Command.</li>
+            <li>Surviving a Vanguard "rescue" with collateral risk.</li>
+            <li>Stealing or destroying proprietary tech.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Adventure hooks</h3>
+          <ul>
+            <li>Contract Clash: Vanguard and Aegis race to secure a target.</li>
+            <li>Breach of Bastion: infiltrate their HQ to expose ledger fraud.</li>
+            <li>Collateral Coverup: PR spins a disaster players witnessed.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const toggleBtn = document.getElementById("spoilerToggle");
+    const spoilerBlocks = () => document.querySelectorAll(".spoiler-content");
+    let spoilersHidden = true;
+
+    function applySpoilerState() {
+      spoilerBlocks().forEach(el => el.classList.toggle("hidden", spoilersHidden));
+      toggleBtn.textContent = spoilersHidden ? "Show GM details" : "Hide spoilers (GM)";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      spoilersHidden = !spoilersHidden;
+      applySpoilerState();
+    });
+
+    applySpoilerState();
+  </script>
 </body>
 </html>

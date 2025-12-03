@@ -8,25 +8,198 @@
     :root { --bg:#050910; --panel:#0d1624; --card:#0f1c2d; --border:#233449; --accent:#38f2c7; --accent-2:#6dd3ff; --text:#e6ebf5; --muted:#9fb0c7; --shadow:0 20px 70px rgba(0,0,0,0.45); }
     body { margin:0; font-family:"Segoe UI","Inter",system-ui,-apple-system,sans-serif; color:var(--text); background:var(--bg); min-height:100vh; }
     a { color:inherit; text-decoration:none; }
-    .shell { max-width:900px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
+    .shell { max-width:1000px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
     .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; box-shadow:var(--shadow); display:grid; gap:0.6rem; }
     .pill { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.75rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--muted); font-weight:700; }
     .btn { display:inline-flex; align-items:center; gap:0.35rem; padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border); color:var(--text); background:transparent; font-weight:700; cursor:pointer; }
     .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); color:#0a1525; border:none; box-shadow:0 12px 30px rgba(56,242,199,0.35); }
     .muted { color:var(--muted); }
+    .two-col { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:0.8rem; }
+    .section-title { display:flex; align-items:center; gap:0.5rem; justify-content:space-between; }
+    .spoiler-note { color:var(--muted); font-size:0.9rem; }
+    .hidden { display:none !important; }
+    ul { margin:0.2rem 0 0.4rem 1.2rem; }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="pill">Faction</div>
     <div class="card">
-      <h1>The Aegis Initiative</h1>
-      <p class="muted">A sleek corporate superhero program that markets justice as a premium service. Aegis operatives shine in PR campaigns and televised rescues, yet whispers of hidden labs and buried scandals follow them everywhere.</p>
+      <div class="section-title">
+        <h1 style="margin:0;">The Aegis Initiative</h1>
+        <button class="btn" id="spoilerToggle">Hide spoilers (GM)</button>
+      </div>
+      <p class="muted">A corporate superhero program that sells justice as a luxury brand. Every hero is a product, every rescue is content, and the cameras roll even when the stakes are life or death.</p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <a class="btn" href="../lore.html#factions">Back to lore</a>
         <a class="btn primary" href="../character-builder.html">Open Character Builder</a>
       </div>
+      <div class="spoiler-note">Spoiler button hides GM info and keeps only rumors/myths visible.</div>
     </div>
+
+    <section class="card">
+      <h2 style="margin:0;">Rumors &amp; PR Whispers</h2>
+      <ul>
+        <li>Hero contracts include social quotas for posts, smiles, and scripted lines.</li>
+        <li>Body-cams run beautification filters in real time.</li>
+        <li>Containment teams scrub collateral damage before news crews arrive.</li>
+        <li>Executives with zero combat experience approve every mission.</li>
+      </ul>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">Lore (Public knowledge)</h2>
+      </div>
+      <p class="muted">Aegis markets "Justice. Refined." Heroism must be uplifting, apolitical, and perfectly on-brand. They fight the perception of crime as much as the crime itself, preserving public trust through consistency more than honesty.</p>
+      <div class="two-col">
+        <div>
+          <h3>How they operate</h3>
+          <ul>
+            <li>PR teams script rescues and pre-stage media angles.</li>
+            <li>Heroes are licensed assets with merch lines.</li>
+            <li>Risky missions get sanitized or outsourced.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why they respond</h3>
+          <ul>
+            <li>Brand lift and trending moments.</li>
+            <li>High-value contracts and city sponsorships.</li>
+            <li>Control the narrative of heroism itself.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Structure &amp; Brand Machine</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Divisions</h3>
+          <ul>
+            <li>Executive Board: profit-first strategists.</li>
+            <li>Heroic Division: Paragons, Spotlights, Brand Assets.</li>
+            <li>PR &amp; Media: social feeds, merch, legal, image control.</li>
+            <li>Compliance &amp; Risk: keeps heroes brand-safe.</li>
+            <li>Containment &amp; Response: cleans up off-camera messes.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Tech &amp; image</h3>
+          <ul>
+            <li>Lightweight tactical suits with glam filters.</li>
+            <li>Drone swarms filming every angle.</li>
+            <li>Hero-branded merch and sponsorships.</li>
+            <li>Curated feeds per operative to steer public mood.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Flagship Operatives</h2>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Paragon Lumen - The Light We Deserve</h3>
+        <p class="muted">Flagship face; sincere but bound by contracts that script his heroism.</p>
+        <ul>
+          <li>Stats: Reflex 3 | Strength 2 | Social 6 | Smarts 2 | Durability 3 | Armor 1</li>
+          <li>Powers: Radiant Bolt; Halo Shield; Lumen Beam; Brand Ascendant (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Virtue Violet - Ethics in Action</h3>
+        <p class="muted">Activist-turned-hero; moral brand ambassador as long as PR approves.</p>
+        <ul>
+          <li>Stats: Reflex 3 | Strength 1 | Social 6 | Smarts 3 | Durability 2 | Armor 0</li>
+          <li>Powers: Empathic Insight; Soothing Presence; Spotlight Mark; Narrative Shift (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Silversentinel - Performance-Optimized Guardian</h3>
+        <p class="muted">Engineer in a modular suit; proof Aegis can field real muscle.</p>
+        <ul>
+          <li>Stats: Reflex 3 | Strength 3 | Social 1 | Smarts 4 | Durability 5 | Armor 6</li>
+          <li>Powers: Modular Plates; Pulse Projector; Sentinelframe; Hardlight Bulwark (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Sparklestrike - The Fan Favorite</h3>
+        <p class="muted">Youthful speedster branded for primetime; burning out under glitter.</p>
+        <ul>
+          <li>Stats: Reflex 6 | Strength 1 | Social 4 | Smarts 2 | Durability 2 | Armor 1</li>
+          <li>Powers: Glitter Dash; Shimmer Burst; Starfall Spiral; Primetime Mode (2 PP).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Ranks &amp; Assets</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Operatives (Brand Assets)</h3>
+          <ul>
+            <li>Stats: Reflex 2 | Strength 1 | Social 3 | Smarts 2 | Durability 2 | Armor 1</li>
+            <li>Camera-Ready; Scripted Heroics; Brand Safe.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cadets (Aegis Interns)</h3>
+          <ul>
+            <li>Stats: Reflex 1 | Strength 1 | Social 2 | Smarts 1 | Durability 1 | Armor 0</li>
+            <li>Media Training; Non-Combat Mandate.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Hooks &amp; Conflicts</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Player interactions</h3>
+          <ul>
+            <li>Negotiate with PR to access resources.</li>
+            <li>Expose sanitized reports vs real collateral.</li>
+            <li>Body-cam footage becomes key evidence.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Adventure hooks</h3>
+          <ul>
+            <li>Primetime Mission: players hired as silent backup off-camera.</li>
+            <li>Brand Crisis: leaked footage risks stock value; Aegis scrambles.</li>
+            <li>Containment Breach: hidden lab incident must be covered up fast.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const toggleBtn = document.getElementById("spoilerToggle");
+    const spoilerBlocks = () => document.querySelectorAll(".spoiler-content");
+    let spoilersHidden = true;
+
+    function applySpoilerState() {
+      spoilerBlocks().forEach(el => el.classList.toggle("hidden", spoilersHidden));
+      toggleBtn.textContent = spoilersHidden ? "Show GM details" : "Hide spoilers (GM)";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      spoilersHidden = !spoilersHidden;
+      applySpoilerState();
+    });
+
+    applySpoilerState();
+  </script>
 </body>
 </html>

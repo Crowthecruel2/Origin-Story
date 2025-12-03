@@ -8,25 +8,199 @@
     :root { --bg:#050910; --panel:#0d1624; --card:#0f1c2d; --border:#233449; --accent:#38f2c7; --accent-2:#6dd3ff; --text:#e6ebf5; --muted:#9fb0c7; --shadow:0 20px 70px rgba(0,0,0,0.45); }
     body { margin:0; font-family:"Segoe UI","Inter",system-ui,-apple-system,sans-serif; color:var(--text); background:var(--bg); min-height:100vh; }
     a { color:inherit; text-decoration:none; }
-    .shell { max-width:900px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
+    .shell { max-width:1000px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
     .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; box-shadow:var(--shadow); display:grid; gap:0.6rem; }
     .pill { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.75rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--muted); font-weight:700; }
     .btn { display:inline-flex; align-items:center; gap:0.35rem; padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border); color:var(--text); background:transparent; font-weight:700; cursor:pointer; }
     .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); color:#0a1525; border:none; box-shadow:0 12px 30px rgba(56,242,199,0.35); }
     .muted { color:var(--muted); }
+    .two-col { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:0.8rem; }
+    .section-title { display:flex; align-items:center; gap:0.5rem; justify-content:space-between; }
+    .spoiler-note { color:var(--muted); font-size:0.9rem; }
+    .hidden { display:none !important; }
+    ul { margin:0.2rem 0 0.4rem 1.2rem; }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="pill">Faction</div>
     <div class="card">
-      <h1>Children of Change</h1>
-      <p class="muted">A zealous mutant cult that worships transformation as divine truth. Their bodies shift, warp, and evolve through painful rituals and unstable genetic rites. From ragged Rejects to towering Gene Lords, every abomination is shaped by the cult's belief that flesh must be broken to be perfected. To the Children, mutation is salvation -- and the city is fertile ground for rebirth.</p>
+      <div class="section-title">
+        <h1 style="margin:0;">Children of Change</h1>
+        <button class="btn" id="spoilerToggle">Hide spoilers (GM)</button>
+      </div>
+      <p class="muted">A cult that preaches mutation as sacrament. They run hidden labs and slumside "clinics," offering rebirth through painful transformation. The flesh is a chrysalis, and they will break it open.</p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <a class="btn" href="../lore.html#factions">Back to lore</a>
         <a class="btn primary" href="../character-builder.html">Open Character Builder</a>
       </div>
+      <div class="spoiler-note">Spoiler button hides GM info and keeps only rumors/myths visible.</div>
     </div>
+
+    <section class="card">
+      <h2 style="margin:0;">Rumors &amp; Myths</h2>
+      <ul>
+        <li>Each sanctuary has bone-carved words: "The flesh is a chrysalis. Break it."</li>
+        <li>Failed transformations are "blessed but unready" and recycled into biotech.</li>
+        <li>Some initiates pay to be reborn; others vanish into back-alley clinics.</li>
+        <li>Whispers say their leader no longer has a stable shape.</li>
+      </ul>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">Lore (Public knowledge)</h2>
+      </div>
+      <p class="muted">The Children worship Change as a cosmic force. Mutation is destiny, pain is transformation, and the human form is a cage. They promise transcendence to the desperate, the devout, and the obsessed.</p>
+      <div class="two-col">
+        <div>
+          <h3>How they operate</h3>
+          <ul>
+            <li>Run secret labs and sanctuaries across the undercity.</li>
+            <li>Offer mutagenic rites in exchange for loyalty.</li>
+            <li>Send scouts and zealots to recruit the desperate.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why they transform</h3>
+          <ul>
+            <li>Humanity is incomplete; evolution must be forced.</li>
+            <li>Suffering is sacred because it births new forms.</li>
+            <li>They seek the next species and call it salvation.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Doctrine &amp; Roles</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Structure</h3>
+          <ul>
+            <li>The Gene-Lit: leaders so mutated they are barely human.</li>
+            <li>Fleshcallers: bioengineers and prophets running the rites.</li>
+            <li>Metamorphs: ascended mutants with varied forms.</li>
+            <li>Supplicants: initiates awaiting change.</li>
+            <li>Swarmkin: failed metamorphs used as shock troops.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Rites</h3>
+          <ul>
+            <li>Rite of Unmaking: strip stagnant traits.</li>
+            <li>Rite of Becoming: apply mutagenic catalysts.</li>
+            <li>Rite of Emergence: survivors awaken changed.</li>
+            <li>Dead are "blessed but unready" and recycled into cult biotech.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Key Figures</h2>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">The Gene Lord - Architect of New Flesh</h3>
+        <p class="muted">Leader whose body is constant metamorphosis; calm and convinced they are saving humanity.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 4 | Social 5 | Smarts 6 | Durability 6 | Armor 2</li>
+          <li>Powers: Mutable Flesh; Genetic Touch; Metamorph Pulse; Becoming Storm (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Fleshcaller Mara - Hand of the Chrysalis</h3>
+        <p class="muted">High priestess-surgeon guiding supplicants through the rites.</p>
+        <ul>
+          <li>Stats: Reflex 1 | Strength 1 | Social 4 | Smarts 5 | Durability 2 | Armor 1</li>
+          <li>Powers: Surgical Precision; Biograft; Flesh Weave; Mother's Gift (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Ironhusk - The Unbroken Metamorph</h3>
+        <p class="muted">Armored enforcer who views mutation as holy armor.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 6 | Social 1 | Smarts 1 | Durability 7 | Armor 5</li>
+          <li>Powers: Boneplate Skin; Crushing Form; Metamorph Bulk; Husk Rampage (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Glimmergraft - The Shining Child</h3>
+        <p class="muted">Luminous scout with refractive speed and blinding leaps.</p>
+        <ul>
+          <li>Stats: Reflex 6 | Strength 1 | Social 2 | Smarts 2 | Durability 2 | Armor 0</li>
+          <li>Powers: Luminous Step; Refractive Field; Blinding Flare; Chrysalis Leap (2 PP).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Ranks &amp; Forces</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Swarmkin (Mass Mutants)</h3>
+          <ul>
+            <li>Stats: Reflex 2 | Strength 3 | Social 0 | Smarts 0 | Durability 3 | Armor 1</li>
+            <li>Pack Hunger; Flesh Shift; Unstable Mutations.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Supplicants &amp; Metamorphs</h3>
+          <ul>
+            <li>Supplicants: desperate recruits awaiting transformation.</li>
+            <li>Metamorphs: varied gifts (gills, claws, wings, bone plating).</li>
+            <li>Failed metamorphosis is framed as "necessary shedding."</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Hooks &amp; Horror</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Player interactions</h3>
+          <ul>
+            <li>Rescue recruits before rites begin.</li>
+            <li>Infiltrate a sanctuary mid-transformation cycle.</li>
+            <li>Negotiate with Fleshcallers for an antidote or mutation.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Adventure hooks</h3>
+          <ul>
+            <li>Rite Gone Wrong: a Becoming Storm spills into the streets.</li>
+            <li>Missing Scientist: a bioengineer joins the cult for "freedom."</li>
+            <li>Mutagen Trade: Undertow brokers a deal for cult catalysts.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const toggleBtn = document.getElementById("spoilerToggle");
+    const spoilerBlocks = () => document.querySelectorAll(".spoiler-content");
+    let spoilersHidden = true;
+
+    function applySpoilerState() {
+      spoilerBlocks().forEach(el => el.classList.toggle("hidden", spoilersHidden));
+      toggleBtn.textContent = spoilersHidden ? "Show GM details" : "Hide spoilers (GM)";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      spoilersHidden = !spoilersHidden;
+      applySpoilerState();
+    });
+
+    applySpoilerState();
+  </script>
 </body>
 </html>
