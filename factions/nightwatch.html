@@ -8,25 +8,211 @@
     :root { --bg:#050910; --panel:#0d1624; --card:#0f1c2d; --border:#233449; --accent:#38f2c7; --accent-2:#6dd3ff; --text:#e6ebf5; --muted:#9fb0c7; --shadow:0 20px 70px rgba(0,0,0,0.45); }
     body { margin:0; font-family:"Segoe UI","Inter",system-ui,-apple-system,sans-serif; color:var(--text); background:var(--bg); min-height:100vh; }
     a { color:inherit; text-decoration:none; }
-    .shell { max-width:900px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
+    .shell { max-width:1000px; margin:1.5rem auto; padding:0 1.25rem 2rem; display:grid; gap:1rem; }
     .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:1.2rem; box-shadow:var(--shadow); display:grid; gap:0.6rem; }
     .pill { display:inline-flex; align-items:center; gap:0.4rem; padding:0.45rem 0.75rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,0.04); color:var(--muted); font-weight:700; }
     .btn { display:inline-flex; align-items:center; gap:0.35rem; padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border); color:var(--text); background:transparent; font-weight:700; cursor:pointer; }
     .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); color:#0a1525; border:none; box-shadow:0 12px 30px rgba(56,242,199,0.35); }
     .muted { color:var(--muted); }
+    .two-col { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:0.8rem; }
+    .section-title { display:flex; align-items:center; gap:0.5rem; justify-content:space-between; }
+    .spoiler-note { color:var(--muted); font-size:0.9rem; }
+    .hidden { display:none !important; }
+    ul { margin:0.2rem 0 0.4rem 1.2rem; }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="pill">Faction</div>
     <div class="card">
-      <h1>Nightwatch</h1>
-      <p class="muted">A network of masked street vigilantes who reject registration and oversight. Many have no powers -- just grit, trauma, and the willingness to fight where official heroes will not.</p>
+      <div class="section-title">
+        <h1 style="margin:0;">Nightwatch</h1>
+        <button class="btn" id="spoilerToggle">Hide spoilers (GM)</button>
+      </div>
+      <p class="muted">A loose alliance of vigilantes with no base, roster, or leadership. They work alone until a single signal cuts through the city: "Nightwatch. Convene." When that call comes, they gather, strike, and vanish back into the dark.</p>
       <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
         <a class="btn" href="../lore.html#factions">Back to lore</a>
         <a class="btn primary" href="../character-builder.html">Open Character Builder</a>
       </div>
+      <div class="spoiler-note">Spoiler button hides GM info and keeps only rumors/myths visible.</div>
     </div>
+
+    <section class="card">
+      <h2 style="margin:0;">Rumors &amp; Signals</h2>
+      <ul>
+        <li>No one knows how the convening call is sent; every vigilante just knows when to move.</li>
+        <li>The "Lantern" title shifts each crisis to whoever makes the call.</li>
+        <li>They refuse to register, sell merch, or sit for PR interviews.</li>
+        <li>Corporate heroes gripe that Nightwatch solves messes they were "about to handle."</li>
+      </ul>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">Lore (Public knowledge)</h2>
+      </div>
+      <p class="muted">The Nightwatch is a code, not a club: protect the city when no one else will. They distrust police, corporate hero programs, government agents, and anyone who treats heroics like a brand. Their only trust is the fragile, hard-won kind earned on rooftops and alleys.</p>
+      <div class="two-col">
+        <div>
+          <h3>How they operate</h3>
+          <ul>
+            <li>Stay solo until the convening signal hits.</li>
+            <li>Meet in the grey: back alleys, storm roofs, abandoned stations.</li>
+            <li>Disband the moment the crisis ends.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Why they respond</h3>
+          <ul>
+            <li>Fill the gap when official channels fail.</li>
+            <li>Stop collateral damage from overzealous authorities.</li>
+            <li>Protect people who will not or cannot ask for legal help.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: The Lantern Role</h2>
+      </div>
+      <p class="muted">The Lantern is whichever member calls the Watch together. They are not a commander, but they hold the keystone responsibilities that keep the vigilantes aligned.</p>
+      <div class="two-col">
+        <div>
+          <h3>Duties</h3>
+          <ul>
+            <li>Make the call: send the signal to convene.</li>
+            <li>Set boundaries: define the mission and prevent turf wars.</li>
+            <li>Keep peace: keep vigilantes from turning on each other.</li>
+            <li>Disband the Watch: dissolve the group when the job is done.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>GM Notes</h3>
+          <ul>
+            <li>Undertow targets Lantern candidates to fracture the Watch.</li>
+            <li>Anyone can rise to Lantern if they recognize the threat first.</li>
+            <li>Signal can be chalk sigils, hijacked feeds, or whispers through occult links.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Structure</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Layers</h3>
+          <ul>
+            <li>Solos: rare conveners, mostly lone operators.</li>
+            <li>Duos &amp; Micro-Cells: pairs or trios who already trust each other.</li>
+            <li>The Circle: veterans who answer most calls.</li>
+            <li>The Lantern: whoever called this crisis.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Operating truths</h3>
+          <ul>
+            <li>No HQ, no gear lockers, no official leadership.</li>
+            <li>Trust is earned by deeds, not votes.</li>
+            <li>Every convening is temporary by design.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Roster Highlights</h2>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Lanternjack - "The First to Answer"</h3>
+        <p class="muted">Oldest member; strategist and mediator who became the first Lantern by gathering strangers with chalk sigils.</p>
+        <ul>
+          <li>Stats: Reflex 3 | Strength 1 | Social 4 | Smarts 5 | Durability 2 | Armor 1</li>
+          <li>Powers: Perfect Read; Predictive Step; Lantern Call; Tactical Foresight (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Shadewalker - "The One Who Walks Behind"</h3>
+        <p class="muted">Stealth specialist rumored to have walked away from corporate hero work.</p>
+        <ul>
+          <li>Stats: Reflex 5 | Strength 2 | Social 0 | Smarts 2 | Durability 2 | Armor 1</li>
+          <li>Powers: Fade Step; Softfall; Shadow Stitch; Umbral Slip (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Wirerat - "The Sleepless Engineer"</h3>
+        <p class="muted">Gadgeteer whose moving sewer workshop and drone cloud keep the Watch geared and alive.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 1 | Social 1 | Smarts 6 | Durability 2 | Armor 2</li>
+          <li>Powers: Pocket Drones; Railglove; Microforge; Ratking Protocol (2 PP).</li>
+        </ul>
+      </div>
+      <div class="card" style="background:var(--panel); border-color:var(--border);">
+        <h3 style="margin:0;">Sparksprout - "The New Kid"</h3>
+        <p class="muted">Teenage mutant whose lightning burst drew the Watch's protection away from corporate agents.</p>
+        <ul>
+          <li>Stats: Reflex 2 | Strength 1 | Social 1 | Smarts 1 | Durability 2 | Armor 0</li>
+          <li>Powers: Static Pulse; Bioelectric Burst; Arc Wave; Stormheart Surge (2 PP).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Encounters &amp; Hooks</h2>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Player interactions</h3>
+          <ul>
+            <li>Solos: terse allies who might refuse help.</li>
+            <li>Duos/Micro-cells: coordinated but distrustful of outsiders.</li>
+            <li>The Circle: veteran operatives who set tone and tactics.</li>
+            <li>The Lantern: the convening anchor; if they fall, the Watch scatters.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Adventure hooks</h3>
+          <ul>
+            <li>Signal Jam: someone blocks the convening call during a crisis.</li>
+            <li>Lantern Hunt: Undertow moves to kidnap the current Lantern.</li>
+            <li>False Call: a forged signal lures vigilantes into a trap.</li>
+            <li>Broken Trust: corporate heroes demand the Watch unmask or stand down.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card spoiler-content">
+      <div class="section-title">
+        <h2 style="margin:0;">GM Section: Anecdote</h2>
+      </div>
+      <p class="muted">When Sparksprout's mutation erupted in a burning warehouse, corporate agents moved to sedate him. A single chalk sigil rolled into view before Lanternjack stepped from the smoke.</p>
+      <blockquote class="muted" style="margin:0; border-left:3px solid var(--border); padding-left:0.75rem;">"Stand down. He's with the Watch."</blockquote>
+      <p class="muted">Shadewalker disabled the agents. Wirerat's drones stabilized the air. The teen sobbed apologies until Lanternjack knelt and promised he would not face this alone. That night, the newest member joined the Nightwatch.</p>
+    </section>
   </main>
+
+  <script>
+    const toggleBtn = document.getElementById("spoilerToggle");
+    const spoilerBlocks = () => document.querySelectorAll(".spoiler-content");
+    let spoilersHidden = true;
+
+    function applySpoilerState() {
+      spoilerBlocks().forEach(el => el.classList.toggle("hidden", spoilersHidden));
+      toggleBtn.textContent = spoilersHidden ? "Show GM details" : "Hide spoilers (GM)";
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      spoilersHidden = !spoilersHidden;
+      applySpoilerState();
+    });
+
+    applySpoilerState();
+  </script>
 </body>
 </html>
