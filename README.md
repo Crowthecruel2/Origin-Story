@@ -1,1 +1,3 @@
-Website for my own use. Used for my TTRPG inspired by old 80's superhero comics
+- Website for my own use. Used for my TTRPG inspired by old 80's superhero comics
+- Repo Functions as a obsidian vault.
+- Used mostly to share with my friends for feedback
