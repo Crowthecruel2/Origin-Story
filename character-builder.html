@@ -107,7 +107,7 @@
     .primary-btn:hover { transform: translateY(-1px); }
     .secondary-btn:hover { border-color: var(--accent-2); color: var(--accent-2); }
     .app-shell {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 1.4rem auto 2rem;
       padding: 0 1.3rem 1.3rem;
       display: flex;
@@ -140,10 +140,15 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: 1.05fr 1.1fr 1fr 0.9fr;
+      grid-template-columns: 1.05fr 1.1fr 1fr 0.95fr;
+      grid-template-areas: "info sheet power items";
       gap: 1rem;
       align-items: start;
     }
+    .grid-info { grid-area: info; min-width: 320px; }
+    .grid-sheet { grid-area: sheet; min-width: 320px; }
+    .grid-power { grid-area: power; min-width: 320px; }
+    .grid-items { grid-area: items; min-width: 280px; }
     .panel {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -424,7 +429,14 @@
       font-family: "Segoe UI", monospace;
     }
     @media (max-width: 1180px) {
-      .grid { grid-template-columns: 1fr; }
+      .grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "info"
+          "sheet"
+          "power"
+          "items";
+      }
       .library-list { max-height: none; }
       .topbar { position: static; flex-direction: column; align-items: flex-start; }
     }
@@ -493,7 +505,7 @@
     <div id="statWarning" class="banner hidden print-hide"></div>
 
     <div class="grid">
-      <section class="panel" aria-label="Character information">
+      <section class="panel grid-info" aria-label="Character information">
         <div class="section-card">
           <div class="section-heading">Character Info</div>
           <div class="grid-2">
@@ -610,7 +622,7 @@
         </div>
       </section>
 
-      <section class="panel" aria-label="Character sheet" id="sheetPanel">
+      <section class="panel grid-sheet" aria-label="Character sheet" id="sheetPanel">
         <div class="section-card">
           <div class="section-heading">Inventory</div>
           <div class="flex-row print-hide">
@@ -635,7 +647,7 @@
         </div>
       </section>
 
-      <section class="panel" aria-label="Power library" id="libraryPanel">
+      <section class="panel grid-power" aria-label="Power library" id="libraryPanel">
         <div class="section-card">
           <div class="section-heading">Power Library <small class="muted">Search, filter, click for details</small></div>
           <div class="grid-2">
@@ -685,10 +697,6 @@
         <div class="section-card">
           <div id="powerList" class="library-list" aria-label="Available powers"></div>
         </div>
-        <div class="section-card">
-          <div class="section-heading">Items <small class="muted" id="itemStatus">Items gated by prerequisites</small></div>
-          <div id="itemList" class="library-list" aria-label="Available items"></div>
-        </div>
         <div class="section-card hidden" id="detailWrapper">
           <div id="powerDetail" class="detail-panel">
             <div class="section-title">Power details</div>
@@ -703,11 +711,17 @@
           </div>
         </div>
       </section>
+      <section class="panel grid-items" aria-label="Items library" id="itemsPanel">
+        <div class="section-card">
+          <div class="section-heading">Items <small class="muted" id="itemStatus">Items gated by prerequisites</small></div>
+          <div id="itemList" class="library-list" aria-label="Available items"></div>
+        </div>
       </section>
     </div>
   </main>
 
   <script src="powers-data.js"></script>
+  <script src="items-data.js"></script>
   <script>
     const powerLibrary = [];
     const chosenPowers = new Map();
@@ -1298,6 +1312,7 @@
     }
 
     async function fetchPowersJson() {
+      if (location.protocol === "file:") return null;
       try {
         const res = await fetch("powers.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -1311,6 +1326,7 @@
     }
 
     async function fetchItemsJson() {
+      if (location.protocol === "file:") return null;
       try {
         const res = await fetch("items.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -1320,12 +1336,50 @@
       } catch (err) {
         console.warn("Failed to load items.json", err);
       }
-      return [];
+      return null;
+    }
+
+    function extractItemsFromPowers(powers) {
+      const items = [];
+      powers.forEach(p => {
+        const content = p.content || "";
+        const blocks = content.split(/---+/);
+        blocks.forEach(raw => {
+          const b = raw.trim();
+          if (!b || !/Cost:/i.test(b)) return;
+          const lines = b.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+          const title = lines[0].replace(/^[#*\\s]+/, "");
+          if (!title) return;
+          let cost = "";
+          const effect = [];
+          lines.slice(1).forEach(l => {
+            const m = l.match(/^cost:\\s*(.+)$/i);
+            if (m) cost = m[1].trim();
+            else effect.push(l);
+          });
+          items.push({
+            id: `${p.name}-${title}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+            name: title,
+            from_power: p.name,
+            class_name: p.meta?.className || "General",
+            description: effect.join(" "),
+            cost,
+            prerequisites: [p.name],
+          });
+        });
+      });
+      return items;
     }
 
     async function hydratePowers(showAlert = true) {
       powerLibrary.length = 0;
       itemsLibrary = [];
+      // preload items from items.json if present
+      const itemsFromJson = await fetchItemsJson();
+      if (itemsFromJson && itemsFromJson.length) {
+        itemsLibrary = itemsFromJson;
+      }
+
       let rawList = await fetchPowersJson();
       let source = "powers.json";
 
@@ -1334,12 +1388,11 @@
         source = "powers-data.js";
       }
 
-      itemsLibrary = await fetchItemsJson();
-
       if (!rawList) {
         if (showAlert) alert("No powers found. Ensure powers.json or powers-data.js is available.");
         elements.loadBtn.textContent = "Retry loading powers";
         renderPowerLibrary([]);
+        renderItems();
         return;
       }
 
@@ -1355,6 +1408,12 @@
         };
         base.meta = inferMeta(base);
         powerLibrary.push(base);
+      }
+      if (!itemsLibrary.length && typeof EMBEDDED_ITEMS !== "undefined" && Array.isArray(EMBEDDED_ITEMS.items)) {
+        itemsLibrary = EMBEDDED_ITEMS.items;
+      }
+      if (!itemsLibrary.length) {
+        itemsLibrary = extractItemsFromPowers(powerLibrary);
       }
       hydrateFilters();
       applyFilters();
