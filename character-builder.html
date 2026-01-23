@@ -30,6 +30,7 @@
         radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.10), transparent 25%),
         var(--bg);
       min-height: 100vh;
+      padding-bottom: 70px;
     }
     a { color: inherit; text-decoration: none; }
     .topbar {
@@ -139,7 +140,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: 1.05fr 1.1fr 1fr;
+      grid-template-columns: 1.05fr 1.1fr 1fr 0.9fr;
       gap: 1rem;
       align-items: start;
     }
@@ -397,6 +398,31 @@
       z-index: 5;
     }
     .tooltip:hover::after { opacity: 1; transform: translateY(0); }
+    .code-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1rem;
+      background: rgba(7,12,21,0.92);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      z-index: 30;
+    }
+    .code-pill {
+      padding: 0.35rem 0.7rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-family: "Segoe UI", monospace;
+    }
     @media (max-width: 1180px) {
       .grid { grid-template-columns: 1fr; }
       .library-list { max-height: none; }
@@ -659,6 +685,10 @@
         <div class="section-card">
           <div id="powerList" class="library-list" aria-label="Available powers"></div>
         </div>
+        <div class="section-card">
+          <div class="section-heading">Items <small class="muted" id="itemStatus">Items gated by prerequisites</small></div>
+          <div id="itemList" class="library-list" aria-label="Available items"></div>
+        </div>
         <div class="section-card hidden" id="detailWrapper">
           <div id="powerDetail" class="detail-panel">
             <div class="section-title">Power details</div>
@@ -751,6 +781,9 @@
       sampleBanner: document.getElementById("sampleBanner"),
       startTourLink: document.getElementById("startTourLink"),
       detailWrapper: document.getElementById("detailWrapper"),
+      importCode: document.getElementById("importCode"),
+      itemList: document.getElementById("itemList"),
+      itemStatus: document.getElementById("itemStatus"),
     };
 
     const filters = { search: "", class: "all", level: "all", category: "all", action: "all" };
@@ -760,11 +793,29 @@
     let dirty = false;
     let filtersTouched = false;
     let appliedLevel1Default = false;
+    let itemsLibrary = [];
 
     function setDirty() {
       dirty = true;
       elements.saveStamp.textContent = `Last saved: unsaved changes`;
       if (elements.sampleBanner) elements.sampleBanner.classList.add("hidden");
+    }
+    function characterFingerprint() {
+      const data = serializeCharacter();
+      delete data.savedAt;
+      const json = JSON.stringify(data);
+      let hash = 5381;
+      for (let i = 0; i < json.length; i++) {
+        hash = ((hash << 5) + hash) ^ json.charCodeAt(i);
+      }
+      const code = Math.abs(hash >>> 0).toString(36).toUpperCase();
+      return `OS-${code}`;
+    }
+
+    function updateCharacterCode() {
+      if (!elements.importCode) return;
+      const code = characterFingerprint();
+      elements.importCode.textContent = code;
     }
     function getLevel() {
       return Number(elements.level.value) || 0;
@@ -832,6 +883,7 @@
       const summary = `Level ${getLevel()} | Health ${elements.health.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
       elements.summaryText.textContent = summary;
       elements.statBudgetBadge.textContent = `Stat budget: ${elements.statBasePool.value || 0} base + ${elements.statPerLevel.value || 0}/level (spent ${totalStats()})`;
+      updateCharacterCode();
     }
 
     function updatePPWarning() {
@@ -928,6 +980,7 @@
           setDirty();
           renderCharacterPowers();
           updateSummary();
+          renderItems();
         });
         right.appendChild(detailBtn);
         right.appendChild(removeBtn);
@@ -1028,11 +1081,13 @@
           setDirty();
           renderInventory();
           updateSummary();
+          renderItems();
         });
         row.appendChild(left);
         row.appendChild(btn);
         elements.inventoryList.appendChild(row);
       });
+      renderItems();
     }
     function inferMeta(power) {
       const className = power.path.includes("/") ? power.path.split("/")[0].replace(/\s+/g, " ").trim() : "Misc";
@@ -1201,19 +1256,94 @@
       renderPowerLibrary(list);
     }
 
+    function meetsItemPrereqs(item) {
+      const prereqs = item.prerequisites || [];
+      if (!prereqs.length) return true;
+      const ownedPowers = new Set(Array.from(chosenPowers.values()).map(p => p.name.toLowerCase()));
+      const ownedItems = new Set(inventory.map(i => i.name.toLowerCase()));
+      return prereqs.every(req => {
+        const val = String(req || "").toLowerCase();
+        return ownedPowers.has(val) || ownedItems.has(val);
+      });
+    }
+
+    function renderItems() {
+      if (!elements.itemList) return;
+      elements.itemList.innerHTML = "";
+      const available = itemsLibrary.filter(meetsItemPrereqs);
+      elements.itemStatus.textContent = available.length
+        ? `Showing ${available.length} craftable items`
+        : "No items available with current prerequisites.";
+      if (!available.length) return;
+      available.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "power-card";
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:0.6rem;">
+            <div>
+              <div style="font-weight:700;">${item.name}</div>
+              <div class="muted">${item.class_name || ""} ${item.from_power ? "• From: " + item.from_power : ""}</div>
+            </div>
+            ${item.cost ? `<span class="pill" style="border:1px solid var(--border);">Cost: ${item.cost}</span>` : ""}
+          </div>
+          <div class="muted" style="margin-top:0.35rem;">${item.description || ""}</div>
+        `;
+        elements.itemList.appendChild(card);
+      });
+    }
+
     function hydrateFilters() {
       const classes = Array.from(new Set(powerLibrary.map(p => p.meta.className))).sort((a, b) => a.localeCompare(b));
       elements.filterClass.innerHTML = `<option value="all">Any</option>` + classes.map(c => `<option value="${c}">${c}</option>`).join("");
     }
 
-    function hydrateFromEmbedded() {
-      if (typeof EMBEDDED_POWERS === "undefined") {
-        alert("Missing embedded powers data. Ensure powers-data.js is present.");
+    async function fetchPowersJson() {
+      try {
+        const res = await fetch("powers.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (data && Array.isArray(data.powers)) return data.powers;
+        if (Array.isArray(data)) return data;
+      } catch (err) {
+        console.warn("Failed to load powers.json", err);
+      }
+      return null;
+    }
+
+    async function fetchItemsJson() {
+      try {
+        const res = await fetch("items.json", { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (data && Array.isArray(data.items)) return data.items;
+        if (Array.isArray(data)) return data;
+      } catch (err) {
+        console.warn("Failed to load items.json", err);
+      }
+      return [];
+    }
+
+    async function hydratePowers(showAlert = true) {
+      powerLibrary.length = 0;
+      itemsLibrary = [];
+      let rawList = await fetchPowersJson();
+      let source = "powers.json";
+
+      if (!rawList && typeof EMBEDDED_POWERS !== "undefined") {
+        rawList = EMBEDDED_POWERS;
+        source = "powers-data.js";
+      }
+
+      itemsLibrary = await fetchItemsJson();
+
+      if (!rawList) {
+        if (showAlert) alert("No powers found. Ensure powers.json or powers-data.js is available.");
+        elements.loadBtn.textContent = "Retry loading powers";
+        renderPowerLibrary([]);
         return;
       }
 
-      powerLibrary.length = 0;
-      for (const raw of EMBEDDED_POWERS) {
+      for (const raw of rawList) {
         const normPath = (raw.path || "").replace(/\\/g, "/");
         const content = typeof raw.content === "string" ? raw.content : (raw.content?.value ?? "");
         const base = {
@@ -1231,7 +1361,8 @@
       renderCharacterPowers();
       appliedLevel1Default = false;
       maybeApplyLevelOneFilter();
-      elements.loadBtn.textContent = "Reload power data";
+      elements.loadBtn.textContent = `Reload powers (${source})`;
+      renderItems();
     }
     function addPowerToCharacter(power) {
       const existing = chosenPowers.get(power.path);
@@ -1244,6 +1375,7 @@
       setDirty();
       renderCharacterPowers();
       updateSummary();
+      renderItems();
     }
 
     function extractLevels(text) {
@@ -1488,6 +1620,7 @@
       dirty = false;
       renderCharacterPowers();
       renderInventory();
+      renderItems();
       updateSummary();
     }
     async function loadCharacterFromFile() {
@@ -1725,9 +1858,9 @@
     elements.loadCharacter.addEventListener("click", async () => {
       await loadCharacterFromFile();
     });
-    elements.loadBtn.addEventListener("click", () => {
+    elements.loadBtn.addEventListener("click", async () => {
       markFiltersTouched();
-      hydrateFromEmbedded();
+      await hydratePowers(true);
     });
     elements.search.addEventListener("input", () => {
       filters.search = elements.search.value;
@@ -1778,6 +1911,7 @@
       setDirty();
       renderInventory();
       updateSummary();
+      renderItems();
     });
     elements.printCharacter.addEventListener("click", () => {
       window.print();
@@ -1803,14 +1937,20 @@
       e.returnValue = "";
     });
 
-    hydrateFromEmbedded();
-    applyBuildFromQuery();
-    maybeApplyLevelOneFilter();
-    renderInventory();
-    renderCharacterPowers();
-    updateDerived();
-    updateSummary();
+    (async () => {
+      await hydratePowers(false);
+      applyBuildFromQuery();
+      maybeApplyLevelOneFilter();
+      renderInventory();
+      renderCharacterPowers();
+      updateDerived();
+      updateSummary();
+    })();
   </script>
+  <div class="code-bar">
+    Import code:
+    <span id="importCode" class="code-pill">--</span>
+  </div>
 </body>
 </html>
 
