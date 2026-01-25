@@ -650,10 +650,7 @@
       <section class="panel grid-power" aria-label="Power library" id="libraryPanel">
         <div class="section-card">
           <div class="section-heading">Power Library <small class="muted">Search, filter, click for details</small></div>
-          <div class="grid-2">
-            <input id="search" placeholder="Search powers or text..." aria-label="Search powers">
-            <button class="secondary-btn" id="loadPowers">Reload power data</button>
-          </div>
+          <input id="search" placeholder="Search powers or text..." aria-label="Search powers" style="width:100%; margin-bottom:0.75rem;">
           <div class="grid-3">
             <label>Class
               <select id="filterClass"></select>
@@ -720,12 +717,11 @@
     </div>
   </main>
 
-  <script src="powers-data.js"></script>
-  <script src="items-data.js"></script>
   <script>
     const powerLibrary = [];
     const chosenPowers = new Map();
     const inventory = [];
+    const isFileProtocol = location.protocol === "file:";
     const LOCAL_KEY = "origin-story-character-quick-save";
     const CATEGORY_DESCRIPTIONS = {
       Brick: "Powers that allow for supernatural strength or durability. Built like brick houses.",
@@ -748,7 +744,6 @@
       powerList: document.getElementById("powerList"),
       characterPowers: document.getElementById("characterPowers"),
       search: document.getElementById("search"),
-      loadBtn: document.getElementById("loadPowers"),
       selectCharacterFolder: document.getElementById("selectCharacterFolder"),
       loadCharacter: document.getElementById("loadCharacter"),
       characterFolderHint: document.getElementById("characterFolderHint"),
@@ -1284,6 +1279,10 @@
     function renderItems() {
       if (!elements.itemList) return;
       elements.itemList.innerHTML = "";
+      if (!itemsLibrary.length) {
+        elements.itemStatus.textContent = "No items loaded. Ensure items.json is available.";
+        return;
+      }
       const available = itemsLibrary.filter(meetsItemPrereqs);
       elements.itemStatus.textContent = available.length
         ? `Showing ${available.length} craftable items`
@@ -1312,7 +1311,7 @@
     }
 
     async function fetchPowersJson() {
-      if (location.protocol === "file:") return null;
+      if (isFileProtocol) return null;
       try {
         const res = await fetch("powers.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -1326,7 +1325,7 @@
     }
 
     async function fetchItemsJson() {
-      if (location.protocol === "file:") return null;
+      if (isFileProtocol) return null;
       try {
         const res = await fetch("items.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -1374,23 +1373,26 @@
     async function hydratePowers(showAlert = true) {
       powerLibrary.length = 0;
       itemsLibrary = [];
-      // preload items from items.json if present
       const itemsFromJson = await fetchItemsJson();
-      if (itemsFromJson && itemsFromJson.length) {
+      if (Array.isArray(itemsFromJson)) {
         itemsLibrary = itemsFromJson;
+      } else if (showAlert) {
+        const msg = isFileProtocol
+          ? "Items could not be loaded. Running from file:// blocks JSON fetches. Use 'Load items.json from disk' or host with a local server."
+          : "Items could not be loaded. Ensure items.json is available.";
+        alert(msg);
       }
 
-      let rawList = await fetchPowersJson();
-      let source = "powers.json";
-
-      if (!rawList && typeof EMBEDDED_POWERS !== "undefined") {
-        rawList = EMBEDDED_POWERS;
-        source = "powers-data.js";
-      }
+      const rawList = await fetchPowersJson();
+      const source = "powers.json";
 
       if (!rawList) {
-        if (showAlert) alert("No powers found. Ensure powers.json or powers-data.js is available.");
-        elements.loadBtn.textContent = "Retry loading powers";
+        if (showAlert) {
+          const msg = isFileProtocol
+            ? "No powers found. When opening from file:// browsers block JSON fetches. Please host this folder with a local server (e.g., python -m http.server) or deploy to a website."
+            : "No powers found. Ensure powers.json is available.";
+          alert(msg);
+        }
         renderPowerLibrary([]);
         renderItems();
         return;
@@ -1402,25 +1404,21 @@
         const base = {
           name: raw.name,
           path: normPath,
-          content,
-          description: raw.description || extractDescription(content),
-          levels: extractLevels(content),
-        };
-        base.meta = inferMeta(base);
-        powerLibrary.push(base);
+        content,
+        description: raw.description || extractDescription(content),
+        levels: extractLevels(content),
+      };
+      if (!base.levels || !base.levels.length) {
+        base.levels = [{ level: 1, text: content || base.description || base.name, cost: 1 }];
       }
-      if (!itemsLibrary.length && typeof EMBEDDED_ITEMS !== "undefined" && Array.isArray(EMBEDDED_ITEMS.items)) {
-        itemsLibrary = EMBEDDED_ITEMS.items;
-      }
-      if (!itemsLibrary.length) {
-        itemsLibrary = extractItemsFromPowers(powerLibrary);
+      base.meta = inferMeta(base);
+      powerLibrary.push(base);
       }
       hydrateFilters();
       applyFilters();
       renderCharacterPowers();
       appliedLevel1Default = false;
       maybeApplyLevelOneFilter();
-      elements.loadBtn.textContent = `Reload powers (${source})`;
       renderItems();
     }
     function addPowerToCharacter(power) {
@@ -1916,10 +1914,6 @@
     });
     elements.loadCharacter.addEventListener("click", async () => {
       await loadCharacterFromFile();
-    });
-    elements.loadBtn.addEventListener("click", async () => {
-      markFiltersTouched();
-      await hydratePowers(true);
     });
     elements.search.addEventListener("input", () => {
       filters.search = elements.search.value;

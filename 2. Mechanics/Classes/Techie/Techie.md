@@ -1,4 +1,4 @@
-﻿## Description
+## Description
 Add a short description for Techie.
 
 [[Mech Techie]]

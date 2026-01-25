@@ -1,4 +1,4 @@
-﻿## Description
+## Description
 Add a short description for Interface Techie.
 
 This ability allows the player to build Tinker Chemicals. Only this player can use the supertech unless specified otherwise.

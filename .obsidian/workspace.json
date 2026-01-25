@@ -1653,6 +1653,66 @@
                   "eState": "{}"
                 },
                 {
+                  "title": "Interface Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Interface Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Interface Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":155.80859375}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":7,\"ch\":12},\"to\":{\"line\":7,\"ch\":12}}}"
+                },
+                {
+                  "title": "Bio-Horror Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Bio-Horror Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Bio-Horror Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":104.216796875}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":5,\"ch\":13},\"to\":{\"line\":5,\"ch\":13}}}"
+                },
+                {
+                  "title": "Chemical Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Chemical Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Chemical Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":137.36959134615384}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":4,\"ch\":15},\"to\":{\"line\":4,\"ch\":15}}}"
+                },
+                {
+                  "title": "Mech Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Mech Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Mech Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}},\"scroll\":441.2916666666667}"
+                },
+                {
+                  "title": "Techie",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Classes/Techie/Techie.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Techie\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":3,\"ch\":6},\"to\":{\"line\":3,\"ch\":6}}}"
+                },
+                {
+                  "title": "Powers",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"2. Mechanics/Powers.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Powers\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":15,\"ch\":5},\"to\":{\"line\":15,\"ch\":5}},\"scroll\":0}"
+                },
+                {
+                  "title": "The Synapse Collective",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/The Synapse Collective.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"The Synapse Collective\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
                   "title": "Aegis Initiative",
                   "icon": "lucide-file",
                   "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/Aegis Initiative.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Aegis Initiative\"}",
@@ -1819,12 +1879,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "1. World Almanac/World/The Synapse Collective.md",
+                "file": "2. Mechanics/Classes/Techie/Techie.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "The Synapse Collective"
+              "title": "Techie"
             }
           },
           {
@@ -1858,6 +1918,24 @@
               "stack": [
                 {
                   "state": "{}",
+                  "eState": "{}"
+                },
+                {
+                  "title": "Children of Change",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/Children of Change.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Children of Change\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Iron Vanguard",
+                  "icon": "lucide-file",
+                  "state": "{\"type\":\"markdown\",\"state\":{\"file\":\"1. World Almanac/World/Iron Vanguard.md\",\"mode\":\"source\",\"source\":false},\"icon\":\"lucide-file\",\"title\":\"Iron Vanguard\"}",
+                  "eState": "{\"cursor\":{\"from\":{\"line\":0,\"ch\":0},\"to\":{\"line\":0,\"ch\":0}}}"
+                },
+                {
+                  "title": "Release Notes 1.11.5",
+                  "icon": "lucide-book-up",
+                  "state": "{\"type\":\"release-notes\",\"state\":{\"currentVersion\":\"1.11.5\"},\"icon\":\"lucide-book-up\",\"title\":\"Release Notes 1.11.5\"}",
                   "eState": "{}"
                 },
                 {
@@ -1935,14 +2013,18 @@
               ]
             },
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "1. World Almanac/World/Aegis Initiative.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Aegis Initiative"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -2244,13 +2326,22 @@
       "calendarium:Open Calendarium": false
     }
   },
-  "active": "ccc4e43afe9ab765",
+  "active": "9d5b46875347bd9c",
   "lastOpenFiles": [
-    "factions/synapse-collective.html",
-    "1. World Almanac/World/Aegis Initiative.md",
-    "1. World Almanac/World/The Synapse Collective.md",
     "1. World Almanac/World/Children of Change.md",
     "1. World Almanac/World/Iron Vanguard.md",
+    "2. Mechanics/Classes/Techie/Interface Techie.md",
+    "2. Mechanics/Classes/Techie/Techie.md",
+    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
+    "2. Mechanics/Classes/Techie/Chemical Techie.md",
+    "2. Mechanics/Classes/Techie/Mech Techie.md",
+    "2. Mechanics/Powers.md",
+    "2. Mechanics/Classes/Brick/Brick.md",
+    "2. Mechanics/Classes/Brick/Invincibility.md",
+    "2. Mechanics/Classes/Brick/Vitality.md",
+    "1. World Almanac/World/The Synapse Collective.md",
+    "factions/synapse-collective.html",
+    "1. World Almanac/World/Aegis Initiative.md",
     "1. World Almanac/World/The NightWatch.md",
     "1. World Almanac/World/The Undertow.md",
     "2. Mechanics/Backgrounds/city_factions.md",
@@ -2264,23 +2355,15 @@
     "factions/aegis-initiative.html",
     "factions",
     "2. Mechanics/Classes/Movement/Teleport.md",
-    "2. Mechanics/Classes/Brick/Vitality.md",
     "2. Mechanics/Classes/Brick/Super Strength.md",
     "2. Mechanics/Classes/Brick/Regeneration.md",
     "2. Mechanics/Classes/Brick/Rage.md",
-    "2. Mechanics/Classes/Brick/Invincibility.md",
-    "2. Mechanics/Classes/Brick/Brick.md",
     "2. Mechanics/Classes/Ranger/Ranger.md",
-    "2. Mechanics/Classes/Techie/Bio-Horror Techie.md",
-    "2. Mechanics/Classes/Techie/Techie.md",
     "2. Mechanics/Classes/Ranger/Assassin.md",
     "2. Mechanics/Classes/Ranger/Action Hero.md",
     "2. Mechanics/Classes/Movement/Teleport (People).md",
     "2. Mechanics/Backgrounds/The Sequenced/The Evolved.md",
     "2. Mechanics/Classes/Movement/Movement.md",
-    "2. Mechanics/Classes/Mutant/Kaiju.md",
-    "2. Mechanics/Classes/Mutant/Mutant.md",
-    "2. Mechanics/Classes/Brick Power/Brick Power.md",
     "Gemini_Generated_Image_musu04musu04musu.png",
     "z_Assets/Doctor Devious Nefarious Evil Bust.png"
   ]
