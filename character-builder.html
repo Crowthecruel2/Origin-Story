@@ -223,7 +223,7 @@
     .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
     .stats-pairs {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 28px 1fr;
       gap: 0.55rem 0.75rem;
       align-items: start;
     }
@@ -233,6 +233,8 @@
       font-weight: 800;
       letter-spacing: 0.02em;
     }
+    .stats-pairs label { display: grid; gap: 0.25rem; }
+    .stats-pairs .stat-help { align-self: center; justify-self: center; }
     .derived-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -507,46 +509,53 @@
           <div class="section-heading">Stats</div>
           <div class="stats-pairs coachmark" id="statsGroup">
             <div class="stat-col-title">Base</div>
+            <div></div>
             <div class="stat-col-title">Mods</div>
 
-            <label>Reflex (base) <span class="help-icon tooltip" data-tip="Speed, initiative, and quick moves.">?</span>
+            <label>Reflex (base)
               <input type="number" id="reflexBase" value="0" step="1">
             </label>
+            <span class="help-icon tooltip stat-help" data-tip="Speed, initiative, and quick moves.">?</span>
             <label>Reflex (mod)
               <input type="number" id="reflexMod" value="0" step="1">
             </label>
 
-            <label>Strength (base) <span class="help-icon tooltip" data-tip="Force, lifting, melee damage.">?</span>
+            <label>Strength (base)
               <input type="number" id="strengthBase" value="0" step="1">
             </label>
+            <span class="help-icon tooltip stat-help" data-tip="Force, lifting, melee damage.">?</span>
             <label>Strength (mod)
               <input type="number" id="strengthMod" value="0" step="1">
             </label>
 
-            <label>Smarts (base) <span class="help-icon tooltip" data-tip="Knowledge, perception, and planning.">?</span>
+            <label>Smarts (base)
               <input type="number" id="smartsBase" value="0" step="1">
             </label>
+            <span class="help-icon tooltip stat-help" data-tip="Knowledge, perception, and planning.">?</span>
             <label>Smarts (mod)
               <input type="number" id="smartsMod" value="0" step="1">
             </label>
 
-            <label>Social (base) <span class="help-icon tooltip" data-tip="Influence, negotiations, and presence.">?</span>
+            <label>Social (base)
               <input type="number" id="socialBase" value="0" step="1">
             </label>
+            <span class="help-icon tooltip stat-help" data-tip="Influence, negotiations, and presence.">?</span>
             <label>Social (mod)
               <input type="number" id="socialMod" value="0" step="1">
             </label>
 
-            <label>Durability (base) <span class="help-icon tooltip" data-tip="Toughness, endurance, and grit.">?</span>
+            <label>Durability (base)
               <input type="number" id="durabilityBase" value="0" step="1">
             </label>
+            <span class="help-icon tooltip stat-help" data-tip="Toughness, endurance, and grit.">?</span>
             <label>Durability (mod)
               <input type="number" id="durabilityMod" value="0" step="1">
             </label>
 
-            <label>Armor (base) <span class="help-icon tooltip" data-tip="Damage reduction; worn or innate.">?</span>
+            <label>Armor (base)
               <input type="number" id="armorBase" value="0" step="1">
             </label>
+            <span class="help-icon tooltip stat-help" data-tip="Damage reduction; worn or innate.">?</span>
             <label>Armor (mod)
               <input type="number" id="armorMod" value="0" step="1">
             </label>
@@ -885,7 +894,7 @@
       const { total, spent } = pointsSummary();
       const invCount = inventory.length;
       const powerCount = chosenPowers.size;
-      const summary = `Level ${getLevel()} | Health ${elements.healthCurrent.textContent}/${elements.healthMax.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
+      const summary = `Level ${getLevel()} | Health ${elements.healthCurrent.textContent}/${elements.healthMax.textContent} | Cash $${elements.cashDisplay.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
       elements.summaryText.textContent = summary;
       elements.statBudgetBadge.textContent = `Stat budget: ${elements.statBasePool.value || 0} base + ${elements.statPerLevel.value || 0}/level (spent ${totalStats()})`;
     }
