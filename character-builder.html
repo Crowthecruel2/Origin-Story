@@ -403,31 +403,6 @@
       z-index: 5;
     }
     .tooltip:hover::after { opacity: 1; transform: translateY(0); }
-    .code-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.65rem 1rem;
-      background: rgba(7,12,21,0.92);
-      border-top: 1px solid var(--border);
-      backdrop-filter: blur(8px);
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      z-index: 30;
-    }
-    .code-pill {
-      padding: 0.35rem 0.7rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      color: var(--text);
-      font-family: "Segoe UI", monospace;
-    }
     @media (max-width: 1180px) {
       .grid {
         grid-template-columns: 1fr;
@@ -451,10 +426,12 @@
       .library-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
     }
     @media print {
+      @page { margin: 20mm 15mm; }
       body { background: #fff; color: #000; }
       .topbar, .print-hide, #libraryPanel { display: none !important; }
       .grid { grid-template-columns: 1fr; }
-      .panel { box-shadow: none; border: 1px solid #ccc; background: #fff; }
+      .panel { box-shadow: none; border: 1px solid #ccc; background: #fff; page-break-inside: avoid; }
+      .app-shell > .grid > section:not(:first-child) { page-break-before: always; }
       .powers-zone, .power-card, .inventory-list > div { border-color: #aaa; background: #fff; }
       .banner { display: none !important; }
       .power-levels.collapsed { display: grid !important; }
@@ -584,7 +561,7 @@
           </div>
         </div>
 
-        <div class="section-card">
+        <div class="section-card print-hide" id="advancedBudgetCard">
           <div class="section-heading">Advanced: Stat budget (house rules)</div>
           <details class="advanced" id="advancedBudget">
             <summary>Adjust stat budget</summary>
@@ -600,7 +577,7 @@
           </details>
         </div>
 
-        <div class="section-card">
+        <div class="section-card print-hide" id="saveExportCard">
           <div class="section-heading">Save & Export</div>
           <div class="grid-2">
             <div class="coachmark" id="saveOptions">
@@ -790,7 +767,6 @@
       sampleBanner: document.getElementById("sampleBanner"),
       startTourLink: document.getElementById("startTourLink"),
       detailWrapper: document.getElementById("detailWrapper"),
-      importCode: document.getElementById("importCode"),
       itemList: document.getElementById("itemList"),
       itemStatus: document.getElementById("itemStatus"),
     };
@@ -808,23 +784,6 @@
       dirty = true;
       elements.saveStamp.textContent = `Last saved: unsaved changes`;
       if (elements.sampleBanner) elements.sampleBanner.classList.add("hidden");
-    }
-    function characterFingerprint() {
-      const data = serializeCharacter();
-      delete data.savedAt;
-      const json = JSON.stringify(data);
-      let hash = 5381;
-      for (let i = 0; i < json.length; i++) {
-        hash = ((hash << 5) + hash) ^ json.charCodeAt(i);
-      }
-      const code = Math.abs(hash >>> 0).toString(36).toUpperCase();
-      return `OS-${code}`;
-    }
-
-    function updateCharacterCode() {
-      if (!elements.importCode) return;
-      const code = characterFingerprint();
-      elements.importCode.textContent = code;
     }
     function getLevel() {
       return Number(elements.level.value) || 0;
@@ -892,7 +851,6 @@
       const summary = `Level ${getLevel()} | Health ${elements.health.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
       elements.summaryText.textContent = summary;
       elements.statBudgetBadge.textContent = `Stat budget: ${elements.statBasePool.value || 0} base + ${elements.statPerLevel.value || 0}/level (spent ${totalStats()})`;
-      updateCharacterCode();
     }
 
     function updatePPWarning() {
@@ -1069,35 +1027,78 @@
     function renderInventory() {
       elements.inventoryList.innerHTML = "";
       if (inventory.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "muted";
-        empty.textContent = "No items. Add one above.";
-        elements.inventoryList.appendChild(empty);
-        return;
-      }
-      inventory.forEach((item, idx) => {
-        const row = document.createElement("div");
-        const left = document.createElement("div");
-        left.innerHTML = `<strong>${item.name}</strong> x${item.qty}${item.notes ? " - " + item.notes : ""}`;
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.title = "Remove item";
-        btn.textContent = "Remove";
-        btn.className = "ghost-btn";
-        btn.style.padding = "0.25rem 0.5rem";
-        btn.addEventListener("click", () => {
-          inventory.splice(idx, 1);
-          setDirty();
-          renderInventory();
-          updateSummary();
-          renderItems();
-        });
-        row.appendChild(left);
-        row.appendChild(btn);
-        elements.inventoryList.appendChild(row);
-      });
-      renderItems();
+      const empty = document.createElement("div");
+      empty.className = "muted";
+      empty.textContent = "No items. Add one above.";
+      elements.inventoryList.appendChild(empty);
+      return;
     }
+    inventory.forEach((item, idx) => {
+      const row = document.createElement("div");
+      row.style.display = "flex";
+      row.style.alignItems = "center";
+      row.style.gap = ".4rem";
+      row.style.flexWrap = "wrap";
+
+      const nameInput = document.createElement("input");
+      nameInput.value = item.name;
+      nameInput.style.minWidth = "120px";
+      nameInput.placeholder = "Name";
+
+      const qtyInput = document.createElement("input");
+      qtyInput.type = "number";
+      qtyInput.min = "1";
+      qtyInput.value = item.qty || 1;
+      qtyInput.style.width = "70px";
+
+      const notesInput = document.createElement("input");
+      notesInput.value = item.notes || "";
+      notesInput.placeholder = "Notes/effects";
+      notesInput.style.flex = "1";
+      notesInput.style.minWidth = "180px";
+
+      const saveBtn = document.createElement("button");
+      saveBtn.type = "button";
+      saveBtn.textContent = "Save";
+      saveBtn.className = "secondary-btn";
+      saveBtn.style.padding = "0.25rem 0.65rem";
+      saveBtn.addEventListener("click", () => {
+        const name = nameInput.value.trim();
+        const qty = Number(qtyInput.value) || 1;
+        if (!name) {
+          alert("Item name is required.");
+          return;
+        }
+        inventory[idx] = { name, qty, notes: notesInput.value.trim() };
+        setDirty();
+        renderInventory();
+        updateSummary();
+        renderItems();
+      });
+
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.title = "Remove item";
+      removeBtn.textContent = "Remove";
+      removeBtn.className = "ghost-btn";
+      removeBtn.style.padding = "0.25rem 0.5rem";
+      removeBtn.addEventListener("click", () => {
+        inventory.splice(idx, 1);
+        setDirty();
+        renderInventory();
+        updateSummary();
+        renderItems();
+      });
+
+      row.appendChild(nameInput);
+      row.appendChild(qtyInput);
+      row.appendChild(notesInput);
+      row.appendChild(saveBtn);
+      row.appendChild(removeBtn);
+      elements.inventoryList.appendChild(row);
+    });
+    renderItems();
+  }
     function inferMeta(power) {
       const className = power.path.includes("/") ? power.path.split("/")[0].replace(/\s+/g, " ").trim() : "Misc";
       const levels = power.levels.map(l => l.level).filter(Boolean);
@@ -1564,6 +1565,7 @@
         .replace(/\s+/g, " ")
         .trim() || "character";
     }
+
     async function chooseCharacterFolder() {
       if (!window.showDirectoryPicker) {
         alert("Your browser does not support the File System Access API.");
@@ -1610,27 +1612,6 @@
         savedAt: new Date().toISOString(),
       };
     }
-
-    async function saveCharacterToFolder() {
-      try {
-        const dir = await ensureCharacterFolder();
-        if (!dir) return;
-        const data = serializeCharacter();
-        const fileName = sanitizeFileName(data.name || "character") + ".json";
-        const fileHandle = await dir.getFileHandle(fileName, { create: true });
-        const writable = await fileHandle.createWritable();
-        await writable.write(JSON.stringify(data, null, 2));
-        await writable.close();
-        lastSavedAt = data.savedAt;
-        dirty = false;
-        elements.saveStamp.textContent = `Last saved: ${formatTimestamp(lastSavedAt)}`;
-        alert(`Character saved as ${fileName}`);
-      } catch (err) {
-        console.error(err);
-        alert("Failed to save character. Check folder permissions.");
-      }
-    }
-
     function applyCharacter(data) {
       if (elements.sampleBanner) elements.sampleBanner.classList.add("hidden");
       document.getElementById("name").value = data.name || "";
@@ -1680,6 +1661,27 @@
       renderItems();
       updateSummary();
     }
+
+    async function saveCharacterToFolder() {
+      try {
+        const dir = await ensureCharacterFolder();
+        if (!dir) return;
+        const data = serializeCharacter();
+        const fileName = sanitizeFileName(data.name || "character") + ".json";
+        const fileHandle = await dir.getFileHandle(fileName, { create: true });
+        const writable = await fileHandle.createWritable();
+        await writable.write(JSON.stringify(data, null, 2));
+        await writable.close();
+        lastSavedAt = data.savedAt;
+        dirty = false;
+        elements.saveStamp.textContent = `Last saved: ${formatTimestamp(lastSavedAt)}`;
+        alert(`Character saved as ${fileName}`);
+      } catch (err) {
+        console.error(err);
+        alert("Failed to save character. Check folder permissions.");
+      }
+    }
+
     async function loadCharacterFromFile() {
       try {
         if (window.showOpenFilePicker) {
@@ -1909,12 +1911,6 @@
         }
       });
     });
-    elements.selectCharacterFolder.addEventListener("click", async () => {
-      await saveCharacterToFolder();
-    });
-    elements.loadCharacter.addEventListener("click", async () => {
-      await loadCharacterFromFile();
-    });
     elements.search.addEventListener("input", () => {
       filters.search = elements.search.value;
       markFiltersTouched();
@@ -1966,6 +1962,12 @@
       updateSummary();
       renderItems();
     });
+    elements.selectCharacterFolder.addEventListener("click", async () => {
+      await saveCharacterToFolder();
+    });
+    elements.loadCharacter.addEventListener("click", async () => {
+      await loadCharacterFromFile();
+    });
     elements.printCharacter.addEventListener("click", () => {
       window.print();
     });
@@ -2000,10 +2002,6 @@
       updateSummary();
     })();
   </script>
-  <div class="code-bar">
-    Import code:
-    <span id="importCode" class="code-pill">--</span>
-  </div>
 </body>
 </html>
 

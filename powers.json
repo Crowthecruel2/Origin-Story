@@ -507,8 +507,8 @@
       "tags": []
     },
     {
-      "id": "techie-divine-techie",
-      "name": "Divine Techie",
+      "id": "techie-divine-techie-1",
+      "name": "Divine Techie 1",
       "class_name": "Techie",
       "path": "Techie/Divine Techie.md",
       "description": "Lets you make super items with 2 different modes",
@@ -518,8 +518,8 @@
       "tags": []
     },
     {
-      "id": "techie-fire-techie",
-      "name": "Fire Techie",
+      "id": "techie-fire-techie-1",
+      "name": "Fire Techie 1",
       "class_name": "Techie",
       "path": "Techie/Fire Techie.md",
       "description": "Add a short description for Fire Techie.",
@@ -529,7 +529,7 @@
       "tags": []
     },
     {
-      "id": "techie-fortification-techie",
+      "id": "techie-fortification-techie-1",
       "name": "Fortification Techie",
       "class_name": "Techie",
       "path": "Techie/Fortification Techie.md",
@@ -540,7 +540,7 @@
       "tags": []
     },
     {
-      "id": "techie-gadget-techie",
+      "id": "techie-gadget-techie-1",
       "name": "Gadget Techie",
       "class_name": "Techie",
       "path": "Techie/Gadget Techie.md",
@@ -551,7 +551,7 @@
       "tags": []
     },
     {
-      "id": "techie-interface-techie",
+      "id": "techie-interface-techie-1",
       "name": "Interface Techie",
       "class_name": "Techie",
       "path": "Techie/Interface Techie.md",
@@ -562,7 +562,7 @@
       "tags": []
     },
     {
-      "id": "techie-mech-techie",
+      "id": "techie-mech-techie-1",
       "name": "Mech Techie",
       "class_name": "Techie",
       "path": "Techie/Mech Techie.md",
@@ -573,7 +573,7 @@
       "tags": []
     },
     {
-      "id": "techie-modular-items-techie",
+      "id": "techie-modular-items-techie-1",
       "name": "Modular Items Techie",
       "class_name": "Techie",
       "path": "Techie/Modular Items Techie.md",
@@ -584,7 +584,7 @@
       "tags": []
     },
     {
-      "id": "techie-self-augment-techie",
+      "id": "techie-self-augment-techie-1",
       "name": "Self Augment Techie",
       "class_name": "Techie",
       "path": "Techie/Self Augment Techie.md",
@@ -595,7 +595,7 @@
       "tags": []
     },
     {
-      "id": "techie-water-techie",
+      "id": "techie-water-techie-1",
       "name": "Water Techie",
       "class_name": "Techie",
       "path": "Techie/Water Techie.md",

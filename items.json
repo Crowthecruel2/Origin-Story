@@ -8,7 +8,7 @@
       "description": "The ability to make bio horror items # Lv1 Gene Synthesizer: A machine that spins junk DNA into the DNA of your choice. Requirements: None",
       "cost": "$100",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -19,7 +19,7 @@
       "description": "Effect: Allows you to install a gene mod once per turn. A human can only have 5 gene mods at one time or penalties start to happen. Requirements: None",
       "cost": "$100",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -30,7 +30,7 @@
       "description": "Effect: Reveals what species' DNA is present in any sample and whether it\u00e2\u20ac\u2122s viable for synthesis. Requirements: None",
       "cost": "$50",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -41,7 +41,7 @@
       "description": "Effect: After Implantation it allows the player to see in the dark and makes the player immune to fall damage. Requirements: Gene Synthesizer",
       "cost": "1kg of Cat flesh or blood.",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -52,7 +52,7 @@
       "description": "Effect: After Implantation it allows the player to see in a 20m radius with blindsight. Requirements: Gene Synthesizer",
       "cost": "1kg of Bat flesh or blood.",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -63,7 +63,7 @@
       "description": "Effect: After Implantation it allows the player to grow wings and fly. Requirements: Gene Synthesizer",
       "cost": "1kg of bird flesh or blood.",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -74,7 +74,7 @@
       "description": "Effect: After Implantation it forces the player to grow a crab claw which gives you a 1d8 melee dice and you grow armor plates that give you 1 armor. Requirements: Gene Synthesizer",
       "cost": "1kg of crab flesh or blood.",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -85,7 +85,7 @@
       "description": "Effect: After Implantation the player stops aging and instead the player grows larger every year. Requirements: Gene Synthesizer",
       "cost": "1kg of lobster flesh or blood.",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -96,7 +96,7 @@
       "description": "Effect: After Implantation the player can climb wall and his bite deals 3d4 poison damage after 3 turns. Requirements: Gene Synthesizer",
       "cost": "1kg of spider flesh or ichor.",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -107,7 +107,7 @@
       "description": "Effect: After Implantation the player becomes invisible to infrared and starts regenerating 1 Hp per turn. Requirements: Gene Synthesizer",
       "cost": "1kg of reptile flesh or blood.",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -118,7 +118,7 @@
       "description": "Effect: Advantage on stealth; immune to disease; squeeze through tiny holes Requirements: Gene Synthesizer",
       "cost": "1kg rat flesh or blood",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -129,7 +129,7 @@
       "description": "Effect: Super-smell (track targets within 2km), +2 initiative Requirements: Gene Synthesizer",
       "cost": "1kg canine flesh or blood",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -140,7 +140,7 @@
       "description": "Effect: Gain electroreceptors (sense movement in water), and touch deals 1d6 electric damage Requirements: Gene Synthesizer",
       "cost": "1kg jellyfish tissue",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -151,7 +151,7 @@
       "description": "Effect: Hardened exoskeletal patches grant +2 armor Requirements: Gene Synthesizer # Lv2\u00e2\u20ac\u0152 Gene Cocoon: A large mechanical pod like device. Used to make creatures from dna strands. Effect: Allows for the creation of creatures with gene mods. Requirements: None",
       "cost": "$1000",
       "prerequisites": [
-        "Bio-Horror Techie"
+        "Bio-Horror Techie 1"
       ]
     },
     {
@@ -162,7 +162,7 @@
       "description": "Add a short description for Chemical Techie. This ability allows the player to build Tinker Chemicals. Only this player can use the supertech unless specified otherwise. # Lv1 Bodysuits: This suit protects the wearer from chemicals and diseases. Effects: Grants immunity to all chemical and biological attacks. Requirements: None",
       "cost": "$10",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -173,7 +173,7 @@
       "description": "HyperGlue: A sticky substance that is a extremely powerful adhesive. Effect: When a person or object touches this substance they are stuck to it for 20 turns. Requirements: None",
       "cost": "$10 per use",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -184,7 +184,7 @@
       "description": "Boost Tonic: A sickly sweat substance that boosts one of your attributes. Effect: Roll 1D20 on anything but a 1 you gain 1D4 of the stat of your choice. On a 1 you take 1D4 damage. Lasts 50 turns. Requirements: None",
       "cost": "$100",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -195,7 +195,7 @@
       "description": "Basic Chemical Workbench: A small bench with a distillery and some beakers. Requirements: None",
       "cost": "$100",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -206,7 +206,7 @@
       "description": "Piranha Juice: A chemical that eats through exposed flesh. Effects: Deal 1D10 damage to an enemy. If they are unarmored, double this damage. Requirements: Basic Chemical workbench. \u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -217,7 +217,7 @@
       "description": "Substance Sprayer: A gun with a long nozzle that can spray substances up to 100m. Effects: Increases range of all substances to 100m. Requirements: Basic Chemical workbench.",
       "cost": "$100",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -228,7 +228,7 @@
       "description": "HP: 100 Movespeed: 15m per turn Armor: 2 Substance Slots: 2 Effects: Can Carty 10 stacks of 2 different Chemicals. Completely Airtight and functions as a basic Chemical Workbench. Increases strength to 10. Requirements: Mech Suit Tinker Lv 1",
       "cost": "$100",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -239,7 +239,7 @@
       "description": "Effect: Creates a 20m deep hole at location it was thrown. Requirements: Fortification Tinker Lv 1",
       "cost": "$1000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -250,7 +250,7 @@
       "description": "Enhanced Molotov: A Molotov cocktail that was made with a similar composition to Napalm and White Phosphorous. Effects: Lights a 10m area on fire. The fire lasts 2 hours. Damage: 1 damage per turn. Requirements: Basic Chemical Workbench.",
       "cost": "$10",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -261,7 +261,7 @@
       "description": "Effects: Causes blinding. Damage: 1 Requirements: Basic Chemical Workbench.",
       "cost": "$100",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -272,7 +272,7 @@
       "description": "Effects: Removes 1 days worth of memories after being ingested. Damage: None Requirements: Basic Chemical Workbench.",
       "cost": "$100",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -283,7 +283,7 @@
       "description": "Requirements: Basic Chemical Workbench.",
       "cost": "$1000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -294,7 +294,7 @@
       "description": "Effects: Spreads- spreads over a 1km area. Lasts 2 days. Damage: 1 damage per hour. Requirements: Chemical workbench\u00e2\u20ac\u0152.",
       "cost": "$1000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -305,7 +305,7 @@
       "description": "Effect: Sprays the loaded chemical in a 20m area. Requirements: Chemical workbench.",
       "cost": "$1000 Reusable",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -316,7 +316,7 @@
       "description": "Effect: Instantly takes effect and gives the target the flu. Requirements: Chemical workbench.",
       "cost": "$10000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -327,7 +327,7 @@
       "description": "Anthrax Gamma: A vial of Death. DO NOT USE ON ALLIES. Effect: Deals 1D4 damage per 12 hours unless treated. Requirements: Chemical workbench.",
       "cost": "$10000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -338,7 +338,7 @@
       "description": "Requirements: Chemical workbench.",
       "cost": "$100000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -349,7 +349,7 @@
       "description": "Effect: Returns a target from death and heals them to full. Requirements: Chemical Workshop",
       "cost": "$100000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -360,7 +360,7 @@
       "description": "Effect: Turns a corpse into a zombie that attacks the living. The zombie spreads the virus by hitting someone. Zombies have a -5 to all rolls. Requirement: Chemical Workshop.",
       "cost": "$100000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -371,7 +371,7 @@
       "description": "Effect: Boosts a random stat by 1D4 permanently Requirement: Chemical Workshop.",
       "cost": "$100000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -382,7 +382,7 @@
       "description": "Effect: Allows you to apply a single chemical to the entire city Requirements: Chemical Workshop.",
       "cost": "$1000000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -393,7 +393,7 @@
       "description": "Effect: Gives a unpowered person 1 point worth of powers chosen randomly. Requirements: Chemical Workshop.",
       "cost": "$1000000",
       "prerequisites": [
-        "Chemical Techie"
+        "Chemical Techie 1"
       ]
     },
     {
@@ -404,7 +404,7 @@
       "description": "Effect: While worn it grants +4 armor. You have -2 to reflex. It can transform into Bow of Artemis. Range: Melee Damage: 1D4 Requirement: none",
       "cost": "$10000",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 1"
       ]
     },
     {
@@ -415,7 +415,7 @@
       "description": "Effect: This weapon ignores 4 armor. You get -2 to Smarts. It can transform into Shield of Athena Range: 75m Damage: 1d12 Requirements: none",
       "cost": "$10000",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 1"
       ]
     },
     {
@@ -424,9 +424,9 @@
       "from_power": "Divine Techie",
       "class_name": "Techie",
       "description": "Effect: Damage increases by +1 for every 30 enemies slain. Can Transform into Hand Axes of Enyu. Range: Melee Damage: 1d6 Requirements: none",
-      "cost": "$10000.01",
+      "cost": "$10000",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie  1"
       ]
     },
     {
@@ -435,9 +435,9 @@
       "from_power": "Divine Techie",
       "class_name": "Techie",
       "description": "Effect: Heal 2 health on every hit, gain +1 to this effect for every 30 enemies slain. Can Transform into Great Axe of Ares. Range: Melee Damage: 1d4 each Requirements: none",
-      "cost": "$10000.01",
+      "cost": "$10000",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 1"
       ]
     },
     {
@@ -448,7 +448,7 @@
       "description": "Effect: When an enemy is hit. Temporarily reduce their Smarts by 2. Can transform into Whip of Aphrodite. Range: Melee Damage: 1d4 Requirements: none",
       "cost": "$10000.02",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 1"
       ]
     },
     {
@@ -459,7 +459,7 @@
       "description": "Effect: When a character is whipped. Temporarily increase their social by 2. Can transform into Staff of Dionysus. Range: Melee Damage: 1d4 Requirements: none",
       "cost": "$10000.02",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 1"
       ]
     },
     {
@@ -470,7 +470,7 @@
       "description": "Effect: Gives the wearer +3 to social. The wearer has -3 to durability while wearing. Can Transform into Ring of Eris. Requirements: none",
       "cost": "$10000.03",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 1"
       ]
     },
     {
@@ -481,7 +481,7 @@
       "description": "Effect: You can reroll 1 enemy roll per round. The wearer gets -3 to social while wearing. Can Transform into Ring of Apollo. # Lv2",
       "cost": "$10000.03",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 1"
       ]
     },
     {
@@ -492,7 +492,7 @@
       "description": "Effect: When you hit an enemy and an ally hits them after, the enemy takes damage equal to the amount of times this effect has been applied, Applied Additively. Can transform into a Bastard Sword of Hades Range: Melee Damage: 1d4 Requirements: none\u00e2\u20ac\u0152",
       "cost": "$20000",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 2"
       ]
     },
     {
@@ -503,7 +503,7 @@
       "description": "Effect: You can mark a target once in combat. This target can now only damage you and be damaged by you. When the enemy dies they can be resummoned as a ghost with 1 in every stat and their powers at 1 tenth strength. Can transform into Mace of Zeus Range Melee Damage: 1d6 Requirements: none\u00e2\u20ac\u0152",
       "cost": "$20000",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 2"
       ]
     },
     {
@@ -514,7 +514,7 @@
       "description": "Effect: Poisons an enemy hit to take 1 damage per turn forever. Can Transform into a Staff of Asclepius Range: 50m Damage: 1d4 Requirements: none\u00e2\u20ac\u0152",
       "cost": "$20000.08",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 2"
       ]
     },
     {
@@ -525,7 +525,7 @@
       "description": "Effect: Can be used to remove every debuff from an ally and heal them for 1d4, this effect need to be used as a action. Can transform into the Shuriken's of Achlys Range: 20m Damage: 1d4 Requirements: none\u00e2\u20ac\u0152",
       "cost": "$20000.08",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 2"
       ]
     },
     {
@@ -536,7 +536,7 @@
       "description": "Effect: Must be found and can not be built. When you shoot an enemy you roll a 1d100. The DM decides what the bullet does. Range: 100m Damage: 1d10 Requirements: none\u00e2\u20ac\u0152",
       "cost": "None",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 2"
       ]
     },
     {
@@ -547,7 +547,7 @@
       "description": "Effect: You go one higher in the initiative order. You get 1 free turn before the combat begins. You move faster than your party members. Can Transform into Fingerless Gloves of Chronos. Requirements: None\u00e2\u20ac\u0152",
       "cost": "$20000.07",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 2"
       ]
     },
     {
@@ -558,7 +558,7 @@
       "description": "Effect: Provides hidden bonus. Every second attack moves an enemy 1 step down in the initiative order. Requirements: None\u00e2\u20ac\u0152 # Lv3",
       "cost": "$20000.07",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 2"
       ]
     },
     {
@@ -569,7 +569,7 @@
       "description": "Effect: You may ask the book any question. The DM then secretly rolls 1d4. On a 1 the book gives the truth. On a 2 or 3 the book gives 42 and 24 unrespectivly. On a 4 the book gives a believable lie. Requirements: None\u00e2\u20ac\u0152",
       "cost": "$30000.1",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 3"
       ]
     },
     {
@@ -580,7 +580,7 @@
       "description": "Effect: Gain +1 damage and +2 healing with every 15 enemies slain. The Axe Heals for 2 on every hit. Range: Melee Damage: 1d12 Requirements: None \u00e2\u20ac\u0152",
       "cost": "$10000, Greataxe of Ares, Hand Axes of Enyu",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 3"
       ]
     },
     {
@@ -591,7 +591,7 @@
       "description": "Effect: You can give 1 ally advantage to rolls for the round or reroll 3 enemies rolls. It also gives +3 to social. Requirements: None\u00e2\u20ac\u0152",
       "cost": "$10000, Ring of Eris, Ring of Apollo",
       "prerequisites": [
-        "Divine Techie"
+        "Divine Techie 3"
       ]
     },
     {
@@ -1160,10 +1160,10 @@
       "name": "Armored Tuxedo: A impressive looking suit that has armor plates sown into it.",
       "from_power": "Gadget Techie",
       "class_name": "Techie",
-      "description": "Effect: Gain +2 armor Requirements: None\u00e2\u20ac\u0152",
+      "description": "Effect: Gain +2 armor",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1171,10 +1171,10 @@
       "name": "Concealed Knife: A knife concealed as a item of the players choice.",
       "from_power": "Gadget Techie",
       "class_name": "Techie",
-      "description": "Range: Touch Damage: 1d6 Effect: Can do lethal damage. Requirements: None.\u00e2\u20ac\u0152",
+      "description": "Range:Touch, Damage: 1d6, Effect: Can do lethal damage.",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1185,7 +1185,7 @@
       "description": "Range: Touch or thrown Damage: None Effect: Enemy makes a durability check. Below a 6 causes them to be knocked out. Requirements: None.\u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1196,7 +1196,7 @@
       "description": "Effect: Allows for more complex gadgets. Requirements: None[br]\u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1207,7 +1207,7 @@
       "description": "Range: 5m Damage: 1d8 Requirements: Suitcase Workbench.[br]\u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techi 1"
       ]
     },
     {
@@ -1218,7 +1218,7 @@
       "description": "Hp: 40 Armor: 2 Gadget slots: 2 Effect: Boosts strength by 4. Can have 2 gadgets built into it. Requirements: Mech Suit Tinker Lv 1[br]\u00e2\u20ac\u0152",
       "cost": "$1000",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1229,7 +1229,7 @@
       "description": "Effect: Spray a single substance up to 5m. Requirements: Chemical Tinker.[br]\u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1240,7 +1240,7 @@
       "description": "Hp: 2 Damage: 1 per turn. Requirements: Fort Tinker Lv 1[br]\u00e2\u20ac\u0152",
       "cost": "$10",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1251,7 +1251,7 @@
       "description": "Effect: One time use. Stuns enemies in a 5m radius for 3 turns. Requirements: Interface Tinker Lv 1.[br]\u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1262,7 +1262,7 @@
       "description": "Range: 20m Damage: 1d10 Requirements: Suitcase Workbench [br]\u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1273,7 +1273,7 @@
       "description": "Range: 10m Damage: 1d8 Non lethal damage. Effect: Can be shot twice per action. Requirement: Suitcase Workshop [br]\u00e2\u20ac\u0152",
       "cost": "$100",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 1"
       ]
     },
     {
@@ -1284,7 +1284,7 @@
       "description": "Range: 100m Damage: 1d20 in a 5m radius. Requirement: Suitcase Workshop [br]\u00e2\u20ac\u0152",
       "cost": "$1000",
       "prerequisites": [
-        "Gadget Techie"
+        "Gadget Techie 2"
       ]
     },
     {
