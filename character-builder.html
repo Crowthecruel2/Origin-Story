@@ -1488,6 +1488,10 @@
         base.levels = [{ level: 1, text: content || base.description || base.name, cost: 1 }];
       }
       base.meta = inferMeta(base);
+      // Techie powers: treat as a single purchasable level, with details living in the items system.
+      if ((base.path || "").startsWith("Techie/") || base.meta.className === "Techie") {
+        base.levels = [{ level: 1, text: base.description || base.name, cost: 1 }];
+      }
       powerLibrary.push(base);
       }
       hydrateFilters();
@@ -1526,7 +1530,8 @@
         renderCharacterPowers();
         return;
       }
-      const target = { ...power, purchased: new Set() };
+      const isTechie = power?.meta?.className === "Techie" || (power?.path || "").startsWith("Techie/");
+      const target = { ...power, purchased: isTechie ? new Set([0]) : new Set() };
       chosenPowers.set(power.path, target);
       setDirty();
       renderCharacterPowers();
@@ -1747,7 +1752,10 @@
         data.powers.forEach(saved => {
           const lib = powerLibrary.find(p => p.path === saved.path) || powerLibrary.find(p => p.name === saved.name);
           if (lib) {
-            const purchased = new Set(saved.purchasedIndices || []);
+            const isTechie = lib?.meta?.className === "Techie" || (lib?.path || "").startsWith("Techie/");
+            const purchasedIndices = Array.isArray(saved.purchasedIndices) ? saved.purchasedIndices : [];
+            const purchased = new Set(purchasedIndices);
+            if (isTechie && purchased.size === 0) purchased.add(0);
             chosenPowers.set(lib.path, { ...lib, purchased });
           }
         });
