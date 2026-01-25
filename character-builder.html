@@ -608,11 +608,12 @@
       <section class="panel grid-sheet" aria-label="Character sheet" id="sheetPanel">
         <div class="section-card">
           <div class="section-heading">Inventory</div>
-          <div class="flex-row print-hide">
-            <input id="invName" placeholder="Item name" style="min-width:180px;">
+          <div class="flex-row print-hide" style="flex-wrap:wrap; gap:0.5rem;">
+            <input id="invName" placeholder="Item name" style="min-width:180px; flex:1;">
             <input id="invQty" type="number" min="1" value="1" style="width:90px;">
-            <input id="invNotes" placeholder="Notes/effects" style="flex:1; min-width:200px;">
             <button class="secondary-btn" id="addItem">Add</button>
+            <textarea id="invDescription" placeholder="Description" rows="2" style="width:100%; min-height:56px; resize:vertical;"></textarea>
+            <textarea id="invEffect" placeholder="Effect" rows="2" style="width:100%; min-height:56px; resize:vertical;"></textarea>
           </div>
           <div id="inventoryList" class="inventory-list"></div>
         </div>
@@ -735,7 +736,8 @@
       characterFolderHint: document.getElementById("characterFolderHint"),
       invName: document.getElementById("invName"),
       invQty: document.getElementById("invQty"),
-      invNotes: document.getElementById("invNotes"),
+      invDescription: document.getElementById("invDescription"),
+      invEffect: document.getElementById("invEffect"),
       addItem: document.getElementById("addItem"),
       inventoryList: document.getElementById("inventoryList"),
       printCharacter: document.getElementById("printCharacter"),
@@ -1070,39 +1072,46 @@
       }
     inventory.forEach((item, idx) => {
       const row = document.createElement("div");
-      row.style.display = "flex";
+      row.style.display = "grid";
+      row.style.gridTemplateColumns = "1fr auto";
+      row.style.gap = "0.35rem 0.5rem";
       row.style.alignItems = "center";
-      row.style.gap = ".4rem";
-      row.style.flexWrap = "wrap";
 
       const nameInput = document.createElement("input");
       nameInput.value = item.name;
       nameInput.style.minWidth = "120px";
       nameInput.placeholder = "Name";
+      nameInput.style.width = "100%";
 
       const qtyInput = document.createElement("input");
       qtyInput.type = "number";
       qtyInput.min = "1";
       qtyInput.value = item.qty || 1;
       qtyInput.style.width = "70px";
+      qtyInput.style.justifySelf = "end";
 
-      const notesInput = document.createElement("input");
+      const notesInput = document.createElement("textarea");
       notesInput.value = item.notes || item.description || "";
       notesInput.placeholder = "Description";
-      notesInput.style.flex = "1";
-      notesInput.style.minWidth = "180px";
+      notesInput.style.gridColumn = "1 / 3";
+      notesInput.style.width = "100%";
+      notesInput.style.minHeight = "48px";
+      notesInput.style.resize = "vertical";
 
-      const effectsInput = document.createElement("input");
+      const effectsInput = document.createElement("textarea");
       effectsInput.value = item.effects || "";
       effectsInput.placeholder = "Effect";
-      effectsInput.style.flex = "1";
-      effectsInput.style.minWidth = "180px";
+      effectsInput.style.gridColumn = "1 / 3";
+      effectsInput.style.width = "100%";
+      effectsInput.style.minHeight = "48px";
+      effectsInput.style.resize = "vertical";
 
       const saveBtn = document.createElement("button");
       saveBtn.type = "button";
       saveBtn.textContent = "Save";
       saveBtn.className = "secondary-btn";
       saveBtn.style.padding = "0.25rem 0.65rem";
+      saveBtn.style.justifySelf = "start";
       saveBtn.addEventListener("click", () => {
         const name = nameInput.value.trim();
         const qty = Number(qtyInput.value) || 1;
@@ -1120,9 +1129,12 @@
       const removeBtn = document.createElement("button");
       removeBtn.type = "button";
       removeBtn.title = "Remove item";
-      removeBtn.textContent = "Remove";
+      removeBtn.textContent = "✖";
       removeBtn.className = "ghost-btn";
-      removeBtn.style.padding = "0.25rem 0.5rem";
+      removeBtn.style.padding = "0.2rem 0.35rem";
+      removeBtn.style.color = "var(--danger)";
+      removeBtn.style.fontWeight = "700";
+      removeBtn.style.justifySelf = "end";
       removeBtn.addEventListener("click", () => {
         inventory.splice(idx, 1);
         setDirty();
@@ -2033,15 +2045,17 @@
     elements.addItem.addEventListener("click", () => {
       const name = elements.invName.value.trim();
       const qty = Number(elements.invQty.value) || 1;
-      const notes = elements.invNotes.value.trim();
+      const notes = elements.invDescription.value.trim();
+      const effects = elements.invEffect.value.trim();
       if (!name) {
         alert("Item name is required.");
         return;
       }
-      inventory.push({ name, qty, notes, effects: "" });
+      inventory.push({ name, qty, notes, effects });
       elements.invName.value = "";
       elements.invQty.value = 1;
-      elements.invNotes.value = "";
+      elements.invDescription.value = "";
+      elements.invEffect.value = "";
       setDirty();
       renderInventory();
       updateSummary();
