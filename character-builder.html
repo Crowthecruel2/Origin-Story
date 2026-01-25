@@ -221,9 +221,18 @@
     .flex-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.65rem; }
     .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
-    .stats-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-    .stats-columns h4 { margin: 0 0 0.35rem; color: var(--muted); font-weight: 700; letter-spacing: 0.02em; }
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
+    .stats-pairs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem 0.75rem;
+      align-items: start;
+    }
+    .stats-pairs .stat-col-title {
+      margin: 0 0 0.15rem;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
     .derived-cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -421,7 +430,7 @@
       .summary-actions { width: 100%; }
     .nav-links { width: 100%; }
     .top-actions { width: 100%; justify-content: flex-start; }
-      .stats-columns { grid-template-columns: 1fr; }
+    .stats-pairs { grid-template-columns: 1fr; }
       .library-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
     }
     @media print {
@@ -496,54 +505,52 @@
 
         <div class="section-card">
           <div class="section-heading">Stats</div>
-          <div class="stats-columns coachmark" id="statsGroup">
-            <div>
-              <h4>Base</h4>
-              <div class="stats-grid">
-                <label>Reflex (base) <span class="help-icon tooltip" data-tip="Speed, initiative, and quick moves.">?</span>
-                  <input type="number" id="reflexBase" value="0" step="1">
-                </label>
-                <label>Strength (base) <span class="help-icon tooltip" data-tip="Force, lifting, melee damage.">?</span>
-                  <input type="number" id="strengthBase" value="0" step="1">
-                </label>
-                <label>Smarts (base) <span class="help-icon tooltip" data-tip="Knowledge, perception, and planning.">?</span>
-                  <input type="number" id="smartsBase" value="0" step="1">
-                </label>
-                <label>Social (base) <span class="help-icon tooltip" data-tip="Influence, negotiations, and presence.">?</span>
-                  <input type="number" id="socialBase" value="0" step="1">
-                </label>
-              <label>Durability (base) <span class="help-icon tooltip" data-tip="Toughness, endurance, and grit.">?</span>
-                <input type="number" id="durabilityBase" value="0" step="1">
-              </label>
-              <label>Armor (base) <span class="help-icon tooltip" data-tip="Damage reduction; worn or innate.">?</span>
-                <input type="number" id="armorBase" value="0" step="1">
-              </label>
-            </div>
+          <div class="stats-pairs coachmark" id="statsGroup">
+            <div class="stat-col-title">Base</div>
+            <div class="stat-col-title">Mods</div>
+
+            <label>Reflex (base) <span class="help-icon tooltip" data-tip="Speed, initiative, and quick moves.">?</span>
+              <input type="number" id="reflexBase" value="0" step="1">
+            </label>
+            <label>Reflex (mod)
+              <input type="number" id="reflexMod" value="0" step="1">
+            </label>
+
+            <label>Strength (base) <span class="help-icon tooltip" data-tip="Force, lifting, melee damage.">?</span>
+              <input type="number" id="strengthBase" value="0" step="1">
+            </label>
+            <label>Strength (mod)
+              <input type="number" id="strengthMod" value="0" step="1">
+            </label>
+
+            <label>Smarts (base) <span class="help-icon tooltip" data-tip="Knowledge, perception, and planning.">?</span>
+              <input type="number" id="smartsBase" value="0" step="1">
+            </label>
+            <label>Smarts (mod)
+              <input type="number" id="smartsMod" value="0" step="1">
+            </label>
+
+            <label>Social (base) <span class="help-icon tooltip" data-tip="Influence, negotiations, and presence.">?</span>
+              <input type="number" id="socialBase" value="0" step="1">
+            </label>
+            <label>Social (mod)
+              <input type="number" id="socialMod" value="0" step="1">
+            </label>
+
+            <label>Durability (base) <span class="help-icon tooltip" data-tip="Toughness, endurance, and grit.">?</span>
+              <input type="number" id="durabilityBase" value="0" step="1">
+            </label>
+            <label>Durability (mod)
+              <input type="number" id="durabilityMod" value="0" step="1">
+            </label>
+
+            <label>Armor (base) <span class="help-icon tooltip" data-tip="Damage reduction; worn or innate.">?</span>
+              <input type="number" id="armorBase" value="0" step="1">
+            </label>
+            <label>Armor (mod)
+              <input type="number" id="armorMod" value="0" step="1">
+            </label>
           </div>
-          <div>
-            <h4>Mods</h4>
-            <div class="stats-grid">
-                <label>Reflex (mod)
-                  <input type="number" id="reflexMod" value="0" step="1">
-                </label>
-                <label>Strength (mod)
-                  <input type="number" id="strengthMod" value="0" step="1">
-                </label>
-                <label>Smarts (mod)
-                  <input type="number" id="smartsMod" value="0" step="1">
-                </label>
-                <label>Social (mod)
-                  <input type="number" id="socialMod" value="0" step="1">
-                </label>
-              <label>Durability (mod)
-                <input type="number" id="durabilityMod" value="0" step="1">
-              </label>
-              <label>Armor (mod)
-                <input type="number" id="armorMod" value="0" step="1">
-              </label>
-            </div>
-          </div>
-        </div>
           <div id="statBudgetStatus" class="status-line status-good">You are within your stat budget.</div>
         </div>
 
