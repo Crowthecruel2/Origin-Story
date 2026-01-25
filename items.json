@@ -15,13 +15,13 @@
                   {
                       "id":  "bio-horror-techie-gene-implanter",
                       "name":  "Gene Implanter",
-                      "from_power":  "Bio-Horror Techie",
+                      "from_power":  "Bio-Horror Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Allows you to install a gene mod once per turn.",
-                      "effects":  "A human can only have 5 gene mods at one time or penalties start to happen. Requirements: None",
+                      "description":  "",
+                      "effects":  "Allows you to install a gene mod once per turn. A human can only have 5 gene mods at one time or penalties start to happen. Requirements: None",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie 1"
                                         ]
                   },
                   {
@@ -33,7 +33,7 @@
                       "effects":  "Requirements: None",
                       "cost":  "$50",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie 1"
                                         ]
                   },
                   {
@@ -45,7 +45,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of Cat flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -57,7 +57,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of Bat flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -69,7 +69,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of bird flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -81,7 +81,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of crab flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -93,7 +93,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of lobster flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -105,7 +105,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of spider flesh or ichor.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -117,7 +117,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of reptile flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -129,7 +129,7 @@
                       "effects":  "Advantage on stealth; immune to disease; squeeze through tiny holes Requirements: Gene Synthesizer",
                       "cost":  "1kg rat flesh or blood",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -141,7 +141,7 @@
                       "effects":  "Super-smell (track targets within 2km), +2 initiative Requirements: Gene Synthesizer",
                       "cost":  "1kg canine flesh or blood",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -153,7 +153,7 @@
                       "effects":  "Gain electroreceptors (sense movement in water), and touch deals 1d6 electric damage Requirements: Gene Synthesizer",
                       "cost":  "1kg jellyfish tissue",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -165,7 +165,7 @@
                       "effects":  "Used to make creatures from dna strands. Effect: Allows for the creation of creatures with gene mods. Requirements: None",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Bio-Horror Techie"
+                                            "Bio-Horror Techie","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -177,7 +177,7 @@
                       "effects":  "This ability allows the player to build Tinker Chemicals. Only this player can use the supertech unless specified otherwise. # Lv1 Bodysuits: This suit protects the wearer from chemicals and diseases. Effects: Grants immunity to all chemical and biological attacks. Requirements: None",
                       "cost":  "$10",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 1"
                                         ]
                   },
                   {
@@ -1263,145 +1263,121 @@
                   {
                       "id":  "gadget-techie-armored-tuxedo",
                       "name":  "Armored Tuxedo",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Gain +2 armor Requirements: Noneâ€Œ",
-                      "effects":  "Gain +2 armor Requirements: Noneâ€Œ",
+                      "description":  "A classy looking suit",
+                      "effects":  "Gain +2 armor",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-concealed-knife",
                       "name":  "Concealed Knife",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Range: Touch Damage: 1d6 Effect: Can do lethal damage.",
-                      "effects":  "Requirements: None.â€Œ",
+                      "description":  "A hidden blade. Prefect for any assassin",
+                      "effects":  "Damage: 1d6 Effect: Can do lethal damage.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-tranquillizer-dart",
                       "name":  "Tranquillizer dart",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Range: Touch or thrown Damage: None Effect: Enemy makes a durability check.",
-                      "effects":  "Below a 6 causes them to be knocked out. Requirements: None.â€Œ",
+                      "description":  "A small dart filled with a sedative",
+                      "effects":  "Enemy makes a durability check. Below a 6 causes them to be knocked out.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-suitcase-workbench",
                       "name":  "Suitcase Workbench",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Allows for more complex gadgets.",
-                      "effects":  "Requirements: None[br]â€Œ",
+                      "description":  "A briefcase filled with the odds and ends neeeded to make some more complex gadgets",
+                      "effects":  "Allows for more complex gadgets.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-boot-concealed-bo-staff",
                       "name":  "Boot Concealed Bo staff",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Range: 5m Damage: 1d8 Requirements: Suitcase Workbench.",
-                      "effects":  "[br]â€Œ",
+                      "description":  "A concealed longer reaching weapons that can be instantly deployed.",
+                      "effects":  "Increases melee strike range to 5m. Does 1d8 damage.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
-                                        ]
-                  },
-                  {
-                      "id":  "gadget-techie-basic-exosuit",
-                      "name":  "Basic Exosuit",
-                      "from_power":  "Gadget Techie",
-                      "class_name":  "Techie",
-                      "description":  "Hp: 40 Armor: 2 Gadget slots: 2 Effect: Boosts strength by 4.",
-                      "effects":  "Can have 2 gadgets built into it. Requirements: Mech Suit Tinker Lv 1[br]â€Œ",
-                      "cost":  "$1000",
-                      "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1","Suitcase Workbench"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-concealed-wrist-gas-spray",
                       "name":  "Concealed Wrist Gas Spray",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
                       "description":  "Spray a single substance up to 5m.",
                       "effects":  "Requirements: Chemical Tinker.[br]â€Œ",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-mini-turret",
                       "name":  "Mini Turret",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Hp: 2 Damage: 1 per turn.",
-                      "effects":  "Requirements: Fort Tinker Lv 1[br]â€Œ",
+                      "description":  "A sphere you can throw or roll into a room to help clear it of enemies",
+                      "effects":  "Has 2 Hp and does 1 damage per turn to the nearest enemy.",
                       "cost":  "$10",
                       "prerequisites":  [
-                                            "Gadget Techie"
-                                        ]
-                  },
-                  {
-                      "id":  "gadget-techie-nerve-disruptor",
-                      "name":  "Nerve Disruptor",
-                      "from_power":  "Gadget Techie",
-                      "class_name":  "Techie",
-                      "description":  "One time use.",
-                      "effects":  "Stuns enemies in a 5m radius for 3 turns. Requirements: Interface Tinker Lv 1.[br]â€Œ",
-                      "cost":  "$100",
-                      "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1","Suitcase Workbench"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-ceramic-collapsible-gun",
                       "name":  "Ceramic Collapsible gun",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Range: 20m Damage: 1d10 Requirements: Suitcase Workbench [br]â€Œ",
-                      "effects":  "Range: 20m Damage: 1d10 Requirements: Suitcase Workbench [br]â€Œ",
+                      "description":  "An easily hidden weapon",
+                      "effects":  "Range: 20m, Damage: 1d10",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1","Suitcase Workbench"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-multi-taser",
                       "name":  "Multi Taser",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Range: 10m Damage: 1d8 Non lethal damage.",
-                      "effects":  "Effect: Can be shot twice per action. Requirement: Suitcase Workshop [br]â€Œ",
+                      "description":  "A good non lethal weapon",
+                      "effects":  "Range: 10m, Damage: 1d6 non-lethal Effect: Can be shot twice per action.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 1","Suitcase Workbench"
                                         ]
                   },
                   {
                       "id":  "gadget-techie-violin-case-rocket-launcher",
                       "name":  "Violin Case rocket Launcher",
-                      "from_power":  "Gadget Techie",
+                      "from_power":  "Gadget Techie 2",
                       "class_name":  "Techie",
                       "description":  "Range: 100m Damage: 1d20 in a 5m radius.",
                       "effects":  "Requirement: Suitcase Workshop [br]â€Œ",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Gadget Techie"
+                                            "Gadget Techie 2"
                                         ]
                   },
                   {
