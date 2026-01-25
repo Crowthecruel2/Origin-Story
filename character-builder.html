@@ -706,6 +706,7 @@
     const chosenPowers = new Map();
     const inventory = [];
     const isFileProtocol = location.protocol === "file:";
+    const DEBUG_PREREQS = new URLSearchParams(location.search).has("debugPrereqs");
     const LOCAL_KEY = "origin-story-character-quick-save";
     const CATEGORY_DESCRIPTIONS = {
       Brick: "Powers that allow for supernatural strength or durability. Built like brick houses.",
@@ -1325,10 +1326,23 @@
       if (!prereqs.length) return true;
       const ownedPowers = new Set(Array.from(chosenPowers.values()).map(p => p.name.toLowerCase()));
       const ownedItems = new Set(inventory.map(i => i.name.toLowerCase()));
-      return prereqs.every(req => {
-        const val = String(req || "").toLowerCase();
-        return ownedPowers.has(val) || ownedItems.has(val);
+      const results = prereqs.map(req => {
+        const raw = String(req || "");
+        const val = raw.toLowerCase();
+        return {
+          req: raw,
+          ok: ownedPowers.has(val) || ownedItems.has(val),
+          via: ownedPowers.has(val) ? "power" : (ownedItems.has(val) ? "item" : "missing")
+        };
       });
+      const ok = results.every(r => r.ok);
+      if (DEBUG_PREREQS) {
+        const label = `Prereqs: ${item.name || item.id || "item"} (${ok ? "OK" : "BLOCKED"})`;
+        console.groupCollapsed(label);
+        console.table(results);
+        console.groupEnd();
+      }
+      return ok;
     }
 
     function renderItems() {
@@ -1897,7 +1911,7 @@
         "The Mechanic": {
           level: 3,
           stats: { smartsBase: 3, strengthBase: 2, durabilityBase: 2, reflexBase: 1, socialBase: 1 },
-          powers: ["Gadget Techie", "Mech Techie", "Interface Techie"],
+          powers: ["Gadget Techie 1", "Mech Techie", "Interface Techie"],
           inventory: [{ name: "Tool Roll", qty: 1, notes: "Basic repairs and jury-rigging" }],
           background: "Grease-under-the-nails engineer who builds the toys and drives the rigs."
         },
