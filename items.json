@@ -718,7 +718,7 @@
                       "effects":  "Does 1d6 damage when thrown. Burns for 3 turns doing 1d4 damage a turn. Waterproof",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fire Techie 1"
+                                            "Fire Techie 1","Basic Pyrotechnics Bench"
                                         ]
                   },
                   {
@@ -730,7 +730,7 @@
                       "effects":  "Increases the effective range of your chemicals to 20m.",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fire Techie 1"
+                                            "Fire Techie 1","Basic Pyrotechnics Bench"
                                         ]
                   },
                   {
@@ -742,7 +742,7 @@
                       "effects":  "Reduces taken fire damage by 4. ",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fire Techie 1"
+                                            "Fire Techie 1","Basic Pyrotechnics Bench"
                                         ]
                   },
                   {
@@ -754,7 +754,7 @@
                       "effects":  "Causes an 10m explosion that coats everything in range with thermite. Coated enemies take 1d10 fire damage per turn for 10 turns.",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fire Techie 1"
+                                            "Fire Techie 1","Basic Pyrotechnics Bench"
                                         ]
                   },
                   {
