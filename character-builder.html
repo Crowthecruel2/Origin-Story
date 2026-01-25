@@ -512,14 +512,17 @@
                 <label>Social (base) <span class="help-icon tooltip" data-tip="Influence, negotiations, and presence.">?</span>
                   <input type="number" id="socialBase" value="0" step="1">
                 </label>
-                <label>Durability (base) <span class="help-icon tooltip" data-tip="Toughness, endurance, and grit.">?</span>
-                  <input type="number" id="durabilityBase" value="0" step="1">
-                </label>
-              </div>
+              <label>Durability (base) <span class="help-icon tooltip" data-tip="Toughness, endurance, and grit.">?</span>
+                <input type="number" id="durabilityBase" value="0" step="1">
+              </label>
+              <label>Armor (base) <span class="help-icon tooltip" data-tip="Damage reduction; worn or innate.">?</span>
+                <input type="number" id="armorBase" value="0" step="1">
+              </label>
             </div>
-            <div>
-              <h4>Mods</h4>
-              <div class="stats-grid">
+          </div>
+          <div>
+            <h4>Mods</h4>
+            <div class="stats-grid">
                 <label>Reflex (mod)
                   <input type="number" id="reflexMod" value="0" step="1">
                 </label>
@@ -532,12 +535,15 @@
                 <label>Social (mod)
                   <input type="number" id="socialMod" value="0" step="1">
                 </label>
-                <label>Durability (mod)
-                  <input type="number" id="durabilityMod" value="0" step="1">
-                </label>
-              </div>
+              <label>Durability (mod)
+                <input type="number" id="durabilityMod" value="0" step="1">
+              </label>
+              <label>Armor (mod)
+                <input type="number" id="armorMod" value="0" step="1">
+              </label>
             </div>
           </div>
+        </div>
           <div id="statBudgetStatus" class="status-line status-good">You are within your stat budget.</div>
         </div>
 
@@ -547,10 +553,11 @@
             <label>Level
               <input type="number" id="level" value="1" min="1" step="1">
             </label>
-            <div class="stat-card tooltip" data-tip="10 + Durability x Level (core rule)">
+            <div class="stat-card tooltip" data-tip="Max Health = 10 + (Durability base + mod) × Level">
               <div class="muted">Health</div>
-              <strong id="health">10</strong>
-              <div class="muted">Auto-updates with Level & Durability</div>
+              <strong><span id="healthCurrent">10</span> / <span id="healthMax">10</span></strong>
+              <div class="muted">Auto-updates; set your current HP below.</div>
+              <input type="number" id="currentHealth" min="0" value="10" style="width:100%; margin-top:0.4rem;">
             </div>
             <div class="stat-card tooltip" data-tip="Power Points equal your Level. Each power level costs PP.">
               <div class="muted">Power Points</div>
@@ -717,6 +724,9 @@
       health: document.getElementById("health"),
       powerPoints: document.getElementById("powerPoints"),
       powerPointsDetail: document.getElementById("powerPointsDetail"),
+      healthCurrent: document.getElementById("healthCurrent"),
+      healthMax: document.getElementById("healthMax"),
+      currentHealth: document.getElementById("currentHealth"),
       powerList: document.getElementById("powerList"),
       characterPowers: document.getElementById("characterPowers"),
       search: document.getElementById("search"),
@@ -739,6 +749,8 @@
       socialMod: document.getElementById("socialMod"),
       durabilityBase: document.getElementById("durabilityBase"),
       durabilityMod: document.getElementById("durabilityMod"),
+      armorBase: document.getElementById("armorBase"),
+      armorMod: document.getElementById("armorMod"),
       statBasePool: document.getElementById("statBasePool"),
       statPerLevel: document.getElementById("statPerLevel"),
       summaryText: document.getElementById("summaryText"),
@@ -798,7 +810,9 @@
     function totalStats() {
       const vals = [
         elements.reflexBase, elements.strengthBase, elements.smartsBase, elements.socialBase, elements.durabilityBase,
+        elements.armorBase,
         elements.reflexMod, elements.strengthMod, elements.smartsMod, elements.socialMod, elements.durabilityMod,
+        elements.armorMod,
       ];
       return vals.reduce((sum, el) => sum + (Number(el.value) || 0), 0);
     }
@@ -806,7 +820,11 @@
     function updateDerived() {
       const level = getLevel();
       const durability = Number(elements.durabilityBase.value || 0) + Number(elements.durabilityMod.value || 0);
-      elements.health.textContent = 10 + durability * level;
+      const maxHp = 10 + durability * level;
+      elements.healthMax.textContent = maxHp;
+      const current = Math.min(Math.max(0, Number(elements.currentHealth.value || maxHp)), maxHp);
+      elements.currentHealth.value = current;
+      elements.healthCurrent.textContent = current;
       updatePointsDisplay();
       updateSummary();
       validateStats();
@@ -847,7 +865,7 @@
       const { total, spent } = pointsSummary();
       const invCount = inventory.length;
       const powerCount = chosenPowers.size;
-      const summary = `Level ${getLevel()} | Health ${elements.health.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
+      const summary = `Level ${getLevel()} | Health ${elements.healthCurrent.textContent}/${elements.healthMax.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
       elements.summaryText.textContent = summary;
       elements.statBudgetBadge.textContent = `Stat budget: ${elements.statBasePool.value || 0} base + ${elements.statPerLevel.value || 0}/level (spent ${totalStats()})`;
     }
@@ -1069,10 +1087,16 @@
       qtyInput.style.width = "70px";
 
       const notesInput = document.createElement("input");
-      notesInput.value = item.notes || "";
-      notesInput.placeholder = "Notes/effects";
+      notesInput.value = item.notes || item.description || "";
+      notesInput.placeholder = "Description";
       notesInput.style.flex = "1";
       notesInput.style.minWidth = "180px";
+
+      const effectsInput = document.createElement("input");
+      effectsInput.value = item.effects || "";
+      effectsInput.placeholder = "Effect";
+      effectsInput.style.flex = "1";
+      effectsInput.style.minWidth = "180px";
 
       const saveBtn = document.createElement("button");
       saveBtn.type = "button";
@@ -1086,7 +1110,7 @@
           alert("Item name is required.");
           return;
         }
-        inventory[idx] = { name, qty, notes: notesInput.value.trim() };
+        inventory[idx] = { name, qty, notes: notesInput.value.trim(), effects: effectsInput.value.trim() };
         setDirty();
         renderInventory();
         updateSummary();
@@ -1110,6 +1134,7 @@
       row.appendChild(nameInput);
       row.appendChild(qtyInput);
       row.appendChild(notesInput);
+      row.appendChild(effectsInput);
       row.appendChild(saveBtn);
       row.appendChild(removeBtn);
       elements.inventoryList.appendChild(row);
@@ -1324,6 +1349,7 @@
             ${item.cost ? `<span class="pill" style="border:1px solid var(--border);">Cost: ${item.cost}</span>` : ""}
           </div>
           <div class="muted" style="margin-top:0.35rem;">${item.description || ""}</div>
+          ${item.effects ? `<div class="muted" style="margin-top:0.2rem;"><strong>Effect:</strong> ${item.effects}</div>` : ""}
         `;
         elements.itemList.appendChild(card);
       });
@@ -1454,7 +1480,12 @@
       try {
         const item = JSON.parse(payload);
         if (!item.name) return;
-        inventory.push({ name: item.name, qty: 1, notes: item.effects || "" });
+        inventory.push({
+          name: item.name,
+          qty: 1,
+          notes: item.description || "",
+          effects: item.effects || ""
+        });
         setDirty();
         renderInventory();
         updateSummary();
@@ -1638,7 +1669,10 @@
           socialMod: Number(elements.socialMod.value) || 0,
           durabilityBase: Number(elements.durabilityBase.value) || 0,
           durabilityMod: Number(elements.durabilityMod.value) || 0,
+          armorBase: Number(elements.armorBase.value) || 0,
+          armorMod: Number(elements.armorMod.value) || 0,
           level: Number(document.getElementById("level").value) || 0,
+          currentHealth: Number(elements.currentHealth.value) || 0,
         },
         budget: {
           base: Number(elements.statBasePool.value) || 0,
@@ -1669,7 +1703,12 @@
         elements.socialMod.value = data.stats.socialMod ?? 0;
         elements.durabilityBase.value = data.stats.durabilityBase ?? 0;
         elements.durabilityMod.value = data.stats.durabilityMod ?? 0;
+        elements.armorBase.value = data.stats.armorBase ?? 0;
+        elements.armorMod.value = data.stats.armorMod ?? 0;
         document.getElementById("level").value = data.stats.level ?? 1;
+        if (typeof data.stats.currentHealth === "number") {
+          elements.currentHealth.value = data.stats.currentHealth;
+        }
       }
       if (data.budget) {
         elements.statBasePool.value = data.budget.base ?? elements.statBasePool.value;
@@ -1690,7 +1729,12 @@
       if (data.inventory && Array.isArray(data.inventory)) {
         data.inventory.forEach(item => {
           if (item && item.name) {
-            inventory.push({ name: item.name, qty: item.qty || 1, notes: item.notes || "" });
+            inventory.push({
+              name: item.name,
+              qty: item.qty || 1,
+              notes: item.notes || item.description || "",
+              effects: item.effects || ""
+            });
           }
         });
       }
@@ -1942,7 +1986,7 @@
         history.replaceState({}, "", newUrl);
       }
     }
-    ["level","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod","statBasePool","statPerLevel"].forEach(id => {
+    ["level","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod","armorBase","armorMod","statBasePool","statPerLevel","currentHealth"].forEach(id => {
       elements[id].addEventListener("input", () => {
         setDirty();
         updateDerived();
@@ -1994,7 +2038,7 @@
         alert("Item name is required.");
         return;
       }
-      inventory.push({ name, qty, notes });
+      inventory.push({ name, qty, notes, effects: "" });
       elements.invName.value = "";
       elements.invQty.value = 1;
       elements.invNotes.value = "";

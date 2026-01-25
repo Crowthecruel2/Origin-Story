@@ -207,73 +207,59 @@
     </section>
 
     <section class="grid" id="factions">
-      <article class="card">
-        <h2>Children of Change</h2>
-        <div class="muted">A zealous mutant cult that worships transformation as divine truth. Their bodies shift, warp, and evolve through painful rituals and unstable genetic rites. From ragged Rejects to towering Gene Lords, every abomination is shaped by the cult's belief that flesh must be broken to be perfected. To the Children, mutation is salvation -- and the city is fertile ground for rebirth.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/children-of-change.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>Iron Vanguard</h2>
-        <div class="muted">A private military force armed with bleeding-edge exosuits, battlefield uplinks, and orbital weaponry. The Vanguard sees every conflict as a contract, every rescue as billable, and every life as an operational variable. Hardened by years of urban warfare, they fight with brutal precision whether protecting civilians or enforcing a corporation's interests.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/iron-vanguard.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>The Undertow</h2>
-        <div class="muted">A sprawling smuggling syndicate rooted in the city's docks, abandoned storm canals, and tide-worn tunnels. Its enigmatic leader appears human, but those closest swear they've seen its eyes change with the moon, or its shadow stretch and ripple like something submerged. Ancient, patient, and terrifyingly intelligent, this creature hides behind a flawless human guise while guiding the Undertow's operations.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/the-undertow.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>The Aegis Initiative</h2>
-        <div class="muted">A sleek corporate superhero program that markets justice as a premium service. Aegis operatives shine in PR campaigns and televised rescues, yet whispers of hidden labs and buried scandals follow them everywhere.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/aegis-initiative.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>Nightwatch</h2>
-        <div class="muted">A network of masked street vigilantes who reject registration and oversight. Many have no powers -- just grit, trauma, and the willingness to fight where official heroes will not.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/nightwatch.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>The Synapse Collective</h2>
-        <div class="muted">A clandestine cabal of psychics, technopaths, and data-shapers who trade secrets like currency. They manipulate minds, machines, and markets from hidden server vaults deep beneath the city.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/synapse-collective.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>Gaia's Embrace</h2>
-        <div class="muted">An eco-radical group empowered by plant-based mutations or elemental spirits. They claim they are restoring balance, even if that means collapsing skyscrapers or turning industrial blocks into living forests.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/gaias-embrace.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>The Veiled Arcanum</h2>
-        <div class="muted">An ancient order of spellcasters and occult scholars who maintain the city's mystical equilibrium. Their secrecy breeds distrust, and their internal disputes often spill into the streets.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/veiled-arcanum.html">Visit faction page</a>
-        </div>
-      </article>
-      <article class="card">
-        <h2>The Chronos Syndicate</h2>
-        <div class="muted">A gang of time-manipulators and displaced future-refugees who alter events to shape a timeline they claim is doomed. They weaponize loops, paradoxes, and impossibly precise heists.</div>
-        <div class="card-actions">
-          <a class="btn small" href="factions/chronos-syndicate.html">Visit faction page</a>
-        </div>
-      </article>
+      <!-- Faction cards render here -->
     </section>
   </main>
 </body>
+<script>
+  const fallbackFactions = [
+    {"slug":"children-of-change","name":"Children of Change","blurb":"A zealous mutant cult that worships transformation as divine truth. Their bodies shift, warp, and evolve through painful rituals and unstable genetic rites. From ragged Rejects to towering Gene Lords, every abomination is shaped by the cult's belief that flesh must be broken to be perfected. To the Children, mutation is salvation -- and the city is fertile ground for rebirth.","page":"factions/children-of-change.html"},
+    {"slug":"iron-vanguard","name":"Iron Vanguard","blurb":"A private military force armed with bleeding-edge exosuits, battlefield uplinks, and orbital weaponry. The Vanguard sees every conflict as a contract, every rescue as billable, and every life as an operational variable. Hardened by years of urban warfare, they fight with brutal precision whether protecting civilians or enforcing a corporation's interests.","page":"factions/iron-vanguard.html"},
+    {"slug":"the-undertow","name":"The Undertow","blurb":"A sprawling smuggling syndicate rooted in the city's docks, abandoned storm canals, and tide-worn tunnels. Its enigmatic leader appears human, but those closest swear they've seen its eyes change with the moon, or its shadow stretch and ripple like something submerged. Ancient, patient, and terrifyingly intelligent, this creature hides behind a flawless human guise while guiding the Undertow's operations.","page":"factions/the-undertow.html"},
+    {"slug":"aegis-initiative","name":"The Aegis Initiative","blurb":"A sleek corporate superhero program that markets justice as a premium service. Aegis operatives shine in PR campaigns and televised rescues, yet whispers of hidden labs and buried scandals follow them everywhere.","page":"factions/aegis-initiative.html"},
+    {"slug":"nightwatch","name":"Nightwatch","blurb":"A network of masked street vigilantes who reject registration and oversight. Many have no powers -- just grit, trauma, and the willingness to fight where official heroes will not.","page":"factions/nightwatch.html"},
+    {"slug":"synapse-collective","name":"Synapse Collective","blurb":"A clandestine hacker-savant network whose members wield neural augments and psionic tech. They trade in secrets, neural exploits, and memetic weapons.","page":"factions/synapse-collective.html"},
+    {"slug":"gaias-embrace","name":"Gaia's Embrace","blurb":"Eco-mystics and bioengineers who merge plantlife with sorcery and science. They see the city as a wound and intend to regrow it into a living forest.","page":"factions/gaias-embrace.html"},
+    {"slug":"veiled-arcanum","name":"Veiled Arcanum","blurb":"An order of occult archivists safeguarding ancient sigils, astral maps, and stolen relics. Their secrecy keeps the city safe—or hides what they covet.","page":"factions/veiled-arcanum.html"},
+    {"slug":"chronos-syndicate","name":"Chronos Syndicate","blurb":"Temporal smugglers who move contraband across the timestream. They sell stolen moments, looped labor, and glimpses of possible futures.","page":"factions/chronos-syndicate.html"}
+  ];
+
+  async function loadFactions() {
+    const container = document.getElementById("factions");
+    const render = (list) => {
+      container.innerHTML = "";
+      list.forEach(f => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h2>${f.name}</h2>
+          <div class="muted">${f.blurb}</div>
+          <div class="card-actions">
+            <a class="btn small" href="${f.page || "#"}">Visit faction page</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    };
+
+    try {
+      const res = await fetch("factions/factions.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(res.statusText);
+      const data = await res.json();
+      if (Array.isArray(data.factions)) {
+        render(data.factions);
+        return;
+      }
+    } catch (err) {
+      console.warn("Factions JSON unavailable, using fallback.", err);
+    }
+    render(fallbackFactions);
+  }
+
+  loadFactions();
+</script>
 </html>
+
 
 
 
