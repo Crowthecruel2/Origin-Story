@@ -564,6 +564,11 @@
               <strong id="powerPoints">1 / 1</strong>
               <div class="muted" id="powerPointsDetail">1 remaining (spent 0)</div>
             </div>
+            <div class="stat-card tooltip" data-tip="Track your current money.">
+              <div class="muted">Cash</div>
+              <strong>$<span id="cashDisplay">0</span></strong>
+              <input type="number" id="cash" min="0" value="0" style="width:100%; margin-top:0.4rem;">
+            </div>
           </div>
         </div>
 
@@ -729,6 +734,8 @@
       healthCurrent: document.getElementById("healthCurrent"),
       healthMax: document.getElementById("healthMax"),
       currentHealth: document.getElementById("currentHealth"),
+      cash: document.getElementById("cash"),
+      cashDisplay: document.getElementById("cashDisplay"),
       powerList: document.getElementById("powerList"),
       characterPowers: document.getElementById("characterPowers"),
       search: document.getElementById("search"),
@@ -828,6 +835,9 @@
       const current = Math.min(Math.max(0, Number(elements.currentHealth.value || maxHp)), maxHp);
       elements.currentHealth.value = current;
       elements.healthCurrent.textContent = current;
+      const cash = Math.max(0, Number(elements.cash.value || 0));
+      elements.cash.value = cash;
+      elements.cashDisplay.textContent = cash;
       updatePointsDisplay();
       updateSummary();
       validateStats();
@@ -1705,6 +1715,7 @@
           level: Number(document.getElementById("level").value) || 0,
           currentHealth: Number(elements.currentHealth.value) || 0,
         },
+        cash: Number(elements.cash.value) || 0,
         budget: {
           base: Number(elements.statBasePool.value) || 0,
           perLevel: Number(elements.statPerLevel.value) || 0,
@@ -1740,6 +1751,9 @@
         if (typeof data.stats.currentHealth === "number") {
           elements.currentHealth.value = data.stats.currentHealth;
         }
+      }
+      if (typeof data.cash === "number") {
+        elements.cash.value = data.cash;
       }
       if (data.budget) {
         elements.statBasePool.value = data.budget.base ?? elements.statBasePool.value;
@@ -2020,7 +2034,7 @@
         history.replaceState({}, "", newUrl);
       }
     }
-    ["level","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod","armorBase","armorMod","statBasePool","statPerLevel","currentHealth"].forEach(id => {
+    ["level","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod","armorBase","armorMod","statBasePool","statPerLevel","currentHealth","cash"].forEach(id => {
       elements[id].addEventListener("input", () => {
         setDirty();
         updateDerived();

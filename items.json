@@ -81,7 +81,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of crab flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -93,7 +93,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of lobster flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -105,7 +105,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of spider flesh or ichor.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -117,7 +117,7 @@
                       "effects":  "Requirements: Gene Synthesizer",
                       "cost":  "1kg of reptile flesh or blood.",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
@@ -129,43 +129,56 @@
                       "effects":  "Advantage on stealth; immune to disease; squeeze through tiny holes Requirements: Gene Synthesizer",
                       "cost":  "1kg rat flesh or blood",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
-                      "id":  "bio-horror-techie-dog-mod-new",
-                      "name":  "Dog Mod â€” NEW",
+                      "id":  "bio-horror-techie-dog-mod",
+                      "name":  "Dog Mod",
                       "from_power":  "Bio-Horror Techie",
                       "class_name":  "Techie",
-                      "description":  "Super-smell (track targets within 2km), +2 initiative Requirements: Gene Synthesizer",
-                      "effects":  "Super-smell (track targets within 2km), +2 initiative Requirements: Gene Synthesizer",
+                      "description":  "Dog ears, Or nose, Your pick",
+                      "effects":  "Super-smell (track targets within 2km by scent), +2 initiative",
                       "cost":  "1kg canine flesh or blood",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
-                      "id":  "bio-horror-techie-jellyfish-mod-new",
-                      "name":  "Jellyfish Mod â€” NEW",
+                      "id":  "bio-horror-techie-jellyfish-mod",
+                      "name":  "Jellyfish Mod",
                       "from_power":  "Bio-Horror Techie",
                       "class_name":  "Techie",
-                      "description":  "Gain electroreceptors (sense movement in water), and touch deals 1d6 electric damage Requirements: Gene Synthesizer",
+                      "description":  "Biolumenence and possibly see through skin",
                       "effects":  "Gain electroreceptors (sense movement in water), and touch deals 1d6 electric damage Requirements: Gene Synthesizer",
                       "cost":  "1kg jellyfish tissue",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
                                         ]
                   },
                   {
-                      "id":  "bio-horror-techie-beetle-mod-new",
-                      "name":  "Beetle Mod â€” NEW",
+                      "id":  "bio-horror-techie-beetle-mod",
+                      "name":  "Beetle Mod",
                       "from_power":  "Bio-Horror Techie",
                       "class_name":  "Techie",
-                      "description":  "Hardened exoskeletal patches grant +2 armor Requirements: Gene Synthesizer # Lv2â€Œ Gene Cocoon: A large mechanical pod like device.",
+                      "description":  "Hardened exoskeletal patches grant +2 armor Requirements: Gene Synthesizer", 
                       "effects":  "Used to make creatures from dna strands. Effect: Allows for the creation of creatures with gene mods. Requirements: None",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Bio-Horror Techie","Gene Synthesizer"
+                                            "Bio-Horror Techie 1","Gene Synthesizer"
+                                        ]
+                  },
+                  
+                  {
+                      "id":  "bio-horror-techie-gene-cocoon",
+                      "name":  "Beetle Mod",
+                      "from_power":  "Bio-Horror Techie",
+                      "class_name":  "Techie",
+                      "description":  "A large pod like device that softly beats like a heart", 
+                      "effects":  "The Device needed to start making the tier 2 bio horrors",
+                      "cost":  "$1000",
+                      "prerequisites":  [
+                                            "Bio-Horror Techie 2"
                                         ]
                   },
                   {
@@ -650,98 +663,98 @@
                   },
                   {
                       "id":  "fire-techie-description",
-                      "name":  "## Description",
-                      "from_power":  "Fire Techie",
+                      "name":  "Ignition Gloves",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Add a short description for Fire Techie.",
-                      "effects":  "Only this player can use the supertech unless specified otherwise. # Lv1 Ignition Gloves: A pair of fire proof gloves with a lighter built in. Effects: Can ignite materials with touch. Reduces taken fire damage by 1. Requirements: None",
+                      "description":  "A pair of gloves that are very flamable",
+                      "effects":  "Can ignite materials with touch. Reduces taken fire damage by 1.",
                       "cost":  "$10",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
                       "id":  "fire-techie-firestarter-paste",
                       "name":  "Firestarter Paste",
-                      "from_power":  "Fire Techie",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "s: Burns for 10 turns doing 1 damage per turn.",
-                      "effects":  "Waterproof. Requirements: None",
+                      "description":  "A thick cream coloured paste that seems warm to the touch",
+                      "effects":  "Burns for 10 turns dealing 1 fire damage a turn. Waterproof",
                       "cost":  "$10",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
                       "id":  "fire-techie-flashfuel-bottle",
                       "name":  "Flashfuel Bottle",
-                      "from_power":  "Fire Techie",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "s: Creates a 5m radius blast of light and fire.",
-                      "effects":  "Deals 1d4 damage. Targets must make a reflex check of 5 or be blinded for 1 turn. Requirements: None",
+                      "description":  "A bottle or jar with a glowing liquid inside",
+                      "effects":  "Creates a 5m radius blast of light and fire. Deals 1d4 damage. Targets must make a reflex check of 5 or be blinded for 1 turn.",
                       "cost":  "$50",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
                       "id":  "fire-techie-basic-pyrotechnics-bench",
                       "name":  "Basic Pyrotechnics Bench",
-                      "from_power":  "Fire Techie",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Requirements: None",
-                      "effects":  "Requirements: None",
+                      "description":  "A bench with a bunch of presure vessals and powder storages",
+                      "effects":  "Unlocks new fire related items",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
                       "id":  "fire-techie-incendiary-gel",
                       "name":  "Incendiary Gel",
-                      "from_power":  "Fire Techie",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "s: Does 1d6 damage when thrown.",
-                      "effects":  "Burns for 3 turns doing 1d4 damage a turn. Waterproof Requirements: Basic Pyrotechnics Bench",
+                      "description":  "A pellet containing a glowing gel",
+                      "effects":  "Does 1d6 damage when thrown. Burns for 3 turns doing 1d4 damage a turn. Waterproof",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
                       "id":  "fire-techie-flame-nozzle",
                       "name":  "Flame Nozzle",
-                      "from_power":  "Fire Techie",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Increases the effective range of your chemicals to 20m.",
-                      "effects":  "Requirements: Basic Pyrotechnics Bench",
+                      "description":  "A long nozzle with a small tank.",
+                      "effects":  "Increases the effective range of your chemicals to 20m.",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
                       "id":  "fire-techie-flame-suit",
                       "name":  "Flame Suit",
-                      "from_power":  "Fire Techie",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Reduces taken fire damage by 4.",
-                      "effects":  "Reduces taken fire damage by 4.",
+                      "description":  "A thick woolen and asbestosed suit. Beware wearing it too long",
+                      "effects":  "Reduces taken fire damage by 4. ",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
                       "id":  "fire-techie-thermite-bomb",
                       "name":  "Thermite Bomb",
-                      "from_power":  "Fire Techie",
+                      "from_power":  "Fire Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Causes an 10m explosion that coats everything in range with thermite.",
-                      "effects":  "Coated enemies take 1d10 fire damage per turn for 10 turns.",
+                      "description":  "A concerningly pipebomb shaped object.",
+                      "effects":  "Causes an 10m explosion that coats everything in range with thermite. Coated enemies take 1d10 fire damage per turn for 10 turns.",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fire Techie"
+                                            "Fire Techie 1"
                                         ]
                   },
                   {
@@ -1325,8 +1338,8 @@
                       "name":  "Concealed Wrist Gas Spray",
                       "from_power":  "Gadget Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Spray a single substance up to 5m.",
-                      "effects":  "Requirements: Chemical Tinker.[br]â€Œ",
+                      "description":  "A small wrist mounted canister for quick deployment",
+                      "effects":  "Spray a substance up to 5m",
                       "cost":  "$100",
                       "prerequisites":  [
                                             "Gadget Techie 1"
