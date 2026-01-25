@@ -1,4 +1,4 @@
-$getDescription = {
+﻿$getDescription = {
   param([string]$Text)
   if (-not $Text) { return "" }
   $lines = $Text -split "`r?`n"
@@ -37,7 +37,7 @@ $getDescription = {
   return ""
 }
 
-$root = "2. Mechanics/Classes"
+$root = "vault/2. Mechanics/Classes"
 $rootPath = (Resolve-Path $root).Path + [IO.Path]::DirectorySeparatorChar
 $files = Get-ChildItem -Path $root -Recurse -Filter *.md
 $entries = @()
@@ -62,3 +62,4 @@ $entries = $entries | Sort-Object path, name
 $json = $entries | ConvertTo-Json -Depth 3 -Compress
 Set-Content -Path "powers-data.js" -Value "const EMBEDDED_POWERS = $json;" -Encoding UTF8 -NoNewline
 Write-Host "Regenerated powers-data.js with $($entries.Count) entries."
+
