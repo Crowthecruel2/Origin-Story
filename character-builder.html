@@ -298,7 +298,6 @@
       gap: 0.45rem;
       margin-top: 0.35rem;
     }
-    .power-levels.collapsed { display: none; }
     .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
     .pill-tag {
       background: rgba(255,255,255,0.05);
@@ -434,7 +433,7 @@
       .app-shell > .grid > section:not(:first-child) { page-break-before: always; }
       .powers-zone, .power-card, .inventory-list > div { border-color: #aaa; background: #fff; }
       .banner { display: none !important; }
-      .power-levels.collapsed { display: grid !important; }
+      .power-levels { display: grid !important; }
       .unowned-level { display: none !important; }
       .power-card { page-break-inside: avoid; }
     }
@@ -956,7 +955,7 @@
         card.appendChild(header);
 
         const levelsWrapper = document.createElement("div");
-        levelsWrapper.className = "power-levels collapsed";
+        levelsWrapper.className = "power-levels";
 
         power.levels.forEach((lv, idx) => {
           const isPurchased = purchased.has(idx);
@@ -966,13 +965,31 @@
           const costText = `Cost ${levelCost(power, lv.level)} PP`;
           if (isPurchased) {
             row.classList.add("owned-level");
+            const removeBtn = document.createElement("button");
+            removeBtn.className = "ghost-btn";
+            removeBtn.style.padding = "0.25rem 0.55rem";
+            removeBtn.textContent = "Unpurchase";
+            removeBtn.addEventListener("click", () => {
+              // remove this level and any higher levels to keep progression valid
+              const remaining = new Set(
+                Array.from(purchased).filter(i => power.levels[i]?.level < lv.level)
+              );
+              power.purchased = remaining;
+              chosenPowers.set(power.path, power);
+              setDirty();
+              renderCharacterPowers();
+              updateSummary();
+            });
             row.innerHTML = `
               <div style="display:flex;justify-content:space-between;align-items:center;">
-                <div style="font-weight:600;color:var(--accent);">Level ${lv.level} (owned)</div>
-                <div class="muted">${costText}</div>
+                <div>
+                  <div style="font-weight:600;color:var(--accent);">Level ${lv.level} (owned)</div>
+                  <div class="muted">${costText}</div>
+                </div>
               </div>
-              <div class="muted" style="white-space:pre-wrap;">${formatMarkdown(lv.text)}</div>
+              <div class="muted" style="white-space:pre-wrap;margin-top:0.35rem;">${formatMarkdown(lv.text)}</div>
             `;
+            row.appendChild(removeBtn);
           } else {
             row.classList.add("unowned-level");
             const { available } = pointsSummary();
@@ -1027,12 +1044,12 @@
     function renderInventory() {
       elements.inventoryList.innerHTML = "";
       if (inventory.length === 0) {
-      const empty = document.createElement("div");
-      empty.className = "muted";
-      empty.textContent = "No items. Add one above.";
-      elements.inventoryList.appendChild(empty);
-      return;
-    }
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No items. Add one above.";
+        elements.inventoryList.appendChild(empty);
+        return;
+      }
     inventory.forEach((item, idx) => {
       const row = document.createElement("div");
       row.style.display = "flex";
@@ -1292,6 +1309,12 @@
       available.forEach(item => {
         const card = document.createElement("div");
         card.className = "power-card";
+        card.setAttribute("draggable", "true");
+        card.addEventListener("dragstart", (e) => {
+          e.dataTransfer.effectAllowed = "copy";
+          e.dataTransfer.setData("application/json", JSON.stringify(item));
+          e.dataTransfer.setData("text/plain", item.name);
+        });
         card.innerHTML = `
           <div style="display:flex;justify-content:space-between;align-items:center;gap:0.6rem;">
             <div>
@@ -1421,6 +1444,24 @@
       appliedLevel1Default = false;
       maybeApplyLevelOneFilter();
       renderItems();
+    }
+
+    function handleItemDrop(evt) {
+      evt.preventDefault();
+      elements.inventoryList.classList.remove("drag-over");
+      let payload = evt.dataTransfer.getData("application/json");
+      if (!payload) return;
+      try {
+        const item = JSON.parse(payload);
+        if (!item.name) return;
+        inventory.push({ name: item.name, qty: 1, notes: item.effects || "" });
+        setDirty();
+        renderInventory();
+        updateSummary();
+        renderItems();
+      } catch (err) {
+        console.warn("Failed to drop item", err);
+      }
     }
     function addPowerToCharacter(power) {
       const existing = chosenPowers.get(power.path);
@@ -1962,6 +2003,14 @@
       updateSummary();
       renderItems();
     });
+    elements.inventoryList.addEventListener("dragover", (evt) => {
+      evt.preventDefault();
+      elements.inventoryList.classList.add("drag-over");
+    });
+    elements.inventoryList.addEventListener("dragleave", () => {
+      elements.inventoryList.classList.remove("drag-over");
+    });
+    elements.inventoryList.addEventListener("drop", handleItemDrop);
     elements.selectCharacterFolder.addEventListener("click", async () => {
       await saveCharacterToFolder();
     });
