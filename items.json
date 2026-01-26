@@ -181,148 +181,154 @@
                                             "Bio-Horror Techie 2"
                                         ]
                   },
+
+
+
+
+
+
                   {
-                      "id":  "chemical-techie-description",
-                      "name":  "## Description",
+                      "id":  "chemical-techie-hazmat-suit",
+                      "name":  "Hazmat Suit",
                       "from_power":  "Chemical Techie",
                       "class_name":  "Techie",
-                      "description":  "Add a short description for Chemical Techie.",
-                      "effects":  "This ability allows the player to build Tinker Chemicals. Only this player can use the supertech unless specified otherwise. # Lv1 Bodysuits: This suit protects the wearer from chemicals and diseases. Effects: Grants immunity to all chemical and biological attacks. Requirements: None",
+                      "description":  "This suit protects the wearer from chemicals and diseases. Useful for someone working with chemicals and diseases.",
+                      "effects":  "Grants immunity to all chemical and biological attacks.",
                       "cost":  "$10",
                       "prerequisites":  [
                                             "Chemical Techie 1"
                                         ]
                   },
                   {
-                      "id":  "chemical-techie",
-                      "name":  "-",
-                      "from_power":  "Chemical Techie",
+                      "id":  "chemical-techie-hyperglue",
+                      "name":  "HyperGlue",
+                      "from_power":  "Chemical Techie 1",
                       "class_name":  "Techie",
-                      "description":  "HyperGlue: A sticky substance that is a extremely powerful adhesive.",
-                      "effects":  "Effect: When a person or object touches this substance they are stuck to it for 20 turns. Requirements: None",
+                      "description":  "A sticky substance that is a extremely powerful adhesive.",
+                      "effects":  "When a person or object touches this substance they are stuck to it for 20 turns. When stuck they can struggle against being immobile by doing a strength check of more than 6",
                       "cost":  "$10 per use",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 1"
+                                        ]
+                  },
+                  {
+                      "id":  "chemical-techie-boost-tonic",
+                      "name":  "Boost Tonic",
+                      "from_power":  "Chemical Techie 1",
+                      "class_name":  "Techie",
+                      "description":  " A sickly sweat substance that boosts one of your attributes.",
+                      "effects":  "Filp a coin, on a heads you gain 1 of the stat of your choice. On a tails you take 1D4 damage. Lasts 50 turns.",
+                      "cost":  "$100",
+                      "prerequisites":  [
+                                            "Chemical Techie 1"
+                                        ]
+                  },
+                  {
+                      "id":  "chemical-techie-basic-chemical-workbench",
+                      "name":  "Basic Chemical Workbench",
+                      "from_power":  "Chemical Techie 1",
+                      "class_name":  "Techie",
+                      "description":  "A small bench with a distillery and some beakers.",
+                      "effects":  "Allows the brewing of more advanced chemicals",
+                      "cost":  "$100",
+                      "prerequisites":  [
+                                            "Chemical Techie 1"
                                         ]
                   },
                   {
                       "id":  "chemical-techie",
-                      "name":  "-",
-                      "from_power":  "Chemical Techie",
+                      "name":  "Piranha Juice",
+                      "from_power":  "Chemical Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Boost Tonic: A sickly sweat substance that boosts one of your attributes.",
-                      "effects":  "Effect: Roll 1D20 on anything but a 1 you gain 1D4 of the stat of your choice. On a 1 you take 1D4 damage. Lasts 50 turns. Requirements: None",
+                      "description":  "A chemical that eats through exposed flesh.",
+                      "effects":  "Deal 1D10 damage to an enemy for 1 turn. If they are unarmored, double this damage.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 1","Basic Chemical Workbench"
                                         ]
                   },
                   {
-                      "id":  "chemical-techie",
-                      "name":  "-",
-                      "from_power":  "Chemical Techie",
+                      "id":  "chemical-techie-substance-sprayer",
+                      "name":  "Substance Sprayer",
+                      "from_power":  "Chemical Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Basic Chemical Workbench: A small bench with a distillery and some beakers.",
-                      "effects":  "Requirements: None",
+                      "description":  "A gun with a long nozzle that can spray substances up to 100m.",
+                      "effects":  "Increases range of all substances to 100m.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Chemical Techie"
-                                        ]
-                  },
-                  {
-                      "id":  "chemical-techie",
-                      "name":  "-",
-                      "from_power":  "Chemical Techie",
-                      "class_name":  "Techie",
-                      "description":  "Piranha Juice: A chemical that eats through exposed flesh.",
-                      "effects":  "Effects: Deal 1D10 damage to an enemy. If they are unarmored, double this damage. Requirements: Basic Chemical workbench. â€Œ",
-                      "cost":  "$100",
-                      "prerequisites":  [
-                                            "Chemical Techie"
-                                        ]
-                  },
-                  {
-                      "id":  "chemical-techie",
-                      "name":  "-",
-                      "from_power":  "Chemical Techie",
-                      "class_name":  "Techie",
-                      "description":  "Substance Sprayer: A gun with a long nozzle that can spray substances up to 100m.",
-                      "effects":  "Effects: Increases range of all substances to 100m. Requirements: Basic Chemical workbench.",
-                      "cost":  "$100",
-                      "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 1","Basic Chemical Workbench"
                                         ]
                   },
                   {
                       "id":  "chemical-techie-basic-biohazard-mech-suit",
                       "name":  "Basic Biohazard Mech Suit",
-                      "from_power":  "Chemical Techie",
+                      "from_power":  "Chemical Techie 1",
                       "class_name":  "Techie",
                       "description":  "HP: 100 Movespeed: 15m per turn Armor: 2 Substance Slots: 2 Effects: Can Carty 10 stacks of 2 different Chemicals.",
                       "effects":  "Completely Airtight and functions as a basic Chemical Workbench. Increases strength to 10. Requirements: Mech Suit Tinker Lv 1",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 1","Mech Techie 1"
                                         ]
                   },
                   {
                       "id":  "chemical-techie-instant-pitfall",
                       "name":  "Instant Pitfall",
-                      "from_power":  "Chemical Techie",
+                      "from_power":  "Chemical Techie 1",
                       "class_name":  "Techie",
-                      "description":  "Creates a 20m deep hole at location it was thrown.",
-                      "effects":  "Requirements: Fortification Tinker Lv 1",
+                      "description":  "The almost-universal solvent. Does not work on flesh.",
+                      "effects":  "Creates a 20m deep hole at location it was thrown.",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 1","Fortification Techie 1"
                                         ]
                   },
                   {
-                      "id":  "chemical-techie-lv2",
-                      "name":  "# Lv2",
-                      "from_power":  "Chemical Techie",
+                      "id":  "chemical-techie-enhanced-molotov",
+                      "name":  "Enhanced Molotov",
+                      "from_power":  "Chemical Techie 2",
                       "class_name":  "Techie",
-                      "description":  "Enhanced Molotov: A Molotov cocktail that was made with a similar composition to Napalm and White Phosphorous.",
-                      "effects":  "Effects: Lights a 10m area on fire. The fire lasts 2 hours. Damage: 1 damage per turn. Requirements: Basic Chemical Workbench.",
-                      "cost":  "$10",
+                      "description":  "A Molotov cocktail that was made with a similar composition to Napalm and White Phosphorous.",
+                      "effects":  "Lights a 10m area on fire. The fire lasts 2 hours. Damage: 1 damage per turn. Requirements: Basic Chemical Workbench.",
+                      "cost":  "$100",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 2"
                                         ]
                   },
                   {
                       "id":  "chemical-techie-eyesolver",
                       "name":  "EyeSolver",
-                      "from_power":  "Chemical Techie",
+                      "from_power":  "Chemical Techie 2",
                       "class_name":  "Techie",
-                      "description":  "s: Causes blinding.",
-                      "effects":  "Damage: 1 Requirements: Basic Chemical Workbench.",
+                      "description":  "Keep away from eyes",
+                      "effects":  "Causes blindness up to 5 turns.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 2"
                                         ]
                   },
                   {
                       "id":  "chemical-techie-mindwipe",
                       "name":  "Mindwipe",
-                      "from_power":  "Chemical Techie",
+                      "from_power":  "Chemical Techie 2",
                       "class_name":  "Techie",
-                      "description":  "s: Removes 1 days worth of memories after being ingested.",
-                      "effects":  "Damage: None Requirements: Basic Chemical Workbench.",
+                      "description":  "Liquid memory remover",
+                      "effects":  "Removes 1 days worth of memories but has to be ingested through the mouth",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 2"
                                         ]
                   },
                   {
                       "id":  "chemical-techie-chemical-workbench",
                       "name":  "Chemical Workbench",
-                      "from_power":  "Chemical Techie",
+                      "from_power":  "Chemical Techie 2",
                       "class_name":  "Techie",
-                      "description":  "Requirements: Basic Chemical Workbench.",
-                      "effects":  "Requirements: Basic Chemical Workbench.",
+                      "description":  "A large bench equip with modern chemical lab equipment",
+                      "effects":  "Allows the brewing of advanced chemical mixtures",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Chemical Techie"
+                                            "Chemical Techie 2","Basic Chemical Workbench"
                                         ]
                   },
                   {
@@ -445,64 +451,69 @@
                                             "Chemical Techie"
                                         ]
                   },
+
+
+
+
+
                   {
                       "id":  "divine-techie-aegis-of-athena",
                       "name":  "Aegis of Athena",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "While worn it grants +4 armor.",
                       "effects":  "You have -2 to reflex. It can transform into Bow of Artemis. Range: Melee Damage: 1D4 Requirement: none",
                       "cost":  "$10000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 1"
                                         ]
                   },
                   {
                       "id":  "divine-techie-bow-of-artemis",
                       "name":  "Bow of Artemis",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "This weapon ignores 4 armor.",
                       "effects":  "You get -2 to Smarts. It can transform into Shield of Athena Range: 75m Damage: 1d12 Requirements: none",
                       "cost":  "$10000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 1"
                                         ]
                   },
                   {
                       "id":  "divine-techie-great-axe-of-ares",
                       "name":  "Great Axe of Ares",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "Damage increases by +1 for every 30 enemies slain.",
                       "effects":  "Can Transform into Hand Axes of Enyu. Range: Melee Damage: 1d6 Requirements: none",
-                      "cost":  "$10000.01",
+                      "cost":  "$10000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 1"
                                         ]
                   },
                   {
                       "id":  "divine-techie-hand-axes-of-enyu",
                       "name":  "Hand Axes of Enyu",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "Heal 2 health on every hit, gain +1 to this effect for every 30 enemies slain.",
                       "effects":  "Can Transform into Great Axe of Ares. Range: Melee Damage: 1d4 each Requirements: none",
-                      "cost":  "$10000.01",
+                      "cost":  "$10000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 1"
                                         ]
                   },
                   {
                       "id":  "divine-techie-staff-of-dionysus",
                       "name":  "Staff of Dionysus",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "When an enemy is hit.",
                       "effects":  "Temporarily reduce their Smarts by 2. Can transform into Whip of Aphrodite. Range: Melee Damage: 1d4 Requirements: none",
-                      "cost":  "$10000.02",
+                      "cost":  "$10000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 1"
                                         ]
                   },
                   {
@@ -512,7 +523,7 @@
                       "class_name":  "Techie",
                       "description":  "When a character is whipped.",
                       "effects":  "Temporarily increase their social by 2. Can transform into Staff of Dionysus. Range: Melee Damage: 1d4 Requirements: none",
-                      "cost":  "$10000.02",
+                      "cost":  "$10000",
                       "prerequisites":  [
                                             "Divine Techie"
                                         ]
@@ -520,37 +531,37 @@
                   {
                       "id":  "divine-techie-ring-of-apollo",
                       "name":  "Ring of Apollo",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "Gives the wearer +3 to social.",
                       "effects":  "The wearer has -3 to durability while wearing. Can Transform into Ring of Eris. Requirements: none",
-                      "cost":  "$10000.03",
+                      "cost":  "$10000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 1"
                                         ]
                   },
                   {
                       "id":  "divine-techie-ring-of-eris",
                       "name":  "Ring of Eris",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "You can reroll 1 enemy roll per round.",
                       "effects":  "The wearer gets -3 to social while wearing. Can Transform into Ring of Apollo. # Lv2",
-                      "cost":  "$10000.03",
+                      "cost":  "$10000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 1"
                                         ]
                   },
                   {
                       "id":  "divine-techie-mace-of-zeus",
                       "name":  "Mace of Zeus",
-                      "from_power":  "Divine Techie",
+                      "from_power":  "Divine Techie 1",
                       "class_name":  "Techie",
                       "description":  "When you hit an enemy and an ally hits them after, the enemy takes damage equal to the amount of times this effect has been applied, Applied Additively.",
                       "effects":  "Can transform into a Bastard Sword of Hades Range: Melee Damage: 1d4 Requirements: noneâ€Œ",
                       "cost":  "$20000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 2"
                                         ]
                   },
                   {
@@ -562,7 +573,7 @@
                       "effects":  "This target can now only damage you and be damaged by you. When the enemy dies they can be resummoned as a ghost with 1 in every stat and their powers at 1 tenth strength. Can transform into Mace of Zeus Range Melee Damage: 1d6 Requirements: noneâ€Œ",
                       "cost":  "$20000",
                       "prerequisites":  [
-                                            "Divine Techie"
+                                            "Divine Techie 2"
                                         ]
                   },
                   {
@@ -661,6 +672,9 @@
                                             "Divine Techie"
                                         ]
                   },
+
+
+
                   {
                       "id":  "fire-techie-description",
                       "name":  "Ignition Gloves",
@@ -757,244 +771,249 @@
                                             "Fire Techie 1","Basic Pyrotechnics Bench"
                                         ]
                   },
+
+
+
+
+
                   {
                       "id":  "fortification-techie-reinforced-bodysuit",
                       "name":  "Reinforced Bodysuit",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Gain +2 armor.",
                       "effects":  "Requirements: None",
                       "cost":  "$10",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-concrete-sprayer",
                       "name":  "Concrete Sprayer",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "s: Allows you to build walls or seal of doors in 1 turn.",
                       "effects":  "The walls have 20HP and 3 armor. Requirements: Noneâ€Œ",
                       "cost":  "$10",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-concrete-foam-grenade",
                       "name":  "Concrete Foam Grenade",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "s: Seal 5m area in concrete.",
                       "effects":  "The foam has no armor and only has 10hp. Requirements: None",
                       "cost":  "$10",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-fort-workbench",
                       "name":  "Fort Workbench",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Requirements: None",
                       "effects":  "Requirements: None",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-autoturret",
                       "name":  "AutoTurret",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Hp:5 Size: 1/2 slot Effects: Automatically attacks the nearest enemy.",
                       "effects":  "Damage: 1D4 Range: 50m Requirements: Fort Workbench.",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-duel-turret",
                       "name":  "Duel Turret",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Hp:10 Size: 1/2 slot Effects: Automatically attacks the nearest enemy.",
                       "effects":  "Damage: 2D4 Range: 50m Requirements: Fort Workbench.",
                       "cost":  "$500",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-reinforced-wall",
                       "name":  "Reinforced Wall",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "s: Increase a walls health to 50 and it armor to 6 Requirements: Concrete Sprayerâ€Œ",
                       "effects":  "s: Increase a walls health to 50 and it armor to 6 Requirements: Concrete Sprayerâ€Œ",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-entrenching-tool",
                       "name":  "Entrenching Tool",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Allows the player to dig a cubic meter every turn.",
                       "effects":  "Requirements: None",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-catapult-trap",
                       "name":  "Catapult Trap",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Launches mooks/civvies up to 1d10 x10 meters if stepped on.",
                       "effects":  "Can only activate once per turn. Requirements: None",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-tar-pit-trap",
                       "name":  "Tar Pit Trap",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "If a person is standing on the trap, they lose half of their actions Requirements: Chemical Tinker Lv 1",
                       "effects":  "If a person is standing on the trap, they lose half of their actions Requirements: Chemical Tinker Lv 1",
                       "cost":  "$100",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-corrosive-gas-turret",
                       "name":  "Corrosive Gas Turret",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Releases Piranha juice on everything that passes it.",
                       "effects":  "Requirements: Chemical Tinker Lv 1",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-fortified-basic-mech-suit",
                       "name":  "Fortified Basic Mech Suit",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "HP: 50 Movespeed: 15m per turn Armor: 2 Turret Slots: 2 Effects: Doubles production speed for bigger mechs.",
                       "effects":  "(Doesn\u0027t stack) Increases strength to 10. Too Bulky to use normal or mech weapons. There is 1/5 chance that enemies hit the player instead of the mech. You can\u0027t deploy turrets from inside the mech. If equipped with a quick deploy mod instead of 1 turret you can deploy turrets from inside. Requirements: Mech Tinker Lv1â€Œ",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-shoulder-mounted-machine-gun",
                       "name":  "Shoulder mounted Machine Gun",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Hp: 10 Size: 1 slot Range: 50m Effect: Targets Nearest enemy.",
                       "effects":  "Damage: 3d8 Requirement: Mech tinker Lv 1",
                       "cost":  "$500",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-size-mod",
                       "name":  "Size mod",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Halves size of a turret.",
                       "effects":  "Requirements: Gadget tinker Lv 1.â€Œ",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-quick-deploy-mod",
                       "name":  "Quick Deploy Mod",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Allows for the deployment of two turrets a turn.",
                       "effects":  "Requirements: None",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-turret-platform-drone",
                       "name":  "Turret Platform Drone",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Hp: 20 Effect: This drone can carry 4 lv 1 turrets or 1 Lv 2 turret on it.",
                       "effects":  "It can also fly. Requirements: Interface tinker.",
                       "cost":  "$1000",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-emplaced-turret",
                       "name":  "Emplaced Turret",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Hp:20 Size: 1 slot Effect: Automatically attacks the nearest enemy.",
                       "effects":  "Needs 1 day to remove from emplaced position. Damage: 1D8 Range: 100m Requirement: Fort Workbench.â€Œ",
                       "cost":  "$500",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-stealth-mod",
                       "name":  "Stealth Mod",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Stealth Mod",
                       "effects":  "Stealth Mod",
                       "cost":  "add half of price to item.â€Œ",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-armor-mod",
                       "name":  "Armor Mod",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Armor Mod",
                       "effects":  "Armor Mod",
                       "cost":  "Double Cost of Item.â€Œ",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 1"
                                         ]
                   },
                   {
                       "id":  "fortification-techie-dart-trap",
                       "name":  "Dart Trap",
-                      "from_power":  "Fortification Techie",
+                      "from_power":  "Fortification Techie 1",
                       "class_name":  "Techie",
                       "description":  "Automatically attacks any enemies that step in front of it.",
                       "effects":  "On a failed Durability roll of 5 the enemy is knocked out. Range: 20m Requirement: Fort Workbench.â€Œ",
                       "cost":  "$500",
                       "prerequisites":  [
-                                            "Fortification Techie"
+                                            "Fortification Techie 2"
                                         ]
                   },
                   {
@@ -1273,6 +1292,11 @@
                                             "Fortification Techie"
                                         ]
                   },
+
+
+
+
+
                   {
                       "id":  "gadget-techie-armored-tuxedo",
                       "name":  "Armored Tuxedo",
@@ -1393,6 +1417,12 @@
                                             "Gadget Techie 2"
                                         ]
                   },
+
+
+
+
+
+
                   {
                       "id":  "interface-techie-control-helmet",
                       "name":  "Control Helmet",
@@ -1633,6 +1663,12 @@
                                             "Interface Techie"
                                         ]
                   },
+
+
+
+
+
+
                   {
                       "id":  "mech-techie-bodysuit",
                       "name":  "Bodysuit",
@@ -2017,6 +2053,11 @@
                                             "Mech Techie"
                                         ]
                   },
+
+
+
+
+
                   {
                       "id":  "modular-items-techie-description",
                       "name":  "## Description",
@@ -2077,6 +2118,10 @@
                                             "Modular Items Techie"
                                         ]
                   },
+
+
+
+
                   {
                       "id":  "water-techie-hydro-gloves",
                       "name":  "Hydro Gloves",
