@@ -1322,6 +1322,7 @@
           p.name.toLowerCase().includes(term) ||
           p.path.toLowerCase().includes(term) ||
           p.content.toLowerCase().includes(term) ||
+          (p.levels || []).some(l => String(l.text || "").toLowerCase().includes(term)) ||
           (p.description || "").toLowerCase().includes(term)
         );
       }
@@ -1418,8 +1419,19 @@
         const res = await fetch("powers.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        if (data && Array.isArray(data.powers)) return data.powers;
-        if (Array.isArray(data)) return data;
+        if (data && Array.isArray(data.powers)) return data.powers; // legacy flat format
+        if (Array.isArray(data)) return data; // legacy: raw array of powers
+
+        // New hierarchical single-file format:
+        // powers.json -> { classes: [{ class_name, all_class_powers: [{ ...power, all_sub_powers: [...] }] }] }
+        if (data && Array.isArray(data.classes)) {
+          const all = [];
+          for (const cls of data.classes) {
+            const list = cls?.all_class_powers || [];
+            for (const p of list) all.push(p);
+          }
+          return all;
+        }
       } catch (err) {
         console.warn("Failed to load powers.json", err);
       }
@@ -1503,12 +1515,18 @@
       for (const raw of rawList) {
         const normPath = (raw.path || "").replace(/\\/g, "/");
         const content = typeof raw.content === "string" ? raw.content : (raw.content?.value ?? "");
+        const sub = Array.isArray(raw.all_sub_powers) ? raw.all_sub_powers : [];
+        const subLooksLikeLevels = sub.length && (typeof sub[0]?.level === "number" || /^\d+$/.test(String(sub[0]?.level ?? "")));
         const base = {
           name: raw.name,
           path: normPath,
         content,
         description: raw.description || extractDescription(content),
-        levels: extractLevels(content),
+        levels: subLooksLikeLevels ? sub.map(s => ({
+          level: Number(s.level) || 1,
+          text: String(s.text ?? s.ability ?? ""),
+          cost: Number(s.cost ?? s.points) || 1,
+        })) : extractLevels(content),
       };
       if (!base.levels || !base.levels.length) {
         base.levels = [{ level: 1, text: content || base.description || base.name, cost: 1 }];
