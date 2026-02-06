@@ -600,7 +600,7 @@
                 <input type="number" id="statPerLevel" value="2" min="0">
               </label>
             </div>
-            <div class="helper-text">Budget = Base pool + Per-level gain x (Level - 1). Total points = sum of base + modifiers.</div>
+            <div class="helper-text">Budget = Base pool + Per-level gain × (Level - 1). Budget counts Base only; Mods are free.</div>
           </details>
         </div>
 
@@ -833,7 +833,19 @@
       return Math.max(0, base + per * (lvl - 1));
     }
 
-    function totalStats() {
+    function totalStatsBase() {
+      const vals = [
+        elements.reflexBase,
+        elements.strengthBase,
+        elements.smartsBase,
+        elements.socialBase,
+        elements.durabilityBase,
+        elements.armorBase,
+      ];
+      return vals.reduce((sum, el) => sum + (Number(el.value) || 0), 0);
+    }
+
+    function totalStatsIncludingMods() {
       const vals = [
         elements.reflexBase, elements.strengthBase, elements.smartsBase, elements.socialBase, elements.durabilityBase,
         elements.armorBase,
@@ -896,7 +908,10 @@
       const powerCount = chosenPowers.size;
       const summary = `Level ${getLevel()} | Health ${elements.healthCurrent.textContent}/${elements.healthMax.textContent} | Cash $${elements.cashDisplay.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
       elements.summaryText.textContent = summary;
-      elements.statBudgetBadge.textContent = `Stat budget: ${elements.statBasePool.value || 0} base + ${elements.statPerLevel.value || 0}/level (spent ${totalStats()})`;
+      const baseSpent = totalStatsBase();
+      const totalWithMods = totalStatsIncludingMods();
+      const totalSuffix = totalWithMods !== baseSpent ? `, ${totalWithMods} incl mods` : "";
+      elements.statBudgetBadge.textContent = `Stat budget: ${elements.statBasePool.value || 0} base + ${elements.statPerLevel.value || 0}/level (spent ${baseSpent} base${totalSuffix})`;
     }
 
     function updatePPWarning() {
@@ -912,25 +927,27 @@
 
     function validateStats() {
       const budget = statBudget();
-      const spent = totalStats();
+      const spent = totalStatsBase();
+      const totalWithMods = totalStatsIncludingMods();
       const group = document.getElementById("statsGroup");
       const statusLine = elements.statBudgetStatus;
       if (statusLine) {
         statusLine.classList.remove("status-good", "status-warn");
       }
       if (spent > budget) {
-        elements.statWarning.textContent = `Stats exceed budget by ${spent - budget}. Budget = ${budget}, spent = ${spent}.`;
+        elements.statWarning.textContent = `Base stats exceed budget by ${spent - budget}. Budget = ${budget}, base spent = ${spent}. (Mods are free.)`;
         elements.statWarning.classList.remove("hidden");
         group.classList.add("invalid");
         if (statusLine) {
-          statusLine.textContent = `(!) You are ${spent - budget} over your stat budget (${spent}/${budget}).`;
+          statusLine.textContent = `(!) You are ${spent - budget} over your base stat budget (${spent}/${budget}).`;
           statusLine.classList.add("status-warn");
         }
       } else {
         elements.statWarning.classList.add("hidden");
         group.classList.remove("invalid");
         if (statusLine) {
-          statusLine.textContent = `(OK) You have spent ${spent} of ${budget} stat points.`;
+          const totalNote = totalWithMods !== spent ? ` (total ${totalWithMods} incl mods)` : "";
+          statusLine.textContent = `(OK) You have spent ${spent} of ${budget} base stat points.${totalNote}`;
           statusLine.classList.add("status-good");
         }
       }
