@@ -211,6 +211,7 @@
     </section>
   </main>
 </body>
+<script src="runtime-config.js"></script>
 <script>
   const fallbackFactions = [
     {"slug":"children-of-change","name":"Children of Change","blurb":"A zealous mutant cult that worships transformation as divine truth. Their bodies shift, warp, and evolve through painful rituals and unstable genetic rites. From ragged Rejects to towering Gene Lords, every abomination is shaped by the cult's belief that flesh must be broken to be perfected. To the Children, mutation is salvation -- and the city is fertile ground for rebirth.","page":"factions/children-of-change.html"},
@@ -242,8 +243,17 @@
       });
     };
 
+    const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+    const apiUrl = (path) => {
+      if (!API_BASE) return path;
+      try { return new URL(path, API_BASE).toString(); } catch { return path; }
+    };
+
     try {
-      const res = await fetch("factions/factions.json", { cache: "no-store" });
+      let res = await fetch(apiUrl("api/rpg-factions.php"), { cache: "no-store" });
+      if (!res.ok) {
+        res = await fetch("factions/factions.json", { cache: "no-store" });
+      }
       if (!res.ok) throw new Error(res.statusText);
       const data = await res.json();
       if (Array.isArray(data.factions)) {

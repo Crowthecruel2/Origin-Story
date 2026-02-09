@@ -1,0 +1,34 @@
+<?php
+/**
+ * Copy this file to `config.php` and fill in your settings.
+ *
+ * SECURITY:
+ * - Keep `config.php` OUT of git (see .gitignore).
+ * - If possible, place it outside your web root and update the include path in `api/db.php` and `admin/util.php`.
+ */
+
+declare(strict_types=1);
+
+return [
+  "db" => [
+    "host" => "localhost",
+    "name" => "YOUR_DATABASE_NAME",
+    "user" => "YOUR_DATABASE_USER",
+    "pass" => "YOUR_DATABASE_PASSWORD",
+    "charset" => "utf8mb4",
+  ],
+  "admin" => [
+    "setup_token" => "CHANGE_ME_TO_RANDOM_AND_REMOVE_AFTER_SETUP",
+    "allow_ips" => [
+      // "203.0.113.10",
+    ],
+  ],
+
+  // Allow browser-based frontends hosted on other origins (e.g. GitHub Pages) to call `api/*.php`.
+  // If you serve the site and API on the same domain, you can leave this empty.
+  "cors" => [
+    "allowed_origins" => [
+      // "https://yourname.github.io",
+    ],
+  ],
+];

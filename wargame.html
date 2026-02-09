@@ -150,9 +150,16 @@
     </div>
   </div>
 
+  <script src="runtime-config.js"></script>
   <script src="wargame-data.js"></script>
 <script>
-  const data = (window.WARGAME_DATA || null);
+  const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+  const apiUrl = (path) => {
+    if (!API_BASE) return path;
+    try { return new URL(path, API_BASE).toString(); } catch { return path; }
+  };
+
+  let data = (typeof window.WARGAME_DATA !== "undefined" ? window.WARGAME_DATA : (typeof WARGAME_DATA !== "undefined" ? WARGAME_DATA : null));
   const factionGrid = document.getElementById("factionGrid");
   const unitSearch = document.getElementById("unitSearch");
   const unitResults = document.getElementById("unitResults");
@@ -227,8 +234,20 @@
     }
   }
 
-  renderFactions();
+  async function hydrateData() {
+    try {
+      const res = await fetch(apiUrl("api/wargame.php"), { cache: "no-store" });
+      if (res.ok) {
+        data = await res.json();
+      }
+    } catch (err) {
+      // ignore; embedded data may exist
+    }
+    renderFactions();
+  }
+
   unitSearch?.addEventListener("input", () => renderUnitResults(unitSearch.value));
+  hydrateData();
 </script>
 </body>
 </html>

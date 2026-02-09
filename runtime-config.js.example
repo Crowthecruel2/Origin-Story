@@ -1,0 +1,9 @@
+// Optional runtime config for deploying the static site separately from the PHP API.
+// Copy to `runtime-config.js` and edit as needed.
+//
+// Example: host HTML on GitHub Pages, host API on your shared host:
+// window.BRIGHTON_API_BASE = "https://your-domain.example/";
+//
+// Leave unset/empty to use same-origin relative URLs.
+// window.BRIGHTON_API_BASE = "";
+

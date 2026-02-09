@@ -1257,7 +1257,7 @@
                                         ]
                   },
                   {
-                      "id":  "fortification-techie-quick-deploy-mod",
+                      "id":  "fortification-techie-quick-deploy-speed-mod",
                       "name":  "Quick Deploy mod",
                       "from_power":  "Fortification Techie",
                       "class_name":  "Techie",

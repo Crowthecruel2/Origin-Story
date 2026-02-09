@@ -85,6 +85,84 @@
     }
     .section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem; }
     .mini { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; display: grid; gap: 0.45rem; }
+
+    /* Structured unit card (manually authored) */
+    .wg-preview-wrap{ background: rgba(0,0,0,0.18); border:1px solid rgba(255,255,255,0.06); border-radius:14px; padding:0.9rem; overflow:auto; }
+    .wg-card {
+      width: min(780px, 100%);
+      --wg-border: #0b0b0b;
+      --wg-card-bg: #6b6b6b;
+      --wg-header-bg: #b7ff56;
+      --wg-header-text: #0a0a0a;
+      --wg-accent-bg: #b45309;
+      --wg-accent-text: #0b0b0b;
+      --wg-table-text: #f3f4f6;
+      --wg-bubble-bg: #ffffff;
+      --wg-bubble-text: #0b0b0b;
+      --wg-energy-bg: #efefef;
+      --wg-energy-text: #0b0b0b;
+      --wg-flavor-text: #101827;
+
+      border: 8px solid var(--wg-border);
+      background: var(--wg-card-bg);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.55);
+    }
+    .wg-card .header {
+      background: var(--wg-header-bg);
+      color: var(--wg-header-text);
+      padding: 18px 18px 10px;
+      border-bottom: 6px solid var(--wg-border);
+      position: relative;
+      display:grid;
+      gap: 4px;
+    }
+    .wg-title { margin:0; font-size: 40px; line-height: 1; letter-spacing: 0.02em; font-weight: 1000; text-transform: uppercase; color: var(--wg-header-text); }
+    .wg-sub { color: var(--wg-header-text); font-weight: 800; }
+    .wg-bubbles { position:absolute; right: 12px; top: 12px; display:flex; gap: 10px; align-items:flex-start; }
+    .wg-bubble { width: 44px; height: 30px; background: var(--wg-bubble-bg); border: 3px solid var(--wg-border); border-radius: 999px; display:flex; align-items:center; justify-content:center; font-weight: 1000; color: var(--wg-bubble-text); }
+    .wg-stats { display:grid; grid-template-columns: 140px 1fr; gap: 14px; padding: 14px 18px; border-bottom: 6px solid var(--wg-border); }
+    .wg-health { background: var(--wg-accent-bg); color: var(--wg-accent-text); border: 4px solid var(--wg-border); border-radius: 24px; padding: 14px; display:grid; gap: 6px; justify-items:center; }
+    .wg-health small{ font-weight: 900; opacity: 0.9; text-transform: uppercase; }
+    .wg-health strong{ font-size: 30px; }
+    .wg-energy { background: var(--wg-energy-bg); color: var(--wg-energy-text); border: 4px solid var(--wg-border); border-radius: 14px; padding: 14px; display:flex; align-items:center; justify-content:center; font-weight: 900; }
+    .wg-hex-row { grid-column: 1 / -1; display:flex; flex-wrap:wrap; gap: 10px; align-items:flex-start; }
+    .wg-hex {
+      width: 86px;
+      height: 76px;
+      background: var(--wg-accent-bg);
+      border: 4px solid var(--wg-border);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      display:grid;
+      align-content:center;
+      justify-items:center;
+      color: var(--wg-accent-text);
+      font-weight: 1000;
+      padding: 6px;
+      text-align:center;
+    }
+    .wg-hex small{ font-size: 11px; text-transform: uppercase; opacity: 0.9; }
+    .wg-hex span{ font-size: 18px; }
+    .wg-ri {
+      flex: 1 1 220px;
+      min-height: 76px;
+      background: var(--wg-accent-bg);
+      border: 4px solid var(--wg-border);
+      border-radius: 16px;
+      padding: 10px 12px;
+      color: var(--wg-accent-text);
+      font-weight: 900;
+      display:grid;
+      gap: 4px;
+    }
+    .wg-table { padding: 14px 18px; border-bottom: 6px solid var(--wg-border); }
+    .wg-table table{ width:100%; border-collapse: collapse; }
+    .wg-table th{ background: var(--wg-accent-bg); color: var(--wg-accent-text); border: 4px solid var(--wg-border); padding: 10px 8px; font-weight: 1000; text-transform: uppercase; font-size: 12px; letter-spacing: .08em; }
+    .wg-table td{ background: var(--wg-card-bg); color: var(--wg-table-text); border: 4px solid var(--wg-border); padding: 10px 8px; font-weight: 700; }
+    .wg-abilities { padding: 14px 18px; border-bottom: 6px solid var(--wg-border); }
+    .wg-abilities .box{ background: var(--wg-accent-bg); border: 6px solid var(--wg-border); padding: 12px 12px; color: var(--wg-accent-text); font-weight: 900; }
+    .wg-abilities pre{ margin: 8px 0 0; white-space: pre-wrap; font-weight: 800; background: transparent; border: none; border-radius: 0; padding: 0; color: inherit; }
+    .wg-flavor{ padding: 12px 18px 18px; }
+    .wg-flavor p{ margin:0; color: var(--wg-flavor-text); font-weight: 800; opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -119,8 +197,8 @@
     </section>
 
     <section class="card">
-      <h2>Extracted sections (best-effort)</h2>
-      <p class="muted">This is auto-extracted text; formatting and some stats may need manual cleanup.</p>
+      <h2 id="sectionsTitle">Extracted sections (best-effort)</h2>
+      <p class="muted" id="sectionsHint">This is auto-extracted text; formatting and some stats may need manual cleanup.</p>
       <div class="section-grid" id="sectionGrid"></div>
     </section>
 
@@ -129,15 +207,23 @@
       <pre id="rawText"></pre>
     </section>
   </main>
+  <script src="runtime-config.js"></script>
   <script src="wargame-data.js"></script>
 <script>
   const params = new URLSearchParams(location.search);
   const unitId = params.get("id") || "";
-  const data = window.WARGAME_DATA || null;
+  const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+  const apiUrl = (path) => {
+    if (!API_BASE) return path;
+    try { return new URL(path, API_BASE).toString(); } catch { return path; }
+  };
+  let data = (typeof window.WARGAME_DATA !== "undefined" ? window.WARGAME_DATA : (typeof WARGAME_DATA !== "undefined" ? WARGAME_DATA : null));
 
   const unitHeader = document.getElementById("unitHeader");
   const rawText = document.getElementById("rawText");
   const sectionGrid = document.getElementById("sectionGrid");
+  const sectionsTitle = document.getElementById("sectionsTitle");
+  const sectionsHint = document.getElementById("sectionsHint");
   const backLink = document.getElementById("backLink");
 
   function escapeHtml(s) {
@@ -175,6 +261,103 @@
     rawText.textContent = unit.raw || "";
 
     const sections = unit.sections || {};
+    const card = sections?.card;
+
+    if (card && typeof card === "object") {
+      sectionsTitle.textContent = "Unit card";
+      sectionsHint.textContent = "Manually authored card data (edited in the admin panel).";
+      sectionGrid.className = "wg-preview-wrap";
+
+      const stats = card.stats || {};
+      const weapons = Array.isArray(card.weapons) ? card.weapons : [];
+      const headerNums = Array.isArray(unit.headerNumbers) ? unit.headerNumbers : [];
+      const colors = (card.colors && typeof card.colors === "object") ? card.colors : {};
+
+      const safeColor = (v) => {
+        const s = String(v ?? "").trim();
+        return /^#[0-9a-fA-F]{6}$/.test(s) ? s : "";
+      };
+      const styleParts = [];
+      const pushVar = (k, v) => {
+        const c = safeColor(v);
+        if (c) styleParts.push(`--${k}:${c}`);
+      };
+      pushVar("wg-header-bg", colors.headerBg);
+      pushVar("wg-accent-bg", colors.accentBg);
+      pushVar("wg-card-bg", colors.cardBg);
+      pushVar("wg-border", colors.borderColor);
+      pushVar("wg-header-text", colors.headerText);
+      pushVar("wg-table-text", colors.tableText);
+      const cardStyle = styleParts.length ? ` style="${styleParts.join(";")}"` : "";
+
+      const weaponRows = weapons.length
+        ? weapons.map(w => `
+            <tr>
+              <td>${escapeHtml(w.name ?? "")}</td>
+              <td>${escapeHtml(w.hit ?? "")}</td>
+              <td>${escapeHtml(w.keywords ?? "")}</td>
+              <td>${escapeHtml(w.damage ?? "")}</td>
+              <td>${escapeHtml(w.type ?? "")}</td>
+              <td>${escapeHtml(w.effects ?? "")}</td>
+              <td>${escapeHtml(w.range ?? "")}</td>
+            </tr>
+          `).join("")
+        : `<tr><td colspan="7" style="opacity:.75">No weapons yet</td></tr>`;
+
+      sectionGrid.innerHTML = `
+        <div class="wg-card"${cardStyle}>
+          <div class="header">
+            <div class="wg-bubbles">
+              <div class="wg-bubble">${escapeHtml(headerNums[0] ?? "")}</div>
+              <div class="wg-bubble">${escapeHtml(headerNums[1] ?? "")}</div>
+              <div class="wg-bubble">${escapeHtml(headerNums[2] ?? "")}</div>
+            </div>
+            <h1 class="wg-title">${escapeHtml(unit.name ?? "")}</h1>
+            <div class="wg-sub">${card.subtitle ? `&quot;${escapeHtml(card.subtitle)}&quot;` : ""}</div>
+          </div>
+          <div class="wg-stats">
+            <div class="wg-health"><small>Health</small><strong>${escapeHtml(stats.health ?? "")}</strong></div>
+            <div class="wg-energy">Starting Energy = ${escapeHtml(unit.startingEnergy ?? card.startingEnergy ?? "")}</div>
+            <div class="wg-hex-row">
+              <div class="wg-hex"><small>Move</small><span>${escapeHtml(stats.move ?? "")}</span></div>
+              <div class="wg-hex"><small>Armor</small><span>${escapeHtml(stats.armor ?? "")}</span></div>
+              <div class="wg-hex"><small>Dex</small><span>${escapeHtml(stats.dex ?? "")}</span></div>
+              <div class="wg-hex"><small>Str</small><span>${escapeHtml(stats.str ?? "")}</span></div>
+              <div class="wg-hex"><small>Size</small><span>${escapeHtml(stats.size ?? "")}</span></div>
+              <div class="wg-ri">
+                <div>Resistances: ${escapeHtml(card.resistances ?? "")}</div>
+                <div>Immunities: ${escapeHtml(card.immunities ?? "")}</div>
+              </div>
+            </div>
+          </div>
+          <div class="wg-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Weapons</th><th>Hit Bonus</th><th>Keywords</th><th>Damage</th><th>Damage Type</th><th>Effects</th><th>Range</th>
+                </tr>
+              </thead>
+              <tbody>${weaponRows}</tbody>
+            </table>
+          </div>
+          <div class="wg-abilities">
+            <div class="box">
+              <div>Abilities:</div>
+              <pre>${escapeHtml(card.abilities ?? "")}</pre>
+            </div>
+          </div>
+          <div class="wg-flavor">
+            <p>${escapeHtml(card.flavor ?? "")}</p>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    sectionsTitle.textContent = "Extracted sections (best-effort)";
+    sectionsHint.textContent = "This is auto-extracted text; formatting and some stats may need manual cleanup.";
+    sectionGrid.className = "section-grid";
+
     const order = ["resistances","immunities","weapons","abilities","body"];
     sectionGrid.innerHTML = "";
     order.forEach(key => {
@@ -188,7 +371,19 @@
     });
   }
 
-  render();
+  async function hydrateData() {
+    try {
+      const res = await fetch(apiUrl("api/wargame.php"), { cache: "no-store" });
+      if (res.ok) {
+        data = await res.json();
+      }
+    } catch (err) {
+      // ignore; embedded data may exist
+    }
+    render();
+  }
+
+  hydrateData();
 </script>
 </body>
 </html>

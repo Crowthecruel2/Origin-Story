@@ -1,0 +1,14 @@
+# Recommended for shared hosting (Apache) to avoid leaking repo internals.
+# If your host uses Nginx or you manage routing elsewhere, ignore this file.
+
+<Files "config.php">
+  Require all denied
+</Files>
+
+RedirectMatch 404 ^/scripts/
+RedirectMatch 404 ^/data/
+RedirectMatch 404 ^/dist/
+RedirectMatch 404 ^/vault/
+RedirectMatch 404 ^/\.git/
+RedirectMatch 404 ^/\.obsidian/
+
