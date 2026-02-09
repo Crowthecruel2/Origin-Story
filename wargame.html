@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wargame PDFs (Separate Game)</title>
+  <title>Wargame Hub (Separate Game)</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -70,6 +70,9 @@
       gap: 0.3rem;
     }
     .card h2 { margin: 0; font-size: 1.1rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
+    .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.15rem; }
+    .pill { padding: 0.25rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--muted); font-size: 0.9rem; }
     a.button {
       display: inline-flex;
       align-items: center;
@@ -87,6 +90,9 @@
     .muted { color: var(--muted); }
     .top-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
     .back-link { color: var(--accent); text-decoration: none; font-weight: 700; }
+    .search-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+    input[type="search"]{ width: min(520px, 100%); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.75rem; color: var(--text); font-size: 1rem; }
+    input[type="search"]:focus{ outline: 1px solid var(--accent); border-color: var(--accent); }
   </style>
 </head>
 <body>
@@ -114,22 +120,115 @@
 
   <div class="shell">
     <div class="top-actions">
-      <h1>Wargame PDFs (separate game)</h1>
+      <h1>Wargame hub (separate game)</h1>
       <a class="back-link" href="index.html">&#8592; Back to Origin Story Hub</a>
     </div>
-    <p>Second edition tabletop wargame documents. These are for the miniatures skirmish game, not the RPG.</p>
-    <div class="list">
+    <p>Browse factions and units extracted from the 2nd edition PDF. PDFs are still available for reference.</p>
+
+    <div class="card-grid" id="pdfCards">
       <div class="card">
-        <h2>2nd Edition Final</h2>
+        <h2>2nd Edition Final (PDF)</h2>
         <p class="muted">Complete rules PDF for the tabletop wargame, second edition.</p>
         <a class="button" href="2nd%20Edition%20Final.pdf">Open PDF</a>
       </div>
       <div class="card">
-        <h2>2nd Edition Cards</h2>
+        <h2>2nd Edition Cards (PDF)</h2>
         <p class="muted">Card set PDF for quick reference, second edition.</p>
         <a class="button" href="2nd%20Edition%20Cards.pdf">Open PDF</a>
       </div>
     </div>
+
+    <div class="card" style="margin-top:0.75rem;">
+      <h2>Factions</h2>
+      <p class="muted">Click a faction to view its units. This works from <code>file://</code> because the data is embedded via <code>wargame-data.js</code>.</p>
+      <div class="search-row">
+        <input id="unitSearch" type="search" placeholder="Search units (e.g. Gene Lord, Commander, Exo Suit)..." autocomplete="off" />
+        <span class="muted" id="unitCount"></span>
+      </div>
+      <div class="card-grid" id="factionGrid" style="margin-top:0.75rem;"></div>
+      <div class="list" id="unitResults" style="margin-top:0.75rem;"></div>
+    </div>
   </div>
+
+  <script src="wargame-data.js"></script>
+<script>
+  const data = (window.WARGAME_DATA || null);
+  const factionGrid = document.getElementById("factionGrid");
+  const unitSearch = document.getElementById("unitSearch");
+  const unitResults = document.getElementById("unitResults");
+  const unitCount = document.getElementById("unitCount");
+
+  function escapeHtml(s) {
+    return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  }
+
+  function renderFactions() {
+    if (!data || !Array.isArray(data.factions)) {
+      factionGrid.innerHTML = `<div class="muted">No wargame data found. Run <code>python scripts/extract_wargame.py</code> to generate <code>wargame-data.js</code>.</div>`;
+      return;
+    }
+    const factions = data.factions || [];
+    const units = data.units || [];
+    factionGrid.innerHTML = "";
+    factions.forEach(f => {
+      const unitTotal = units.filter(u => u.factionId === f.id).length;
+      const start = f.starting ? `${f.starting.name}: ${f.starting.amount}` : "Starting resource: ?";
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h2>${escapeHtml(f.name)}</h2>
+        <div class="muted">${escapeHtml(start)}</div>
+        <div class="pill-row">
+          <span class="pill">${unitTotal} unit page${unitTotal === 1 ? "" : "s"}</span>
+          <span class="pill">PDF p.${escapeHtml((f.sourcePages || [])[0] || "?")}</span>
+        </div>
+        <div style="margin-top:0.45rem;">
+          <a class="button" href="wargame-faction.html?id=${encodeURIComponent(f.id)}">Open faction</a>
+        </div>
+      `;
+      factionGrid.appendChild(card);
+    });
+  }
+
+  function renderUnitResults(query) {
+    if (!data) return;
+    const q = String(query || "").trim().toLowerCase();
+    const units = Array.isArray(data.units) ? data.units : [];
+    const factions = new Map((data.factions || []).map(f => [f.id, f]));
+
+    const filtered = q
+      ? units.filter(u => (u.name || "").toLowerCase().includes(q) || (u.id || "").toLowerCase().includes(q))
+      : [];
+
+    unitCount.textContent = q ? `${filtered.length} match${filtered.length === 1 ? "" : "es"}` : "";
+    unitResults.innerHTML = "";
+    if (!q) return;
+    if (!filtered.length) {
+      unitResults.innerHTML = `<div class="muted">No units matched "${escapeHtml(query)}".</div>`;
+      return;
+    }
+
+    filtered.slice(0, 40).forEach(u => {
+      const f = factions.get(u.factionId);
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h2>${escapeHtml(u.name)}</h2>
+        <div class="muted">${escapeHtml(f?.name || u.factionId || "Unknown faction")} • PDF p.${escapeHtml(u.sourcePage || "?")}</div>
+        <a class="button" href="wargame-unit.html?id=${encodeURIComponent(u.id)}">Open unit</a>
+      `;
+      unitResults.appendChild(card);
+    });
+    if (filtered.length > 40) {
+      const note = document.createElement("div");
+      note.className = "muted";
+      note.textContent = `Showing first 40 results.`;
+      unitResults.appendChild(note);
+    }
+  }
+
+  renderFactions();
+  unitSearch?.addEventListener("input", () => renderUnitResults(unitSearch.value));
+</script>
 </body>
 </html>

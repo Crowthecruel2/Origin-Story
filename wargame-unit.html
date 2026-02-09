@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wargame Unit</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111c20;
+      --card: #14262d;
+      --accent: #2dd4bf;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #2f4a55;
+      --shadow: 0 20px 45px rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #18223a, #0f172a 45%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(12, 22, 35, 0.92);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #2dd4bf, #34d399); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3); }
+    .brand-title { font-weight: 800; letter-spacing: 0.02em; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav { display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center; }
+    .global-nav a { padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.6rem 0.85rem; border-radius: 10px; border: 1px solid var(--border); color: var(--text); font-weight: 700; background: transparent; }
+    .btn.primary { background: linear-gradient(120deg, #2dd4bf, #34d399); color: #0b1727; border: none; }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    .shell {
+      width: min(1100px, 100%);
+      margin: 1.2rem auto 2rem;
+      padding: 0 1.25rem;
+      display: grid;
+      gap: 0.9rem;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.6rem;
+    }
+    h1 { margin: 0; font-size: 1.7rem; letter-spacing: 0.02em; }
+    h2 { margin: 0; font-size: 1.1rem; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .pill { padding: 0.25rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--muted); font-size: 0.9rem; }
+    .muted { color: var(--muted); }
+    .back-link { color: var(--accent); font-weight: 800; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 0.9rem;
+      color: #dbe6ff;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+    .section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.75rem; }
+    .mini { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 0.9rem 1rem; display: grid; gap: 0.45rem; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand-title">Origin Story Tools</div>
+        <div class="brand-sub">Wargame viewer</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <a href="character-builder.html">Character Builder</a>
+      <a href="lore.html">City Lore</a>
+      <a href="onboarding.html">New Player Quiz</a>
+      <a class="active" href="wargame.html">Wargame</a>
+      <a href="quickstart.html">Rules / How to Play</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="wargame.html">Wargame hub</a>
+      <a class="btn primary" href="character-builder.html">Open Builder</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <a class="back-link" id="backLink" href="wargame.html">&#8592; Back</a>
+
+    <section class="card" id="unitHeader">
+      <h1>Unit</h1>
+      <p class="muted">Loading…</p>
+    </section>
+
+    <section class="card">
+      <h2>Extracted sections (best-effort)</h2>
+      <p class="muted">This is auto-extracted text; formatting and some stats may need manual cleanup.</p>
+      <div class="section-grid" id="sectionGrid"></div>
+    </section>
+
+    <section class="card">
+      <h2>Raw page text</h2>
+      <pre id="rawText"></pre>
+    </section>
+  </main>
+  <script src="wargame-data.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const unitId = params.get("id") || "";
+  const data = window.WARGAME_DATA || null;
+
+  const unitHeader = document.getElementById("unitHeader");
+  const rawText = document.getElementById("rawText");
+  const sectionGrid = document.getElementById("sectionGrid");
+  const backLink = document.getElementById("backLink");
+
+  function escapeHtml(s) {
+    return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  }
+
+  function render() {
+    if (!data) {
+      unitHeader.innerHTML = `<h1>Missing data</h1><p class="muted">No <span class="mono">WARGAME_DATA</span> found. Run <span class="mono">python scripts/extract_wargame.py</span> to generate <span class="mono">wargame-data.js</span>.</p>`;
+      rawText.textContent = "";
+      return;
+    }
+    const unit = (data.units || []).find(u => u.id === unitId) || null;
+    if (!unit) {
+      unitHeader.innerHTML = `<h1>Unit not found</h1><p class="muted">Unknown unit id: <span class="mono">${escapeHtml(unitId)}</span></p>`;
+      rawText.textContent = "";
+      return;
+    }
+    const faction = (data.factions || []).find(f => f.id === unit.factionId) || null;
+    const factionName = faction?.name || unit.factionId || "Unknown faction";
+    backLink.href = faction ? `wargame-faction.html?id=${encodeURIComponent(faction.id)}` : "wargame.html";
+    backLink.textContent = faction ? `\u2190 Back to ${factionName}` : "\u2190 Back to Wargame hub";
+
+    unitHeader.innerHTML = `
+      <h1>${escapeHtml(unit.name)}</h1>
+      <div class="pill-row">
+        <span class="pill">${escapeHtml(factionName)}</span>
+        <span class="pill">PDF p.${escapeHtml(unit.sourcePage || "?")}</span>
+        <a class="pill" href="2nd%20Edition%20Final.pdf#page=${encodeURIComponent(unit.sourcePage || 1)}">Open PDF at p.${escapeHtml(unit.sourcePage || "?")}</a>
+        ${unit.startingEnergy != null ? `<span class="pill">Start energy: ${escapeHtml(unit.startingEnergy)}</span>` : ""}
+      </div>
+      <p class="muted">ID: <span class="mono">${escapeHtml(unit.id)}</span></p>
+    `;
+
+    rawText.textContent = unit.raw || "";
+
+    const sections = unit.sections || {};
+    const order = ["resistances","immunities","weapons","abilities","body"];
+    sectionGrid.innerHTML = "";
+    order.forEach(key => {
+      const lines = sections[key];
+      if (!Array.isArray(lines) || lines.length === 0) return;
+      const box = document.createElement("div");
+      box.className = "mini";
+      const label = key === "body" ? "Other" : (key[0].toUpperCase() + key.slice(1));
+      box.innerHTML = `<strong>${escapeHtml(label)}</strong><pre>${escapeHtml(lines.join("\\n"))}</pre>`;
+      sectionGrid.appendChild(box);
+    });
+  }
+
+  render();
+</script>
+</body>
+</html>
