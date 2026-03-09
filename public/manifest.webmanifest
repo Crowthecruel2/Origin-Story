@@ -1,0 +1,32 @@
+{
+  "name": "Origin Story GM",
+  "short_name": "OriginGM",
+  "description": "Mobile GM workflow for timeline and enemy management.",
+  "start_url": "./mobile/index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#050910",
+  "theme_color": "#0d1624",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./images/Icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/Icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./images/Banner.png",
+      "sizes": "1536x1024",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

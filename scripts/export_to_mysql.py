@@ -13,7 +13,7 @@ def read_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
-_WARGAME_JS_RE = re.compile(r"const\s+WARGAME_DATA\s*=\s*(\{.*\});\s*\Z", re.S)
+_WARGAME_JS_RE = re.compile(r"(?:const\s+WARGAME_DATA|window\.WARGAME_DATA)\s*=\s*(\{.*\});\s*\Z", re.S)
 
 
 def read_wargame_js(path: Path) -> dict[str, Any]:
@@ -54,10 +54,11 @@ def emit_inserts(out: list[str], table: str, columns: list[str], rows: list[tupl
 
 def export(repo_root: Path, out_path: Path) -> None:
     schema_path = repo_root / "scripts" / "schema.mysql.sql"
-    powers_path = repo_root / "powers.json"
-    items_path = repo_root / "items.json"
-    rpg_factions_path = repo_root / "factions" / "factions.json"
-    wargame_js_path = repo_root / "wargame-data.js"
+    public_root = repo_root / "public"
+    powers_path = public_root / "powers.json"
+    items_path = public_root / "items.json"
+    rpg_factions_path = public_root / "factions" / "factions.json"
+    wargame_js_path = public_root / "wargame-data.js"
 
     if not schema_path.exists():
         raise FileNotFoundError(schema_path)

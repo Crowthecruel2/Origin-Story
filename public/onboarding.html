@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <link rel="icon" type="image/png" href="images/Icon.png">
+  <title>Origin Story | New Player Quiz</title>
+  <style>
+    :root {
+      --bg: #050910;
+      --panel: #0d1624;
+      --card: #0f1c2d;
+      --border: #233449;
+      --accent: #38f2c7;
+      --accent-2: #6dd3ff;
+      --text: #e6ebf5;
+      --muted: #9fb0c7;
+      --shadow: 0 20px 70px rgba(0,0,0,0.45);
+      --success: #34d399;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56, 242, 199, 0.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.10), transparent 25%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(7, 12, 21, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 8px 25px rgba(56, 242, 199, 0.35); }
+    .brand-title { font-weight: 800; letter-spacing: 0.02em; font-size: 1.1rem; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .global-nav a { padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .nav-group { position: relative; }
+    .nav-trigger { list-style: none; padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; cursor: pointer; user-select: none; }
+    .nav-trigger::-webkit-details-marker { display: none; }
+    .nav-group[open] .nav-trigger, .nav-trigger:hover { border-color: var(--border); color: var(--text); }
+    .nav-menu { position: absolute; top: calc(100% + 0.35rem); left: 0; min-width: 230px; background: #0a1321; border: 1px solid var(--border); border-radius: 12px; padding: 0.35rem; display: grid; gap: 0.15rem; box-shadow: var(--shadow); z-index: 30; }
+    .nav-menu a { padding: 0.5rem 0.6rem; border-radius: 9px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .nav-menu a:hover { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-only-link { display: none; }
+    @media (max-width: 900px) { .mobile-only-link { display: inline-flex; } .nav-menu { position: static; min-width: 0; margin-top: 0.35rem; } }
+    .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn.primary { background: linear-gradient(120deg, var(--accent), #34d399); color: #0a1525; border: none; box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35); }
+    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .shell { max-width: 960px; margin: 0 auto; padding: 1.4rem; display: grid; gap: 1rem; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: var(--shadow); display: grid; gap: 0.8rem; }
+    .page-header { display: flex; justify-content: space-between; gap: 0.8rem; flex-wrap: wrap; }
+    .title { font-weight: 800; letter-spacing: 0.01em; font-size: 1.2rem; }
+    .muted { color: var(--muted); }
+    .back-link { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .quiz { gap: 1rem; }
+    .progress-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.6rem; }
+    .pill-row, .options { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .pill { padding: 0.3rem 0.6rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: var(--muted); font-size: 0.9rem; }
+    .question-block { display: grid; gap: 0.55rem; }
+    .question-title { font-weight: 800; font-size: 1.1rem; }
+    .options { display: grid; gap: 0.55rem; }
+    .option-btn { width: 100%; padding: 0.75rem 0.9rem; border-radius: 12px; background: var(--card); border: 1px solid var(--border); color: var(--text); text-align: left; cursor: pointer; transition: border-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease; }
+    .option-btn:hover { border-color: var(--accent); }
+    .option-btn.selected { border-color: var(--accent); box-shadow: 0 0 0 1px rgba(56, 242, 199, 0.35); transform: translateY(-1px); }
+    .result { border: 1px solid var(--border); border-radius: 12px; padding: 0.85rem; background: var(--card); display: grid; gap: 0.5rem; }
+    .result h2 { margin: 0; font-size: 1.25rem; }
+    .result-grid { display: grid; gap: 0.6rem; }
+    .preview { border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.02); display: grid; gap: 0.4rem; }
+    .alt-card { border: 1px dashed var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.03); }
+    .hidden { display: none; }
+    .radar-card { border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; background: rgba(255,255,255,0.02); display: grid; gap: 0.35rem; }
+    .radar-card canvas { width: 100%; max-width: 420px; height: 260px; }
+    @media (max-width: 720px) {
+      .shell { padding: 1rem; }
+      .topbar { position: static; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand-title">Origin Story Tools</div>
+        <div class="brand-sub">Build characters, browse powers, grab PDFs</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <details class="nav-group" open>
+        <summary class="nav-trigger">RPG</summary>
+        <div class="nav-menu">
+          <a href="character-builder.html">Character Builder</a>
+          <a href="lore.html">City Lore</a>
+          <a class="active" href="onboarding.html">New Player Quiz</a>
+          <a href="quickstart.html">Rules / How to Play</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="nav-trigger">GM Tools</summary>
+        <div class="nav-menu">
+          <a href="gm.html">GM Console</a>
+          <a href="gm-timeline.html">GM Timeline</a>
+          <a class="mobile-only-link" href="mobile/index.html">Mobile App</a>
+        </div>
+      </details>
+      <a href="wargame.html">Wargame (separate game)</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="index.html">Origin Story Hub</a>
+      <a class="btn primary" href="character-builder.html">Open Builder</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <a class="back-link" href="index.html">&#8592; Back to Origin Story Hub</a>
+
+    <div class="card page-header">
+      <div>
+        <div class="title">New Player Quiz</div>
+        <div class="muted">Pick your vibe and we'll suggest a starter build.</div>
+      </div>
+      <a class="btn secondary" href="character-builder.html">Skip to builder</a>
+    </div>
+
+    <div class="card quiz">
+      <div class="progress-row">
+        <span class="pill">Question <span id="progressNumber">1</span>/<span id="progressTotal">10</span></span>
+        <span class="muted" id="progressHint">Pick what fits you best.</span>
+      </div>
+      <div class="question-block">
+        <div class="question-title" id="questionPrompt">Q1: What sounds most fun?</div>
+        <div class="options" id="optionList"></div>
+      </div>
+      <div class="actions">
+        <button id="backBtn" class="btn secondary" type="button">Back</button>
+        <button id="nextBtn" class="btn primary" type="button" disabled>Next question</button>
+      </div>
+    </div>
+
+    <div class="card result hidden" id="resultCard">
+      <div class="muted">Your matches</div>
+      <div class="result-grid">
+        <div>
+          <div class="muted">Primary suggestion</div>
+          <h2 id="resultTitle">Street Brawler</h2>
+          <div class="muted" id="resultDesc">Tough, direct, and ready to smash problems head-on.</div>
+          <div class="pill-row" id="resultTags"></div>
+        </div>
+        <div class="preview">
+          <strong>See build details</strong>
+          <div class="muted" id="resultWhy">We picked this because you chose Crushing foes up close...</div>
+          <div class="pill-row" id="resultPreview"></div>
+          <div class="muted" id="resultPowers"></div>
+        </div>
+        <div class="radar-card">
+          <strong>Quiz score radar</strong>
+          <canvas id="scoreRadar" width="420" height="260" aria-label="Radar chart of preset scores"></canvas>
+          <div class="muted">Higher spikes = stronger match per preset.</div>
+        </div>
+        <div class="alt-card" id="altSuggestion"></div>
+        <div class="actions">
+          <a id="openBuilder" class="btn primary" href="character-builder.html?build=Street%20Brawler">Open in Character Builder</a>
+          <button id="retake" class="btn secondary" type="button">Restart quiz</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const RESULT_MAP = {
+      "Street Brawler": {
+        desc: "Frontline bruiser who keeps foes close and teammates safer.",
+        tags: ["Brick", "Durable", "Melee"],
+        preview: ["Level 3", "High durability", "Close-range threat"],
+        powers: ["Super Strength", "Vitality", "Invincibility"],
+        alt: "Pick this if you want to tank hits and smash through obstacles."
+      },
+      "The Detective": {
+        desc: "Investigator with uncanny insight, teleport tricks, and social leverage.",
+        tags: ["Genius", "Manipulator", "Support"],
+        preview: ["Level 3", "High smarts", "Control and intel"],
+        powers: ["Clairvoyant", "Mind Control", "Teleport (People)"],
+        alt: "Pick this if you want to solve, outwit, and reposition."
+      },
+      "The Mechanic": {
+        desc: "Engineer who builds gadgets, rigs, and support tech on demand.",
+        tags: ["Techie", "Support", "Engineer"],
+        preview: ["Level 3", "Builds toys", "Team utility"],
+        powers: ["Gadget Techie 1", "Mech Techie", "Interface Techie"],
+        alt: "Pick this if you want to solve problems with machines."
+      },
+      "The Elementalist": {
+        desc: "Elemental artillerist who reshapes terrain and blasts groups.",
+        tags: ["Effector", "AOE", "Control"],
+        preview: ["Level 3", "Elemental tools", "Ranged impact"],
+        powers: ["Elemental Control", "Bombard", "Telekinesis"],
+        alt: "Pick this if you want to bend elements and hit multiple foes."
+      },
+      "The Speedster": {
+        desc: "Lightning-fast mover who owns positioning and tempo.",
+        tags: ["Movement", "Mobility", "Skirmish"],
+        preview: ["Level 3", "High reflex", "Teleport + flight"],
+        powers: ["SuperSpeed", "Flight", "Teleport (People)"],
+        alt: "Pick this if you want to reposition constantly and outpace danger."
+      },
+      "The Mutant": {
+        desc: "Adaptive mutant leaning on durable, shifting biology.",
+        tags: ["Mutant", "Durable", "Adaptive"],
+        preview: ["Level 3", "Self-mods", "Close control"],
+        powers: ["Elemental Body", "Cartoon", "Vitality"],
+        alt: "Pick this if you want to outlast and adapt mid-fight."
+      },
+      "The Action Hero": {
+        desc: "Scene-stealing striker with stunts, stealth, and explosive entries.",
+        tags: ["Ranger", "Striker", "Style"],
+        preview: ["Level 3", "Weapon mastery", "Flashy entries"],
+        powers: ["Action Hero", "Assassin", "Rocket"],
+        alt: "Pick this if you want surgical strikes and cinematic moves."
+      }
+    };
+
+    const PRESETS = Object.keys(RESULT_MAP);
+
+    const questions = [
+      { key: "signature", prompt: "What sounds like your signature move?", options: [
+        { value: "Street Brawler", label: "Punch through concrete and keep teammates safe" },
+        { value: "The Elementalist", label: "Drop elemental blasts that reshape the fight" },
+        { value: "The Detective", label: "Turn enemies into puppets or twin yourself" },
+        { value: "The Speedster", label: "Blink, fly, and sprint circles around threats" },
+        { value: "The Action Hero", label: "Land perfect shots and punish openings" },
+        { value: "The Detective", label: "Out-think everyone three moves ahead" },
+        { value: "The Mechanic", label: "Deploy drones, turrets, or exo-support" },
+        { value: "The Mutant", label: "Morph, regenerate, and maul up close" }
+      ]},
+      { key: "role", prompt: "Pick your ideal team role.", options: [
+        { value: "Street Brawler", label: "Frontline anchor who draws fire" },
+        { value: "The Elementalist", label: "Area denial and ranged pressure" },
+        { value: "The Detective", label: "Controller who rewrites intentions" },
+        { value: "The Speedster", label: "Mobile striker and scout" },
+        { value: "The Action Hero", label: "Single-target eliminator" },
+        { value: "The Detective", label: "Planner and battlefield caller" },
+        { value: "The Mechanic", label: "Support who buffs with tech" },
+        { value: "The Mutant", label: "Tough brawler who adapts" }
+      ]},
+      { key: "toolkit", prompt: "Choose your favorite toolkit.", options: [
+        { value: "Street Brawler", label: "Brute force and resilience" },
+        { value: "The Elementalist", label: "Elemental tricks and force" },
+        { value: "The Detective", label: "Psychic influence and summons" },
+        { value: "The Speedster", label: "Speed, flight, teleport lanes" },
+        { value: "The Action Hero", label: "Weapons, parries, precision" },
+        { value: "The Detective", label: "Insight, data, perfect timing" },
+        { value: "The Mechanic", label: "Gadgets, drones, mechs" },
+        { value: "The Mutant", label: "Biomorphs and regeneration" }
+      ]},
+      { key: "threat", prompt: "How do you stop a runaway villain?", options: [
+        { value: "Street Brawler", label: "Tackle them through a wall" },
+        { value: "The Elementalist", label: "Box them in with force or flame" },
+        { value: "The Detective", label: "Hijack their mind or body" },
+        { value: "The Speedster", label: "Outpace, grab, and relocate" },
+        { value: "The Action Hero", label: "Tag the weak spot from range" },
+        { value: "The Detective", label: "Predict and ambush their route" },
+        { value: "The Mechanic", label: "Deploy a drone net or mech grab" },
+        { value: "The Mutant", label: "Shift form, pin, and endure" }
+      ]},
+      { key: "prep", prompt: "What's your prep style before a mission?", options: [
+        { value: "Street Brawler", label: "Stretch, armor up, hit the gym" },
+        { value: "The Elementalist", label: "Study terrain and elemental angles" },
+        { value: "The Detective", label: "Profile minds, set psychic hooks" },
+        { value: "The Speedster", label: "Map routes and exit vectors" },
+        { value: "The Action Hero", label: "Tune weapons and drills" },
+        { value: "The Detective", label: "Simulate outcomes and plans" },
+        { value: "The Mechanic", label: "Pack tools, calibrate drones" },
+        { value: "The Mutant", label: "Adjust form for the job" }
+      ]},
+      { key: "mobility", prompt: "How do you like to move?", options: [
+        { value: "Street Brawler", label: "Boots on ground, unstoppable stride" },
+        { value: "The Elementalist", label: "Ride shockwaves or lifted platforms" },
+        { value: "The Detective", label: "Let thralls and clones reposition" },
+        { value: "The Speedster", label: "Flight, blink, and raw speed" },
+        { value: "The Action Hero", label: "Dash, slide, and counter-step" },
+        { value: "The Detective", label: "Be exactly where the plan needs" },
+        { value: "The Mechanic", label: "Hitch rides on drones or mechs" },
+        { value: "The Mutant", label: "Climb, burrow, or brute leap" }
+      ]},
+      { key: "risk", prompt: "How do you handle danger?", options: [
+        { value: "Street Brawler", label: "Eat it, shrug it, keep swinging" },
+        { value: "The Elementalist", label: "Redirect it with barriers and blasts" },
+        { value: "The Detective", label: "Deflect it by controlling enemies" },
+        { value: "The Speedster", label: "Never be where the hit lands" },
+        { value: "The Action Hero", label: "Parry, riposte, reposition" },
+        { value: "The Detective", label: "Preempt it with foresight" },
+        { value: "The Mechanic", label: "Let gadgets tank and screen" },
+        { value: "The Mutant", label: "Adapt the body on the fly" }
+      ]},
+      { key: "aesthetic", prompt: "Pick a vibe.", options: [
+        { value: "Street Brawler", label: "Industrial armor and cracked knuckles" },
+        { value: "The Elementalist", label: "Arc glow and swirling elements" },
+        { value: "The Detective", label: "Veiled eyes and spectral echoes" },
+        { value: "The Speedster", label: "Wind-cut cloak and grav boots" },
+        { value: "The Action Hero", label: "Urban hunter with blade and bow" },
+        { value: "The Detective", label: "Holo-screens, notebooks, calm focus" },
+        { value: "The Mechanic", label: "Toolbelts, drones, and workshop grease" },
+        { value: "The Mutant", label: "Shifting silhouette and bio glow" }
+      ]},
+      { key: "problem", prompt: "How do you solve a locked door?", options: [
+        { value: "Street Brawler", label: "Kick it in" },
+        { value: "The Elementalist", label: "Melt or blast the hinges" },
+        { value: "The Detective", label: "Convince someone else to open it" },
+        { value: "The Speedster", label: "Blink past it" },
+        { value: "The Action Hero", label: "Pick it quietly between patrols" },
+        { value: "The Detective", label: "Find the hidden override" },
+        { value: "The Mechanic", label: "Deploy a bypass gadget" },
+        { value: "The Mutant", label: "Squeeze through the vents" }
+      ]},
+      { key: "mentor", prompt: "Who would you apprentice under?", options: [
+        { value: "Street Brawler", label: "A retired heavyweight hero" },
+        { value: "The Elementalist", label: "An arc reactor savant" },
+        { value: "The Detective", label: "A psychic spymaster" },
+        { value: "The Speedster", label: "A legendary courier who never got tagged" },
+        { value: "The Action Hero", label: "An assassin-turned-protector" },
+        { value: "The Detective", label: "A strategist who wins without fighting" },
+        { value: "The Mechanic", label: "A bunker engineer with too many drones" },
+        { value: "The Mutant", label: "An ancient shapeshifter" }
+      ]}
+    ];
+
+    const questionPrompt = document.getElementById("questionPrompt");
+    const optionList = document.getElementById("optionList");
+    const nextBtn = document.getElementById("nextBtn");
+    const backBtn = document.getElementById("backBtn");
+    const progressNumber = document.getElementById("progressNumber");
+    const progressTotal = document.getElementById("progressTotal");
+    const progressHint = document.getElementById("progressHint");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultDesc = document.getElementById("resultDesc");
+    const resultTags = document.getElementById("resultTags");
+    const resultCard = document.getElementById("resultCard");
+    const openBuilder = document.getElementById("openBuilder");
+    const retake = document.getElementById("retake");
+    const resultWhy = document.getElementById("resultWhy");
+    const resultPreview = document.getElementById("resultPreview");
+    const resultPowers = document.getElementById("resultPowers");
+    const altSuggestion = document.getElementById("altSuggestion");
+
+    let currentIndex = 0;
+    const answers = {};
+    const answerLabels = {};
+    progressTotal.textContent = questions.length;
+
+    function computeScores() {
+      const scores = {};
+      PRESETS.forEach(name => { scores[name] = 0; });
+      Object.values(answers).forEach(value => {
+        if (scores[value] !== undefined) scores[value] += 1;
+      });
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      return { sorted, scores };
+    }
+
+    function renderRadar(scores) {
+      const canvas = document.getElementById("scoreRadar");
+      if (!canvas || !canvas.getContext) return;
+      const ctx = canvas.getContext("2d");
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const cx = w / 2;
+      const cy = h / 2;
+      const radius = Math.min(w, h) / 2 - 30;
+      const maxScore = questions.length;
+      const spikes = PRESETS.length;
+
+      const toPoint = (idx, value) => {
+        const angle = -Math.PI / 2 + (idx * 2 * Math.PI / spikes);
+        const r = radius * (value / maxScore);
+        return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
+      };
+
+      // grid rings
+      ctx.strokeStyle = "rgba(255,255,255,0.12)";
+      ctx.lineWidth = 1;
+      [0.33, 0.66, 1].forEach(f => {
+        ctx.beginPath();
+        PRESETS.forEach((_, i) => {
+          const [x, y] = toPoint(i, maxScore * f);
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        });
+        ctx.closePath();
+        ctx.stroke();
+      });
+
+      // axes
+      ctx.strokeStyle = "rgba(255,255,255,0.15)";
+      PRESETS.forEach((preset, i) => {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        const [x, y] = toPoint(i, maxScore);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        // labels
+        ctx.fillStyle = "rgba(230,235,245,0.8)";
+        ctx.font = "12px Segoe UI, Inter, sans-serif";
+        const labelPoint = toPoint(i, maxScore + 0.3 * maxScore);
+        ctx.fillText(preset, labelPoint[0] - 30, labelPoint[1] + 4);
+      });
+
+      // data polygon
+      ctx.beginPath();
+      PRESETS.forEach((preset, i) => {
+        const [x, y] = toPoint(i, scores[preset] || 0);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = "rgba(56, 242, 199, 0.25)";
+      ctx.strokeStyle = "rgba(56, 242, 199, 0.8)";
+      ctx.lineWidth = 2;
+      ctx.fill();
+      ctx.stroke();
+
+      // nodes
+      ctx.fillStyle = "rgba(109, 211, 255, 0.9)";
+      PRESETS.forEach((preset, i) => {
+        const [x, y] = toPoint(i, scores[preset] || 0);
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function renderResult() {
+      const { sorted, scores } = computeScores();
+      const [primaryEntry, secondaryEntry] = sorted;
+      const primary = primaryEntry ? primaryEntry[0] : PRESETS[0];
+      const secondary = secondaryEntry ? secondaryEntry[0] : null;
+      const info = RESULT_MAP[primary];
+
+      resultTitle.textContent = primary;
+      resultDesc.textContent = info.desc;
+      resultTags.innerHTML = info.tags.map(t => `<span class="pill">${t}</span>`).join("");
+      openBuilder.href = `character-builder.html?build=${encodeURIComponent(primary)}`;
+
+      const chosen = Object.values(answerLabels).filter(Boolean);
+      if (chosen.length) {
+        const snippets = chosen.slice(0, 3).join(", ");
+        resultWhy.textContent = `We picked this because you chose ${snippets}.`;
+      } else {
+        resultWhy.textContent = "We picked the closest match for your answers.";
+      }
+
+      resultPreview.innerHTML = info.preview.map(p => `<span class="pill">${p}</span>`).join("");
+      resultPowers.textContent = `Signature powers: ${info.powers.join(", ")}`;
+
+      if (secondary) {
+        const altInfo = RESULT_MAP[secondary];
+        altSuggestion.innerHTML = `
+          <div class="muted">Also works well</div>
+          <strong>${secondary}</strong>
+          <div class="muted">${altInfo.alt || altInfo.desc}</div>
+        `;
+      } else {
+        altSuggestion.textContent = "";
+      }
+
+      renderRadar(scores);
+    }
+
+    function renderQuestion() {
+      const question = questions[currentIndex];
+      questionPrompt.textContent = `Q${currentIndex + 1}: ${question.prompt}`;
+      progressNumber.textContent = currentIndex + 1;
+      nextBtn.textContent = currentIndex === questions.length - 1 ? "Reveal result" : "Next question";
+      progressHint.textContent = currentIndex === questions.length - 1 ? "Last one before your match appears." : "Pick what fits you best.";
+      backBtn.disabled = currentIndex === 0;
+      resultCard.classList.add("hidden");
+
+      optionList.innerHTML = "";
+      question.options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn";
+        btn.textContent = opt.label;
+        btn.dataset.value = opt.value;
+        if (answers[question.key] === opt.value) btn.classList.add("selected");
+        btn.addEventListener("click", () => {
+          answers[question.key] = opt.value;
+          answerLabels[question.key] = opt.label;
+          Array.from(optionList.children).forEach(child => child.classList.remove("selected"));
+          btn.classList.add("selected");
+          nextBtn.disabled = false;
+        });
+        optionList.appendChild(btn);
+      });
+
+      nextBtn.disabled = !answers[question.key];
+    }
+
+    function revealResult() {
+      if (!answers[questions[currentIndex].key]) return;
+      renderResult();
+      resultCard.classList.remove("hidden");
+      resultCard.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (nextBtn.disabled) return;
+      if (currentIndex < questions.length - 1) {
+        currentIndex += 1;
+        renderQuestion();
+      } else {
+        revealResult();
+      }
+    });
+
+    backBtn.addEventListener("click", () => {
+      if (currentIndex === 0) return;
+      currentIndex -= 1;
+      renderQuestion();
+    });
+
+    retake.addEventListener("click", () => {
+      Object.keys(answers).forEach(key => delete answers[key]);
+      Object.keys(answerLabels).forEach(key => delete answerLabels[key]);
+      currentIndex = 0;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    renderQuestion();
+  </script>
+  <script src="nav-dropdown.js"></script>
+  <script src="theme-mode.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <link rel="icon" type="image/png" href="images/Icon.png">
+  <title>Wargame Hub (Separate Game)</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111c20;
+      --card: #14262d;
+      --accent: #2dd4bf;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #2f4a55;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #18223a, #0f172a 45%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(12, 22, 35, 0.92);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #2dd4bf, #34d399); box-shadow: 0 10px 25px rgba(45, 212, 191, 0.3); }
+    .brand-title { font-weight: 800; letter-spacing: 0.02em; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav { display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center; }
+    .global-nav a { padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .nav-group { position: relative; }
+    .nav-trigger { list-style: none; padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; cursor: pointer; user-select: none; }
+    .nav-trigger::-webkit-details-marker { display: none; }
+    .nav-group[open] .nav-trigger, .nav-trigger:hover { border-color: var(--border); color: var(--text); }
+    .nav-menu { position: absolute; top: calc(100% + 0.35rem); left: 0; min-width: 230px; background: #0a1321; border: 1px solid var(--border); border-radius: 12px; padding: 0.35rem; display: grid; gap: 0.15rem; box-shadow: var(--shadow); z-index: 30; }
+    .nav-menu a { padding: 0.5rem 0.6rem; border-radius: 9px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .nav-menu a:hover { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-only-link { display: none; }
+    @media (max-width: 900px) { .mobile-only-link { display: inline-flex; } .nav-menu { position: static; min-width: 0; margin-top: 0.35rem; } }
+    .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.6rem 0.85rem; border-radius: 10px; border: 1px solid var(--border); color: var(--text); font-weight: 700; background: transparent; }
+    .btn.primary { background: linear-gradient(120deg, #2dd4bf, #34d399); color: #0b1727; border: none; }
+    .btn:hover { border-color: var(--accent); color: var(--accent); }
+    .shell {
+      width: min(900px, 100%);
+      margin: 1.2rem auto 2rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+      display: grid;
+      gap: 1rem;
+    }
+    h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.02em; }
+    p { margin: 0; color: var(--muted); line-height: 1.5; }
+    .list { display: grid; gap: 0.75rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      display: grid;
+      gap: 0.3rem;
+    }
+    .card h2 { margin: 0; font-size: 1.1rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
+    .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.15rem; }
+    .pill { padding: 0.25rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--muted); font-size: 0.9rem; }
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      background: linear-gradient(120deg, #2dd4bf, #34d399);
+      color: #0b1727;
+      width: fit-content;
+    }
+    .muted { color: var(--muted); }
+    .top-actions { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .back-link { color: var(--accent); text-decoration: none; font-weight: 700; }
+    .search-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+    input[type="search"]{ width: min(520px, 100%); background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.75rem; color: var(--text); font-size: 1rem; }
+    input[type="search"]:focus{ outline: 1px solid var(--accent); border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand-title">Origin Story Tools</div>
+        <div class="brand-sub">Separate wargame resources</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <details class="nav-group">
+        <summary class="nav-trigger">RPG</summary>
+        <div class="nav-menu">
+          <a href="character-builder.html">Character Builder</a>
+          <a href="lore.html">City Lore</a>
+          <a href="onboarding.html">New Player Quiz</a>
+          <a href="quickstart.html">Rules / How to Play</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="nav-trigger">GM Tools</summary>
+        <div class="nav-menu">
+          <a href="gm.html">GM Console</a>
+          <a href="gm-timeline.html">GM Timeline</a>
+          <a class="mobile-only-link" href="mobile/index.html">Mobile App</a>
+        </div>
+      </details>
+      <a class="active" href="wargame.html">Wargame (separate game)</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="onboarding.html">Take the Quiz</a>
+      <a class="btn primary" href="character-builder.html">Open Builder</a>
+    </div>
+  </header>
+
+  <div class="shell">
+    <div class="top-actions">
+      <h1>Wargame hub (separate game)</h1>
+      <a class="back-link" href="index.html">&#8592; Back to Origin Story Hub</a>
+    </div>
+    <p>Browse factions and units extracted from the 2nd edition PDF. PDFs are still available for reference.</p>
+
+    <div class="card-grid" id="pdfCards">
+      <div class="card">
+        <h2>2nd Edition Final (PDF)</h2>
+        <p class="muted">Complete rules PDF for the tabletop wargame, second edition.</p>
+        <a class="button" href="2nd%20Edition%20Final.pdf">Open PDF</a>
+      </div>
+      <div class="card">
+        <h2>2nd Edition Cards (PDF)</h2>
+        <p class="muted">Card set PDF for quick reference, second edition.</p>
+        <a class="button" href="2nd%20Edition%20Cards.pdf">Open PDF</a>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:0.75rem;">
+      <h2>Factions</h2>
+      <p class="muted">Click a faction to view its units. This works from <code>file://</code> because the data is embedded via <code>wargame-data.js</code>.</p>
+      <div class="search-row">
+        <input id="unitSearch" type="search" placeholder="Search units (e.g. Gene Lord, Commander, Exo Suit)..." autocomplete="off" />
+        <span class="muted" id="unitCount"></span>
+      </div>
+      <div class="card-grid" id="factionGrid" style="margin-top:0.75rem;"></div>
+      <div class="list" id="unitResults" style="margin-top:0.75rem;"></div>
+    </div>
+  </div>
+
+  <script src="runtime-config.js"></script>
+  <script src="wargame-data.js"></script>
+<script>
+  const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+  const apiUrl = (path) => {
+    if (!API_BASE) return path;
+    try { return new URL(path, API_BASE).toString(); } catch { return path; }
+  };
+
+  let data = (typeof window.WARGAME_DATA !== "undefined" ? window.WARGAME_DATA : (typeof WARGAME_DATA !== "undefined" ? WARGAME_DATA : null));
+  const factionGrid = document.getElementById("factionGrid");
+  const unitSearch = document.getElementById("unitSearch");
+  const unitResults = document.getElementById("unitResults");
+  const unitCount = document.getElementById("unitCount");
+
+  function escapeHtml(s) {
+    return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  }
+
+  function renderFactions() {
+    if (!data || !Array.isArray(data.factions)) {
+      factionGrid.innerHTML = `<div class="muted">No wargame data found. Run <code>python scripts/extract_wargame.py</code> to generate <code>wargame-data.js</code>.</div>`;
+      return;
+    }
+    const factions = data.factions || [];
+    const units = data.units || [];
+    factionGrid.innerHTML = "";
+    factions.forEach(f => {
+      const unitTotal = units.filter(u => u.factionId === f.id).length;
+      const start = f.starting ? `${f.starting.name}: ${f.starting.amount}` : "Starting resource: ?";
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h2>${escapeHtml(f.name)}</h2>
+        <div class="muted">${escapeHtml(start)}</div>
+        <div class="pill-row">
+          <span class="pill">${unitTotal} unit page${unitTotal === 1 ? "" : "s"}</span>
+          <span class="pill">PDF p.${escapeHtml((f.sourcePages || [])[0] || "?")}</span>
+        </div>
+        <div style="margin-top:0.45rem;">
+          <a class="button" href="wargame-faction.html?id=${encodeURIComponent(f.id)}">Open faction</a>
+        </div>
+      `;
+      factionGrid.appendChild(card);
+    });
+  }
+
+  function renderUnitResults(query) {
+    if (!data) return;
+    const q = String(query || "").trim().toLowerCase();
+    const units = Array.isArray(data.units) ? data.units : [];
+    const factions = new Map((data.factions || []).map(f => [f.id, f]));
+
+    const filtered = q
+      ? units.filter(u => (u.name || "").toLowerCase().includes(q) || (u.id || "").toLowerCase().includes(q))
+      : [];
+
+    unitCount.textContent = q ? `${filtered.length} match${filtered.length === 1 ? "" : "es"}` : "";
+    unitResults.innerHTML = "";
+    if (!q) return;
+    if (!filtered.length) {
+      unitResults.innerHTML = `<div class="muted">No units matched "${escapeHtml(query)}".</div>`;
+      return;
+    }
+
+    filtered.slice(0, 40).forEach(u => {
+      const f = factions.get(u.factionId);
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <h2>${escapeHtml(u.name)}</h2>
+        <div class="muted">${escapeHtml(f?.name || u.factionId || "Unknown faction")}  PDF p.${escapeHtml(u.sourcePage || "?")}</div>
+        <a class="button" href="wargame-unit.html?id=${encodeURIComponent(u.id)}">Open unit</a>
+      `;
+      unitResults.appendChild(card);
+    });
+    if (filtered.length > 40) {
+      const note = document.createElement("div");
+      note.className = "muted";
+      note.textContent = `Showing first 40 results.`;
+      unitResults.appendChild(note);
+    }
+  }
+
+  async function hydrateData() {
+    try {
+      const res = await fetch(apiUrl("api/wargame.php"), { cache: "no-store" });
+      if (res.ok) {
+        data = await res.json();
+      }
+    } catch (err) {
+      // ignore; embedded data may exist
+    }
+    renderFactions();
+  }
+
+  unitSearch?.addEventListener("input", () => renderUnitResults(unitSearch.value));
+  hydrateData();
+</script>
+  <script src="nav-dropdown.js"></script>
+  <script src="theme-mode.js"></script>
+</body>
+</html>
+
+
+
+

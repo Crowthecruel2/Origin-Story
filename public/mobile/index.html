@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Origin GM Mobile</title>
+  <meta name="theme-color" content="#0d1624">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" type="image/png" href="../images/Icon.png">
+  <link rel="apple-touch-icon" href="../images/Icon.png">
+  <style>
+    :root { --bg:#050910; --panel:#0d1624; --border:#233449; --text:#e6ebf5; --muted:#9fb0c7; --accent:#38f2c7; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Segoe UI,system-ui,sans-serif; color:var(--text); background:var(--bg); padding-bottom:86px; }
+    .wrap { max-width:700px; margin:0 auto; padding:1rem; display:grid; gap:.8rem; }
+    .hero,.card { border:1px solid var(--border); background:var(--panel); border-radius:14px; padding:1rem; }
+    .hero h1 { margin:0 0 .35rem 0; }
+    .hero-top { display:flex; justify-content:flex-end; margin-bottom:.5rem; }
+    .muted { color:var(--muted); }
+    .row { display:grid; gap:.6rem; }
+    .btn { display:block; text-align:center; padding:.7rem .85rem; border-radius:10px; border:1px solid var(--border); text-decoration:none; color:var(--text); font-weight:700; }
+    .btn.primary { background:linear-gradient(120deg,var(--accent),#34d399); border:none; color:#0a1525; }
+    .tabs { position:fixed; left:0; right:0; bottom:0; display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:var(--border); }
+    .tabs a { background:#0a1321; color:var(--muted); text-decoration:none; text-align:center; padding:.58rem .2rem calc(.58rem + env(safe-area-inset-bottom)); font-size:.74rem; font-weight:700; }
+    .tabs a.active { color:var(--text); background:#102034; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-top">
+        <button class="btn primary" id="installBtn" type="button" style="display:none;">Install App</button>
+      </div>
+      <h1>GM Mobile</h1>
+      <div class="muted">Quick mobile workflow for timeline and enemies.</div>
+    </section>
+    <section class="card row">
+      <a class="btn primary" href="./timeline.html">Open Timeline</a>
+      <a class="btn" href="./enemies.html">Open Enemies</a>
+      <a class="btn" href="./character-builder.html">Open Mobile Builder</a>
+      <a class="btn" href="./rules.html">Open Rules</a>
+      <a class="btn" href="./wargame.html">Open Mobile Wargame</a>
+      <a class="btn" href="../admin-mobile/index.html">Open Admin Mobile</a>
+      <a class="btn" href="../gm.html">Desktop GM Console</a>
+    </section>
+  </main>
+  <nav class="tabs">
+    <a class="active" href="./index.html">Home</a>
+    <a href="./timeline.html">Timeline</a>
+    <a href="./enemies.html">Enemies</a>
+    <a href="./character-builder.html">Builder</a>
+    <a href="./rules.html">Rules</a>
+    <a href="./wargame.html">Wargame</a>
+  </nav>
+  <script src="../pwa-register.js"></script>
+  <script>
+    let deferredPrompt = null;
+    const installBtn = document.getElementById("installBtn");
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = "block";
+    });
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = "none";
+    });
+  </script>
+  <script src="../theme-mode.js"></script>
+</body>
+</html>
+
+
+
+

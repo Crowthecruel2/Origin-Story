@@ -4,7 +4,7 @@
  *
  * SECURITY:
  * - Keep `config.php` OUT of git (see .gitignore).
- * - If possible, place it outside your web root and update the include path in `api/db.php` and `admin/util.php`.
+ * - If possible, place it outside your web root and update the include path in `public/api/db.php` and `public/admin/util.php`.
  */
 
 declare(strict_types=1);

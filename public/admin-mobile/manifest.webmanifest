@@ -1,0 +1,24 @@
+{
+  "name": "Origin Story Admin Mobile",
+  "short_name": "OriginAdmin",
+  "description": "Mobile admin dashboard for Brighton content management.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#050910",
+  "theme_color": "#0d1624",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "../images/Icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "../images/Icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

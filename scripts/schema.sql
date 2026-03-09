@@ -60,6 +60,49 @@ CREATE TABLE IF NOT EXISTS rpg_factions (
   page TEXT
 );
 
+-- GM-specific longform lore sections
+CREATE TABLE IF NOT EXISTS gm_lore (
+  slug TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  event_date TEXT,
+  content TEXT NOT NULL,
+  is_era INTEGER NOT NULL DEFAULT 0,
+  era_bg_color TEXT,
+  era_text_color TEXT,
+  sort_order INTEGER NOT NULL DEFAULT 0,
+  is_published INTEGER NOT NULL DEFAULT 1
+);
+
+-- Player-facing rules sections shown on quickstart/rules page
+CREATE TABLE IF NOT EXISTS rules_sections (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  section_code TEXT NOT NULL DEFAULT '1',
+  section_number INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  rules_html TEXT NOT NULL
+);
+
+-- Enemy sheets for GM tools
+CREATE TABLE IF NOT EXISTS enemies (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  class_name TEXT,
+  origin TEXT,
+  level_num INTEGER,
+  health INTEGER,
+  energy INTEGER,
+  move_stat INTEGER,
+  armor INTEGER,
+  dexterity INTEGER,
+  strength INTEGER,
+  size INTEGER,
+  powers_text TEXT,
+  inventory_text TEXT,
+  notes TEXT,
+  tags_json TEXT NOT NULL,
+  sort_order INTEGER NOT NULL DEFAULT 0
+);
+
 -- Wargame content (extracted from PDFs)
 CREATE TABLE IF NOT EXISTS wargame_factions (
   id TEXT PRIMARY KEY,
@@ -84,3 +127,6 @@ CREATE TABLE IF NOT EXISTS wargame_units (
 
 CREATE INDEX IF NOT EXISTS idx_powers_class ON powers(class_name);
 CREATE INDEX IF NOT EXISTS idx_wargame_units_faction ON wargame_units(faction_id);
+CREATE INDEX IF NOT EXISTS idx_gm_lore_sort ON gm_lore(event_date, sort_order, title);
+CREATE INDEX IF NOT EXISTS idx_rules_sections_sort ON rules_sections(section_code, section_number, title);
+CREATE INDEX IF NOT EXISTS idx_enemies_sort ON enemies(sort_order, name);

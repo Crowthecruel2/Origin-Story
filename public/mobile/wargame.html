@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mobile Wargame</title>
+  <meta name="theme-color" content="#0d1624">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" type="image/png" href="../images/Icon.png">
+  <link rel="apple-touch-icon" href="../images/Icon.png">
+  <style>
+    :root { --bg:#050910; --panel:#0d1624; --border:#233449; --text:#e6ebf5; --muted:#9fb0c7; --accent:#38f2c7; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Segoe UI,system-ui,sans-serif; color:var(--text); background:var(--bg); padding-bottom:98px; }
+    .wrap { max-width:760px; margin:0 auto; padding:1rem; display:grid; gap:.75rem; }
+    .card { border:1px solid var(--border); border-radius:12px; background:var(--panel); padding:.75rem; display:grid; gap:.5rem; }
+    .search { border:1px solid var(--border); background:#0a1321; color:var(--text); border-radius:10px; padding:.65rem; width:100%; }
+    .muted { color:var(--muted); font-size:.9rem; }
+    .faction { border:1px solid var(--border); border-radius:10px; padding:.6rem; background:#102034; display:grid; gap:.35rem; }
+    .faction h3 { margin:0; font-size:1rem; }
+    .units { display:grid; gap:.45rem; }
+    .unit { border:1px solid var(--border); border-radius:9px; background:#0a1321; padding:.5rem; }
+    .btn { border:1px solid var(--border); background:#0a1321; color:var(--text); border-radius:9px; padding:.45rem .65rem; font-weight:700; }
+    .tabs { position:fixed; left:0; right:0; bottom:0; display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:var(--border); z-index:6; }
+    .tabs a { background:#0a1321; color:var(--muted); text-decoration:none; text-align:center; padding:.58rem .2rem calc(.58rem + env(safe-area-inset-bottom)); font-size:.74rem; font-weight:700; }
+    .tabs a.active { color:var(--text); background:#102034; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <strong>Mobile Wargame Browser</strong>
+      <input id="q" class="search" placeholder="Search unit or faction...">
+      <div class="muted">Tap faction to show units.</div>
+    </section>
+    <section id="list" class="card"></section>
+  </main>
+
+  <nav class="tabs">
+    <a href="./index.html">Home</a>
+    <a href="./timeline.html">Timeline</a>
+    <a href="./enemies.html">Enemies</a>
+    <a href="./character-builder.html">Builder</a>
+    <a href="./rules.html">Rules</a>
+    <a class="active" href="./wargame.html">Wargame</a>
+  </nav>
+
+  <script src="../runtime-config.js"></script>
+  <script src="../wargame-data.js"></script>
+  <script src="../pwa-register.js"></script>
+  <script>
+    const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+    const apiUrl = (p) => { if (!API_BASE) return "../" + p; try { return new URL(p, API_BASE).toString(); } catch { return "../" + p; } };
+    const list = document.getElementById("list");
+    const q = document.getElementById("q");
+    let data = (typeof window.WARGAME_DATA !== "undefined" ? window.WARGAME_DATA : null);
+    const open = new Set();
+    function e(tag, cls, txt) { const n = document.createElement(tag); if (cls) n.className = cls; if (typeof txt === "string") n.textContent = txt; return n; }
+    function byFaction(fid) { return (data?.units || []).filter(u => u.factionId === fid); }
+    function render() {
+      const term = String(q.value || "").trim().toLowerCase();
+      list.innerHTML = "";
+      const factions = (data?.factions || []).filter(f => !term || String(f.name||"").toLowerCase().includes(term) || byFaction(f.id).some(u => String(u.name||"").toLowerCase().includes(term)));
+      if (!factions.length) { list.appendChild(e("div","muted","No matches.")); return; }
+      factions.forEach((f) => {
+        const box = e("article","faction");
+        const top = e("div","");
+        const h = e("h3","",f.name || f.id);
+        const t = e("div","muted", (f.starting?.name ? (f.starting.name + ": " + f.starting.amount) : "No starting resource"));
+        top.append(h,t);
+        box.append(top);
+        const btn = e("button","btn", open.has(f.id) ? "Hide Units" : "Show Units");
+        btn.onclick = () => { if (open.has(f.id)) open.delete(f.id); else open.add(f.id); render(); };
+        box.appendChild(btn);
+        if (open.has(f.id)) {
+          const unitsWrap = e("div","units");
+          byFaction(f.id)
+            .filter(u => !term || String(u.name||"").toLowerCase().includes(term) || String(f.name||"").toLowerCase().includes(term))
+            .forEach((u) => {
+              const card = e("div","unit");
+              card.appendChild(e("strong","",u.name || u.id));
+              card.appendChild(e("div","muted","PDF p." + (u.sourcePage || "?")));
+              if (u.sections?.abilities?.length) card.appendChild(e("div","muted",u.sections.abilities.join(" ").slice(0, 180) + "..."));
+              unitsWrap.appendChild(card);
+            });
+          box.appendChild(unitsWrap);
+        }
+        list.appendChild(box);
+      });
+    }
+    async function hydrate() {
+      try {
+        const res = await fetch(apiUrl("api/wargame.php"), { cache: "no-store" });
+        if (res.ok) data = await res.json();
+      } catch {}
+      render();
+    }
+    q.addEventListener("input", render);
+    hydrate();
+  </script>
+  <script src="../theme-mode.js"></script>
+</body>
+</html>
+
+
+
+

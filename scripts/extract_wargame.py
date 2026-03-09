@@ -238,8 +238,9 @@ def to_js(data: dict[str, Any]) -> str:
 
 def main(argv: list[str]) -> int:
     repo_root = Path(__file__).resolve().parents[1]
-    pdf_path = repo_root / "2nd Edition Final.pdf"
-    out_path = repo_root / "wargame-data.js"
+    public_root = repo_root / "public"
+    pdf_path = public_root / "2nd Edition Final.pdf"
+    out_path = public_root / "wargame-data.js"
 
     if len(argv) >= 2:
         pdf_path = Path(argv[1]).resolve()

@@ -10,6 +10,9 @@ DROP TABLE IF EXISTS powers;
 DROP TABLE IF EXISTS power_classes;
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS rpg_factions;
+DROP TABLE IF EXISTS gm_lore;
+DROP TABLE IF EXISTS rules_sections;
+DROP TABLE IF EXISTS enemies;
 DROP TABLE IF EXISTS wargame_units;
 DROP TABLE IF EXISTS wargame_factions;
 DROP TABLE IF EXISTS meta;
@@ -81,6 +84,55 @@ CREATE TABLE rpg_factions (
   blurb MEDIUMTEXT NULL,
   page TEXT NULL,
   PRIMARY KEY (slug)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE gm_lore (
+  slug VARCHAR(191) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  event_date DATE NULL,
+  content MEDIUMTEXT NOT NULL,
+  is_era TINYINT(1) NOT NULL DEFAULT 0,
+  era_bg_color VARCHAR(7) NULL,
+  era_text_color VARCHAR(7) NULL,
+  sort_order INT NOT NULL DEFAULT 0,
+  is_published TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (slug),
+  KEY idx_gm_lore_sort (event_date, sort_order, title)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE rules_sections (
+  id INT NOT NULL AUTO_INCREMENT,
+  section_code VARCHAR(32) NOT NULL DEFAULT '1',
+  section_number INT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  rules_html MEDIUMTEXT NOT NULL,
+  PRIMARY KEY (id),
+  KEY idx_rules_sections_sort (section_code, section_number, title)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE enemies (
+  id VARCHAR(191) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  class_name VARCHAR(191) NULL,
+  origin VARCHAR(191) NULL,
+  level_num INT NULL,
+  health INT NULL,
+  energy INT NULL,
+  move_stat INT NULL,
+  armor INT NULL,
+  dexterity INT NULL,
+  strength INT NULL,
+  smarts INT NULL,
+  social INT NULL,
+  durability INT NULL,
+  size INT NULL,
+  powers_text MEDIUMTEXT NULL,
+  inventory_text MEDIUMTEXT NULL,
+  notes MEDIUMTEXT NULL,
+  tags_json JSON NOT NULL,
+  sort_order INT NOT NULL DEFAULT 0,
+  PRIMARY KEY (id),
+  KEY idx_enemies_sort (sort_order, name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE wargame_factions (

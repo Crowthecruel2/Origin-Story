@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mobile Rules</title>
+  <meta name="theme-color" content="#0d1624">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" type="image/png" href="../images/Icon.png">
+  <link rel="apple-touch-icon" href="../images/Icon.png">
+  <style>
+    :root {
+      --bg:#050910;
+      --panel:#0d1624;
+      --card:#122338;
+      --border:#233449;
+      --text:#e6ebf5;
+      --muted:#9fb0c7;
+      --accent:#38f2c7;
+      --accent2:#6dd3ff;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family:Segoe UI,system-ui,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 25%, rgba(56, 242, 199, 0.11), transparent 33%),
+        radial-gradient(circle at 82% 10%, rgba(109, 211, 255, 0.1), transparent 28%),
+        var(--bg);
+      padding-bottom:98px;
+    }
+    .wrap { max-width:760px; margin:0 auto; padding:1rem; display:grid; gap:.9rem; }
+    .search { border:1px solid var(--border); background:#0a1321; color:var(--text); border-radius:12px; padding:.7rem .8rem; width:100%; }
+    .card {
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(18,35,56,0.95), rgba(12,24,39,0.92));
+      padding:.9rem;
+      display:grid;
+      gap:.65rem;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before {
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(109, 211, 255, 0.55), transparent);
+    }
+    .head {
+      display:grid;
+      gap:.25rem;
+      border-bottom:1px solid rgba(109, 211, 255, 0.24);
+      padding-bottom:.55rem;
+    }
+    .num { color:var(--accent2); font-weight:800; font-size:.79rem; letter-spacing:.04em; text-transform:uppercase; }
+    .title { font-weight:800; line-height:1.22; color:#f3f8ff; font-size:1.23rem; }
+    .body { line-height:1.68; font-size:.98rem; display:grid; gap:.52rem; }
+    .body > * { margin:0; }
+    .body > * + * { border-top:1px solid rgba(159,176,199,.15); padding-top:.52rem; }
+    .body p { margin:0; }
+    .body h2,.body h3,.body h4 {
+      font-size:1.03rem;
+      line-height:1.35;
+      color:#eaf6ff;
+      display:flex;
+      align-items:center;
+      gap:.45rem;
+      border-top:1px solid rgba(109,211,255,.16);
+      padding-top:.2rem;
+      margin-top:.5rem;
+    }
+    .body h2:first-child,.body h3:first-child,.body h4:first-child { border-top:0; padding-top:0; margin-top:0; }
+    .body ul,.body ol { margin:0; padding-left:1.25rem; display:grid; gap:.5rem; }
+    .body li { line-height:1.68; padding-left:.1rem; }
+    .body li p { margin:.2rem 0 0; color:var(--muted); font-size:.93rem; }
+    .body .subhead-icon {
+      width:1rem;
+      height:1rem;
+      border-radius:6px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(56,242,199,.14);
+      color:var(--accent);
+      font-size:.68rem;
+      border:1px solid rgba(56,242,199,.25);
+      flex-shrink:0;
+    }
+    .body .key-term {
+      display:inline-block;
+      padding:.09rem .38rem;
+      margin:0 .06rem;
+      border-radius:999px;
+      border:1px solid rgba(56,242,199,.35);
+      background:rgba(56,242,199,.12);
+      color:#d8fff6;
+      font-weight:700;
+    }
+    .body .manifesto {
+      text-align:center;
+      font-style:italic;
+      color:#d8e6f9;
+      line-height:1.82;
+      padding:.74rem .8rem;
+      border:1px solid rgba(109,211,255,.3);
+      border-left:3px solid var(--accent2);
+      border-radius:12px;
+      background:rgba(7,16,27,.45);
+    }
+    .body .rule-callout {
+      position:relative;
+      padding:.58rem .62rem .58rem 1.9rem;
+      border-radius:11px;
+      border:1px solid rgba(109,211,255,.35);
+      background:rgba(109,211,255,.1);
+      color:#f2f7ff;
+      font-weight:650;
+    }
+    .body .rule-callout::before {
+      content:"!";
+      position:absolute;
+      left:.58rem;
+      top:.55rem;
+      width:.96rem;
+      height:.96rem;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.7rem;
+      font-weight:800;
+      color:#06233a;
+      background:var(--accent2);
+    }
+    .body .two-col { grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:.85rem; }
+    @media (max-width:440px) {
+      .body .two-col { grid-template-columns:1fr; }
+    }
+    .muted { color:var(--muted); font-size:.9rem; }
+    .tabs { position:fixed; left:0; right:0; bottom:0; display:grid; grid-template-columns:repeat(6,1fr); gap:1px; background:var(--border); z-index:6; }
+    .tabs a { background:#0a1321; color:var(--muted); text-decoration:none; text-align:center; padding:.58rem .2rem calc(.58rem + env(safe-area-inset-bottom)); font-size:.74rem; font-weight:700; }
+    .tabs a.active { color:var(--text); background:#102034; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <strong>Rules / How to Play</strong>
+      <div class="muted">Loaded from database and sorted by section number.</div>
+      <input id="q" class="search" placeholder="Search title or rules text..." autocomplete="off">
+    </section>
+    <section id="list"></section>
+  </main>
+
+  <nav class="tabs">
+    <a href="./index.html">Home</a>
+    <a href="./timeline.html">Timeline</a>
+    <a href="./enemies.html">Enemies</a>
+    <a href="./character-builder.html">Builder</a>
+    <a class="active" href="./rules.html">Rules</a>
+    <a href="./wargame.html">Wargame</a>
+  </nav>
+
+  <script src="../runtime-config.js"></script>
+  <script src="../pwa-register.js"></script>
+  <script>
+    const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+    const apiUrl = (p) => { if (!API_BASE) return "../" + p; try { return new URL(p, API_BASE).toString(); } catch { return "../" + p; } };
+    const list = document.getElementById("list");
+    const q = document.getElementById("q");
+    let rows = [];
+    const el = (t,c,txt) => { const n=document.createElement(t); if(c)n.className=c; if(typeof txt==="string")n.textContent=txt; return n; };
+    const textFromHtml = (html) => { const d=document.createElement("div"); d.innerHTML=String(html||""); return (d.textContent||"").trim(); };
+    function iconForHeading(text) {
+      const t = String(text || "").toLowerCase();
+      if (t.includes("combat") || t.includes("brawler") || t.includes("gunner")) return "X";
+      if (t.includes("stat") || t.includes("genius")) return "S";
+      if (t.includes("tech") || t.includes("tinker") || t.includes("craft")) return "T";
+      if (t.includes("social") || t.includes("roleplay")) return "R";
+      if (t.includes("origin")) return "O";
+      if (t.includes("archetype")) return "A";
+      return ">";
+    }
+    function addHeadingIcons(container) {
+      container.querySelectorAll("h2, h3, h4").forEach((heading) => {
+        if (heading.querySelector(".subhead-icon")) return;
+        const icon = document.createElement("span");
+        icon.className = "subhead-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = iconForHeading(heading.textContent);
+        heading.prepend(icon);
+      });
+    }
+    function applyKeyTerms(container) {
+      const patterns = [
+        /\bno stat may gain more than \+?6 from powers\b/gi,
+        /\bno fixed classes\b/gi,
+        /\borigin story\b/gi,
+        /\barchetypes\b/gi,
+        /\barchetype\b/gi
+      ];
+      patterns.forEach((re) => {
+        container.innerHTML = container.innerHTML.replace(re, (m) => `<span class="key-term">${m}</span>`);
+      });
+    }
+    function enhanceRuleBlocks(container) {
+      const calloutPattern = /no stat may gain more than \+?6 from powers|no fixed classes/i;
+      container.querySelectorAll("p, li, blockquote").forEach((node) => {
+        const text = String(node.textContent || "").trim();
+        if (!text) return;
+        if (/power does not exist in a vacuum/i.test(text)) node.classList.add("manifesto");
+        if (calloutPattern.test(text)) node.classList.add("rule-callout");
+      });
+    }
+    function applyTwoColumnArchetypes(container) {
+      const heads = Array.from(container.querySelectorAll("h2, h3, h4"));
+      heads.forEach((heading) => {
+        if (!/archetype/i.test(String(heading.textContent || ""))) return;
+        let next = heading.nextElementSibling;
+        while (next && !/^(UL|OL)$/.test(next.tagName)) next = next.nextElementSibling;
+        if (!next) return;
+        if (next.children.length >= 4) next.classList.add("two-col");
+      });
+    }
+    function enhanceRulesBody(container) {
+      applyKeyTerms(container);
+      addHeadingIcons(container);
+      enhanceRuleBlocks(container);
+      applyTwoColumnArchetypes(container);
+    }
+    function compareSection(a, b) {
+      const pa = String(a || "").split(".").filter(Boolean);
+      const pb = String(b || "").split(".").filter(Boolean);
+      const max = Math.max(pa.length, pb.length);
+      for (let i = 0; i < max; i++) {
+        const sa = pa[i];
+        const sb = pb[i];
+        if (sa == null) return -1;
+        if (sb == null) return 1;
+        const na = Number(sa);
+        const nb = Number(sb);
+        const aNum = Number.isFinite(na);
+        const bNum = Number.isFinite(nb);
+        if (aNum && bNum) {
+          if (na !== nb) return na - nb;
+          continue;
+        }
+        const cmp = String(sa).localeCompare(String(sb));
+        if (cmp !== 0) return cmp;
+      }
+      return 0;
+    }
+    function render() {
+      const term = String(q.value || "").trim().toLowerCase();
+      list.innerHTML = "";
+      const filtered = !term ? rows : rows.filter((r) => String(r.title || "").toLowerCase().includes(term) || textFromHtml(r.rules_html).toLowerCase().includes(term));
+      if (!filtered.length) { list.appendChild(el("div","muted","No rules found.")); return; }
+      filtered.forEach((r) => {
+        const c = el("article","card");
+        const h = el("div","head");
+        h.appendChild(el("div","num","Section " + String(r.number ?? "")));
+        h.appendChild(el("div","title",r.title || "Untitled"));
+        c.appendChild(h);
+        const b = el("div","body");
+        b.innerHTML = String(r.rules_html || "");
+        enhanceRulesBody(b);
+        c.appendChild(b);
+        list.appendChild(c);
+      });
+    }
+    async function load() {
+      const res = await fetch(apiUrl("api/rules.php"), { cache:"no-store" });
+      const data = await res.json();
+      rows = Array.isArray(data.sections) ? data.sections : [];
+      rows.sort((a,b) => compareSection(a.number, b.number));
+      render();
+    }
+    q.addEventListener("input", render);
+    load().catch((e) => { list.innerHTML = ""; list.appendChild(el("div","muted","Failed to load rules: " + e)); });
+  </script>
+  <script src="../theme-mode.js"></script>
+</body>
+</html>
+
+
+
+

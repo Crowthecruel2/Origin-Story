@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GM Timeline | Origin Story</title>
+  <meta name="theme-color" content="#0d1624">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="images/Icon.png">
+  <link rel="apple-touch-icon" href="images/Icon.png">
+  <style>
+    :root {
+      --bg: #050910;
+      --panel: #0d1624;
+      --card: #0f1c2d;
+      --border: #233449;
+      --accent: #38f2c7;
+      --accent-2: #6dd3ff;
+      --text: #e6ebf5;
+      --muted: #9fb0c7;
+      --shadow: 0 20px 70px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56, 242, 199, 0.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.10), transparent 25%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(7, 12, 21, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 8px 25px rgba(56, 242, 199, 0.35); }
+    .brand-title { font-weight: 800; letter-spacing: 0.02em; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .global-nav a { padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .nav-group { position: relative; }
+    .nav-trigger { list-style: none; padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; cursor: pointer; user-select: none; }
+    .nav-trigger::-webkit-details-marker { display: none; }
+    .nav-group[open] .nav-trigger, .nav-trigger:hover { border-color: var(--border); color: var(--text); }
+    .nav-menu { position: absolute; top: calc(100% + 0.35rem); left: 0; min-width: 230px; background: #0a1321; border: 1px solid var(--border); border-radius: 12px; padding: 0.35rem; display: grid; gap: 0.15rem; box-shadow: var(--shadow); z-index: 30; }
+    .nav-menu a { padding: 0.5rem 0.6rem; border-radius: 9px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .nav-menu a:hover { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-only-link { display: none; }
+    @media (max-width: 900px) {
+      .mobile-only-link { display: inline-flex; }
+      .nav-menu { position: static; min-width: 0; margin-top: 0.35rem; }
+    }
+    .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.65rem 0.9rem; border-radius: 10px; border: 1px solid var(--border); color: var(--text); background: transparent; font-weight: 700; cursor: pointer; }
+    .btn.primary { background: linear-gradient(120deg, var(--accent), #34d399); color: #0a1525; border: none; box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35); }
+    .shell { max-width: 1100px; margin: 1.4rem auto 2rem; padding: 0 1.25rem; display: grid; gap: 1rem; }
+    .hero { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; box-shadow: var(--shadow); display: grid; gap: 0.6rem; }
+    .muted { color: var(--muted); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: var(--shadow); display: grid; gap: 1rem; }
+    .center-line {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 72px;
+      bottom: 0;
+      width: 3px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .timeline-groups {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1.1rem;
+    }
+    .year-block {
+      display: grid;
+      gap: 0.55rem;
+    }
+    .year-label {
+      justify-self: center;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      background: rgba(5,9,16,0.92);
+      color: var(--accent-2);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+    }
+    .year-events {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      padding: 0.15rem 0;
+    }
+    .timeline-item {
+      position: relative;
+      display: grid;
+      gap: 0.35rem;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -0.42rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: var(--accent);
+      border: 2px solid #0a1525;
+      box-shadow: 0 0 0 2px rgba(56, 242, 199, 0.25);
+      opacity: 0.75;
+    }
+    .timeline-btn {
+      text-align: left;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 0.75rem;
+      cursor: pointer;
+      display: grid;
+      gap: 0.2rem;
+      min-width: 180px;
+      max-width: 260px;
+      opacity: 0.6;
+      transition: opacity .14s ease, transform .14s ease, border-color .14s ease;
+    }
+    .timeline-btn:hover { border-color: var(--accent); opacity: 0.8; }
+    .timeline-btn.active {
+      border-color: var(--accent);
+      background: rgba(56, 242, 199, 0.12);
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+    .timeline-btn.era {
+      border-width: 2px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    }
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--accent-2);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .timeline-title {
+      font-weight: 800;
+      line-height: 1.25;
+      font-size: 1.03rem;
+    }
+    .timeline-title.era-title {
+      font-size: 1.22rem;
+      letter-spacing: 0.01em;
+    }
+    .timeline-detail {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem;
+      background: var(--panel);
+      display: grid;
+      gap: 0.45rem;
+    }
+    .timeline-detail.sticky {
+      position: sticky;
+      bottom: 12px;
+      z-index: 2;
+    }
+    .lore-content { white-space: pre-wrap; line-height: 1.55; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand-title">Origin Story Tools</div>
+        <div class="brand-sub">GM lore timeline</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <details class="nav-group">
+        <summary class="nav-trigger">RPG</summary>
+        <div class="nav-menu">
+          <a href="character-builder.html">Character Builder</a>
+          <a href="lore.html">City Lore</a>
+          <a href="onboarding.html">New Player Quiz</a>
+          <a href="quickstart.html">Rules / How to Play</a>
+        </div>
+      </details>
+      <details class="nav-group" open>
+        <summary class="nav-trigger">GM Tools</summary>
+        <div class="nav-menu">
+          <a href="gm.html">GM Console</a>
+          <a class="active" href="gm-timeline.html">GM Timeline</a>
+          <a class="mobile-only-link" href="mobile/index.html">Mobile App</a>
+        </div>
+      </details>
+      <a href="wargame.html">Wargame (separate game)</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="lore.html">Open City Lore</a>
+      <a class="btn primary" href="gm.html">Back to GM</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <h1 style="margin:0;">Campaign Timeline</h1>
+      <div class="muted">Events are collapsed to date and title. Click an item to view full details.</div>
+    </section>
+
+    <section class="card">
+      <div id="timeline" class="timeline-groups"></div>
+      <div id="detail" class="timeline-detail sticky"></div>
+    </section>
+  </main>
+  <div class="center-line" aria-hidden="true"></div>
+
+  <script src="runtime-config.js"></script>
+  <script src="pwa-register.js"></script>
+  <script>
+    const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+    const apiUrl = (path) => {
+      if (!API_BASE) return path;
+      try { return new URL(path, API_BASE).toString(); } catch { return path; }
+    };
+
+    const timeline = document.getElementById("timeline");
+    const detail = document.getElementById("detail");
+
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (typeof text === "string") node.textContent = text;
+      return node;
+    }
+
+    function formatDate(raw) {
+      if (!raw) return "No date";
+      const d = new Date(raw + "T00:00:00");
+      if (Number.isNaN(d.getTime())) return String(raw);
+      return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    function extractYear(raw) {
+      const text = String(raw || "");
+      const m = text.match(/^(\d{4})/);
+      return m ? Number(m[1]) : null;
+    }
+
+    function isHexColor(value) {
+      return /^#[0-9A-Fa-f]{6}$/.test(String(value || ""));
+    }
+
+    function showDetail(section) {
+      detail.innerHTML = "";
+      const title = el("h3", "", section.title || section.slug || "Untitled");
+      title.style.margin = "0";
+      const date = el("div", "timeline-date", formatDate(section.event_date));
+      const body = el("div", "lore-content", section.content || "");
+      detail.appendChild(title);
+      detail.appendChild(date);
+      detail.appendChild(body);
+    }
+
+    function renderTimeline(sections) {
+      timeline.innerHTML = "";
+      detail.innerHTML = "";
+      if (!sections.length) {
+        timeline.appendChild(el("div", "muted", "No published lore yet. Add entries in Admin -> GM Lore."));
+        detail.appendChild(el("div", "muted", "No lore selected."));
+        return;
+      }
+
+      const sorted = [...sections].sort((a, b) => {
+        const ay = extractYear(a.event_date);
+        const by = extractYear(b.event_date);
+        if (ay === null && by !== null) return 1;
+        if (ay !== null && by === null) return -1;
+        if (ay !== by) return (ay || 0) - (by || 0);
+        const aso = Number(a.sort_order || 0);
+        const bso = Number(b.sort_order || 0);
+        if (aso !== bso) return aso - bso;
+        return String(a.title || "").localeCompare(String(b.title || ""));
+      });
+
+      const groups = new Map();
+      sorted.forEach((s) => {
+        const y = extractYear(s.event_date);
+        const key = y === null ? "Unknown" : String(y);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(s);
+      });
+
+      const buttons = [];
+      let globalIndex = 0;
+      for (const [year, list] of groups.entries()) {
+        const block = el("section", "year-block");
+        block.appendChild(el("div", "year-label", year));
+        const eventsRow = el("div", "year-events");
+
+        // Same-year events appear left-to-right in sort order.
+        list.forEach((s) => {
+          const row = el("div", "timeline-item");
+          const btn = el("button", "timeline-btn");
+          btn.type = "button";
+          if (s.is_era) btn.classList.add("era");
+
+          const dateNode = el("div", "timeline-date", formatDate(s.event_date));
+          const titleNode = el("div", "timeline-title", s.title || s.slug || "Untitled");
+          if (s.is_era) titleNode.classList.add("era-title");
+
+          if (s.is_era && isHexColor(s.era_bg_color)) {
+            btn.style.backgroundColor = String(s.era_bg_color);
+          }
+          if (s.is_era && isHexColor(s.era_text_color)) {
+            btn.style.color = String(s.era_text_color);
+            dateNode.style.color = String(s.era_text_color);
+          }
+
+          btn.appendChild(dateNode);
+          btn.appendChild(titleNode);
+          btn.addEventListener("click", () => {
+            buttons.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            showDetail(s);
+          });
+          row.appendChild(btn);
+          eventsRow.appendChild(row);
+          buttons.push(btn);
+          if (globalIndex === 0) {
+            btn.classList.add("active");
+            showDetail(s);
+          }
+          globalIndex += 1;
+        });
+
+        block.appendChild(eventsRow);
+        timeline.appendChild(block);
+      }
+    }
+
+    async function load() {
+      try {
+        const res = await fetch(apiUrl("api/gm-lore.php"), { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        renderTimeline(Array.isArray(data.sections) ? data.sections : []);
+      } catch (err) {
+        timeline.innerHTML = "";
+        detail.innerHTML = "";
+        timeline.appendChild(el("div", "muted", "Failed to load timeline."));
+        detail.appendChild(el("div", "muted", String(err)));
+      }
+    }
+
+    load();
+  </script>
+  <script src="nav-dropdown.js"></script>
+  <script src="theme-mode.js"></script>
+</body>
+</html>
+
+
+
+

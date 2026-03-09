@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GM Console | Origin Story</title>
+  <meta name="theme-color" content="#0d1624">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="images/Icon.png">
+  <link rel="apple-touch-icon" href="images/Icon.png">
+  <style>
+    :root {
+      --bg: #050910;
+      --panel: #0d1624;
+      --card: #0f1c2d;
+      --border: #233449;
+      --accent: #38f2c7;
+      --accent-2: #6dd3ff;
+      --text: #e6ebf5;
+      --muted: #9fb0c7;
+      --shadow: 0 20px 70px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56, 242, 199, 0.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.10), transparent 25%),
+        var(--bg);
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(7, 12, 21, 0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+      flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; }
+    .logo { width: 38px; height: 38px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 8px 25px rgba(56, 242, 199, 0.35); }
+    .brand-title { font-weight: 800; letter-spacing: 0.02em; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; }
+    .global-nav { display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap; }
+    .global-nav a { padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .nav-group { position: relative; }
+    .nav-trigger { list-style: none; padding: 0.45rem 0.65rem; border-radius: 10px; border: 1px solid transparent; color: var(--muted); font-weight: 700; cursor: pointer; user-select: none; }
+    .nav-trigger::-webkit-details-marker { display: none; }
+    .nav-group[open] .nav-trigger, .nav-trigger:hover { border-color: var(--border); color: var(--text); }
+    .nav-menu { position: absolute; top: calc(100% + 0.35rem); left: 0; min-width: 230px; background: #0a1321; border: 1px solid var(--border); border-radius: 12px; padding: 0.35rem; display: grid; gap: 0.15rem; box-shadow: var(--shadow); z-index: 30; }
+    .nav-menu a { padding: 0.5rem 0.6rem; border-radius: 9px; border: 1px solid transparent; color: var(--muted); font-weight: 700; }
+    .nav-menu a:hover { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-only-link { display: none; }
+    @media (max-width: 900px) {
+      .mobile-only-link { display: inline-flex; }
+      .nav-menu { position: static; min-width: 0; margin-top: 0.35rem; }
+    }
+    .actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.65rem 0.9rem; border-radius: 10px; border: 1px solid var(--border); color: var(--text); background: transparent; font-weight: 700; cursor: pointer; }
+    .btn.primary { background: linear-gradient(120deg, var(--accent), #34d399); color: #0a1525; border: none; box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35); }
+    .shell { max-width: 1250px; margin: 1.4rem auto 2rem; padding: 0 1.25rem; display: grid; gap: 1rem; }
+    .hero { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem; box-shadow: var(--shadow); display: grid; gap: 0.6rem; }
+    .muted { color: var(--muted); }
+    .split { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: start; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; box-shadow: var(--shadow); display: grid; gap: 0.6rem; }
+    .enemy-grid { display: grid; gap: 0.7rem; }
+    .category-group { display: grid; gap: 0.7rem; }
+    .category-head { margin: 0.2rem 0 0.1rem; font-size: 1.02rem; letter-spacing: 0.02em; color: var(--accent-2); }
+    .enemy-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+    .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .pill { padding: 0.25rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--muted); font-size: 0.9rem; }
+    .enemy-section h4 { margin: 0 0 0.2rem 0; }
+    .mono-block { white-space: pre-wrap; background: rgba(0,0,0,0.18); border: 1px solid var(--border); border-radius: 10px; padding: 0.65rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="brand-title">Origin Story Tools</div>
+        <div class="brand-sub">GM-only campaign dashboard</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="index.html">Home</a>
+      <details class="nav-group">
+        <summary class="nav-trigger">RPG</summary>
+        <div class="nav-menu">
+          <a href="character-builder.html">Character Builder</a>
+          <a href="lore.html">City Lore</a>
+          <a href="onboarding.html">New Player Quiz</a>
+          <a href="quickstart.html">Rules / How to Play</a>
+        </div>
+      </details>
+      <details class="nav-group" open>
+        <summary class="nav-trigger">GM Tools</summary>
+        <div class="nav-menu">
+          <a class="active" href="gm.html">GM Console</a>
+          <a href="gm-timeline.html">GM Timeline</a>
+          <a class="mobile-only-link" href="mobile/index.html">Mobile App</a>
+        </div>
+      </details>
+      <a href="wargame.html">Wargame (separate game)</a>
+    </nav>
+    <div class="actions">
+      <a class="btn" href="gm-timeline.html">Open Timeline</a>
+      <a class="btn primary" href="character-builder.html">Open Builder</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <h1 style="margin:0;">GM Console</h1>
+      <div class="muted">Enemy sheets are loaded from the database. Timeline lore is now on its own page.</div>
+    </section>
+
+    <section class="split">
+      <article class="card">
+        <h2 style="margin:0;">Lore Timeline</h2>
+        <div class="muted">Use the dedicated timeline page for campaign history.</div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <a class="btn primary" href="gm-timeline.html">Open Vertical Timeline</a>
+          <a class="btn" href="lore.html">Open City Lore</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2 style="margin:0;">Enemies</h2>
+        <div class="muted">Enemies are grouped by category and use player stat labels.</div>
+        <div id="enemyList" class="enemy-grid"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="runtime-config.js"></script>
+  <script src="pwa-register.js"></script>
+  <script>
+    const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+    const apiUrl = (path) => {
+      if (!API_BASE) return path;
+      try { return new URL(path, API_BASE).toString(); } catch { return path; }
+    };
+
+    const enemyList = document.getElementById("enemyList");
+
+    function el(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (typeof text === "string") node.textContent = text;
+      return node;
+    }
+
+    function safeInt(v, fallback = "-") {
+      return Number.isFinite(Number(v)) ? String(Number(v)) : fallback;
+    }
+
+    function renderEnemies(enemies) {
+      enemyList.innerHTML = "";
+      if (!enemies.length) {
+        enemyList.appendChild(el("div", "muted", "No enemies yet. Add entries in Admin -> Enemies."));
+        return;
+      }
+
+      const groups = new Map();
+      enemies.forEach((e) => {
+        const key = (e && String(e.category || "").trim()) || "Uncategorized";
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(e);
+      });
+
+      Array.from(groups.keys()).sort((a, b) => a.localeCompare(b)).forEach((categoryName) => {
+        const groupWrap = el("section", "category-group");
+        groupWrap.appendChild(el("h3", "category-head", categoryName));
+
+        groups.get(categoryName).forEach((e) => {
+        const card = el("section", "card");
+
+        const head = el("div", "enemy-head");
+        const h = el("h3", "", e.name || e.id || "Unnamed enemy");
+        h.style.margin = "0";
+        head.appendChild(h);
+        head.appendChild(el("div", "muted", [e.class_name, e.origin].filter(Boolean).join(" | ") || "Enemy"));
+        card.appendChild(head);
+
+        const s = e && typeof e.stats === "object" && e.stats ? e.stats : {};
+        const stats = el("div", "pill-row");
+        [
+          ["Lvl", safeInt(s.level)],
+          ["Health", safeInt(s.currentHealth)],
+          ["Energy", safeInt(s.energy)],
+          ["Reflex", safeInt(s.reflexBase)],
+          ["Strength", safeInt(s.strengthBase)],
+          ["Smarts", safeInt(s.smartsBase)],
+          ["Social", safeInt(s.socialBase)],
+          ["Durability", safeInt(s.durabilityBase)],
+          ["Armor", safeInt(s.armorBase)],
+        ].forEach(([k, v]) => {
+          stats.appendChild(el("span", "pill", k + ": " + v));
+        });
+        card.appendChild(stats);
+
+        const extras = el("div", "pill-row");
+        [
+          ["Move", safeInt(s.moveStat ?? e.move_stat)],
+          ["Size", safeInt(s.size ?? e.size)],
+        ].forEach(([k, v]) => {
+          if (v !== "-") extras.appendChild(el("span", "pill", k + ": " + v));
+        });
+        if (extras.childNodes.length) card.appendChild(extras);
+
+        const powers = el("div", "enemy-section");
+        const powersTitle = el("h4", "", "Powers");
+        const powersBody = el("div", "mono-block", e.powers_text || "No powers text.");
+        powers.appendChild(powersTitle);
+        powers.appendChild(powersBody);
+        card.appendChild(powers);
+
+        if (e.inventory_text) {
+          const inv = el("div", "enemy-section");
+          inv.appendChild(el("h4", "", "Inventory / Gear"));
+          inv.appendChild(el("div", "mono-block", e.inventory_text));
+          card.appendChild(inv);
+        }
+        if (e.notes) {
+          const notes = el("div", "enemy-section");
+          notes.appendChild(el("h4", "", "Notes"));
+          notes.appendChild(el("div", "lore-content", e.notes));
+          card.appendChild(notes);
+        }
+        if (Array.isArray(e.tags) && e.tags.length) {
+          const tags = el("div", "pill-row");
+          e.tags.forEach((t) => tags.appendChild(el("span", "pill", String(t))));
+          card.appendChild(tags);
+        }
+
+          groupWrap.appendChild(card);
+        });
+        enemyList.appendChild(groupWrap);
+      });
+    }
+
+    async function load() {
+      let enemies = [];
+
+      try {
+        const enemiesRes = await fetch(apiUrl("api/enemies.php"), { cache: "no-store" });
+        if (enemiesRes.ok) {
+          const enemiesData = await enemiesRes.json();
+          if (Array.isArray(enemiesData.enemies)) enemies = enemiesData.enemies;
+        }
+      } catch (err) {
+        console.warn("Failed to load enemies.", err);
+      }
+
+      renderEnemies(enemies);
+    }
+
+    load();
+  </script>
+  <script src="nav-dropdown.js"></script>
+  <script src="theme-mode.js"></script>
+</body>
+</html>
+
+
+
+

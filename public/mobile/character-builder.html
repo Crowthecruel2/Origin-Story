@@ -1,0 +1,3547 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+  <link rel="icon" type="image/png" href="../images/Icon.png">
+  <title>Origin Story Character Builder</title>
+  <style>
+    :root {
+      --bg: #050910;
+      --panel: #0d1624;
+      --card: #0f1c2d;
+      --border: #233449;
+      --accent: #38f2c7;
+      --accent-2: #6dd3ff;
+      --text: #e6ebf5;
+      --muted: #9fb0c7;
+      --danger: #f87171;
+      --warning: #fbbf24;
+      --success: #34d399;
+      --shadow: 0 20px 70px rgba(0,0,0,0.45);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(56, 242, 199, 0.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.10), transparent 25%),
+        var(--bg);
+      min-height: 100vh;
+      padding-bottom: 70px;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.6rem;
+      background: rgba(7, 12, 21, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .brand {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .brand .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 25px rgba(56, 242, 199, 0.45);
+    }
+    .brand .eyebrow { color: var(--muted); font-size: 0.8rem; letter-spacing: 0.08em; }
+    .brand .title { font-weight: 800; font-size: 1.25rem; letter-spacing: 0.02em; }
+    .global-nav { display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center; }
+    .global-nav a {
+      padding: 0.45rem 0.7rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .global-nav a:hover { border-color: var(--border); color: var(--text); }
+    .global-nav a.active { border-color: var(--accent); color: var(--text); }
+    .nav-group { position: relative; }
+    .nav-trigger {
+      list-style: none;
+      padding: 0.45rem 0.65rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+    .nav-trigger::-webkit-details-marker { display: none; }
+    .nav-group[open] .nav-trigger,
+    .nav-trigger:hover { border-color: var(--border); color: var(--text); }
+    .nav-menu {
+      position: absolute;
+      top: calc(100% + 0.35rem);
+      left: 0;
+      min-width: 230px;
+      background: #0a1321;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.35rem;
+      display: grid;
+      gap: 0.15rem;
+      box-shadow: var(--shadow);
+      z-index: 30;
+    }
+    .nav-menu a {
+      padding: 0.5rem 0.6rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .nav-menu a:hover { border-color: var(--border); color: var(--text); background: rgba(255,255,255,0.04); }
+    .mobile-only-link { display: none; }
+    @media (max-width: 900px) {
+      .mobile-only-link { display: inline-flex; }
+      .nav-menu { position: static; min-width: 0; margin-top: 0.35rem; }
+    }
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .ghost-btn, .primary-btn, .secondary-btn, .chip {
+      cursor: pointer;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+      padding: 0.55rem 0.85rem;
+      font-weight: 700;
+      transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+    }
+    .ghost-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .primary-btn {
+      background: linear-gradient(120deg, var(--accent), #34d399);
+      color: #0a1525;
+      border: none;
+      box-shadow: 0 12px 30px rgba(56, 242, 199, 0.35);
+    }
+    .primary-btn:hover { transform: translateY(-1px); }
+    .secondary-btn:hover { border-color: var(--accent-2); color: var(--accent-2); }
+    .app-shell {
+      max-width: 1600px;
+      margin: 1.4rem auto 2rem;
+      padding: 0 1.3rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .summary-card {
+      background: linear-gradient(135deg, rgba(56,242,199,0.12), rgba(109,211,255,0.10));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .summary-title { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.02em; }
+    .summary-muted { color: var(--muted); }
+    .summary-actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+    .sheet-view {
+      background: linear-gradient(160deg, rgba(15, 28, 45, 0.96), rgba(10, 19, 33, 0.98));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .sheet-top {
+      background: linear-gradient(120deg, rgba(56, 242, 199, 0.2), rgba(109, 211, 255, 0.14));
+      padding: 0.65rem 0.8rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      align-items: start;
+    }
+    .sheet-chip-stack { display: grid; gap: 0.45rem; }
+    .sheet-chip {
+      border: 1px solid rgba(56, 242, 199, 0.35);
+      border-radius: 999px;
+      background: rgba(9, 31, 52, 0.88);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      text-align: center;
+      padding: 0.28rem 0.5rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sheet-chip.right { justify-self: end; min-width: 160px; }
+    .sheet-chip input {
+      width: 120px;
+      border: none;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: 700;
+      text-align: center;
+      outline: none;
+    }
+    .sheet-chip input[readonly] { cursor: default; }
+    .sheet-stat-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 0.45rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .sheet-stat-name { min-width: 78px; text-align: right; }
+    .sheet-stat-op { color: var(--muted); font-weight: 700; }
+    .sheet-stat-row input {
+      width: 60px;
+      flex: 0 0 60px;
+      display: inline-block;
+      border: 1px solid var(--border);
+      background: rgba(4, 16, 28, 0.85);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.2rem 0.3rem;
+      text-align: center;
+      font: inherit;
+      outline: none;
+    }
+    .sheet-stat-row input[readonly] { background: rgba(3, 14, 24, 0.65); }
+    .sheet-lines-input {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(6, 18, 31, 0.9);
+      color: var(--text);
+      padding: 0.55rem 0.6rem;
+      font-size: 0.95rem;
+      line-height: 1.46;
+      resize: vertical;
+    }
+    .sheet-power-actions {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    .sheet-power-select {
+      width: 100%;
+      min-height: 170px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(6, 18, 31, 0.9);
+      color: var(--text);
+      padding: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .sheet-table-wrap {
+      width: 100%;
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(6, 18, 31, 0.9);
+    }
+    .sheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+      min-width: 640px;
+    }
+    .sheet-table th,
+    .sheet-table td {
+      border-bottom: 1px solid rgba(159, 176, 199, 0.16);
+      padding: 0.45rem 0.5rem;
+      vertical-align: top;
+    }
+    .sheet-table th {
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 800;
+      background: rgba(8, 22, 36, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .sheet-table td {
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .sheet-table tr:last-child td { border-bottom: none; }
+    .sheet-table td.muted-cell { color: var(--muted); }
+    .sheet-table-qty {
+      width: 72px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(4, 16, 28, 0.85);
+      color: var(--text);
+      padding: 0.2rem 0.35rem;
+      text-align: center;
+      font: inherit;
+      outline: none;
+    }
+    .sheet-table td.sheet-row-actions {
+      white-space: nowrap;
+      text-align: right;
+    }
+    .sheet-inline-form {
+      width: 100%;
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid rgba(159, 176, 199, 0.16);
+    }
+    .sheet-inline-form-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1.6fr 1.6fr 0.7fr 0.8fr auto;
+      gap: 0.45rem;
+      align-items: center;
+    }
+    .sheet-inline-form input {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(4, 16, 28, 0.85);
+      color: var(--text);
+      padding: 0.35rem 0.45rem;
+      font: inherit;
+      outline: none;
+      width: 100%;
+      min-width: 0;
+    }
+    @media (max-width: 980px) {
+      .sheet-inline-form-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .sheet-item-cost {
+      display: inline-block;
+      margin-top: 0.25rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .sheet-empty {
+      width: 100%;
+      color: var(--muted);
+      text-align: left;
+      font-size: 0.92rem;
+      padding: 0.2rem 0;
+    }
+    .sheet-stats-banner {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(56, 242, 199, 0.14), transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(109, 211, 255, 0.12), transparent 36%),
+        rgba(12, 24, 39, 0.95);
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 0.8rem;
+      min-height: 180px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .sheet-set {
+      background: rgba(15, 33, 52, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      min-height: 150px;
+      padding: 0.85rem;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 0.35rem;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .sheet-title {
+      font-size: 2.7rem;
+      font-weight: 700;
+      color: var(--text);
+      text-shadow: 0 0 22px rgba(56, 242, 199, 0.2);
+    }
+    .sheet-health-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      justify-items: center;
+      padding: 0.15rem 1rem 0.35rem;
+      background: rgba(9, 20, 34, 0.95);
+    }
+    .sheet-chip.health {
+      min-width: 260px;
+      border-color: rgba(109, 211, 255, 0.35);
+      background: rgba(7, 27, 47, 0.92);
+    }
+    .sheet-body { padding: 0 0 0.8rem; display: grid; gap: 0.6rem; }
+    .sheet-block {
+      margin: 0 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(13, 27, 44, 0.96);
+      color: var(--text);
+      padding: 0.95rem 1rem;
+      min-height: 150px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+      gap: 0.55rem;
+    }
+    .sheet-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .sheet-duo .sheet-block { margin: 0 0.35rem; min-height: 195px; }
+    .sheet-block h3 {
+      margin: 0;
+      font-size: 1.03rem;
+      font-weight: 700;
+      color: var(--accent-2);
+    }
+    .sheet-lines {
+      width: 100%;
+      font-size: 0.95rem;
+      line-height: 1.46;
+      text-align: left;
+      white-space: pre-wrap;
+      color: var(--text);
+    }
+    .badge {
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.55rem;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1.1fr 1fr 0.95fr;
+      grid-template-areas: "info sheet power items";
+      gap: 1rem;
+      align-items: start;
+    }
+    .grid-info { grid-area: info; min-width: 320px; }
+    .grid-sheet { grid-area: sheet; min-width: 320px; }
+    .grid-power { grid-area: power; min-width: 320px; }
+    .grid-items { grid-area: items; min-width: 280px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 0.8rem;
+    }
+    .section-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      background: rgba(255,255,255,0.02);
+      display: grid;
+      gap: 0.6rem;
+    }
+    .redundant-lower { display: none !important; }
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+    .section-title small { color: var(--muted); font-weight: 600; }
+    .back-link {
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .help-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: 0.35rem;
+      cursor: help;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    input, textarea, select {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.65rem;
+      color: var(--text);
+      font-size: 1rem;
+    }
+    input:focus, textarea:focus, select:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+    .flex-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.65rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; }
+    .stats-pairs {
+      display: grid;
+      grid-template-columns: 1fr 28px 1fr;
+      gap: 0.55rem 0.75rem;
+      align-items: start;
+    }
+    .stats-pairs .stat-col-title {
+      margin: 0 0 0.15rem;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+    .stats-pairs label { display: grid; gap: 0.25rem; }
+    .stats-pairs .stat-help { align-self: center; justify-self: center; }
+    .derived-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem;
+      position: relative;
+    }
+    .stat-card strong { font-size: 1.3rem; color: var(--accent); }
+    .muted { color: var(--muted); font-size: 0.95rem; }
+    .tip { border-bottom: 1px dashed var(--border); cursor: help; }
+    .banner {
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      background: rgba(248, 113, 113, 0.08);
+      color: #fecdd3;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: var(--shadow);
+    }
+    .banner.success {
+      background: rgba(52, 211, 153, 0.1);
+      color: #bbf7d0;
+      border-color: #34d399;
+    }
+    .banner.hidden { display: none; }
+    .powers-zone {
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 0.8rem;
+      background: rgba(56, 242, 199, 0.03);
+      min-height: 200px;
+      transition: border-color 0.12s ease, background 0.12s ease;
+    }
+    .powers-zone.drag-over {
+      border-color: var(--accent);
+      background: rgba(56, 242, 199, 0.1);
+    }
+    .power-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.75rem;
+      display: grid;
+      gap: 0.35rem;
+      cursor: grab;
+      transition: transform 0.12s ease, border-color 0.12s ease;
+    }
+    .power-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .power-card header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .power-card .caret {
+      font-size: 1rem;
+      color: var(--muted);
+      transition: transform 0.12s ease;
+    }
+    .power-card .caret.open {
+      transform: rotate(90deg);
+    }
+    .power-levels {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.35rem;
+    }
+    .pill-row { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .pill-tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.85rem;
+    }
+    .library-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.65rem;
+      max-height: 60vh;
+      overflow: auto;
+      padding-right: 0.25rem;
+    }
+    .detail-panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .detail-panel.hidden { display: none; }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.58);
+      z-index: 40;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .overlay.open { display: flex; }
+    .sheet {
+      width: min(760px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      display: grid;
+      gap: 0.75rem;
+      box-shadow: var(--shadow);
+    }
+    .picker {
+      width: 100%;
+      min-height: 50vh;
+      background: #0a1321;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.4rem;
+    }
+    .picker:focus {
+      outline: 1px solid var(--accent);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(56, 242, 199, 0.12);
+    }
+    .picker option {
+      padding: 0.35rem 0.45rem;
+      border-radius: 6px;
+    }
+    .power-picker-sheet {
+      width: min(920px, 100%);
+      max-height: 90vh;
+      padding: 1.1rem;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(56, 242, 199, 0.08), transparent 35%),
+        radial-gradient(circle at 80% 10%, rgba(109, 211, 255, 0.08), transparent 35%),
+        var(--panel);
+      border: 1px solid var(--border);
+    }
+    .power-picker-head {
+      display: grid;
+      gap: 0.25rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .power-picker-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 0.8rem;
+      align-items: start;
+    }
+    .picker-group {
+      display: grid;
+      gap: 0.35rem;
+      padding: 0.55rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(8, 17, 30, 0.72);
+    }
+    .picker-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: var(--accent-2);
+    }
+    .picker-help {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .picker-preview {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(4, 15, 26, 0.86);
+      color: var(--text);
+      padding: 0.55rem 0.6rem;
+      min-height: 120px;
+      max-height: 180px;
+      overflow: auto;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      font-size: 0.9rem;
+    }
+    .power-rules {
+      width: 100%;
+      min-height: 260px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(6, 18, 31, 0.9);
+      padding: 0.75rem 0.8rem;
+      overflow: auto;
+      display: grid;
+      gap: 0.55rem;
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+    .power-rules > * { margin: 0; }
+    .power-rules > * + * {
+      border-top: 1px solid rgba(159, 176, 199, 0.16);
+      padding-top: 0.55rem;
+    }
+    .power-rules .eyebrow {
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 800;
+      border-top: 0;
+      padding-top: 0;
+    }
+    .power-rules .title {
+      color: #eaf6ff;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      font-weight: 800;
+      border-top: 0;
+      padding-top: 0.1rem;
+    }
+    .power-rules .subhead {
+      color: #eaf6ff;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+    .power-rules .subhead::before {
+      content: ">";
+      width: 1.1rem;
+      height: 1.1rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      border: 1px solid rgba(56, 242, 199, 0.25);
+      background: rgba(56, 242, 199, 0.14);
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .power-rules .owned-tag {
+      display: inline-block;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 242, 199, 0.35);
+      background: rgba(56, 242, 199, 0.12);
+      color: #d8fff6;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-left: 0.35rem;
+    }
+    .power-rules hr {
+      border: 0;
+      border-top: 1px solid rgba(159, 176, 199, 0.2);
+      margin: 0.35rem 0;
+    }
+    .rt-wrap { display: grid; gap: 0.45rem; width: 100%; }
+    .rt-toolbar {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0.45rem 0.5rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(13,22,36,.9);
+    }
+    .rt-toolbar .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.65rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      background: rgba(7, 18, 30, 0.9);
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .rt-toolbar .btn:hover { border-color: var(--accent); }
+    .rt-toolbar select {
+      width: auto;
+      min-width: 120px;
+      background: rgba(7, 18, 30, 0.9);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 9px;
+      padding: 0.35rem 0.5rem;
+    }
+    .rt-editor {
+      min-height: 140px;
+      background: rgba(6, 18, 31, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.55rem 0.6rem;
+      color: var(--text);
+      line-height: 1.5;
+      white-space: normal;
+      overflow: auto;
+    }
+    .rt-editor:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+    .rt-editor p { margin: 0.45rem 0; }
+    .rt-editor ul, .rt-editor ol { margin: 0.45rem 0 0.45rem 1.2rem; }
+    .picker--powers { min-height: 52vh; }
+    .picker--levels { min-height: 52vh; }
+    .power-picker-actions {
+      padding-top: 0.35rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      justify-content: flex-end;
+    }
+    @media (max-width: 900px) {
+      .power-picker-grid { grid-template-columns: 1fr; }
+      .picker--powers, .picker--levels { min-height: 34vh; }
+    }
+    .inventory-list > div {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 10px;
+      padding: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+    }
+    .chip {
+      padding: 0.45rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .chip.active { background: rgba(56, 242, 199, 0.15); border-color: var(--accent); color: var(--text); }
+    .helper-text { color: var(--muted); font-size: 0.9rem; }
+    .status-line { font-weight: 700; display: flex; align-items: center; gap: 0.4rem; }
+    .status-good { color: var(--success); }
+    .status-warn { color: var(--warning); }
+    .danger { color: var(--danger); }
+    details.advanced {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.6rem 0.7rem;
+      background: rgba(255,255,255,0.03);
+    }
+    details.advanced summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--muted);
+      list-style: none;
+    }
+    details.advanced summary::-webkit-details-marker { display: none; }
+    details.advanced[open] summary { color: var(--text); }
+    .invalid input { border-color: var(--danger); }
+    .coachmark {
+      position: relative;
+    }
+    .coachmark .hint {
+      display: none;
+      position: absolute;
+      top: -12px;
+      right: 0;
+      background: rgba(109,211,255,0.15);
+      border: 1px solid var(--accent-2);
+      color: var(--text);
+      padding: 0.35rem 0.5rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    body.tour .coachmark .hint { display: inline-flex; }
+    body.tour .powers-zone { box-shadow: 0 0 0 2px var(--accent-2); }
+    .tooltip {
+      position: relative;
+      cursor: help;
+    }
+    .tooltip::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 0;
+      top: 110%;
+      white-space: nowrap;
+      background: #0a1321;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.5rem;
+      color: var(--text);
+      font-size: 0.85rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      z-index: 5;
+    }
+    .tooltip:hover::after { opacity: 1; transform: translateY(0); }
+    @media (max-width: 1180px) {
+      .grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "info"
+          "sheet"
+          "power"
+          "items";
+      }
+      .library-list { max-height: none; }
+      .topbar { position: static; flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 900px) {
+      body { padding: 0; }
+      .app-shell { padding: 0.8rem; }
+      .summary-card { flex-direction: column; align-items: flex-start; }
+      .summary-actions { width: 100%; }
+    .nav-links { width: 100%; }
+    .top-actions { width: 100%; justify-content: flex-start; }
+    .stats-pairs { grid-template-columns: 1fr; }
+      .library-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    }
+    @media print {
+      @page { margin: 20mm 15mm; }
+      body {
+        background: var(--bg) !important;
+        color: var(--text);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .topbar, .summary-card, .banner, .back-link, .grid, .print-hide { display: none !important; }
+      .app-shell { margin: 0; padding: 0; max-width: none; }
+      #sheetView { display: block !important; box-shadow: none; border: 1px solid var(--border); border-radius: 14px; }
+      .sheet-title { font-size: 2.25rem; }
+      .sheet-chip { font-size: 11pt; }
+      .sheet-lines { font-size: 10.5pt; }
+      .sheet-chip input, .sheet-stat-row input, .sheet-lines-input, .sheet-table-qty { border: none !important; background: transparent !important; box-shadow: none !important; resize: none; }
+      #sheetPowerListBlock { display: none !important; }
+      .sheet-duo { grid-template-columns: 1fr !important; }
+      #sheetPowerDescriptionsBlock { margin: 0 0.7rem !important; }
+      #sheetItemsPickerBlock .secondary-btn,
+      #sheetItemsTableBlock .ghost-btn { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar print-hide">
+    <div class="brand">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <div class="eyebrow">Origin Story Tools</div>
+        <div class="title">Character Builder</div>
+      </div>
+    </div>
+    <nav class="global-nav">
+      <a href="../index.html">Home</a>
+      <details class="nav-group" open>
+        <summary class="nav-trigger">RPG</summary>
+        <div class="nav-menu">
+          <a class="active" href="character-builder.html">Character Builder</a>
+          <a href="../lore.html">City Lore</a>
+          <a href="../onboarding.html">New Player Quiz</a>
+          <a href="../quickstart.html">Rules / How to Play</a>
+        </div>
+      </details>
+      <details class="nav-group">
+        <summary class="nav-trigger">GM Tools</summary>
+        <div class="nav-menu">
+          <a href="../gm.html">GM Console</a>
+          <a href="../gm-timeline.html">GM Timeline</a>
+          <a class="mobile-only-link" href="./index.html">Mobile App</a>
+        </div>
+      </details>
+      <a href="../wargame.html">Wargame (separate game)</a>
+    </nav>
+    <div class="top-actions">
+      <button id="startTourLink" class="ghost-btn" type="button">New Player? Start Here</button>
+      <div class="pill" id="saveStamp">Last saved: never</div>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <a class="back-link print-hide" href="../index.html">&#8592; Back to Origin Story Hub</a>
+    <div class="summary-card">
+      <div>
+        <div class="summary-title">Live character summary <span class="muted">(updates as you edit)</span></div>
+        <div class="summary-muted" id="summaryText">Level 1 | Health 10 | Power Points 0/1 | Powers: 0 | Inventory items: 0</div>
+      </div>
+      <div class="summary-actions print-hide">
+        <span class="badge" id="statBudgetBadge">Stat budget: 7 base + 2/level</span>
+        <button class="primary-btn" id="quickSave">Quick Save</button>
+        <button class="secondary-btn" id="quickLoad">Load Last</button>
+        <button class="secondary-btn" id="printCharacter">Print / PDF</button>
+      </div>
+    </div>
+    <section id="sheetView" class="sheet-view">
+      <div class="sheet-top">
+        <div class="sheet-chip-stack">
+          <label class="sheet-chip">Player Name: <input id="sheetPlayerNameInput" type="text" value=""></label>
+          <label class="sheet-chip">Character Name: <input id="sheetCharacterNameInput" type="text" value=""></label>
+          <label class="sheet-chip">Level: <input id="sheetLevelInput" type="number" min="1" step="1" value="1"></label>
+        </div>
+        <div class="sheet-chip-stack">
+          <label class="sheet-chip right">Size: <input id="sheetSizeInput" type="number" min="0" step="1" value="1"></label>
+          <label class="sheet-chip right">Cash: $<input id="sheetCashInput" type="number" min="0" step="1" value="0"></label>
+          <label class="sheet-chip right">Power Points: <input id="sheetPowerPointsInput" type="text" value="0 / 1" readonly></label>
+        </div>
+      </div>
+      <div class="sheet-stats-banner">
+        <div class="sheet-set" id="sheetFirstSet">
+          <label class="sheet-stat-row"><span class="sheet-stat-name">Reflex</span><input id="sheetReflexBaseInput" type="number" step="1" value="0"><span class="sheet-stat-op">+</span><input id="sheetReflexModInput" type="number" step="1" value="0"><span class="sheet-stat-op">=</span><input id="sheetReflexTotalInput" type="number" step="1" value="0" readonly></label>
+          <label class="sheet-stat-row"><span class="sheet-stat-name">Strength</span><input id="sheetStrengthBaseInput" type="number" step="1" value="0"><span class="sheet-stat-op">+</span><input id="sheetStrengthModInput" type="number" step="1" value="0"><span class="sheet-stat-op">=</span><input id="sheetStrengthTotalInput" type="number" step="1" value="0" readonly></label>
+          <label class="sheet-stat-row"><span class="sheet-stat-name">Smarts</span><input id="sheetSmartsBaseInput" type="number" step="1" value="0"><span class="sheet-stat-op">+</span><input id="sheetSmartsModInput" type="number" step="1" value="0"><span class="sheet-stat-op">=</span><input id="sheetSmartsTotalInput" type="number" step="1" value="0" readonly></label>
+        </div>
+        <div class="sheet-title" aria-hidden="true"></div>
+        <div class="sheet-set" id="sheetSecondSet">
+          <label class="sheet-stat-row"><span class="sheet-stat-name">Social</span><input id="sheetSocialBaseInput" type="number" step="1" value="0"><span class="sheet-stat-op">+</span><input id="sheetSocialModInput" type="number" step="1" value="0"><span class="sheet-stat-op">=</span><input id="sheetSocialTotalInput" type="number" step="1" value="0" readonly></label>
+          <label class="sheet-stat-row"><span class="sheet-stat-name">Durability</span><input id="sheetDurabilityBaseInput" type="number" step="1" value="0"><span class="sheet-stat-op">+</span><input id="sheetDurabilityModInput" type="number" step="1" value="0"><span class="sheet-stat-op">=</span><input id="sheetDurabilityTotalInput" type="number" step="1" value="0" readonly></label>
+          <label class="sheet-stat-row"><span class="sheet-stat-name">Armor</span><input id="sheetArmorBaseInput" type="number" step="1" value="0"><span class="sheet-stat-op">+</span><input id="sheetArmorModInput" type="number" step="1" value="0"><span class="sheet-stat-op">=</span><input id="sheetArmorTotalInput" type="number" step="1" value="0" readonly></label>
+        </div>
+      </div>
+      <div class="sheet-health-row">
+        <label class="sheet-chip health">Current Health: <input id="sheetCurrentHealthInput" type="number" min="0" step="1" value="10"></label>
+        <label class="sheet-chip health">Max Health: <input id="sheetMaxHealthInput" type="number" min="0" step="1" value="10" readonly></label>
+      </div>
+      <div class="sheet-body">
+        <div class="sheet-block">
+          <h3>Character backstory Block</h3>
+          <textarea class="sheet-lines-input" id="sheetBackstoryInput" rows="6" data-richtext="on" placeholder="Enter character backstory..."></textarea>
+        </div>
+        <div class="sheet-duo">
+          <div class="sheet-block" id="sheetPowerListBlock">
+            <h3>Power list</h3>
+            <div class="sheet-power-actions print-hide">
+              <button class="secondary-btn" id="sheetAddPowerBtn" type="button">Add Power</button>
+              <button class="ghost-btn" id="sheetRemovePowerBtn" type="button">Remove Selected</button>
+            </div>
+            <select class="sheet-power-select" id="sheetPowerSelect" size="8" aria-label="Selected powers"></select>
+          </div>
+          <div class="sheet-block" id="sheetPowerDescriptionsBlock">
+            <h3>Power Descriptions</h3>
+            <div class="power-rules" id="sheetPowerDescriptionsInput" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="sheet-block print-hide" id="sheetItemsPickerBlock">
+          <h3>Item Picker</h3>
+          <div class="sheet-table-wrap">
+            <table class="sheet-table" aria-label="Eligible items by prerequisites">
+              <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Item Description</th>
+                  <th>Item Effect</th>
+                  <th>Quantity</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="sheetItemPickerBody"></tbody>
+            </table>
+          </div>
+          <div class="sheet-inline-form" aria-label="Add custom item">
+            <div class="sheet-inline-form-row">
+              <input id="sheetCustomItemNameInput" type="text" placeholder="Custom item name">
+              <input id="sheetCustomItemDescInput" type="text" placeholder="Custom item description">
+              <input id="sheetCustomItemEffectInput" type="text" placeholder="Custom item effect">
+              <input id="sheetCustomItemQtyInput" type="number" min="1" step="1" value="1" placeholder="Qty">
+              <input id="sheetCustomItemCostInput" type="text" placeholder="Cost (e.g. 100)">
+              <button class="secondary-btn" id="sheetAddCustomItemBtn" type="button">Add Custom</button>
+            </div>
+          </div>
+        </div>
+        <div class="sheet-block" id="sheetItemsTableBlock">
+          <h3>Inventory</h3>
+          <div class="sheet-table-wrap">
+            <table class="sheet-table" aria-label="Character inventory">
+              <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Item Description</th>
+                  <th>Item Effect</th>
+                  <th>Quantity</th>
+                  <th class="print-hide"></th>
+                </tr>
+              </thead>
+              <tbody id="sheetInventoryBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="sampleBanner" class="banner success hidden print-hide">Loaded a sample Level 1 Street Brawler. Tweak anything you like.</div>
+    <div id="ppWarning" class="banner hidden print-hide"></div>
+    <div id="statWarning" class="banner hidden print-hide"></div>
+
+    <div class="grid">
+      <section class="panel grid-info" aria-label="Character information">
+        <div class="section-card redundant-lower">
+          <div class="section-heading">Character Info</div>
+          <div class="grid-2">
+            <label>Character Name
+              <input id="name" placeholder="Name">
+            </label>
+            <label>Concept / Notes
+              <input id="concept" placeholder="Short concept or role">
+            </label>
+          </div>
+        </div>
+
+        <div class="section-card redundant-lower">
+          <div class="section-heading">Stats</div>
+          <div class="stats-pairs coachmark" id="statsGroup">
+            <div class="stat-col-title">Base</div>
+            <div></div>
+            <div class="stat-col-title">Mods</div>
+
+            <label>Reflex (base)
+              <input type="number" id="reflexBase" value="0" step="1">
+            </label>
+            <span class="help-icon tooltip stat-help" data-tip="Speed, initiative, and quick moves.">?</span>
+            <label>Reflex (mod)
+              <input type="number" id="reflexMod" value="0" step="1">
+            </label>
+
+            <label>Strength (base)
+              <input type="number" id="strengthBase" value="0" step="1">
+            </label>
+            <span class="help-icon tooltip stat-help" data-tip="Force, lifting, melee damage.">?</span>
+            <label>Strength (mod)
+              <input type="number" id="strengthMod" value="0" step="1">
+            </label>
+
+            <label>Smarts (base)
+              <input type="number" id="smartsBase" value="0" step="1">
+            </label>
+            <span class="help-icon tooltip stat-help" data-tip="Knowledge, perception, and planning.">?</span>
+            <label>Smarts (mod)
+              <input type="number" id="smartsMod" value="0" step="1">
+            </label>
+
+            <label>Social (base)
+              <input type="number" id="socialBase" value="0" step="1">
+            </label>
+            <span class="help-icon tooltip stat-help" data-tip="Influence, negotiations, and presence.">?</span>
+            <label>Social (mod)
+              <input type="number" id="socialMod" value="0" step="1">
+            </label>
+
+            <label>Durability (base)
+              <input type="number" id="durabilityBase" value="0" step="1">
+            </label>
+            <span class="help-icon tooltip stat-help" data-tip="Toughness, endurance, and grit.">?</span>
+            <label>Durability (mod)
+              <input type="number" id="durabilityMod" value="0" step="1">
+            </label>
+
+            <label>Armor (base)
+              <input type="number" id="armorBase" value="0" step="1">
+            </label>
+            <span class="help-icon tooltip stat-help" data-tip="Damage reduction; worn or innate.">?</span>
+            <label>Armor (mod)
+              <input type="number" id="armorMod" value="0" step="1">
+            </label>
+          </div>
+          <div id="statBudgetStatus" class="status-line status-good">You are within your stat budget.</div>
+        </div>
+
+        <div class="section-card redundant-lower">
+          <div class="section-heading">Derived Stats</div>
+          <div class="derived-cards">
+            <label>Level
+              <input type="number" id="level" value="1" min="1" step="1">
+            </label>
+            <label>Size
+              <input type="number" id="size" value="1" min="0" step="1">
+            </label>
+            <div class="stat-card tooltip" data-tip="Max Health = 10 + (Durability base + mod) × Level">
+              <div class="muted">Health</div>
+              <strong><span id="healthCurrent">10</span> / <span id="healthMax">10</span></strong>
+              <div class="muted">Auto-updates; set your current HP below.</div>
+              <input type="number" id="currentHealth" min="0" value="10" style="width:100%; margin-top:0.4rem;">
+            </div>
+            <div class="stat-card tooltip" data-tip="Power Points equal your Level. Each power level costs PP.">
+              <div class="muted">Power Points</div>
+              <strong id="powerPoints">1 / 1</strong>
+              <div class="muted" id="powerPointsDetail">1 remaining (spent 0)</div>
+            </div>
+            <div class="stat-card tooltip" data-tip="Track your current money.">
+              <div class="muted">Cash</div>
+              <strong>$<span id="cashDisplay">0</span></strong>
+              <input type="number" id="cash" min="0" value="0" style="width:100%; margin-top:0.4rem;">
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card print-hide" id="advancedBudgetCard">
+          <div class="section-heading">Base Stat Budget</div>
+          <details class="advanced" id="advancedBudget">
+            <summary>View budget formula</summary>
+            <div class="grid-2" style="margin-top:0.6rem;">
+              <label>Base pool
+                <input type="number" id="statBasePool" value="7" min="0">
+              </label>
+              <label>Per-level gain
+                <input type="number" id="statPerLevel" value="2" min="0">
+              </label>
+            </div>
+            <div class="helper-text">Budget is fixed at 7 + 2 x (Level - 1). Only Base stats use this budget; Mods are not capped.</div>
+          </details>
+        </div>
+
+        <div class="section-card print-hide" id="saveExportCard">
+          <div class="section-heading">Save & Export</div>
+          <div class="grid-2">
+            <div class="coachmark" id="saveOptions">
+              <span class="hint">Fast local save</span>
+              <div class="flex-row">
+                <button class="primary-btn" id="quickSaveInline">Quick Save</button>
+                <button class="secondary-btn" id="quickLoadInline">Load Last Character</button>
+              </div>
+              <div class="helper-text">Quick Save keeps data in your browser (localStorage). Use Load Last to restore.</div>
+            </div>
+            <div>
+              <div class="flex-row">
+                <button class="secondary-btn" id="selectCharacterFolder">Export character to file</button>
+                <button class="secondary-btn" id="loadCharacter">Import character from file</button>
+              </div>
+              <div class="helper-text" id="characterFolderHint">No folder selected</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel grid-sheet redundant-lower" aria-label="Character sheet" id="sheetPanel">
+        <div class="section-card">
+          <div class="section-heading">Inventory</div>
+          <div class="flex-row print-hide" style="flex-wrap:wrap; gap:0.5rem;">
+            <input id="invName" placeholder="Item name" style="min-width:180px; flex:1;">
+            <input id="invQty" type="number" min="1" value="1" style="width:90px;">
+            <button class="secondary-btn" id="addItem">Add</button>
+            <textarea id="invDescription" placeholder="Description" rows="2" style="width:100%; min-height:56px; resize:vertical;"></textarea>
+            <textarea id="invEffect" placeholder="Effect" rows="2" style="width:100%; min-height:56px; resize:vertical;"></textarea>
+          </div>
+          <div id="inventoryList" class="inventory-list"></div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-heading">Character Background</div>
+          <textarea id="backgroundText" rows="6" placeholder="Backstory, affiliations, notes" style="width:100%; resize: vertical;"></textarea>
+        </div>
+
+        <div class="section-card">
+          <div class="section-heading">Character Powers <small class="muted">Drag from the right or click to remove</small></div>
+          <div id="characterPowers" class="powers-zone coachmark" aria-label="Character powers drop zone">
+            <span class="hint">Drop powers here</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel grid-power redundant-lower" aria-label="Power library" id="libraryPanel">
+        <div class="section-card">
+          <div class="section-heading">Power Library <small class="muted">Search, filter, click for details</small></div>
+          <input id="search" placeholder="Search powers or text..." aria-label="Search powers" style="width:100%; margin-bottom:0.75rem;">
+          <div class="grid-3">
+            <label>Class
+              <select id="filterClass"></select>
+            </label>
+            <label>Level
+              <select id="filterLevel">
+                <option value="all">Any</option>
+                <option value="1">Level 1</option>
+                <option value="2">Level 2</option>
+                <option value="3">Level 3</option>
+                <option value="4">Level 4+</option>
+              </select>
+            </label>
+            <label>Category
+              <select id="filterCategory">
+                <option value="all">Any</option>
+                <option value="Attack">Attack</option>
+                <option value="Defense">Defense</option>
+                <option value="Utility">Utility</option>
+              </select>
+            </label>
+            <label>Action Type
+              <select id="filterAction">
+                <option value="all">Any</option>
+                <option value="Standard">Standard</option>
+                <option value="Move">Move</option>
+                <option value="Reaction">Reaction</option>
+              </select>
+            </label>
+          </div>
+          <div class="flex-row print-hide">
+            <button class="primary-btn" id="addPowerBtnDesktop" type="button">Add Power</button>
+            <span class="helper-text">Quick filters:</span>
+            <button class="chip" data-quick="level1">Show only Level 1</button>
+            <button class="chip" data-quick="level2">Level 2+</button>
+            <button class="chip" data-quick="classBrick">Brick</button>
+            <button class="chip" data-quick="classTechie">Techie</button>
+            <button class="chip" data-quick="classRanger">Ranger</button>
+            <button class="chip" data-quick="clear">Clear</button>
+          </div>
+        </div>
+        <div class="section-card">
+          <div id="powerList" class="library-list" aria-label="Available powers"></div>
+        </div>
+        <div class="section-card hidden" id="detailWrapper">
+          <div id="powerDetail" class="detail-panel">
+            <div class="section-title">Power details</div>
+            <div id="detailTitle" style="font-weight:800;"></div>
+            <div class="muted" id="detailPath"></div>
+            <div class="pill-row" id="detailTags"></div>
+            <div id="detailBody" class="muted" style="white-space:pre-wrap;"></div>
+            <div class="flex-row">
+              <button class="primary-btn" id="addFromDetail">Add to character</button>
+              <button class="ghost-btn" id="closeDetail">Close</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="panel grid-items redundant-lower" aria-label="Items library" id="itemsPanel">
+        <div class="section-card">
+          <div class="section-heading">Items <small class="muted" id="itemStatus">Items gated by prerequisites</small></div>
+          <div id="itemList" class="library-list" aria-label="Available items"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="powerOverlayDesktop" class="overlay print-hide" aria-hidden="true">
+    <section class="sheet power-picker-sheet">
+      <div class="power-picker-head">
+        <div class="section-title">Add a Power <small class="muted">Mobile-style picker</small></div>
+      <div class="picker-help">Pick a power on the left, then choose a subpower level on the right. Selecting a higher level will auto-buy missing lower levels.</div>
+      </div>
+      <div class="power-picker-grid">
+        <div class="picker-group">
+          <div class="picker-label">Power</div>
+          <select id="powerPickerDesktop" class="picker picker--powers" size="16"></select>
+        </div>
+        <div class="picker-group">
+          <div class="picker-label">Subpower / Level</div>
+          <select id="powerLevelPickerDesktop" class="picker picker--levels" size="8"></select>
+          <div id="powerLevelPreviewDesktop" class="picker-preview"></div>
+        </div>
+      </div>
+      <div class="flex-row power-picker-actions">
+        <button class="primary-btn" id="confirmAddPowerBtnDesktop" type="button">Add / Upgrade Selected</button>
+        <button class="ghost-btn" id="closePowerPickerBtnDesktop" type="button">Close</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="../admin/rich-text.js"></script>
+  <script src="../runtime-config.js"></script>
+  <script>
+    const powerLibrary = [];
+    const chosenPowers = new Map();
+    const inventory = [];
+    const isFileProtocol = location.protocol === "file:";
+    const API_BASE = String(window.BRIGHTON_API_BASE || "").trim();
+    const apiUrl = (path) => {
+      if (!API_BASE) return path;
+      try { return new URL(path, API_BASE).toString(); } catch { return path; }
+    };
+    const DEBUG_PREREQS = new URLSearchParams(location.search).has("debugPrereqs");
+    const LOCAL_KEY = "origin-story-character-quick-save";
+    const BASE_STAT_POOL_FIXED = 7;
+    const STAT_PER_LEVEL_FIXED = 2;
+    const CATEGORY_DESCRIPTIONS = {
+      Brick: "Powers that allow for supernatural strength or durability. Built like brick houses.",
+      BrickPower: "Powers that allow for supernatural strength or durability. Built like brick houses.",
+      Effector: "Powers that alter the environment or elements around the user.",
+      Genius: "Powers that enhance intelligence, senses, or skill to supernatural levels.",
+      Manipulator: "Powers that influence minds, actions, or control others.",
+      Mutant: "Powers that visibly change the user's anatomy or form.",
+      Ranger: "Powers that grant exceptional skills or impossible techniques.",
+      Techie: "Powers enabling creation and use of super-tech.",
+      Movement: "Mobility focused techniques.",
+      Misc: "Uncategorized powers."
+    };
+
+    const elements = {
+      level: document.getElementById("level"),
+      size: document.getElementById("size"),
+      health: document.getElementById("health"),
+      powerPoints: document.getElementById("powerPoints"),
+      powerPointsDetail: document.getElementById("powerPointsDetail"),
+      healthCurrent: document.getElementById("healthCurrent"),
+      healthMax: document.getElementById("healthMax"),
+      currentHealth: document.getElementById("currentHealth"),
+      cash: document.getElementById("cash"),
+      cashDisplay: document.getElementById("cashDisplay"),
+      powerList: document.getElementById("powerList"),
+      characterPowers: document.getElementById("characterPowers"),
+      search: document.getElementById("search"),
+      selectCharacterFolder: document.getElementById("selectCharacterFolder"),
+      loadCharacter: document.getElementById("loadCharacter"),
+      characterFolderHint: document.getElementById("characterFolderHint"),
+      invName: document.getElementById("invName"),
+      invQty: document.getElementById("invQty"),
+      invDescription: document.getElementById("invDescription"),
+      invEffect: document.getElementById("invEffect"),
+      addItem: document.getElementById("addItem"),
+      inventoryList: document.getElementById("inventoryList"),
+      printCharacter: document.getElementById("printCharacter"),
+      reflexBase: document.getElementById("reflexBase"),
+      reflexMod: document.getElementById("reflexMod"),
+      strengthBase: document.getElementById("strengthBase"),
+      strengthMod: document.getElementById("strengthMod"),
+      smartsBase: document.getElementById("smartsBase"),
+      smartsMod: document.getElementById("smartsMod"),
+      socialBase: document.getElementById("socialBase"),
+      socialMod: document.getElementById("socialMod"),
+      durabilityBase: document.getElementById("durabilityBase"),
+      durabilityMod: document.getElementById("durabilityMod"),
+      armorBase: document.getElementById("armorBase"),
+      armorMod: document.getElementById("armorMod"),
+      statBasePool: document.getElementById("statBasePool"),
+      statPerLevel: document.getElementById("statPerLevel"),
+      summaryText: document.getElementById("summaryText"),
+      statBudgetBadge: document.getElementById("statBudgetBadge"),
+      statBudgetStatus: document.getElementById("statBudgetStatus"),
+      ppWarning: document.getElementById("ppWarning"),
+      statWarning: document.getElementById("statWarning"),
+      saveStamp: document.getElementById("saveStamp"),
+      quickSave: document.getElementById("quickSave"),
+      quickLoad: document.getElementById("quickLoad"),
+      quickSaveInline: document.getElementById("quickSaveInline"),
+      quickLoadInline: document.getElementById("quickLoadInline"),
+      filterClass: document.getElementById("filterClass"),
+      filterLevel: document.getElementById("filterLevel"),
+      filterCategory: document.getElementById("filterCategory"),
+      filterAction: document.getElementById("filterAction"),
+      powerDetail: document.getElementById("powerDetail"),
+      detailTitle: document.getElementById("detailTitle"),
+      detailPath: document.getElementById("detailPath"),
+      detailTags: document.getElementById("detailTags"),
+      detailBody: document.getElementById("detailBody"),
+      addFromDetail: document.getElementById("addFromDetail"),
+      closeDetail: document.getElementById("closeDetail"),
+      backgroundText: document.getElementById("backgroundText"),
+      sampleBanner: document.getElementById("sampleBanner"),
+      startTourLink: document.getElementById("startTourLink"),
+      detailWrapper: document.getElementById("detailWrapper"),
+      itemList: document.getElementById("itemList"),
+      itemStatus: document.getElementById("itemStatus"),
+      addPowerBtnDesktop: document.getElementById("addPowerBtnDesktop"),
+      powerOverlayDesktop: document.getElementById("powerOverlayDesktop"),
+      powerPickerDesktop: document.getElementById("powerPickerDesktop"),
+      powerLevelPickerDesktop: document.getElementById("powerLevelPickerDesktop"),
+      powerLevelPreviewDesktop: document.getElementById("powerLevelPreviewDesktop"),
+      confirmAddPowerBtnDesktop: document.getElementById("confirmAddPowerBtnDesktop"),
+      closePowerPickerBtnDesktop: document.getElementById("closePowerPickerBtnDesktop"),
+      sheetAddPowerBtn: document.getElementById("sheetAddPowerBtn"),
+      sheetRemovePowerBtn: document.getElementById("sheetRemovePowerBtn"),
+      sheetPowerSelect: document.getElementById("sheetPowerSelect"),
+      sheetItemPickerBody: document.getElementById("sheetItemPickerBody"),
+      sheetInventoryBody: document.getElementById("sheetInventoryBody"),
+      sheetCustomItemNameInput: document.getElementById("sheetCustomItemNameInput"),
+      sheetCustomItemDescInput: document.getElementById("sheetCustomItemDescInput"),
+      sheetCustomItemEffectInput: document.getElementById("sheetCustomItemEffectInput"),
+      sheetCustomItemQtyInput: document.getElementById("sheetCustomItemQtyInput"),
+      sheetCustomItemCostInput: document.getElementById("sheetCustomItemCostInput"),
+      sheetAddCustomItemBtn: document.getElementById("sheetAddCustomItemBtn"),
+      sheetPlayerNameInput: document.getElementById("sheetPlayerNameInput"),
+      sheetCharacterNameInput: document.getElementById("sheetCharacterNameInput"),
+      sheetLevelInput: document.getElementById("sheetLevelInput"),
+      sheetSizeInput: document.getElementById("sheetSizeInput"),
+      sheetCashInput: document.getElementById("sheetCashInput"),
+      sheetPowerPointsInput: document.getElementById("sheetPowerPointsInput"),
+      sheetReflexBaseInput: document.getElementById("sheetReflexBaseInput"),
+      sheetReflexModInput: document.getElementById("sheetReflexModInput"),
+      sheetReflexTotalInput: document.getElementById("sheetReflexTotalInput"),
+      sheetStrengthBaseInput: document.getElementById("sheetStrengthBaseInput"),
+      sheetStrengthModInput: document.getElementById("sheetStrengthModInput"),
+      sheetStrengthTotalInput: document.getElementById("sheetStrengthTotalInput"),
+      sheetSmartsBaseInput: document.getElementById("sheetSmartsBaseInput"),
+      sheetSmartsModInput: document.getElementById("sheetSmartsModInput"),
+      sheetSmartsTotalInput: document.getElementById("sheetSmartsTotalInput"),
+      sheetSocialBaseInput: document.getElementById("sheetSocialBaseInput"),
+      sheetSocialModInput: document.getElementById("sheetSocialModInput"),
+      sheetSocialTotalInput: document.getElementById("sheetSocialTotalInput"),
+      sheetDurabilityBaseInput: document.getElementById("sheetDurabilityBaseInput"),
+      sheetDurabilityModInput: document.getElementById("sheetDurabilityModInput"),
+      sheetDurabilityTotalInput: document.getElementById("sheetDurabilityTotalInput"),
+      sheetArmorBaseInput: document.getElementById("sheetArmorBaseInput"),
+      sheetArmorModInput: document.getElementById("sheetArmorModInput"),
+      sheetArmorTotalInput: document.getElementById("sheetArmorTotalInput"),
+      sheetCurrentHealthInput: document.getElementById("sheetCurrentHealthInput"),
+      sheetMaxHealthInput: document.getElementById("sheetMaxHealthInput"),
+      sheetBackstoryInput: document.getElementById("sheetBackstoryInput"),
+      sheetPowerDescriptionsInput: document.getElementById("sheetPowerDescriptionsInput"),
+    };
+
+    const filters = { search: "", class: "all", level: "all", category: "all", action: "all" };
+    let selectedPower = null;
+    let characterDirHandle = null;
+    let lastSavedAt = null;
+    let dirty = false;
+    let filtersTouched = false;
+    let appliedLevel1Default = false;
+    let itemsLibrary = [];
+    let filteredPowerList = [];
+    let sheetEligibleItems = [];
+    let prePrintDescriptions = null;
+
+    function baseStatElements() {
+      return [
+        elements.reflexBase,
+        elements.strengthBase,
+        elements.smartsBase,
+        elements.socialBase,
+        elements.durabilityBase,
+        elements.armorBase,
+      ];
+    }
+
+    function setDirty() {
+      dirty = true;
+      elements.saveStamp.textContent = `Last saved: unsaved changes`;
+      if (elements.sampleBanner) elements.sampleBanner.classList.add("hidden");
+    }
+    function getLevel() {
+      return Number(elements.level.value) || 0;
+    }
+
+    function statBudget() {
+      const lvl = Math.max(getLevel(), 1);
+      return BASE_STAT_POOL_FIXED + STAT_PER_LEVEL_FIXED * (lvl - 1);
+    }
+
+    function enforceFixedBudgetInputs() {
+      if (elements.statBasePool) {
+        elements.statBasePool.value = String(BASE_STAT_POOL_FIXED);
+        elements.statBasePool.setAttribute("readonly", "readonly");
+      }
+      if (elements.statPerLevel) {
+        elements.statPerLevel.value = String(STAT_PER_LEVEL_FIXED);
+        elements.statPerLevel.setAttribute("readonly", "readonly");
+      }
+    }
+
+    function clampBaseStats(changedEl = null) {
+      const budget = statBudget();
+      const bases = baseStatElements();
+      bases.forEach((el) => {
+        const n = Math.max(0, Math.floor(Number(el.value) || 0));
+        el.value = String(n);
+        el.min = "0";
+      });
+      const spent = totalStatsBase();
+      if (spent <= budget) return;
+      let over = spent - budget;
+      if (changedEl && bases.includes(changedEl)) {
+        const curr = Math.max(0, Math.floor(Number(changedEl.value) || 0));
+        changedEl.value = String(Math.max(0, curr - over));
+        return;
+      }
+      for (const el of bases.slice().reverse()) {
+        if (over <= 0) break;
+        const curr = Math.max(0, Math.floor(Number(el.value) || 0));
+        const dec = Math.min(curr, over);
+        el.value = String(curr - dec);
+        over -= dec;
+      }
+    }
+
+    function totalStatsBase() {
+      const vals = [
+        elements.reflexBase,
+        elements.strengthBase,
+        elements.smartsBase,
+        elements.socialBase,
+        elements.durabilityBase,
+        elements.armorBase,
+      ];
+      return vals.reduce((sum, el) => sum + (Number(el.value) || 0), 0);
+    }
+
+    function totalStatsIncludingMods() {
+      const vals = [
+        elements.reflexBase, elements.strengthBase, elements.smartsBase, elements.socialBase, elements.durabilityBase,
+        elements.armorBase,
+        elements.reflexMod, elements.strengthMod, elements.smartsMod, elements.socialMod, elements.durabilityMod,
+        elements.armorMod,
+      ];
+      return vals.reduce((sum, el) => sum + (Number(el.value) || 0), 0);
+    }
+
+    function updateDerived() {
+      enforceFixedBudgetInputs();
+      clampBaseStats();
+      const level = getLevel();
+      const size = Math.max(0, Number(elements.size.value || 0));
+      elements.size.value = size;
+      const durability = Number(elements.durabilityBase.value || 0) + Number(elements.durabilityMod.value || 0);
+      const maxHp = 10 + durability * level;
+      elements.healthMax.textContent = maxHp;
+      const current = Math.min(Math.max(0, Number(elements.currentHealth.value || maxHp)), maxHp);
+      elements.currentHealth.value = current;
+      elements.healthCurrent.textContent = current;
+      const cash = Math.max(0, Number(elements.cash.value || 0));
+      elements.cash.value = cash;
+      elements.cashDisplay.textContent = cash;
+      updatePointsDisplay();
+      updateSummary();
+      validateStats();
+    }
+
+    function levelCost(power, levelNumber) {
+      const levelObj = power.levels.find(l => l.level === levelNumber);
+      return levelObj && !Number.isNaN(Number(levelObj.cost)) ? Number(levelObj.cost) : 1;
+    }
+
+    function computeSpent() {
+      let spent = 0;
+      for (const power of chosenPowers.values()) {
+        const purchased = power.purchased ? Array.from(power.purchased) : [];
+        purchased.forEach(idx => {
+          const lv = power.levels[idx];
+          if (lv) spent += levelCost(power, lv.level);
+        });
+      }
+      return spent;
+    }
+
+    function pointsSummary() {
+      const total = Math.max(getLevel(), 0);
+      const spent = computeSpent();
+      const available = Math.max(total - spent, 0);
+      return { total, spent, available };
+    }
+
+    function updatePointsDisplay() {
+      const { total, spent, available } = pointsSummary();
+      elements.powerPoints.textContent = `${spent}/${total}`;
+      elements.powerPointsDetail.textContent = `${available} remaining`;
+      updatePPWarning();
+    }
+
+    function setRichTextareaValue(textarea, html) {
+      if (!textarea) return;
+      const value = String(html ?? "");
+      textarea.value = value;
+      const wrap = textarea.parentElement?.querySelector(".rt-wrap");
+      const editor = wrap ? wrap.querySelector(".rt-editor") : null;
+      if (editor && editor.innerHTML !== value) {
+        editor.innerHTML = value;
+      }
+    }
+
+    function bindRichTextareaInput(textarea, onInput) {
+      if (!textarea || typeof onInput !== "function") return;
+      textarea.addEventListener("input", onInput);
+      const wrap = textarea.parentElement?.querySelector(".rt-wrap");
+      const editor = wrap ? wrap.querySelector(".rt-editor") : null;
+      if (editor) editor.addEventListener("input", onInput);
+    }
+
+    function updateSummary() {
+      const { total, spent } = pointsSummary();
+      const invCount = inventory.length;
+      const powerCount = chosenPowers.size;
+      const summary = `Level ${getLevel()} | Size ${elements.size.value || 0} | Health ${elements.healthCurrent.textContent}/${elements.healthMax.textContent} | Cash $${elements.cashDisplay.textContent} | Power Points ${spent}/${total} | Powers: ${powerCount} | Inventory items: ${invCount}`;
+      elements.summaryText.textContent = summary;
+      const baseSpent = totalStatsBase();
+      const totalWithMods = totalStatsIncludingMods();
+      const totalSuffix = totalWithMods !== baseSpent ? `, ${totalWithMods} incl mods` : "";
+      elements.statBudgetBadge.textContent = `Stat budget: ${BASE_STAT_POOL_FIXED} base + ${STAT_PER_LEVEL_FIXED}/level (spent ${baseSpent} base${totalSuffix})`;
+      updateSheetView();
+    }
+
+    function updateSheetView() {
+      const { total, spent } = pointsSummary();
+      const baseName = (document.getElementById("name").value || "").trim();
+      const conceptName = (document.getElementById("concept").value || "").trim();
+
+      elements.sheetPlayerNameInput.value = baseName || "";
+      elements.sheetCharacterNameInput.value = conceptName || baseName || "";
+      elements.sheetLevelInput.value = String(getLevel() || 1);
+      elements.sheetSizeInput.value = String(Number(elements.size.value) || 1);
+      elements.sheetCashInput.value = String(Number(elements.cash.value) || 0);
+      elements.sheetPowerPointsInput.value = `${spent} / ${total}`;
+
+      elements.sheetReflexBaseInput.value = String(Number(elements.reflexBase.value) || 0);
+      elements.sheetReflexModInput.value = String(Number(elements.reflexMod.value) || 0);
+      elements.sheetReflexTotalInput.value = String((Number(elements.reflexBase.value) || 0) + (Number(elements.reflexMod.value) || 0));
+      elements.sheetStrengthBaseInput.value = String(Number(elements.strengthBase.value) || 0);
+      elements.sheetStrengthModInput.value = String(Number(elements.strengthMod.value) || 0);
+      elements.sheetStrengthTotalInput.value = String((Number(elements.strengthBase.value) || 0) + (Number(elements.strengthMod.value) || 0));
+      elements.sheetSmartsBaseInput.value = String(Number(elements.smartsBase.value) || 0);
+      elements.sheetSmartsModInput.value = String(Number(elements.smartsMod.value) || 0);
+      elements.sheetSmartsTotalInput.value = String((Number(elements.smartsBase.value) || 0) + (Number(elements.smartsMod.value) || 0));
+      elements.sheetSocialBaseInput.value = String(Number(elements.socialBase.value) || 0);
+      elements.sheetSocialModInput.value = String(Number(elements.socialMod.value) || 0);
+      elements.sheetSocialTotalInput.value = String((Number(elements.socialBase.value) || 0) + (Number(elements.socialMod.value) || 0));
+      elements.sheetDurabilityBaseInput.value = String(Number(elements.durabilityBase.value) || 0);
+      elements.sheetDurabilityModInput.value = String(Number(elements.durabilityMod.value) || 0);
+      elements.sheetDurabilityTotalInput.value = String((Number(elements.durabilityBase.value) || 0) + (Number(elements.durabilityMod.value) || 0));
+      elements.sheetArmorBaseInput.value = String(Number(elements.armorBase.value) || 0);
+      elements.sheetArmorModInput.value = String(Number(elements.armorMod.value) || 0);
+      elements.sheetArmorTotalInput.value = String((Number(elements.armorBase.value) || 0) + (Number(elements.armorMod.value) || 0));
+
+      elements.sheetCurrentHealthInput.value = String(Number(elements.healthCurrent.textContent) || 0);
+      elements.sheetMaxHealthInput.value = String(Number(elements.healthMax.textContent) || 0);
+      setRichTextareaValue(elements.sheetBackstoryInput, (elements.backgroundText.value || "").trim());
+
+      const chosen = Array.from(chosenPowers.values());
+      const prevSelectedPath = elements.sheetPowerSelect.value;
+      elements.sheetPowerSelect.innerHTML = "";
+      chosen.forEach((p, i) => {
+        const opt = document.createElement("option");
+        opt.value = p.path;
+        opt.textContent = `${i + 1}. ${p.name}`;
+        elements.sheetPowerSelect.appendChild(opt);
+      });
+      if (chosen.length > 0) {
+        const keep = chosen.some(p => p.path === prevSelectedPath);
+        elements.sheetPowerSelect.value = keep ? prevSelectedPath : chosen[0].path;
+      }
+      updateSheetSelectedPowerDescription();
+      renderSheetInventoryTable();
+    }
+
+    function updateSheetSelectedPowerDescription() {
+      const chosen = Array.from(chosenPowers.values());
+      if (!chosen.length) {
+        elements.sheetPowerDescriptionsInput.innerHTML = "";
+        return;
+      }
+      const selectedPath = elements.sheetPowerSelect.value || chosen[0].path;
+      const power = chosen.find(p => p.path === selectedPath) || chosen[0];
+      elements.sheetPowerDescriptionsInput.innerHTML = buildPowerDescriptionHtml(power);
+    }
+
+    function buildPowerDescriptionHtml(power) {
+      const htmlText = (txt) => escapeHtml(String(txt || "")).replace(/\n/g, "<br>");
+      const powerDescription = markdownToPlain(stripTables(power.description || extractDescription(power.content || "")));
+      const purchasedSet = power.purchased ? new Set(power.purchased) : new Set();
+      const levelEntries = (power.levels || [])
+        .map((lv, idx) => ({ lv, idx }))
+        .sort((a, b) => Number(a.lv.level || 0) - Number(b.lv.level || 0));
+      let html = `<p class="eyebrow">Power</p><h3 class="title">${escapeHtml(power.name || "Power")}</h3>`;
+      if (powerDescription) html += `<p>${htmlText(powerDescription)}</p>`;
+      levelEntries.forEach(({ lv, idx }) => {
+        const plain = markdownToPlain(stripTables(lv.text || ""));
+        const nameMatch = String(lv.text || "").match(/\*\*(.+?)\*\*/);
+        const subName = (nameMatch && nameMatch[1]) ? nameMatch[1].trim() : `Level ${lv.level}`;
+        const owned = purchasedSet.has(idx) ? `<span class="owned-tag">Owned</span>` : "";
+        html += `<h4 class="subhead">${escapeHtml(subName)} (L${escapeHtml(String(lv.level || ""))})${owned}</h4>`;
+        html += `<p>${htmlText(plain || "(no effect text)")}</p>`;
+      });
+      return html;
+    }
+
+    function buildAllPowerDescriptionsText() {
+      const chosen = Array.from(chosenPowers.values());
+      if (!chosen.length) return "";
+      return chosen.map((power) => buildPowerDescriptionHtml(power)).join("<hr>");
+    }
+    function updatePPWarning() {
+      const { total, spent } = pointsSummary();
+      const over = spent - total;
+      if (over > 0) {
+        elements.ppWarning.textContent = `You've spent ${over} more PP than allowed for Level ${getLevel()}. Trim powers or level up.`;
+        elements.ppWarning.classList.remove("hidden");
+      } else {
+        elements.ppWarning.classList.add("hidden");
+      }
+    }
+
+    function validateStats() {
+      const budget = statBudget();
+      const spent = totalStatsBase();
+      const totalWithMods = totalStatsIncludingMods();
+      const group = document.getElementById("statsGroup");
+      const statusLine = elements.statBudgetStatus;
+      if (statusLine) {
+        statusLine.classList.remove("status-good", "status-warn");
+      }
+      if (spent > budget) {
+        elements.statWarning.textContent = `Base stats exceed budget by ${spent - budget}. Budget = ${budget}, base spent = ${spent}. (Mods are free.)`;
+        elements.statWarning.classList.remove("hidden");
+        group.classList.add("invalid");
+        if (statusLine) {
+          statusLine.textContent = `(!) You are ${spent - budget} over your base stat budget (${spent}/${budget}).`;
+          statusLine.classList.add("status-warn");
+        }
+      } else {
+        elements.statWarning.classList.add("hidden");
+        group.classList.remove("invalid");
+        if (statusLine) {
+          const totalNote = totalWithMods !== spent ? ` (total ${totalWithMods} incl mods)` : "";
+          statusLine.textContent = `(OK) You have spent ${spent} of ${budget} base stat points.${totalNote}`;
+          statusLine.classList.add("status-good");
+        }
+      }
+    }
+
+    function renderCharacterPowers() {
+      elements.characterPowers.innerHTML = "";
+      if (chosenPowers.size === 0) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No powers yet. Drag cards from the library.";
+        elements.characterPowers.appendChild(empty);
+        updatePointsDisplay();
+        updateSummary();
+        return;
+      }
+
+      for (const power of chosenPowers.values()) {
+        const purchased = power.purchased ? new Set(power.purchased) : new Set();
+        const maxPurchasedLevel = Math.max(0, ...Array.from(purchased).map(i => power.levels[i]?.level || 0));
+        const card = document.createElement("article");
+        card.className = "power-card";
+        card.style.cursor = "default";
+
+        const header = document.createElement("header");
+        const left = document.createElement("div");
+        left.style.display = "flex";
+        left.style.alignItems = "center";
+        left.style.gap = "0.4rem";
+        const caret = document.createElement("span");
+        caret.className = "caret";
+        caret.textContent = "?";
+        const title = document.createElement("div");
+        title.style.fontWeight = "700";
+        title.textContent = power.name;
+        left.appendChild(caret);
+        left.appendChild(title);
+        const right = document.createElement("div");
+        right.style.display = "flex";
+        right.style.gap = "0.35rem";
+        const detailBtn = document.createElement("button");
+        detailBtn.type = "button";
+        detailBtn.className = "ghost-btn";
+        detailBtn.style.padding = "0.35rem 0.6rem";
+        detailBtn.textContent = "View";
+        detailBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          showPowerDetail(power);
+        });
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.title = "Remove power";
+        removeBtn.className = "ghost-btn";
+        removeBtn.style.color = "var(--danger)";
+        removeBtn.style.padding = "0.35rem 0.6rem";
+        removeBtn.textContent = "Remove";
+        removeBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          chosenPowers.delete(power.path);
+          setDirty();
+          renderCharacterPowers();
+          updateSummary();
+          renderItems();
+        });
+        right.appendChild(detailBtn);
+        right.appendChild(removeBtn);
+        header.appendChild(left);
+        header.appendChild(right);
+        card.appendChild(header);
+
+        const levelsWrapper = document.createElement("div");
+        levelsWrapper.className = "power-levels";
+
+        power.levels.forEach((lv, idx) => {
+          const isPurchased = purchased.has(idx);
+          const row = document.createElement("div");
+          row.style.borderTop = "1px solid var(--border)";
+          row.style.paddingTop = "0.5rem";
+          const costText = `Cost ${levelCost(power, lv.level)} PP`;
+          if (isPurchased) {
+            row.classList.add("owned-level");
+            const removeBtn = document.createElement("button");
+            removeBtn.className = "ghost-btn";
+            removeBtn.style.padding = "0.25rem 0.55rem";
+            removeBtn.textContent = "Unpurchase";
+            removeBtn.addEventListener("click", () => {
+              // remove this level and any higher levels to keep progression valid
+              const remaining = new Set(
+                Array.from(purchased).filter(i => power.levels[i]?.level < lv.level)
+              );
+              power.purchased = remaining;
+              chosenPowers.set(power.path, power);
+              setDirty();
+              renderCharacterPowers();
+              updateSummary();
+            });
+            row.innerHTML = `
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-weight:600;color:var(--accent);">Level ${lv.level} (owned)</div>
+                  <div class="muted">${costText}</div>
+                </div>
+              </div>
+              <div class="muted" style="white-space:pre-wrap;margin-top:0.35rem;">${formatMarkdown(lv.text)}</div>
+            `;
+            row.appendChild(removeBtn);
+          } else {
+            row.classList.add("unowned-level");
+            const { available } = pointsSummary();
+            const canBuy = lv.level === 1 || lv.level <= maxPurchasedLevel + 1;
+            const buyBtn = document.createElement("button");
+            buyBtn.className = "secondary-btn";
+            const desc = levelDescriptor(lv);
+            buyBtn.textContent = `Buy Level ${lv.level}${desc ? ": " + desc : ""} (${costText})`;
+            buyBtn.disabled = !canBuy;
+            buyBtn.addEventListener("click", () => {
+              const { available } = pointsSummary();
+              const cost = levelCost(power, lv.level);
+              if (!canBuy) {
+                alert("You need previous levels first.");
+                return;
+              }
+              if (available < cost) {
+                alert(`Not enough power points. Need ${cost}, have ${available}.`);
+                return;
+              }
+              purchased.add(idx);
+              power.purchased = purchased;
+              chosenPowers.set(power.path, power);
+              setDirty();
+              renderCharacterPowers();
+              updateSummary();
+            });
+            row.innerHTML = `
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem;">
+                <div>
+                  <div style="font-weight:600;">Level ${lv.level}</div>
+                  <div class="muted">${costText}${canBuy ? "" : " - Locked until previous level"}</div>
+                </div>
+              </div>
+            `;
+            row.appendChild(buyBtn);
+          }
+          levelsWrapper.appendChild(row);
+        });
+        card.appendChild(levelsWrapper);
+
+        header.addEventListener("click", () => {
+          const isCollapsed = levelsWrapper.classList.toggle("collapsed");
+          caret.classList.toggle("open", !isCollapsed);
+        });
+        elements.characterPowers.appendChild(card);
+      }
+      updatePointsDisplay();
+      updateSummary();
+    }
+
+    function parseCashCost(rawCost) {
+      if (typeof rawCost === "number" && Number.isFinite(rawCost)) return rawCost;
+      const text = String(rawCost ?? "").replace(/,/g, "").trim();
+      if (!text) return 0;
+      const strictNumeric = text.match(/^\$?\s*([0-9]+(?:\.[0-9]+)?)$/);
+      if (!strictNumeric) return 0;
+      return Number(strictNumeric[1]) || 0;
+    }
+
+    function normalizeInventoryItem(item, fallbackIdx = 0) {
+      const id = String(item?.id || "").trim() || `item-${fallbackIdx + 1}`;
+      const name = String(item?.name || "").trim();
+      const description = String(item?.description || item?.notes || "").trim();
+      const effects = String(item?.effects || "").trim();
+      const qty = Math.max(1, Number(item?.qty) || 1);
+      const rawCost = item?.cost ?? "";
+      return { id, name, description, qty, effects, cost: rawCost, notes: description };
+    }
+
+    function addItemToInventory(item, qtyRaw = 1) {
+      if (!item || !item.name) return false;
+      const qty = Math.max(1, Number(qtyRaw) || 1);
+      const unitCost = parseCashCost(item.cost);
+      const totalCost = unitCost * qty;
+      const cash = Math.max(0, Number(elements.cash.value) || 0);
+      if (totalCost > 0 && cash < totalCost) {
+        alert(`Not enough cash. Need $${totalCost}, have $${cash}.`);
+        return false;
+      }
+      if (totalCost > 0) {
+        elements.cash.value = String(cash - totalCost);
+      }
+      inventory.push(normalizeInventoryItem({
+        id: item.id,
+        name: item.name,
+        description: item.description || item.notes || "",
+        effects: item.effects || "",
+        qty,
+        cost: item.cost ?? ""
+      }, inventory.length));
+      setDirty();
+      updateDerived();
+      renderInventory();
+      renderItems();
+      return true;
+    }
+
+    function renderSheetInventoryTable() {
+      if (!elements.sheetInventoryBody) return;
+      elements.sheetInventoryBody.innerHTML = "";
+      if (!inventory.length) {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td colspan="5" class="muted-cell">No items in inventory yet.</td>`;
+        elements.sheetInventoryBody.appendChild(row);
+        return;
+      }
+      inventory.forEach((rawItem, idx) => {
+        const item = normalizeInventoryItem(rawItem, idx);
+        inventory[idx] = item;
+        const tr = document.createElement("tr");
+        const costInfo = parseCashCost(item.cost) > 0 ? `<span class="sheet-item-cost">Cost: $${parseCashCost(item.cost)}</span>` : "";
+        tr.innerHTML = `
+          <td>${escapeHtml(item.name || "-")}</td>
+          <td>${escapeHtml(item.description || item.effects || "-")}${costInfo}</td>
+          <td>${escapeHtml(item.effects || "-")}</td>
+          <td><input class="sheet-table-qty" type="number" min="1" step="1" value="${item.qty || 1}" aria-label="Quantity for ${escapeHtml(item.name || "item")}"></td>
+          <td class="sheet-row-actions print-hide"><button class="ghost-btn" type="button">Remove</button></td>
+        `;
+        const qtyInput = tr.querySelector("input");
+        qtyInput?.addEventListener("input", () => {
+          inventory[idx].qty = Math.max(1, Number(qtyInput.value) || 1);
+          setDirty();
+          updateSummary();
+        });
+        const removeBtn = tr.querySelector("button");
+        removeBtn?.addEventListener("click", () => {
+          inventory.splice(idx, 1);
+          setDirty();
+          renderInventory();
+          updateSummary();
+          renderItems();
+        });
+        elements.sheetInventoryBody.appendChild(tr);
+      });
+    }
+
+    function renderInventory() {
+      elements.inventoryList.innerHTML = "";
+      if (inventory.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No items. Add one above.";
+        elements.inventoryList.appendChild(empty);
+        renderSheetInventoryTable();
+        return;
+      }
+    inventory.forEach((rawItem, idx) => {
+      const item = normalizeInventoryItem(rawItem, idx);
+      inventory[idx] = item;
+      const row = document.createElement("div");
+      row.style.display = "grid";
+      row.style.gridTemplateColumns = "1fr auto";
+      row.style.gap = "0.35rem 0.5rem";
+      row.style.alignItems = "center";
+
+      const nameInput = document.createElement("input");
+      nameInput.value = item.name;
+      nameInput.style.minWidth = "120px";
+      nameInput.placeholder = "Name";
+      nameInput.style.width = "100%";
+
+      const qtyInput = document.createElement("input");
+      qtyInput.type = "number";
+      qtyInput.min = "1";
+      qtyInput.value = item.qty || 1;
+      qtyInput.style.width = "70px";
+      qtyInput.style.justifySelf = "end";
+
+      const notesInput = document.createElement("textarea");
+      notesInput.value = item.description || item.notes || "";
+      notesInput.placeholder = "Description";
+      notesInput.style.gridColumn = "1 / 3";
+      notesInput.style.width = "100%";
+      notesInput.style.minHeight = "48px";
+      notesInput.style.resize = "vertical";
+
+      const effectsInput = document.createElement("textarea");
+      effectsInput.value = item.effects || "";
+      effectsInput.placeholder = "Effect";
+      effectsInput.style.gridColumn = "1 / 3";
+      effectsInput.style.width = "100%";
+      effectsInput.style.minHeight = "48px";
+      effectsInput.style.resize = "vertical";
+
+      const saveBtn = document.createElement("button");
+      saveBtn.type = "button";
+      saveBtn.textContent = "Save";
+      saveBtn.className = "secondary-btn";
+      saveBtn.style.padding = "0.25rem 0.65rem";
+      saveBtn.style.justifySelf = "start";
+      saveBtn.addEventListener("click", () => {
+        const name = nameInput.value.trim();
+        const qty = Number(qtyInput.value) || 1;
+        if (!name) {
+          alert("Item name is required.");
+          return;
+        }
+        inventory[idx] = normalizeInventoryItem({
+          ...item,
+          name,
+          qty,
+          description: notesInput.value.trim(),
+          effects: effectsInput.value.trim()
+        }, idx);
+        setDirty();
+        renderInventory();
+        updateSummary();
+        renderItems();
+      });
+
+      const removeBtn = document.createElement("button");
+      removeBtn.type = "button";
+      removeBtn.title = "Remove item";
+      removeBtn.textContent = "?";
+      removeBtn.className = "ghost-btn";
+      removeBtn.style.padding = "0.2rem 0.35rem";
+      removeBtn.style.color = "var(--danger)";
+      removeBtn.style.fontWeight = "700";
+      removeBtn.style.justifySelf = "end";
+      removeBtn.addEventListener("click", () => {
+        inventory.splice(idx, 1);
+        setDirty();
+        renderInventory();
+        updateSummary();
+        renderItems();
+      });
+
+      row.appendChild(nameInput);
+      row.appendChild(qtyInput);
+      row.appendChild(notesInput);
+      row.appendChild(effectsInput);
+      row.appendChild(saveBtn);
+      row.appendChild(removeBtn);
+      elements.inventoryList.appendChild(row);
+    });
+    renderSheetInventoryTable();
+    renderItems();
+  }
+    function inferMeta(power) {
+      const explicitClass = String(power.class_name || power.className || "").replace(/\s+/g, " ").trim();
+      const path = String(power.path || "");
+      const className = explicitClass
+        ? explicitClass
+        : (path.includes("/") ? path.split("/")[0].replace(/\s+/g, " ").trim() : "Misc");
+      const levels = power.levels.map(l => l.level).filter(Boolean);
+      const minLevel = levels.length ? Math.min(...levels) : 1;
+      const text = (power.content || "").toLowerCase();
+      const tags = new Set();
+
+      if (/\b(damage|attack|hit|blast|strike|deal)\b/.test(text)) tags.add("Attack");
+      if (/\b(armor|resist|shield|hp|health|immunity|regeneration)\b/.test(text)) tags.add("Defense");
+      if (/\b(teleport|move|speed|control|summon|craft|build|utility|support|drone)\b/.test(text)) tags.add("Utility");
+
+      let action = "Standard";
+      if (/reaction/.test(text)) action = "Reaction";
+      else if (/\bmove\b|\bmovement\b|\bfree action\b|\bbonus action\b/.test(text)) action = "Move";
+
+      return { className: className || "Misc", minLevel, tags: Array.from(tags), action };
+    }
+
+    function markFiltersTouched() {
+      filtersTouched = true;
+    }
+
+    function maybeApplyLevelOneFilter() {
+      if (appliedLevel1Default || filtersTouched) return;
+      if (getLevel() <= 1) {
+        filters.level = "1";
+        elements.filterLevel.value = "1";
+        const levelChip = document.querySelector('.chip[data-quick="level1"]');
+        if (levelChip) {
+          document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+          levelChip.classList.add("active");
+        }
+        appliedLevel1Default = true;
+        applyFilters();
+      }
+    }
+
+    function renderPowerLibrary(list) {
+      elements.powerList.innerHTML = "";
+      if (!list || list.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "muted";
+        empty.textContent = "No powers to display. Adjust filters or reload.";
+        elements.powerList.appendChild(empty);
+        return;
+      }
+
+      list
+        .slice()
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .forEach(power => renderPowerCard(power));
+    }
+
+    function renderDesktopPowerPicker(list) {
+      if (!elements.powerPickerDesktop) return;
+      elements.powerPickerDesktop.innerHTML = "";
+      (list || []).forEach((p, index) => {
+        const opt = document.createElement("option");
+        opt.value = String(index);
+        opt.textContent = `${p.name || "Power"}${p.meta?.className ? " (" + p.meta.className + ")" : ""}`;
+        elements.powerPickerDesktop.appendChild(opt);
+      });
+      if (elements.powerPickerDesktop.options.length > 0) {
+        elements.powerPickerDesktop.selectedIndex = 0;
+      }
+      renderDesktopLevelPickerForCurrentPower();
+    }
+
+    function renderDesktopLevelPickerForCurrentPower() {
+      if (!elements.powerLevelPickerDesktop) return;
+      elements.powerLevelPickerDesktop.innerHTML = "";
+      const idx = Number(elements.powerPickerDesktop.value);
+      if (!Number.isFinite(idx)) return;
+      const picked = filteredPowerList[idx];
+      if (!picked) return;
+      const levels = (picked.levels || [])
+        .map((lv, levelIdx) => ({ lv, levelIdx }))
+        .sort((a, b) => Number(a.lv.level || 0) - Number(b.lv.level || 0));
+      levels.forEach(({ lv, levelIdx }) => {
+        const opt = document.createElement("option");
+        opt.value = String(levelIdx);
+        const desc = levelDescriptor(lv);
+        const fullText = `L${lv.level}${desc ? " - " + desc : ""}`;
+        const compact = fullText.length > 54 ? fullText.slice(0, 54).trimEnd() + "..." : fullText;
+        opt.textContent = compact;
+        opt.title = fullText;
+        elements.powerLevelPickerDesktop.appendChild(opt);
+      });
+      if (elements.powerLevelPickerDesktop.options.length > 0) {
+        elements.powerLevelPickerDesktop.selectedIndex = 0;
+      }
+      updateDesktopLevelPreview();
+    }
+
+    function updateDesktopLevelPreview() {
+      if (!elements.powerLevelPreviewDesktop) return;
+      const idx = Number(elements.powerPickerDesktop.value);
+      if (!Number.isFinite(idx)) {
+        elements.powerLevelPreviewDesktop.textContent = "";
+        return;
+      }
+      const picked = filteredPowerList[idx];
+      if (!picked) {
+        elements.powerLevelPreviewDesktop.textContent = "";
+        return;
+      }
+      const levelIdx = Number(elements.powerLevelPickerDesktop.value);
+      const lv = picked.levels?.[levelIdx];
+      if (!lv) {
+        elements.powerLevelPreviewDesktop.textContent = "";
+        return;
+      }
+      const text = markdownToPlain(stripTables(lv.text || "")) || "(no effect text)";
+      elements.powerLevelPreviewDesktop.textContent = `L${lv.level} Effect\n${text}`;
+    }
+
+    function openDesktopPowerPicker() {
+      renderDesktopPowerPicker(filteredPowerList);
+      elements.powerOverlayDesktop.classList.add("open");
+      elements.powerOverlayDesktop.setAttribute("aria-hidden", "false");
+      if (elements.powerPickerDesktop.options.length > 0) elements.powerPickerDesktop.focus();
+    }
+
+    function closeDesktopPowerPicker() {
+      elements.powerOverlayDesktop.classList.remove("open");
+      elements.powerOverlayDesktop.setAttribute("aria-hidden", "true");
+    }
+
+    function addSelectedPowerFromDesktopPicker() {
+      const idx = Number(elements.powerPickerDesktop.value);
+      if (!Number.isFinite(idx)) return;
+      const picked = filteredPowerList[idx];
+      if (!picked) return;
+      const selectedLevelIdx = Number(elements.powerLevelPickerDesktop?.value);
+      if (Number.isFinite(selectedLevelIdx) && selectedLevelIdx >= 0) {
+        const levelObjs = (picked.levels || [])
+          .map((lv, i) => ({ lv, i }))
+          .sort((a, b) => Number(a.lv.level || 0) - Number(b.lv.level || 0));
+        const selectedEntry = levelObjs.find(x => x.i === selectedLevelIdx);
+        if (selectedEntry) {
+          const targetLevel = Number(selectedEntry.lv.level || 1);
+          const existing = chosenPowers.get(picked.path);
+          const targetPower = existing ? { ...existing } : { ...picked, purchased: new Set() };
+          const purchased = targetPower.purchased ? new Set(targetPower.purchased) : new Set();
+          const toBuy = [];
+          targetPower.levels.forEach((lv, i) => {
+            const levelNum = Number(lv.level || 0);
+            if (levelNum > 0 && levelNum <= targetLevel && !purchased.has(i)) toBuy.push({ i, lv });
+          });
+          const needed = toBuy.reduce((sum, x) => sum + levelCost(targetPower, Number(x.lv.level || 1)), 0);
+          const { available } = pointsSummary();
+          if (needed > available) {
+            alert(`Not enough power points for that subpower. Need ${needed}, have ${available}.`);
+            return;
+          }
+          toBuy.forEach(x => purchased.add(x.i));
+          targetPower.purchased = purchased;
+          chosenPowers.set(targetPower.path, targetPower);
+          setDirty();
+          renderCharacterPowers();
+          updateSummary();
+          renderItems();
+          closeDesktopPowerPicker();
+          return;
+        }
+      }
+      addPowerToCharacter(picked);
+      closeDesktopPowerPicker();
+    }
+
+    function renderPowerCard(power) {
+      const card = document.createElement("article");
+      card.className = "power-card";
+      card.draggable = true;
+      card.dataset.powerPath = power.path;
+
+      const header = document.createElement("header");
+      const title = document.createElement("div");
+      title.textContent = power.name;
+      title.style.fontWeight = "700";
+      header.appendChild(title);
+
+      const classTag = document.createElement("span");
+      classTag.className = "pill-tag";
+      classTag.textContent = power.meta.className;
+      header.appendChild(classTag);
+      card.appendChild(header);
+
+      const preview = document.createElement("div");
+      preview.className = "muted";
+      preview.textContent = previewFromPower(power);
+      card.appendChild(preview);
+
+      const tagsRow = document.createElement("div");
+      tagsRow.className = "pill-row";
+      tagsRow.innerHTML = `
+        <span class="pill-tag">Lv ${power.meta.minLevel}</span>
+        <span class="pill-tag">${power.meta.action} action</span>
+        ${power.meta.tags.map(t => `<span class="pill-tag">${t}</span>`).join("")}
+      `;
+      card.appendChild(tagsRow);
+
+      card.addEventListener("dragstart", (evt) => {
+        evt.dataTransfer.setData("text/plain", power.path);
+      });
+      card.addEventListener("dblclick", () => addPowerToCharacter(power));
+      card.addEventListener("click", () => showPowerDetail(power));
+      elements.powerList.appendChild(card);
+    }
+
+    function showPowerDetail(power) {
+      selectedPower = power;
+      elements.detailTitle.textContent = power.name;
+      elements.detailPath.textContent = power.path || "";
+      const descHtml = power.description ? `<div>${formatMarkdown(power.description)}</div>` : "";
+      const bodyHtml = formatMarkdown(power.content || "");
+      elements.detailBody.innerHTML = descHtml ? `${descHtml}<div style="margin-top:0.6rem;">${bodyHtml}</div>` : bodyHtml;
+      elements.detailTags.innerHTML = "";
+      const pieces = [
+        `Class: ${power.meta.className}`,
+        `Lv ${power.meta.minLevel}`,
+        `${power.meta.action} action`,
+        ...power.meta.tags
+      ];
+      pieces.forEach(tag => {
+        const span = document.createElement("span");
+        span.className = "pill-tag";
+        span.textContent = tag;
+        elements.detailTags.appendChild(span);
+      });
+      if (elements.detailWrapper) elements.detailWrapper.classList.remove("hidden");
+      elements.powerDetail.classList.remove("hidden");
+    }
+
+    elements.characterPowers.addEventListener("dragover", (evt) => {
+      evt.preventDefault();
+      elements.characterPowers.classList.add("drag-over");
+    });
+    elements.characterPowers.addEventListener("dragleave", () => {
+      elements.characterPowers.classList.remove("drag-over");
+    });
+    elements.characterPowers.addEventListener("drop", (evt) => {
+      evt.preventDefault();
+      elements.characterPowers.classList.remove("drag-over");
+      const path = evt.dataTransfer.getData("text/plain");
+      const power = powerLibrary.find(p => p.path === path);
+      if (power) {
+        addPowerToCharacter(power);
+      }
+    });
+
+    function applyFilters() {
+      let list = powerLibrary.slice();
+      if (filters.search) {
+        const term = filters.search.toLowerCase();
+        list = list.filter(p =>
+          p.name.toLowerCase().includes(term) ||
+          p.path.toLowerCase().includes(term) ||
+          p.content.toLowerCase().includes(term) ||
+          (p.levels || []).some(l => String(l.text || "").toLowerCase().includes(term)) ||
+          (p.description || "").toLowerCase().includes(term)
+        );
+      }
+      if (filters.class !== "all") {
+        const selectedClass = String(filters.class || "").toLowerCase();
+        list = list.filter(p => String(p.meta.className || "").toLowerCase() === selectedClass);
+      }
+      if (filters.level !== "all") {
+        if (filters.level === "4") {
+          list = list.filter(p => (p.levels || []).some(l => Number(l.level) >= 4));
+        } else if (filters.level === "2plus") {
+          list = list.filter(p => (p.levels || []).some(l => Number(l.level) >= 2));
+        } else {
+          const lvl = Number(filters.level);
+          list = list.filter(p => p.levels.some(l => Number(l.level) === lvl));
+        }
+      }
+      if (filters.category !== "all") {
+        list = list.filter(p => p.meta.tags.includes(filters.category));
+      }
+      if (filters.action !== "all") {
+        list = list.filter(p => p.meta.action === filters.action);
+      }
+      filteredPowerList = list.slice();
+      renderDesktopPowerPicker(filteredPowerList);
+      renderPowerLibrary(list);
+    }
+
+    function meetsItemPrereqs(item) {
+      const prereqs = item.prerequisites || [];
+      if (!prereqs.length) return true;
+      const ownedPowers = new Set(Array.from(chosenPowers.values()).map(p => p.name.toLowerCase()));
+      const ownedItems = new Set(inventory.map(i => i.name.toLowerCase()));
+      const results = prereqs.map(req => {
+        const raw = String(req || "");
+        const val = raw.toLowerCase();
+        return {
+          req: raw,
+          ok: ownedPowers.has(val) || ownedItems.has(val),
+          via: ownedPowers.has(val) ? "power" : (ownedItems.has(val) ? "item" : "missing")
+        };
+      });
+      const ok = results.every(r => r.ok);
+      if (DEBUG_PREREQS) {
+        const label = `Prereqs: ${item.name || item.id || "item"} (${ok ? "OK" : "BLOCKED"})`;
+        console.groupCollapsed(label);
+        console.table(results);
+        console.groupEnd();
+      }
+      return ok;
+    }
+
+    function renderItems() {
+      if (!elements.itemList) return;
+      elements.itemList.innerHTML = "";
+      if (!itemsLibrary.length) {
+        elements.itemStatus.textContent = "No items loaded. Ensure items.json is available.";
+        renderSheetItemPicker([]);
+        return;
+      }
+      const available = itemsLibrary.filter(meetsItemPrereqs);
+      elements.itemStatus.textContent = available.length
+        ? `Showing ${available.length} craftable items`
+        : "No items available with current prerequisites.";
+      renderSheetItemPicker(available);
+      if (!available.length) return;
+      available.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "power-card";
+        card.setAttribute("draggable", "true");
+        card.addEventListener("dragstart", (e) => {
+          e.dataTransfer.effectAllowed = "copy";
+          e.dataTransfer.setData("application/json", JSON.stringify(item));
+          e.dataTransfer.setData("text/plain", item.name);
+        });
+        card.innerHTML = `
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:0.6rem;">
+            <div>
+              <div style="font-weight:700;">${item.name}</div>
+              <div class="muted">${item.class_name || ""} ${item.from_power ? "• From: " + item.from_power : ""}</div>
+            </div>
+            ${item.cost ? `<span class="pill" style="border:1px solid var(--border);">Cost: ${item.cost}</span>` : ""}
+          </div>
+          <div class="muted" style="margin-top:0.35rem;">${item.description || ""}</div>
+          ${item.effects ? `<div class="muted" style="margin-top:0.2rem;"><strong>Effect:</strong> ${item.effects}</div>` : ""}
+        `;
+        elements.itemList.appendChild(card);
+      });
+    }
+
+    function renderSheetItemPicker(available) {
+      if (!elements.sheetItemPickerBody) return;
+      sheetEligibleItems = Array.isArray(available) ? available.slice() : [];
+      elements.sheetItemPickerBody.innerHTML = "";
+      if (!sheetEligibleItems.length) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="5" class="muted-cell">No eligible items.</td>`;
+        elements.sheetItemPickerBody.appendChild(tr);
+        return;
+      }
+      sheetEligibleItems
+        .slice()
+        .sort((a, b) => String(a.name || "").localeCompare(String(b.name || "")))
+        .forEach((item, idx) => {
+          const tr = document.createElement("tr");
+          const cls = item.class_name ? ` (${item.class_name})` : "";
+          const from = item.from_power ? ` From: ${item.from_power}` : "";
+          const costNum = parseCashCost(item.cost);
+          const costText = costNum > 0 ? `$${costNum}` : (item.cost ? String(item.cost) : "Free");
+          tr.innerHTML = `
+            <td>${escapeHtml((item.name || "Item") + cls)}</td>
+            <td>${escapeHtml(item.description || item.effects || "-")}${from ? `<span class="sheet-item-cost">${escapeHtml(from)} | Cost: ${escapeHtml(costText)}</span>` : `<span class="sheet-item-cost">Cost: ${escapeHtml(costText)}</span>`}</td>
+            <td>${escapeHtml(item.effects || "-")}</td>
+            <td><input class="sheet-table-qty" type="number" min="1" step="1" value="1" aria-label="Quantity for ${escapeHtml(item.name || "item")}"></td>
+            <td class="sheet-row-actions"><button class="secondary-btn" type="button">Add</button></td>
+          `;
+          const qtyInput = tr.querySelector("input");
+          const addBtn = tr.querySelector("button");
+          addBtn?.addEventListener("click", () => {
+            addItemToInventory(item, qtyInput?.value || 1);
+          });
+          elements.sheetItemPickerBody.appendChild(tr);
+        });
+    }
+
+    function hydrateFilters() {
+      const classes = Array.from(new Set(powerLibrary.map(p => p.meta.className))).sort((a, b) => a.localeCompare(b));
+      elements.filterClass.innerHTML = `<option value="all">Any</option>` + classes.map(c => `<option value="${c}">${c}</option>`).join("");
+    }
+
+    async function fetchPowersJson() {
+      if (isFileProtocol) return null;
+      const tryJson = async (url) => {
+        url = url.startsWith("api/") ? apiUrl(url) : url;
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      };
+      try {
+        const data = await tryJson("api/powers.php");
+        if (data && Array.isArray(data.powers)) return data.powers; // legacy flat format
+        if (Array.isArray(data)) return data; // legacy: raw array of powers
+
+        // New hierarchical single-file format:
+        // powers.json -> { classes: [{ class_name, all_class_powers: [{ ...power, all_sub_powers: [...] }] }] }
+        if (data && Array.isArray(data.classes)) {
+          const all = [];
+          for (const cls of data.classes) {
+            const list = cls?.all_class_powers || [];
+            for (const p of list) all.push(p);
+          }
+          return all;
+        }
+      } catch (err) {
+        console.warn("Failed to load API powers (api/powers.php). Falling back to powers.json.", err);
+        try {
+          const data = await tryJson("powers.json");
+          if (data && Array.isArray(data.powers)) return data.powers;
+          if (Array.isArray(data)) return data;
+          if (data && Array.isArray(data.classes)) {
+            const all = [];
+            for (const cls of data.classes) {
+              const list = cls?.all_class_powers || [];
+              for (const p of list) all.push(p);
+            }
+            return all;
+          }
+        } catch (err2) {
+          console.warn("Failed to load powers.json", err2);
+        }
+      }
+      return null;
+    }
+
+    async function fetchItemsJson() {
+      if (isFileProtocol) return null;
+      const tryJson = async (url) => {
+        url = url.startsWith("api/") ? apiUrl(url) : url;
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      };
+      try {
+        const data = await tryJson("api/items.php");
+        if (data && Array.isArray(data.items)) return data.items;
+        if (Array.isArray(data)) return data;
+      } catch (err) {
+        console.warn("Failed to load API items (api/items.php). Falling back to items.json.", err);
+        try {
+          const data = await tryJson("items.json");
+          if (data && Array.isArray(data.items)) return data.items;
+          if (Array.isArray(data)) return data;
+        } catch (err2) {
+          console.warn("Failed to load items.json", err2);
+        }
+      }
+      return null;
+    }
+
+    function extractItemsFromPowers(powers) {
+      const items = [];
+      powers.forEach(p => {
+        const content = p.content || "";
+        const blocks = content.split(/---+/);
+        blocks.forEach(raw => {
+          const b = raw.trim();
+          if (!b || !/Cost:/i.test(b)) return;
+          const lines = b.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+          const title = lines[0].replace(/^[#*\\s]+/, "");
+          if (!title) return;
+          let cost = "";
+          const effect = [];
+          lines.slice(1).forEach(l => {
+            const m = l.match(/^cost:\\s*(.+)$/i);
+            if (m) cost = m[1].trim();
+            else effect.push(l);
+          });
+          items.push({
+            id: `${p.name}-${title}`.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+            name: title,
+            from_power: p.name,
+            class_name: p.meta?.className || "General",
+            description: effect.join(" "),
+            cost,
+            prerequisites: [p.name],
+          });
+        });
+      });
+      return items;
+    }
+
+    async function hydratePowers(showAlert = true) {
+      powerLibrary.length = 0;
+      itemsLibrary = [];
+      const itemsFromJson = await fetchItemsJson();
+      if (Array.isArray(itemsFromJson)) {
+        itemsLibrary = itemsFromJson;
+      } else if (showAlert) {
+        const msg = isFileProtocol
+          ? "Items could not be loaded. Running from file:// blocks JSON fetches. Use 'Load items.json from disk' or host with a local server."
+          : "Items could not be loaded. Ensure items.json is available.";
+        alert(msg);
+      }
+
+      const rawList = await fetchPowersJson();
+      const source = "powers.json";
+
+      if (!rawList) {
+        if (showAlert) {
+          const msg = isFileProtocol
+            ? "No powers found. When opening from file:// browsers block JSON fetches. Please host this folder with a local server (e.g., python -m http.server) or deploy to a website."
+            : "No powers found. Ensure powers.json is available.";
+          alert(msg);
+        }
+        renderPowerLibrary([]);
+        renderItems();
+        return;
+      }
+
+      for (const raw of rawList) {
+        const normPath = (raw.path || "").replace(/\\/g, "/");
+        const content = typeof raw.content === "string" ? raw.content : (raw.content?.value ?? "");
+        const sub = Array.isArray(raw.all_sub_powers) ? raw.all_sub_powers : [];
+        const subLooksLikeLevels = sub.length && (typeof sub[0]?.level === "number" || /^\d+$/.test(String(sub[0]?.level ?? "")));
+        const base = {
+          name: raw.name,
+          path: normPath,
+        class_name: raw.class_name || raw.className || "",
+        content,
+        description: raw.description || extractDescription(content),
+        levels: subLooksLikeLevels ? sub.map(s => ({
+          level: Number(s.level) || 1,
+          text: String(s.text ?? s.ability ?? ""),
+          cost: Number(s.cost ?? s.points) || 1,
+        })) : extractLevels(content),
+      };
+      if (!base.levels || !base.levels.length) {
+        base.levels = [{ level: 1, text: content || base.description || base.name, cost: 1 }];
+      }
+      base.meta = inferMeta(base);
+      // Techie powers: treat as a single purchasable level, with details living in the items system.
+      if ((base.path || "").startsWith("Techie/") || base.meta.className === "Techie") {
+        base.levels = [{ level: 1, text: base.description || base.name, cost: 1 }];
+      }
+      powerLibrary.push(base);
+      }
+      hydrateFilters();
+      applyFilters();
+      renderCharacterPowers();
+      appliedLevel1Default = false;
+      maybeApplyLevelOneFilter();
+      renderItems();
+    }
+
+    function handleItemDrop(evt) {
+      evt.preventDefault();
+      elements.inventoryList.classList.remove("drag-over");
+      let payload = evt.dataTransfer.getData("application/json");
+      if (!payload) return;
+      try {
+        const item = JSON.parse(payload);
+        addItemToInventory(item, 1);
+      } catch (err) {
+        console.warn("Failed to drop item", err);
+      }
+    }
+    function addPowerToCharacter(power) {
+      const existing = chosenPowers.get(power.path);
+      if (existing) {
+        alert("That power is already selected.");
+        renderCharacterPowers();
+        return;
+      }
+      const isTechie = power?.meta?.className === "Techie" || (power?.path || "").startsWith("Techie/");
+      const target = { ...power, purchased: isTechie ? new Set([0]) : new Set() };
+      chosenPowers.set(power.path, target);
+      setDirty();
+      renderCharacterPowers();
+      updateSummary();
+      renderItems();
+    }
+
+    function extractLevels(text) {
+      const safe = typeof text === "string" ? text : "";
+      const lines = safe.split(/\r?\n/);
+      const hasLevelTable = lines.some(l => /\|.*level/i.test(l) && l.includes("|"));
+      if (hasLevelTable) {
+        const rows = lines.filter(l => l.trim().startsWith("|") && l.includes("|"));
+        const parsed = [];
+        for (const row of rows.slice(2)) {
+          const cells = row.split("|").map(c => c.trim()).filter(Boolean);
+          if (cells.length >= 2) {
+            const levelNum = parseInt(cells[0], 10);
+            if (!isNaN(levelNum)) {
+              const pointsCell = cells[1];
+              const cost = Number(pointsCell);
+              const body = cells.slice(2).join(" | ") || cells.slice(1).join(" | ");
+              parsed.push({ level: levelNum, text: body, cost: isNaN(cost) ? 1 : cost });
+            }
+          }
+        }
+        if (parsed.length) return parsed.sort((a, b) => a.level - b.level);
+      }
+
+      const headings = [];
+      lines.forEach((line, idx) => {
+        const m = line.match(/^\s*#*\s*(?:Lv\.?\s*|Level\s*)(\d+)/i);
+        if (m) headings.push({ idx, level: parseInt(m[1], 10) });
+      });
+      if (headings.length) {
+        const chunks = [];
+        headings.forEach((item, i) => {
+          const start = item.idx + 1;
+          const end = i + 1 < headings.length ? headings[i + 1].idx : lines.length;
+          const section = lines.slice(start, end).join("\n").trim();
+          chunks.push({ level: item.level, text: section || "(no text)", cost: 1 });
+        });
+        return chunks.sort((a, b) => a.level - b.level);
+      }
+
+      const inlineSplit = text.split(/(?=Lv\.?\s*\d+)/i);
+      if (inlineSplit.length > 1) {
+        const levels = [];
+        inlineSplit.forEach(chunk => {
+          const m = chunk.match(/Lv\.?\s*(\d+)/i);
+          if (m) {
+            const rest = chunk.replace(/Lv\.?\s*\d+/i, "").trim();
+            levels.push({ level: parseInt(m[1], 10), text: rest || "(no text)" });
+          }
+        });
+        if (levels.length) return levels.sort((a, b) => a.level - b.level);
+      }
+
+      return [{ level: 1, text: text.trim() || "(no text)", cost: 1 }];
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function formatMarkdown(md) {
+      let out = escapeHtml(md || "");
+      out = out.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+      out = out.replace(/\*(.+?)\*/g, "<em>$1</em>");
+      out = out.replace(/\n{2,}/g, "\n\n");
+      return out.replace(/\n/g, "<br>");
+    }
+
+    function stripTables(text) {
+      return text
+        .split(/\r?\n/)
+        .filter(line => !line.trim().startsWith("|"))
+        .join("\n");
+    }
+
+    function markdownToPlain(md) {
+      return (md || "")
+        .replace(/\*\*(.+?)\*\*/g, "$1")
+        .replace(/\*(.+?)\*/g, "$1")
+        .replace(/<br\s*\/?>/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function extractDescription(md) {
+      const text = typeof md === "string" ? md : "";
+      const lines = text.split(/\r?\n/);
+
+      const descIdx = lines.findIndex(l =>
+        /^#{1,3}\s*description\b/i.test(l.trim()) ||
+        /^description\s*:/i.test(l.trim())
+      );
+      if (descIdx !== -1) {
+        const chunk = [];
+        for (let i = descIdx + 1; i < lines.length; i++) {
+          const line = lines[i];
+          if (/^#{1,6}\s+\S/.test(line.trim())) break;
+          chunk.push(line);
+          if (!line.trim() && chunk.length > 1) break;
+        }
+        const desc = chunk.join("\n").trim();
+        if (desc) return desc;
+      }
+
+      const filtered = lines.filter(l => !l.trim().startsWith("|"));
+      for (let i = 0; i < filtered.length; i++) {
+        const line = filtered[i].trim();
+        if (!line) continue;
+        if (/^#{1,6}\s+\S/.test(line)) continue;
+        if (/^Lv\.?\s*\d+/i.test(line)) continue;
+        if (/^\*\s/.test(line) || /^-\s/.test(line)) continue;
+        return filtered.slice(i, i + 2).join("\n").trim();
+      }
+      return "";
+    }
+
+    function levelDescriptor(lv) {
+      const plain = markdownToPlain(stripTables(lv.text || ""));
+      if (!plain) return "";
+      return plain.length > 80 ? plain.slice(0, 80) + "..." : plain;
+    }
+
+    function sanitizeFileName(name) {
+      return (name || "character")
+        .replace(/[<>:"/\\|?*]+/g, "_")
+        .replace(/\s+/g, " ")
+        .trim() || "character";
+    }
+
+    async function chooseCharacterFolder() {
+      if (!window.showDirectoryPicker) {
+        alert("Your browser does not support the File System Access API.");
+        return;
+      }
+      characterDirHandle = await window.showDirectoryPicker();
+      elements.characterFolderHint.textContent = `Folder: ${characterDirHandle.name || "selected"}`;
+    }
+
+    async function ensureCharacterFolder() {
+      if (characterDirHandle) return characterDirHandle;
+      await chooseCharacterFolder();
+      return characterDirHandle;
+    }
+
+    function serializeCharacter() {
+      return {
+        name: document.getElementById("name").value || "",
+        concept: document.getElementById("concept").value || "",
+        background: elements.backgroundText.value || "",
+        stats: {
+          reflexBase: Number(elements.reflexBase.value) || 0,
+          reflexMod: Number(elements.reflexMod.value) || 0,
+          strengthBase: Number(elements.strengthBase.value) || 0,
+          strengthMod: Number(elements.strengthMod.value) || 0,
+          smartsBase: Number(elements.smartsBase.value) || 0,
+          smartsMod: Number(elements.smartsMod.value) || 0,
+          socialBase: Number(elements.socialBase.value) || 0,
+          socialMod: Number(elements.socialMod.value) || 0,
+          durabilityBase: Number(elements.durabilityBase.value) || 0,
+          durabilityMod: Number(elements.durabilityMod.value) || 0,
+          armorBase: Number(elements.armorBase.value) || 0,
+          armorMod: Number(elements.armorMod.value) || 0,
+          level: Number(document.getElementById("level").value) || 0,
+          size: Number(elements.size.value) || 0,
+          currentHealth: Number(elements.currentHealth.value) || 0,
+        },
+        cash: Number(elements.cash.value) || 0,
+        budget: {
+          base: Number(elements.statBasePool.value) || 0,
+          perLevel: Number(elements.statPerLevel.value) || 0,
+        },
+        powers: Array.from(chosenPowers.values()).map(p => ({
+          name: p.name,
+          path: p.path,
+          purchasedIndices: p.purchased ? Array.from(p.purchased) : [],
+        })),
+        inventory,
+        savedAt: new Date().toISOString(),
+      };
+    }
+    function applyCharacter(data) {
+      if (elements.sampleBanner) elements.sampleBanner.classList.add("hidden");
+      document.getElementById("name").value = data.name || "";
+      document.getElementById("concept").value = data.concept || "";
+      elements.backgroundText.value = data.background || "";
+      if (data.stats) {
+        elements.reflexBase.value = data.stats.reflexBase ?? 0;
+        elements.reflexMod.value = data.stats.reflexMod ?? 0;
+        elements.strengthBase.value = data.stats.strengthBase ?? 0;
+        elements.strengthMod.value = data.stats.strengthMod ?? 0;
+        elements.smartsBase.value = data.stats.smartsBase ?? 0;
+        elements.smartsMod.value = data.stats.smartsMod ?? 0;
+        elements.socialBase.value = data.stats.socialBase ?? 0;
+        elements.socialMod.value = data.stats.socialMod ?? 0;
+        elements.durabilityBase.value = data.stats.durabilityBase ?? 0;
+        elements.durabilityMod.value = data.stats.durabilityMod ?? 0;
+        elements.armorBase.value = data.stats.armorBase ?? 0;
+        elements.armorMod.value = data.stats.armorMod ?? 0;
+        document.getElementById("level").value = data.stats.level ?? 1;
+        elements.size.value = data.stats.size ?? 1;
+        if (typeof data.stats.currentHealth === "number") {
+          elements.currentHealth.value = data.stats.currentHealth;
+        }
+      } else {
+        elements.size.value = 1;
+      }
+      if (typeof data.cash === "number") {
+        elements.cash.value = data.cash;
+      }
+      if (data.budget) {
+        elements.statBasePool.value = data.budget.base ?? elements.statBasePool.value;
+        elements.statPerLevel.value = data.budget.perLevel ?? elements.statPerLevel.value;
+      }
+      updateDerived();
+      chosenPowers.clear();
+      inventory.length = 0;
+      if (data.powers && Array.isArray(data.powers)) {
+        data.powers.forEach(saved => {
+          const lib = powerLibrary.find(p => p.path === saved.path) || powerLibrary.find(p => p.name === saved.name);
+          if (lib) {
+            const isTechie = lib?.meta?.className === "Techie" || (lib?.path || "").startsWith("Techie/");
+            const purchasedIndices = Array.isArray(saved.purchasedIndices) ? saved.purchasedIndices : [];
+            const purchased = new Set(purchasedIndices);
+            if (isTechie && purchased.size === 0) purchased.add(0);
+            chosenPowers.set(lib.path, { ...lib, purchased });
+          }
+        });
+      }
+      if (data.inventory && Array.isArray(data.inventory)) {
+        data.inventory.forEach((item, idx) => {
+          if (item && item.name) inventory.push(normalizeInventoryItem(item, idx));
+        });
+      }
+      lastSavedAt = data.savedAt || null;
+      elements.saveStamp.textContent = lastSavedAt ? `Last saved: ${formatTimestamp(lastSavedAt)}` : "Last saved: loaded";
+      dirty = false;
+      renderCharacterPowers();
+      renderInventory();
+      renderItems();
+      updateSummary();
+    }
+
+    async function saveCharacterToFolder() {
+      try {
+        const dir = await ensureCharacterFolder();
+        if (!dir) return;
+        const data = serializeCharacter();
+        const fileName = sanitizeFileName(data.name || "character") + ".json";
+        const fileHandle = await dir.getFileHandle(fileName, { create: true });
+        const writable = await fileHandle.createWritable();
+        await writable.write(JSON.stringify(data, null, 2));
+        await writable.close();
+        lastSavedAt = data.savedAt;
+        dirty = false;
+        elements.saveStamp.textContent = `Last saved: ${formatTimestamp(lastSavedAt)}`;
+        alert(`Character saved as ${fileName}`);
+      } catch (err) {
+        console.error(err);
+        alert("Failed to save character. Check folder permissions.");
+      }
+    }
+
+    async function loadCharacterFromFile() {
+      try {
+        if (window.showOpenFilePicker) {
+          const [fileHandle] = await window.showOpenFilePicker({
+            types: [{ description: "Character JSON", accept: { "application/json": [".json"] } }],
+            multiple: false
+          });
+          const file = await fileHandle.getFile();
+          const text = await file.text();
+          const data = JSON.parse(text);
+          applyCharacter(data);
+          return;
+        }
+        const dir = await ensureCharacterFolder();
+        if (!dir) return;
+        const files = [];
+        for await (const entry of dir.values()) {
+          if (entry.kind === "file" && entry.name.toLowerCase().endsWith(".json")) {
+            files.push(entry);
+          }
+        }
+        if (files.length === 0) {
+          alert("No character files found in this folder.");
+          return;
+        }
+        const list = files.map(f => f.name).join("\n");
+        const pick = prompt(`Enter the file name to load:\n${list}`, files[0].name);
+        if (!pick) return;
+        const chosen = files.find(f => f.name === pick.trim());
+        if (!chosen) {
+          alert("File not found in the selected folder.");
+          return;
+        }
+        const file = await chosen.getFile();
+        const text = await file.text();
+        const data = JSON.parse(text);
+        applyCharacter(data);
+      } catch (err) {
+        console.error(err);
+        alert("Failed to load character. Check folder permissions.");
+      }
+    }
+
+    function quickSave() {
+      const data = serializeCharacter();
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(data));
+      lastSavedAt = data.savedAt;
+      dirty = false;
+      elements.saveStamp.textContent = `Last saved: ${formatTimestamp(lastSavedAt)} (Quick Save)`;
+      alert("Character saved to localStorage.");
+    }
+
+    function quickLoad() {
+      const raw = localStorage.getItem(LOCAL_KEY);
+      if (!raw) {
+        alert("No saved character found in localStorage.");
+        return;
+      }
+      try {
+        const data = JSON.parse(raw);
+        applyCharacter(data);
+      } catch (err) {
+        console.error(err);
+        alert("Unable to load saved character.");
+      }
+    }
+
+    function previewFromPower(power) {
+      const tablePreview = (text) => {
+        const lines = (text || "").split(/\r?\n/).filter(Boolean);
+        const dataRows = lines.filter(l => l.includes("|") && !/^\|\s*-/.test(l));
+        for (const row of dataRows.slice(1)) {
+          const cells = row.split("|").map(c => c.trim()).filter(Boolean);
+          if (cells.length >= 2) {
+            const ability = cells[cells.length - 1];
+            const plain = markdownToPlain(ability.replace(/<br\s*\/?\s*>/gi, " "));
+            if (plain) return plain;
+          }
+        }
+        return "";
+      };
+      if (power.description) {
+        const desc = markdownToPlain(stripTables(power.description || ""));
+        if (desc) return desc.length > 140 ? desc.slice(0, 140) + "..." : desc;
+      }
+      const sortedLevels = [...(power.levels || [])].sort((a, b) => a.level - b.level);
+      const first = sortedLevels[0];
+      const fromTable = tablePreview(first?.text || power.content || "");
+      if (fromTable) return fromTable.length > 140 ? fromTable.slice(0, 140) + "..." : fromTable;
+      const fallback = markdownToPlain(stripTables(power.content || ""));
+      if (fallback) return fallback.length > 140 ? fallback.slice(0, 140) + "..." : fallback;
+      return "No description";
+    }
+
+    function formatTimestamp(ts) {
+      const date = new Date(ts);
+      return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+    }
+
+    function presetBuild(name) {
+      const builds = {
+        "Street Brawler": {
+          level: 3,
+          stats: { strengthBase: 4, durabilityBase: 3, reflexBase: 2, smartsBase: 1, socialBase: 0 },
+          powers: ["Super Strength", "Vitality", "Invincibility"],
+          inventory: [{ name: "Brass Knuckles", qty: 1, notes: "Adds +1 damage" }],
+          background: "Bouncer turned vigilante who knows the alleys and takes no guff."
+        },
+        "The Detective": {
+          level: 3,
+          stats: { smartsBase: 4, reflexBase: 2, socialBase: 3, durabilityBase: 1, strengthBase: 0 },
+          powers: ["Clairvoyant", "Mind Control", "Teleport (People)"],
+          inventory: [{ name: "Case Files", qty: 1, notes: "Advantage on research and interviews" }],
+          background: "Investigator with a taste for the uncanny; keeps red-string boards everywhere."
+        },
+        "The Mechanic": {
+          level: 3,
+          stats: { smartsBase: 3, strengthBase: 2, durabilityBase: 2, reflexBase: 1, socialBase: 1 },
+          powers: ["Gadget Techie 1", "Mech Techie", "Interface Techie"],
+          inventory: [{ name: "Tool Roll", qty: 1, notes: "Basic repairs and jury-rigging" }],
+          background: "Grease-under-the-nails engineer who builds the toys and drives the rigs."
+        },
+        "The Elementalist": {
+          level: 3,
+          stats: { smartsBase: 2, durabilityBase: 2, reflexBase: 2, strengthBase: 1, socialBase: 1 },
+          powers: ["Elemental Control", "Bombard", "Telekinesis"],
+          inventory: [{ name: "Elemental Focus", qty: 1, notes: "Tuned to your favored element" }],
+          background: "Channeler of shifting elements, riding the line between art and disaster."
+        },
+        "The Speedster": {
+          level: 3,
+          stats: { reflexBase: 4, smartsBase: 2, durabilityBase: 1, strengthBase: 1, socialBase: 1 },
+          powers: ["SuperSpeed", "Flight", "Teleport (People)"],
+          inventory: [{ name: "Lightweight Suit", qty: 1, notes: "Built for speed; +initiative" }],
+          background: "Lives life in blurs and breezes; outruns plans and problems alike."
+        },
+        "The Mutant": {
+          level: 3,
+          stats: { durabilityBase: 3, strengthBase: 2, smartsBase: 1, reflexBase: 1, socialBase: 1 },
+          powers: ["Elemental Body", "Cartoon", "Vitality"],
+          inventory: [{ name: "Gene Stabilizer", qty: 1, notes: "Helps keep mutations in check" }],
+          background: "Flesh rewritten by circumstance; still deciding what the new form means."
+        },
+        "The Action Hero": {
+          level: 3,
+          stats: { reflexBase: 3, strengthBase: 2, socialBase: 2, durabilityBase: 1, smartsBase: 1 },
+          powers: ["Action Hero", "Assassin", "Rocket"],
+          inventory: [{ name: "Signature Weapon", qty: 1, notes: "Always nearby when the scene kicks off" }],
+          background: "Born for the spotlight and the stunt—improvises under fire with style."
+        }
+      };
+      const build = builds[name];
+      if (!build) return;
+      document.getElementById("level").value = build.level;
+      Object.entries(build.stats).forEach(([key, val]) => {
+        const el = elements[key];
+        if (el) el.value = val;
+      });
+      chosenPowers.clear();
+      build.powers.forEach(pName => {
+        const lib = powerLibrary.find(p => p.name === pName);
+        if (lib) {
+          chosenPowers.set(lib.path, { ...lib, purchased: new Set([0]) });
+        }
+      });
+      inventory.length = 0;
+      build.inventory.forEach(item => inventory.push(item));
+      elements.backgroundText.value = build.background || elements.backgroundText.value;
+      setDirty();
+      renderCharacterPowers();
+      renderInventory();
+      updateDerived();
+      updateSummary();
+      document.body.classList.add("tour");
+      setTimeout(() => document.body.classList.remove("tour"), 6000);
+    }
+
+    function loadSampleStarter() {
+      presetBuild("Street Brawler");
+      elements.level.value = 1;
+      elements.reflexBase.value = 1;
+      elements.strengthBase.value = 3;
+      elements.smartsBase.value = 1;
+      elements.socialBase.value = 0;
+      elements.durabilityBase.value = 2;
+      elements.size.value = 1;
+      ["reflexMod","strengthMod","smartsMod","socialMod","durabilityMod"].forEach(id => { elements[id].value = 0; });
+      updateDerived();
+      renderCharacterPowers();
+      renderInventory();
+      updateSummary();
+      validateStats();
+      setDirty();
+      if (elements.sampleBanner) elements.sampleBanner.classList.remove("hidden");
+      const sheetPanel = document.getElementById("sheetPanel");
+      if (sheetPanel) sheetPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      appliedLevel1Default = false;
+      maybeApplyLevelOneFilter();
+    }
+
+    function applyBuildFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const build = params.get("build");
+      const options = [
+        "Street Brawler",
+        "The Detective",
+        "The Mechanic",
+        "The Elementalist",
+        "The Speedster",
+        "The Mutant",
+        "The Action Hero"
+      ];
+      if (build && options.includes(build)) {
+        presetBuild(build);
+        params.delete("build");
+        const rest = params.toString();
+        const newUrl = `${location.pathname}${rest ? "?" + rest : ""}${location.hash}`;
+        history.replaceState({}, "", newUrl);
+      }
+    }
+    const BASE_STAT_IDS = new Set(["reflexBase","strengthBase","smartsBase","socialBase","durabilityBase","armorBase"]);
+    ["level","size","reflexBase","reflexMod","strengthBase","strengthMod","smartsBase","smartsMod","socialBase","socialMod","durabilityBase","durabilityMod","armorBase","armorMod","statBasePool","statPerLevel","currentHealth","cash"].forEach(id => {
+      elements[id].addEventListener("input", () => {
+        if (BASE_STAT_IDS.has(id)) {
+          clampBaseStats(elements[id]);
+        }
+        if (id === "statBasePool" || id === "statPerLevel") {
+          enforceFixedBudgetInputs();
+        }
+        setDirty();
+        updateDerived();
+        if (id === "level") {
+          appliedLevel1Default = false;
+          maybeApplyLevelOneFilter();
+        }
+      });
+    });
+    elements.search.addEventListener("input", () => {
+      filters.search = elements.search.value;
+      markFiltersTouched();
+      applyFilters();
+    });
+    elements.filterClass.addEventListener("change", () => { filters.class = elements.filterClass.value; markFiltersTouched(); applyFilters(); });
+    elements.filterLevel.addEventListener("change", () => { filters.level = elements.filterLevel.value; markFiltersTouched(); applyFilters(); });
+    elements.filterCategory.addEventListener("change", () => { filters.category = elements.filterCategory.value; markFiltersTouched(); applyFilters(); });
+    elements.filterAction.addEventListener("change", () => { filters.action = elements.filterAction.value; markFiltersTouched(); applyFilters(); });
+    document.querySelectorAll(".chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        const key = chip.dataset.quick;
+        markFiltersTouched();
+        filters.class = "all";
+        filters.level = "all";
+        if (key === "clear") {
+          elements.search.value = "";
+          filters.search = "";
+        } else if (key === "level1") {
+          filters.level = "1";
+        } else if (key === "level2") {
+          filters.level = "2plus";
+        } else if (key === "classBrick") {
+          filters.class = "Brick";
+        } else if (key === "classTechie") {
+          filters.class = "Techie";
+        } else if (key === "classRanger") {
+          filters.class = "Ranger";
+        }
+        applyFilters();
+      });
+    });
+    elements.addItem.addEventListener("click", () => {
+      const name = elements.invName.value.trim();
+      const qty = Number(elements.invQty.value) || 1;
+      const notes = elements.invDescription.value.trim();
+      const effects = elements.invEffect.value.trim();
+      if (!name) {
+        alert("Item name is required.");
+        return;
+      }
+      inventory.push(normalizeInventoryItem({
+        id: `custom-${Date.now()}`,
+        name,
+        qty,
+        description: notes,
+        effects,
+        cost: 0
+      }, inventory.length));
+      elements.invName.value = "";
+      elements.invQty.value = 1;
+      elements.invDescription.value = "";
+      elements.invEffect.value = "";
+      setDirty();
+      renderInventory();
+      updateSummary();
+      renderItems();
+    });
+    elements.inventoryList.addEventListener("dragover", (evt) => {
+      evt.preventDefault();
+      elements.inventoryList.classList.add("drag-over");
+    });
+    elements.inventoryList.addEventListener("dragleave", () => {
+      elements.inventoryList.classList.remove("drag-over");
+    });
+    elements.inventoryList.addEventListener("drop", handleItemDrop);
+    elements.selectCharacterFolder.addEventListener("click", async () => {
+      await saveCharacterToFolder();
+    });
+    elements.loadCharacter.addEventListener("click", async () => {
+      await loadCharacterFromFile();
+    });
+    elements.printCharacter.addEventListener("click", () => {
+      window.print();
+    });
+    elements.startTourLink.addEventListener("click", () => {
+      loadSampleStarter();
+    });
+    elements.powerDetail.addEventListener("click", (e) => e.stopPropagation());
+    elements.addFromDetail.addEventListener("click", () => {
+      if (selectedPower) addPowerToCharacter(selectedPower);
+    });
+    elements.closeDetail.addEventListener("click", () => {
+      elements.powerDetail.classList.add("hidden");
+      if (elements.detailWrapper) elements.detailWrapper.classList.add("hidden");
+    });
+    [elements.quickSave, elements.quickSaveInline].forEach(btn => btn.addEventListener("click", quickSave));
+    [elements.quickLoad, elements.quickLoadInline].forEach(btn => btn.addEventListener("click", quickLoad));
+    document.getElementById("name").addEventListener("input", () => { setDirty(); updateSummary(); });
+    document.getElementById("concept").addEventListener("input", () => { setDirty(); updateSummary(); });
+    elements.backgroundText.addEventListener("input", () => { setDirty(); updateSummary(); });
+    elements.addPowerBtnDesktop.addEventListener("click", openDesktopPowerPicker);
+    elements.closePowerPickerBtnDesktop.addEventListener("click", closeDesktopPowerPicker);
+    elements.confirmAddPowerBtnDesktop.addEventListener("click", addSelectedPowerFromDesktopPicker);
+    elements.powerPickerDesktop.addEventListener("change", renderDesktopLevelPickerForCurrentPower);
+    elements.powerLevelPickerDesktop.addEventListener("change", updateDesktopLevelPreview);
+    elements.powerPickerDesktop.addEventListener("dblclick", addSelectedPowerFromDesktopPicker);
+    elements.powerPickerDesktop.addEventListener("keydown", (evt) => {
+      if (evt.key === "Enter") {
+        evt.preventDefault();
+        addSelectedPowerFromDesktopPicker();
+      }
+    });
+    elements.powerOverlayDesktop.addEventListener("click", (evt) => {
+      if (evt.target === elements.powerOverlayDesktop) closeDesktopPowerPicker();
+    });
+
+
+    function syncSheetBaseModToCore(sheetBaseEl, sheetModEl, baseEl, modEl) {
+      if (!sheetBaseEl || !sheetModEl || !baseEl || !modEl) return;
+      baseEl.value = String(Number(sheetBaseEl.value) || 0);
+      modEl.value = String(Number(sheetModEl.value) || 0);
+      clampBaseStats(baseEl);
+      setDirty();
+      updateDerived();
+    }
+
+    elements.sheetPlayerNameInput?.addEventListener("input", () => {
+      document.getElementById("name").value = elements.sheetPlayerNameInput.value;
+      setDirty();
+      updateSummary();
+    });
+    elements.sheetCharacterNameInput?.addEventListener("input", () => {
+      document.getElementById("concept").value = elements.sheetCharacterNameInput.value;
+      setDirty();
+      updateSummary();
+    });
+    elements.sheetLevelInput?.addEventListener("input", () => {
+      elements.level.value = String(Math.max(1, Number(elements.sheetLevelInput.value) || 1));
+      setDirty();
+      updateDerived();
+    });
+    elements.sheetSizeInput?.addEventListener("input", () => {
+      elements.size.value = String(Math.max(0, Number(elements.sheetSizeInput.value) || 0));
+      setDirty();
+      updateDerived();
+    });
+    elements.sheetCashInput?.addEventListener("input", () => {
+      elements.cash.value = String(Math.max(0, Number(elements.sheetCashInput.value) || 0));
+      setDirty();
+      updateDerived();
+    });
+    elements.sheetCurrentHealthInput?.addEventListener("input", () => {
+      elements.currentHealth.value = String(Math.max(0, Number(elements.sheetCurrentHealthInput.value) || 0));
+      setDirty();
+      updateDerived();
+    });
+
+    elements.sheetReflexBaseInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetReflexBaseInput, elements.sheetReflexModInput, elements.reflexBase, elements.reflexMod));
+    elements.sheetReflexModInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetReflexBaseInput, elements.sheetReflexModInput, elements.reflexBase, elements.reflexMod));
+    elements.sheetStrengthBaseInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetStrengthBaseInput, elements.sheetStrengthModInput, elements.strengthBase, elements.strengthMod));
+    elements.sheetStrengthModInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetStrengthBaseInput, elements.sheetStrengthModInput, elements.strengthBase, elements.strengthMod));
+    elements.sheetSmartsBaseInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetSmartsBaseInput, elements.sheetSmartsModInput, elements.smartsBase, elements.smartsMod));
+    elements.sheetSmartsModInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetSmartsBaseInput, elements.sheetSmartsModInput, elements.smartsBase, elements.smartsMod));
+    elements.sheetSocialBaseInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetSocialBaseInput, elements.sheetSocialModInput, elements.socialBase, elements.socialMod));
+    elements.sheetSocialModInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetSocialBaseInput, elements.sheetSocialModInput, elements.socialBase, elements.socialMod));
+    elements.sheetDurabilityBaseInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetDurabilityBaseInput, elements.sheetDurabilityModInput, elements.durabilityBase, elements.durabilityMod));
+    elements.sheetDurabilityModInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetDurabilityBaseInput, elements.sheetDurabilityModInput, elements.durabilityBase, elements.durabilityMod));
+    elements.sheetArmorBaseInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetArmorBaseInput, elements.sheetArmorModInput, elements.armorBase, elements.armorMod));
+    elements.sheetArmorModInput?.addEventListener("input", () => syncSheetBaseModToCore(elements.sheetArmorBaseInput, elements.sheetArmorModInput, elements.armorBase, elements.armorMod));
+
+    bindRichTextareaInput(elements.sheetBackstoryInput, () => {
+      elements.backgroundText.value = elements.sheetBackstoryInput.value;
+      setDirty();
+      updateSummary();
+    });
+    elements.sheetPowerSelect?.addEventListener("change", () => {
+      updateSheetSelectedPowerDescription();
+    });
+    elements.sheetAddPowerBtn?.addEventListener("click", () => {
+      openDesktopPowerPicker();
+    });
+    elements.sheetRemovePowerBtn?.addEventListener("click", () => {
+      const path = elements.sheetPowerSelect?.value || "";
+      if (!path || !chosenPowers.has(path)) return;
+      chosenPowers.delete(path);
+      setDirty();
+      renderCharacterPowers();
+      updateSummary();
+      renderItems();
+    });
+    elements.sheetAddCustomItemBtn?.addEventListener("click", () => {
+      const name = String(elements.sheetCustomItemNameInput?.value || "").trim();
+      if (!name) {
+        alert("Custom item name is required.");
+        return;
+      }
+      const qty = Math.max(1, Number(elements.sheetCustomItemQtyInput?.value) || 1);
+      const description = String(elements.sheetCustomItemDescInput?.value || "").trim();
+      const effects = String(elements.sheetCustomItemEffectInput?.value || "").trim();
+      const cost = String(elements.sheetCustomItemCostInput?.value || "").trim();
+      const added = addItemToInventory({
+        id: `custom-${Date.now()}`,
+        name,
+        description,
+        effects,
+        cost
+      }, qty);
+      if (!added) return;
+      if (elements.sheetCustomItemNameInput) elements.sheetCustomItemNameInput.value = "";
+      if (elements.sheetCustomItemDescInput) elements.sheetCustomItemDescInput.value = "";
+      if (elements.sheetCustomItemEffectInput) elements.sheetCustomItemEffectInput.value = "";
+      if (elements.sheetCustomItemQtyInput) elements.sheetCustomItemQtyInput.value = "1";
+      if (elements.sheetCustomItemCostInput) elements.sheetCustomItemCostInput.value = "";
+    });
+    window.addEventListener("beforeprint", () => {
+      prePrintDescriptions = elements.sheetPowerDescriptionsInput.innerHTML;
+      elements.sheetPowerDescriptionsInput.innerHTML = buildAllPowerDescriptionsText();
+    });
+    window.addEventListener("afterprint", () => {
+      if (prePrintDescriptions !== null) {
+        elements.sheetPowerDescriptionsInput.innerHTML = prePrintDescriptions;
+        prePrintDescriptions = null;
+      } else {
+        updateSheetSelectedPowerDescription();
+      }
+    });
+    window.addEventListener("beforeunload", (e) => {
+      if (!dirty) return;
+      e.preventDefault();
+      e.returnValue = "";
+    });
+
+    (async () => {
+      await hydratePowers(false);
+      applyBuildFromQuery();
+      maybeApplyLevelOneFilter();
+      renderInventory();
+      renderCharacterPowers();
+      updateDerived();
+      updateSummary();
+    })();
+  </script>
+  <script src="../nav-dropdown.js"></script>
+  <script src="../theme-mode.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
